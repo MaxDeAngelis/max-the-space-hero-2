@@ -100,6 +100,9 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @private Move the enemy unit if grounded
+	 **/
 	void _move() {
 		if (_isGrounded) {
 			_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _rigidbody.velocity.y);

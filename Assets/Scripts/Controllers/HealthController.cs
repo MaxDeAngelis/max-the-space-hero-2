@@ -6,14 +6,16 @@ public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float health = 400f;			// The maximum health of the unit
-	public Text healthDisplay;			// UI Text component to display the percent of health left
-	public bool isPlayer = false;		// Flag for if the unit is the player
+	public float health = 400f;				// The maximum health of the unit
+	public Text healthDisplay;				// UI Text component to display the percent of health left
+	public AudioClip damageSoundEffect; 	// Sound effect for when you take damage
+	public bool isPlayer = false;			// Flag for if the unit is the player
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private float _originalHealth;		// Original maximum health of the unit
+	private float _originalHealth;			// Original maximum health of the unit
+	private SpriteRenderer[] _renderers;	// The sprite renderer of the object
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -22,6 +24,7 @@ public class HealthController : MonoBehaviour {
 	 * @private Called on awake of the game object to init variables
 	 **/
 	void Awake () {
+		_renderers = GetComponentsInChildren<SpriteRenderer>();
 		_originalHealth = health;
 		_updateHealth();
 	}
@@ -63,6 +66,12 @@ public class HealthController : MonoBehaviour {
 			projectile.hit();
 		}
 
+		// Make a sound and show damage if hurt
+		if (damage > 0) {
+			SoundEffectsManager.Instance.makeSound(damageSoundEffect);
+			StartCoroutine(_takeDamage(_renderers));
+		}
+
 		// Deduct the dame that the weapon does from your health
 		health -= damage;
 		
@@ -93,6 +102,26 @@ public class HealthController : MonoBehaviour {
 
 			// Display the calculated string
 			healthDisplay.text = healthPercent.ToString() + "%";
+		}
+	}
+
+	/**
+	 * @private Called to flash sprite renderers of the current game object to indicate damage
+	 * 
+	 * @param $SpriteRender[]$ sprites - An array of sprite renderers to flash
+	 **/
+	IEnumerator _takeDamage(SpriteRenderer[] sprites) {
+		// Start by turning all renderers red
+		for (int i = 0; i < sprites.Length; i++) {       
+				sprites[i].color = Color.red;
+		}
+
+		// delay for a quarter second
+		yield return new WaitForSeconds(0.25f);
+
+		// Turn all renderers back to white
+		for (int i = 0; i < sprites.Length; i++) {       
+			sprites[i].color = Color.white;
 		}
 	}
 }

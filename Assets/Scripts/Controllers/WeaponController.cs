@@ -10,6 +10,7 @@ public class WeaponController : MonoBehaviour {
 	public float attackSpeed = 0.5f;				// How fast can the weapon attack
 	public float durability = 1000f;				// The durrability of the weapon, when 0 its broken
 	public float durabilityLossPerAttack = 0f;		// The ammount of durrability lost per attack
+	public AudioClip attackSoundEffect;				// Sound effect to make on attack
 
 	public bool isActive = false;					// Flag for when the weapon is active
 	public bool isPlayer = false;					// Flag for if the weapon is the player or not
@@ -67,9 +68,11 @@ public class WeaponController : MonoBehaviour {
 			Vector2 delta = target - transform.position;
 			newProjectile.GetComponent<Rigidbody2D>().velocity = delta.normalized * projectileController.speed;
 
-
 			// Lastly turn on the box collider
 			newProjectile.GetComponent<Collider2D>().enabled = true;
+
+			// Make sound effect
+			SoundEffectsManager.Instance.makeSound(attackSoundEffect);
 		}
 	}
 
