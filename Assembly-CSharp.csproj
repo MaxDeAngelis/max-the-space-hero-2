@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Controllers\GroundController.cs" />
      <Compile Include="Assets\Scripts\Controllers\HealthController.cs" />
      <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\Controllers\WeaponController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

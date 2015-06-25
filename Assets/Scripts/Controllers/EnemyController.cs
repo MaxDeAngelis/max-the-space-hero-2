@@ -5,15 +5,17 @@ public class EnemyController : MonoBehaviour {
 	/* ---- HIDDEN VARIABLES ---- */
 	[HideInInspector] public float horizontalAxis = -1;
 	
-	/* ---- PUBLIC VARIABLES ---- */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float maxSpeed = 5f;							// The maximum speed at which to move
 	public float sightRange = 5f;						// The range that the unit can see before engaging the player
 	public float patrolDistance = 2f;					// The distance to patrol
-
-	
 	public Transform groundCheck;
 	
-	/* ---- PRIVATE VARIABLES ---- */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isGrounded = false;					// Flag for if the unit is grounded
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
 	private GameObject _player;							// The player game object
@@ -23,6 +25,9 @@ public class EnemyController : MonoBehaviour {
 	private float _distanceFromOriginalPosition;		// The distance from the spawn location
 	private WeaponController _weapon;					// Weapon controller of the current weapon
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @private Called on start of the game object to init variables
 	 **/
@@ -64,7 +69,7 @@ public class EnemyController : MonoBehaviour {
 			if (_distanceFromPlayer <= _weapon.range) {
 
 				if (_weapon.isRanged) {
-					_weapon.fire(_player.transform);
+					_weapon.fire(_player.transform.position);
 				} else {
 					_animator.SetTrigger("Attack");
 				}

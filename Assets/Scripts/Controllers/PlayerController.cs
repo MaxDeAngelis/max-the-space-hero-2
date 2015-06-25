@@ -2,27 +2,36 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	/* ---- HIDDEN VARIABLES ---- */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		HIDDEN VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	[HideInInspector] public bool facingRight = true;
 
-	/* ---- PUBLIC VARIABLES ---- */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float maxSpeed = 5f;
 	public float jumpForce = 250f;
 	public Transform groundCheck;
 
-	/* ---- PRIVATE VARIABLES ---- */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isGrounded = false;
 	private Rigidbody2D _rigidbody;
-	private Animator _animator;
 	private ClimbController _climbableController;
 	private float _originalGravityScale;
+	private WeaponController _weapon;
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @private Called on start of the game object to init variables
 	 **/
 	void Start() {
 		_rigidbody = GetComponent<Rigidbody2D>();
-		_animator = GetComponent<Animator>();
+		_weapon = GetComponentInChildren<WeaponController>();
 		_originalGravityScale = _rigidbody.gravityScale;
 	}
 
@@ -32,7 +41,11 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 		// If attacking fire the attack animation
 		if (Input.GetButtonDown("Fire1")) {
-			_animator.SetTrigger("Attack");
+			Vector3 pos = Input.mousePosition;
+			pos.z = transform.position.z - Camera.main.transform.position.z;
+			pos = Camera.main.ScreenToWorldPoint(pos);
+
+			_weapon.fire(pos);
 		}
 
 		// Line cast to the ground check transform to see if it is over a ground layer to prevent double jump
@@ -79,6 +92,9 @@ public class PlayerController : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
+	/**
+	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
+	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		if (otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = 0;
@@ -86,12 +102,13 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @private Handles checking if the player is no longer over a climbable object. Sets gravity back
+	 **/
 	void OnTriggerExit2D(Collider2D otherCollider) {
 		if (otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
 			_climbableController = null;
 		}
 	}
-
-
 }

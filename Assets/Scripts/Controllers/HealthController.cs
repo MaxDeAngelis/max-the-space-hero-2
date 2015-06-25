@@ -3,21 +3,26 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour {
-	/* ---- PUBLIC VARIABLES ---- */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float health = 400f;			// The maximum health of the unit
 	public Text healthDisplay;			// UI Text component to display the percent of health left
 	public bool isPlayer = false;		// Flag for if the unit is the player
 
-	/* ---- PRIVATE VARIABLES ---- */
-	private SpriteRenderer _renderer;	// Sprite renderer of the unit
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private float _originalHealth;		// Original maximum health of the unit
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @private Called on awake of the game object to init variables
 	 **/
 	void Awake () {
 		_originalHealth = health;
-		_renderer = GetComponent<SpriteRenderer>();
 		_updateHealth();
 	}
 
@@ -27,31 +32,46 @@ public class HealthController : MonoBehaviour {
 	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
+		// Define damage to be taken
+		float damage = 0f;
 
 		// Try and get the Weapon Controller off the colider to see if you are being hit with a weapon
 		WeaponController weapon = otherCollider.gameObject.GetComponent<WeaponController>();
+		ProjectileController projectile = otherCollider.gameObject.GetComponent<ProjectileController>();
 
-		// If there is a weapon controller then process the damage
+		/* ---- WEAPON DAMAGE ---- */
 		if (weapon != null && weapon.isActive == true && weapon.isPlayer != isPlayer) {
+			// Set the damage for the weapon
+			damage = weapon.damage;
+
 			// When the weapon makes contact then set to inactive so you only get one hit per swing
 			weapon.isActive = false;
-
-			// Deduct the dame that the weapon does from your health
-			health -= weapon.damage;
-
-			// Increment the UI display of health
-			_updateHealth();
-
-			// If your health drops below 0 die
-			if (health <= 0) {
-				_die();
-			}
 
 			// Damage the actual weapon
 			weapon.durability -= weapon.durabilityLossPerAttack;
 			if(weapon.durability <= 0) {
 				weapon.broken();
 			}
+		}
+
+		/* ---- PROJECTILE DAMAGE ---- */
+		if (projectile != null && projectile.isPlayer != isPlayer) {
+			// Set the damage for the projectile
+			damage = projectile.damage;
+
+			// Fire the hit function for the projectile
+			projectile.hit();
+		}
+
+		// Deduct the dame that the weapon does from your health
+		health -= damage;
+		
+		// Increment the UI display of health
+		_updateHealth();
+		
+		// If your health drops below 0 die
+		if (health <= 0) {
+			_die();
 		}
 	}
 
