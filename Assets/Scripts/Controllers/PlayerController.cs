@@ -53,32 +53,7 @@ public class PlayerController : MonoBehaviour {
 			_weapon.fire(pos);
 		}
 
-		/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
-		if (_climbableController) {
-			if (Input.GetAxis("Vertical") > 0) {
-				_verticalVelocity = _climbableController.upSpeed;
-			} else if (Input.GetAxis("Vertical") < 0) {
-				_verticalVelocity = _climbableController.downSpeed * -1;
-			} else {
-				_verticalVelocity = 0f;
-			}
-		}
-
-		/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
-		// See what the horizontal axis is to know if moving left or right
-		float horizontalAxis = Input.GetAxis("Horizontal");
-		_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _verticalVelocity);
-
-		// Handle flipping the transform depending on the direction you are heading
-		// TODO: Need to figure out how to handle flipping for gun and movement. Right now they are kinda conflicting
-		// as the player aims oposite of movement it is flipping twice per frame
-		if (horizontalAxis > 0 && !facingRight) {
-			_flipPlayer();
-		} else if (horizontalAxis < 0 && facingRight) {
-			_flipPlayer();
-		}
-
-		// Lastly if the jump flag is set in this frame then apply jump force and trigger flag
+		/* ---- HANDLE JUMPING ---- */
 		if (Input.GetButtonDown("Jump") && _isGrounded) {
 			_rigidbody.AddForce(new Vector2(0f, jumpForce));
 		}
@@ -107,6 +82,22 @@ public class PlayerController : MonoBehaviour {
 		Quaternion quat = Quaternion.identity;
 		quat.eulerAngles = new Vector3(0, 0, angle);
 		arm.transform.rotation = quat;
+
+		/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
+		if (_climbableController) {
+			if (Input.GetAxis("Vertical") > 0) {
+				_verticalVelocity = _climbableController.upSpeed;
+			} else if (Input.GetAxis("Vertical") < 0) {
+				_verticalVelocity = _climbableController.downSpeed * -1;
+			} else {
+				_verticalVelocity = 0f;
+			}
+		}
+
+		/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
+		// See what the horizontal axis is to know if moving left or right
+		float horizontalAxis = Input.GetAxis("Horizontal");
+		_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _verticalVelocity);
 	}
 
 	/**
