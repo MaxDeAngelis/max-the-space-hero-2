@@ -17,9 +17,11 @@ public class CameraController : MonoBehaviour {
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private GameObject _player;					// The player game object
+	private Vector3 _target;					// The loaction to target for the camera
 	private Vector3 _velocity = Vector3.zero;	// Reference value for zero velocity
 	private float _cameraWidth;					// Camera width in game
 	private float _cameraHeight;				// Camera height in game
+	private bool _targetMouse = false;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -40,9 +42,29 @@ public class CameraController : MonoBehaviour {
 	 * @private Called once per frame after all updates and fixed updates finish
 	 **/
 	void LateUpdate () {
+		/* TODO: Commented out the target mouse logic because as it targets is keeps following mouse
+		 * seems a bit weird but didnt want to loose code so leaving disabled for now
+		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
+			_targetMouse = true;
+
+			Vector3 pos = Input.mousePosition;
+			pos.z = transform.position.z - Camera.main.transform.position.z;
+			pos = Camera.main.ScreenToWorldPoint(pos);
+			
+			_target = pos;
+		} 
+		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
+			_targetMouse = false;
+		}
+		*/
+
+		if (!_targetMouse) {
+			_target = _player.transform.position;
+		}
+
 		// Setup default positions
-		float newXLocation = _player.transform.position.x;
-		float newYLocation = _player.transform.position.y;
+		float newXLocation = _target.x;
+		float newYLocation = _target.y;
 
 		// Calculate the boundries of the screen relative to the game space
 		float cameraRightBorder = newXLocation + (_cameraWidth/2);
