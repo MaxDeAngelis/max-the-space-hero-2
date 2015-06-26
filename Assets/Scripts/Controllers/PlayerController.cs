@@ -3,25 +3,26 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		HIDDEN VARIABLES											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	[HideInInspector] public bool facingRight = true;
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float maxSpeed = 5f;
-	public float jumpForce = 250f;
-	public Transform groundCheck;
+	public float boostForce = 3f;
+	public Transform forwardGroundCheck;
+	public Transform backwardGroundCheck;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private bool _isGrounded = false;
+	private bool _isForwardGrounded = false;
+	private bool _isBackwardGrounded = false;
+	private bool _isAnchored = true;
+	private bool _facingRight = true;
 	private Rigidbody2D _rigidbody;
+	private BoxCollider2D _collider;
 	private ClimbController _climbableController;
 	private float _originalGravityScale;
 	private WeaponController _weapon;
+	private LandingController _landingController;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -31,7 +32,9 @@ public class PlayerController : MonoBehaviour {
 	 **/
 	void Start() {
 		_rigidbody = GetComponent<Rigidbody2D>();
+		_collider = GetComponent<BoxCollider2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
+		_landingController = GetComponentInChildren<LandingController>();
 		_originalGravityScale = _rigidbody.gravityScale;
 	}
 
@@ -40,10 +43,8 @@ public class PlayerController : MonoBehaviour {
 	 **/
 	void FixedUpdate() {
 		// Line cast to the ground check transform to see if it is over a ground layer to prevent double jump
-		_isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-		
-		// Set the default vertical velocity to what it currently is
-		float _verticalVelocity = _rigidbody.velocity.y;
+		_isForwardGrounded = Physics2D.Linecast(transform.position, forwardGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		_isBackwardGrounded = Physics2D.Linecast(transform.position, backwardGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
 		/* ---- HANDLE FIRING GUN ---- */
 		if (Input.GetButtonDown("Fire1")) {
@@ -53,9 +54,17 @@ public class PlayerController : MonoBehaviour {
 			_weapon.fire(pos);
 		}
 
-		/* ---- HANDLE JUMPING ---- */
-		if (Input.GetButtonDown("Jump") && _isGrounded) {
-			_rigidbody.AddForce(new Vector2(0f, jumpForce));
+		/* ---- HANDLE ANCHORING ---- */
+		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbableController) {
+			_isAnchored = false;
+			_rigidbody.gravityScale = 0;
+			_collider.isTrigger = true;
+			_rigidbody.AddForce(new Vector2(0f, 5f));
+		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _landingController.isAbleToLand) {
+			_isAnchored = true;
+			_collider.isTrigger = false;
+			_rigidbody.gravityScale = _originalGravityScale;
+			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
 
 		/* ---- AIM THE ARM TO FIRE ----*/
@@ -74,7 +83,7 @@ public class PlayerController : MonoBehaviour {
 		float angle = Vector2.Angle (Vector2.down, relativeMousePos);
 
 		// Flip the player if aiming in the opposite direction
-		if ((relativeMousePos.x < 0 && facingRight) || (relativeMousePos.x > 0 && !facingRight)) {
+		if ((relativeMousePos.x < 0 && _facingRight) || (relativeMousePos.x > 0 && !_facingRight)) {
 			_flipPlayer();
 		}
 
@@ -83,28 +92,50 @@ public class PlayerController : MonoBehaviour {
 		quat.eulerAngles = new Vector3(0, 0, angle);
 		arm.transform.rotation = quat;
 
-		/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
-		if (_climbableController) {
-			if (Input.GetAxis("Vertical") > 0) {
-				_verticalVelocity = _climbableController.upSpeed;
-			} else if (Input.GetAxis("Vertical") < 0) {
-				_verticalVelocity = _climbableController.downSpeed * -1;
-			} else {
-				_verticalVelocity = 0f;
-			}
-		}
+		/* ---- HANDLE MOVEMENT ---- */
+		if (_isAnchored) {
+			// Set the default vertical/horizontal velocity to what it currently is
+			float verticalVelocity = _rigidbody.velocity.y;
+			float horizontalVelocity = Input.GetAxis("Horizontal") * maxSpeed;
 
-		/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
-		// See what the horizontal axis is to know if moving left or right
-		float horizontalAxis = Input.GetAxis("Horizontal");
-		_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _verticalVelocity);
+			/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
+			if (_climbableController) {
+				if (Input.GetAxis("Vertical") > 0) {
+					verticalVelocity = _climbableController.upSpeed;
+				} else if (Input.GetAxis("Vertical") < 0) {
+					verticalVelocity = _climbableController.downSpeed * -1;
+				} else {
+					verticalVelocity = 0f;
+				}
+			}
+
+			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
+			if (_facingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
+				// FACING RIGHT MOVING RIGHT
+				horizontalVelocity = 0f;
+			} else if (!_facingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
+				// FACING LEFT MOVING RIGHT
+				horizontalVelocity = 0f;
+			} else if (_facingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
+				// FACING RIGHT MOVING LEFT
+				horizontalVelocity = 0f;
+			} else if (!_facingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
+				// FACING LEFT MOVING RIGHT
+				horizontalVelocity = 0f;
+			}
+
+			/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
+			_rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+		} else {
+			_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
+		}
 	}
 
 	/**
 	 * @private Flips the transform by reversing its scale
 	 **/
 	void _flipPlayer() {
-		facingRight = !facingRight;
+		_facingRight = !_facingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
@@ -114,7 +145,7 @@ public class PlayerController : MonoBehaviour {
 	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
-		if (otherCollider.gameObject.GetComponent<ClimbController>() != null) {
+		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = 0;
 			_climbableController = otherCollider.gameObject.GetComponent<ClimbController>();
 		}
@@ -124,7 +155,7 @@ public class PlayerController : MonoBehaviour {
 	 * @private Handles checking if the player is no longer over a climbable object. Sets gravity back
 	 **/
 	void OnTriggerExit2D(Collider2D otherCollider) {
-		if (otherCollider.gameObject.GetComponent<ClimbController>() != null) {
+		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
 			_climbableController = null;
 		}

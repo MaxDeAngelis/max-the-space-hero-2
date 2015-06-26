@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Controllers\GroundController.cs" />
      <Compile Include="Assets\Scripts\Controllers\HealthController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\LandingController.cs" />
      <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Controllers\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\Controllers\WeaponController.cs" />
