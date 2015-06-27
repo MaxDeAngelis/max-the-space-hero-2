@@ -18,13 +18,16 @@ public class PlayerController : MonoBehaviour {
 	private bool _isBackwardGrounded = false;
 	private bool _isAnchored = true;
 	private bool _facingRight = true;
+	private float _originalGravityScale;
+	private Vector3 _boundryIntersectPosition;
+
+	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
 	private BoxCollider2D _collider;
-	private ClimbController _climbableController;
-	private float _originalGravityScale;
+	private ClimbController _climbable;
 	private WeaponController _weapon;
-	private LandingController _landingController;
-	private EnergyController _energyController;
+	private LandingController _landing;
+	private EnergyController _energy;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -36,8 +39,8 @@ public class PlayerController : MonoBehaviour {
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
-		_landingController = GetComponentInChildren<LandingController>();
-		_energyController = GetComponent<EnergyController>();
+		_landing = GetComponentInChildren<LandingController>();
+		_energy = GetComponent<EnergyController>();
 		_originalGravityScale = _rigidbody.gravityScale;
 	}
 
@@ -58,13 +61,13 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		/* ---- HANDLE ANCHORING ---- */
-		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbableController && (_isForwardGrounded || _isBackwardGrounded)) {
+		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
 			_isAnchored = false;
 			_rigidbody.gravityScale = 0;
 			_collider.isTrigger = true;
 
 			StartCoroutine(_takeoff());
-		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _landingController.isAbleToLand) {
+		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _landing.isAbleToLand) {
 			_isAnchored = true;
 			_collider.isTrigger = false;
 			_rigidbody.gravityScale = _originalGravityScale;
@@ -103,11 +106,11 @@ public class PlayerController : MonoBehaviour {
 			float horizontalVelocity = Input.GetAxis("Horizontal") * movementSpeed;
 
 			/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
-			if (_climbableController) {
+			if (_climbable) {
 				if (Input.GetAxis("Vertical") > 0) {
-					verticalVelocity = _climbableController.upSpeed;
+					verticalVelocity = _climbable.upSpeed;
 				} else if (Input.GetAxis("Vertical") < 0) {
-					verticalVelocity = _climbableController.downSpeed * -1;
+					verticalVelocity = _climbable.downSpeed * -1;
 				} else {
 					verticalVelocity = 0f;
 				}
@@ -134,10 +137,10 @@ public class PlayerController : MonoBehaviour {
 			// If your magnitude is too high you are moving too fast so start throttling down
 			if (_rigidbody.velocity.sqrMagnitude < maximumVelocity) {
 				// If there is energy left then you can boost
-				if (_energyController.energy >= 1f) {
+				if (_energy.energy >= 1f) {
 					// If you are pressing a key use some energy
 					if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-						_energyController.useEnergy(1f);
+						_energy.useEnergy(1f);
 					}
 
 					// Apply thrust
@@ -163,26 +166,26 @@ public class PlayerController : MonoBehaviour {
 	 * @private checks to see if the player is bumping into the boundries and if so it stops the player
 	 **/
 	void _checkIfHittingBoundry(Collider2D otherCollider) {
-		Vector3 colliderCenter = otherCollider.bounds.center;
-		Vector3 colliderExtents =  otherCollider.bounds.extents;
-		float playerHalfWidth = _collider.bounds.extents.x;
-		float playerHalfHeight = _collider.bounds.extents.y;
-
+		// Four boundry scenarios
+		// 1. Hitting left boundry and still moving left
+		// 2. Hitting right boundry and still moving right
+		// 3. Hitting top boundry and still moving up
+		// 4. Hitting bottom boundry and still moving down
 		if (otherCollider.gameObject.tag == "LEFT_BOUNDRY" && Input.GetAxis("Horizontal") <= 0){
 			// Lock the players horizontal position and velocity
-			transform.position = new Vector3((colliderCenter.x + colliderExtents.x + playerHalfWidth), transform.position.y);
+			transform.position = new Vector3(_boundryIntersectPosition.x, transform.position.y);
 			_rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
 		} else if (otherCollider.gameObject.tag == "RIGHT_BOUNDRY" && Input.GetAxis("Horizontal") >= 0) {
 			// Lock the players horizontal position and velocity
-			transform.position = new Vector3((colliderCenter.x - colliderExtents.x - playerHalfWidth), transform.position.y);
+			transform.position = new Vector3(_boundryIntersectPosition.x, transform.position.y);
 			_rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
 		} else if (otherCollider.gameObject.tag == "TOP_BOUNDRY" && Input.GetAxis("Vertical") >= 0) {
 			// Lock the players vertical position and velocity
-			transform.position = new Vector3(transform.position.x, (colliderCenter.y - colliderExtents.y - playerHalfHeight));
+			transform.position = new Vector3(transform.position.x, _boundryIntersectPosition.y);
 			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
 		} else if (otherCollider.gameObject.tag == "BOTTOM_BOUNDRY" && Input.GetAxis("Vertical") <= 0) {
 			// Lock the players vertical position and velocity
-			transform.position = new Vector3(transform.position.x, (colliderCenter.y + colliderExtents.y + playerHalfHeight));
+			transform.position = new Vector3(transform.position.x, _boundryIntersectPosition.y);
 			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
 		}
 	}
@@ -190,11 +193,16 @@ public class PlayerController : MonoBehaviour {
 	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
+		// Store off the intersection point where the player first hit the collider
+		_boundryIntersectPosition = transform.position;
+
+		// Check if hitting a boundry and clamp
 		_checkIfHittingBoundry(otherCollider);
 
+		// Ladder logic to allow climbing
 		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = 0;
-			_climbableController = otherCollider.gameObject.GetComponent<ClimbController>();
+			_climbable = otherCollider.gameObject.GetComponent<ClimbController>();
 		}
 	}
 
@@ -211,7 +219,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D otherCollider) {
 		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
-			_climbableController = null;
+			_climbable = null;
 		}
 	}
 

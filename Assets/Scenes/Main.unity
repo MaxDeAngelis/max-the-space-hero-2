@@ -2143,6 +2143,26 @@ BoxCollider2D:
   m_Offset: {x: 2.45695305, y: 11.0803146}
   serializedVersion: 2
   m_Size: {x: .756047249, y: 10.2222328}
+--- !u!1 &831848000 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 137800, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+  m_PrefabInternal: {fileID: 1454603613}
+--- !u!50 &831848001
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 831848000}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &861124578
 GameObject:
   m_ObjectHideFlags: 0
