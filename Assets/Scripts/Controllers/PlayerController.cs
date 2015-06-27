@@ -5,8 +5,9 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float maxSpeed = 5f;
-	public float boostForce = 3f;
+	public float movementSpeed = 5f;
+	public float boostForce = 10f;
+	public float maximumVelocity = 18f;
 	public Transform forwardGroundCheck;
 	public Transform backwardGroundCheck;
 
@@ -55,11 +56,12 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		/* ---- HANDLE ANCHORING ---- */
-		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbableController) {
+		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbableController && (_isForwardGrounded || _isBackwardGrounded)) {
 			_isAnchored = false;
 			_rigidbody.gravityScale = 0;
 			_collider.isTrigger = true;
-			_rigidbody.AddForce(new Vector2(0f, 5f));
+
+			StartCoroutine(_takeoff());
 		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _landingController.isAbleToLand) {
 			_isAnchored = true;
 			_collider.isTrigger = false;
@@ -96,7 +98,7 @@ public class PlayerController : MonoBehaviour {
 		if (_isAnchored) {
 			// Set the default vertical/horizontal velocity to what it currently is
 			float verticalVelocity = _rigidbody.velocity.y;
-			float horizontalVelocity = Input.GetAxis("Horizontal") * maxSpeed;
+			float horizontalVelocity = Input.GetAxis("Horizontal") * movementSpeed;
 
 			/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
 			if (_climbableController) {
@@ -127,7 +129,12 @@ public class PlayerController : MonoBehaviour {
 			/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
 			_rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
 		} else {
-			_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
+			// If your magnitude is too high you are moving too fast so start throttling down
+			if (_rigidbody.velocity.sqrMagnitude < maximumVelocity) {
+				_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
+			} else {
+				_rigidbody.velocity *= 0.99f;
+			}
 		}
 	}
 
@@ -158,6 +165,23 @@ public class PlayerController : MonoBehaviour {
 		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
 			_climbableController = null;
+		}
+	}
+
+	/**
+	 * @private Called when taking off from an anchored position
+	 **/
+	IEnumerator _takeoff() {
+		// Add inital force to get off ground
+		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
+
+		// If the user does not have a direction key down then stop velocity
+		if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f) {
+			// delay for a quarter second
+			yield return new WaitForSeconds(0.25f);
+
+			// After wait stop from moving
+			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
 	}
 }
