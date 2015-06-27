@@ -101,7 +101,7 @@ public class HealthController : MonoBehaviour {
 			float healthPercent = Mathf.Round((health/_originalHealth) * 100);
 
 			// Display the calculated string
-			healthDisplay.text = healthPercent.ToString() + "%";
+			healthDisplay.text = health + "/" + _originalHealth;
 		}
 	}
 

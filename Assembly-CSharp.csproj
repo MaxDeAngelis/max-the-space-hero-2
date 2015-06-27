@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
      <Compile Include="Assets\Scripts\Controllers\ClimbController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EnergyController.cs" />
      <Compile Include="Assets\Scripts\Controllers\GroundController.cs" />
      <Compile Include="Assets\Scripts\Controllers\HealthController.cs" />
      <Compile Include="Assets\Scripts\Controllers\LandingController.cs" />
