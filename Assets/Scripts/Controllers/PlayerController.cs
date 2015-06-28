@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour {
 					//_rigidbody.AddForce(new Vector2(horizontalBoostPower, verticalBoostPower));
 					_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
 				}
-			} else {
+			} else if (_rigidbody.velocity.sqrMagnitude > maximumVelocity) {
 				_rigidbody.velocity *= 0.99f;
 			}
 		}

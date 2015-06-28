@@ -59,7 +59,12 @@ public class EnemyController : MonoBehaviour {
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
-		if (_distanceFromPlayer <= sightRange) { 
+		// TODO: Temp fix for dropping players onto the platform. If falling do nothing
+		if (_rigidbody.velocity.y != 0) {
+			return;
+		}
+
+		if (_isGrounded && _distanceFromPlayer <= sightRange) { 
 			// If within attack range then try and move towards player
 			if (transform.position.x > _player.transform.position.x && transform.localScale.x == 1) {
 				_flipDirection();
@@ -108,6 +113,8 @@ public class EnemyController : MonoBehaviour {
 	void _move() {
 		if (_isGrounded) {
 			_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _rigidbody.velocity.y);
+		} else {
+			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
 	}
 
