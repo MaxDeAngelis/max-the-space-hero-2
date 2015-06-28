@@ -4,6 +4,11 @@ using UnityEngine.UI;
 
 public class EnergyController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		HIDDEN VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	[HideInInspector] public float maximumEnergy;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float energy = 400f;				// The maximum health of the unit
@@ -12,7 +17,6 @@ public class EnergyController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private float _originalEnergy;
 	private int _energyGeneration = 15;
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +26,7 @@ public class EnergyController : MonoBehaviour {
 	 * @private Called on awake of the game object to init variables
 	 **/
 	void Awake () {
-		_originalEnergy = energy;
+		maximumEnergy = energy;
 		_updateEnergy();
 	}
 
@@ -31,10 +35,10 @@ public class EnergyController : MonoBehaviour {
 	 **/
 	void _updateEnergy() {
 		// Calculate the percentage of health left
-		float energyPercent = Mathf.Round((energy/_originalEnergy) * 100);
+		float energyPercent = Mathf.Round((energy/maximumEnergy) * 100);
 			
 		// Display the calculated string
-		energyDisplay.text = energy + "/" + _originalEnergy;
+		energyDisplay.text = energy + "/" + maximumEnergy;
 	}
 
 	/**
@@ -42,7 +46,7 @@ public class EnergyController : MonoBehaviour {
 	 **/
 	void FixedUpdate() {
 		// If you do not have full energy and the counter is up then generate some energy
-		if (_energyGeneration <= 0 && energy < _originalEnergy) {
+		if (_energyGeneration <= 0 && energy < maximumEnergy) {
 			energy++;
 			_updateEnergy();
 			_energyGeneration = 15;

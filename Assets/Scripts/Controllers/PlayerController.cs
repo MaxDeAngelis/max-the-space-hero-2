@@ -5,21 +5,21 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float movementSpeed = 5f;
-	public float boostForce = 10f;
-	public float maximumVelocity = 18f;
-	public Transform forwardGroundCheck;
-	public Transform backwardGroundCheck;
+	public float movementSpeed = 5f;			// Grounded movement speed
+	public float boostForce = 10f;				// Jetpack boost force
+	public float maximumVelocity = 18f;			// Maximum jetpack velocity
+	public Transform forwardGroundCheck;		// GameObject to check if front of player is on ground
+	public Transform backwardGroundCheck;		// GameObject to check if back of player is on ground
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private bool _isForwardGrounded = false;
-	private bool _isBackwardGrounded = false;
-	private bool _isAnchored = true;
-	private bool _facingRight = true;
-	private float _originalGravityScale;
-	private Vector3 _boundryIntersectPosition;
+	private bool _isForwardGrounded = false;	// Flag for when the front of the player is grounded
+	private bool _isBackwardGrounded = false;	// Flag for whant the back of the player is grounded
+	private bool _isAnchored = true;			// Flag for when player is attached to the ground
+	private bool _facingRight = true;			// Flag for if the player is facing the right 
+	private float _originalGravityScale;		// Starting gravity 
+	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
@@ -144,6 +144,29 @@ public class PlayerController : MonoBehaviour {
 					}
 
 					// Apply thrust
+					// TODO: The bellow calculations were an attempt to figure out how to make thrust proportanal to 
+					// the time when the player tries to move. Since Input.GetAxis starts really small and build 
+					// I thought I could subtract from a whole number to get a larger fraction then user that as a
+					// multiplier
+					float horizontalBoostPower = 0f;
+					if (Input.GetAxis("Horizontal") != 0) {
+						horizontalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Horizontal"))) * boostForce;
+						if (Input.GetAxis("Horizontal") < 0) {
+							horizontalBoostPower *= -1; 
+						}
+					}
+
+					float verticalBoostPower = 0f;
+					if (Input.GetAxis("Vertical") != 0) {
+						verticalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Vertical"))) * boostForce;
+						if (Input.GetAxis("Vertical") < 0) {
+							verticalBoostPower *= -1; 
+						}
+					}
+
+					//Debug.Log(new Vector2(horizontalBoostPower, verticalBoostPower));
+					//Debug.Log(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
+					//_rigidbody.AddForce(new Vector2(horizontalBoostPower, verticalBoostPower));
 					_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
 				}
 			} else {
@@ -203,6 +226,11 @@ public class PlayerController : MonoBehaviour {
 		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = 0;
 			_climbable = otherCollider.gameObject.GetComponent<ClimbController>();
+		}
+
+		// Process if you hit a powerup, call manager to gain boost
+		if (_isAnchored && otherCollider.gameObject.tag == "Powerup") {
+			PowerupManager.Instance.process(otherCollider.gameObject.GetComponent<PowerupController>(), gameObject);
 		}
 	}
 

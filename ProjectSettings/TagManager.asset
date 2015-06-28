@@ -9,6 +9,7 @@ TagManager:
   - LEFT_BOUNDRY
   - TOP_BOUNDRY
   - BOTTOM_BOUNDRY
+  - Powerup
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,11 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		HIDDEN VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	[HideInInspector] public float maximumHealth;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float health = 400f;				// The maximum health of the unit
@@ -14,7 +19,6 @@ public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private float _originalHealth;			// Original maximum health of the unit
 	private SpriteRenderer[] _renderers;	// The sprite renderer of the object
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,8 +29,8 @@ public class HealthController : MonoBehaviour {
 	 **/
 	void Awake () {
 		_renderers = GetComponentsInChildren<SpriteRenderer>();
-		_originalHealth = health;
-		_updateHealth();
+		maximumHealth = health;
+		updateHealth();
 	}
 
 	/**
@@ -76,7 +80,7 @@ public class HealthController : MonoBehaviour {
 		health -= damage;
 		
 		// Increment the UI display of health
-		_updateHealth();
+		updateHealth();
 		
 		// If your health drops below 0 die
 		if (health <= 0) {
@@ -89,20 +93,6 @@ public class HealthController : MonoBehaviour {
 	 **/
 	void _die() {
 		Destroy(gameObject);
-	}
-
-	/**
-	 * @private Called to update any display of the health in the UI
-	 **/
-	void _updateHealth() {
-		// Only update text in UI if it was configured to do so
-		if (healthDisplay != null) {
-			// Calculate the percentage of health left
-			float healthPercent = Mathf.Round((health/_originalHealth) * 100);
-
-			// Display the calculated string
-			healthDisplay.text = health + "/" + _originalHealth;
-		}
 	}
 
 	/**
@@ -122,6 +112,23 @@ public class HealthController : MonoBehaviour {
 		// Turn all renderers back to white
 		for (int i = 0; i < sprites.Length; i++) {       
 			sprites[i].color = Color.white;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @public Called to update any display of the health in the UI
+	 **/
+	public void updateHealth() {
+		// Only update text in UI if it was configured to do so
+		if (healthDisplay != null) {
+			// Calculate the percentage of health left
+			float healthPercent = Mathf.Round((health/maximumHealth) * 100);
+			
+			// Display the calculated string
+			healthDisplay.text = health + "/" + maximumHealth;
 		}
 	}
 }
