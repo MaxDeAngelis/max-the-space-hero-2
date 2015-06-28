@@ -13,6 +13,7 @@ public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float health = 400f;				// The maximum health of the unit
 	public Text healthDisplay;				// UI Text component to display the percent of health left
+	public Slider healthBar;
 	public AudioClip damageSoundEffect; 	// Sound effect for when you take damage
 	public bool isPlayer = false;			// Flag for if the unit is the player
 
@@ -129,6 +130,9 @@ public class HealthController : MonoBehaviour {
 			
 			// Display the calculated string
 			healthDisplay.text = health + "/" + maximumHealth;
+
+			// Update health bar value
+			healthBar.value = healthPercent;
 		}
 	}
 }

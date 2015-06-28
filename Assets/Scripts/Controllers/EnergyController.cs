@@ -12,7 +12,8 @@ public class EnergyController : MonoBehaviour {
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float energy = 400f;				// The maximum health of the unit
-	public Text energyDisplay;
+	public Text energyDisplay;				// Text display of the energy value
+	public Slider energyBar;				// Bar that represents amount left
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -39,6 +40,9 @@ public class EnergyController : MonoBehaviour {
 			
 		// Display the calculated string
 		energyDisplay.text = energy + "/" + maximumEnergy;
+
+		// Update energy bar size
+		energyBar.value = energyPercent;
 	}
 
 	/**
