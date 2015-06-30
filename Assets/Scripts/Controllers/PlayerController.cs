@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float movementSpeed = 5f;			// Grounded movement speed
 	public float boostForce = 10f;				// Jetpack boost force
+	public float boostCost = 1f;				// The energy cost of using your jetpack
 	public float maximumVelocity = 18f;			// Maximum jetpack velocity
 	public Transform forwardGroundCheck;		// GameObject to check if front of player is on ground
 	public Transform backwardGroundCheck;		// GameObject to check if back of player is on ground
@@ -134,44 +135,93 @@ public class PlayerController : MonoBehaviour {
 			/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
 			_rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
 		} else {
-			// If your magnitude is too high you are moving too fast so start throttling down
-			if (_rigidbody.velocity.sqrMagnitude < maximumVelocity) {
-				// If there is energy left then you can boost
-				if (_energy.energy >= 1f) {
-					// If you are pressing a key use some energy
-					if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-						_energy.useEnergy(1f);
-					}
 
-					// Apply thrust
-					// TODO: The bellow calculations were an attempt to figure out how to make thrust proportanal to 
-					// the time when the player tries to move. Since Input.GetAxis starts really small and build 
-					// I thought I could subtract from a whole number to get a larger fraction then user that as a
-					// multiplier
-					float horizontalBoostPower = 0f;
-					if (Input.GetAxis("Horizontal") != 0) {
-						horizontalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Horizontal"))) * boostForce;
-						if (Input.GetAxis("Horizontal") < 0) {
-							horizontalBoostPower *= -1; 
-						}
-					}
+			// If direction key is down and there is enough energy then boost
+			if (_energy.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+				// Calculate artifical drag force
+				float drag = boostForce / maximumVelocity;
 
-					float verticalBoostPower = 0f;
-					if (Input.GetAxis("Vertical") != 0) {
-						verticalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Vertical"))) * boostForce;
-						if (Input.GetAxis("Vertical") < 0) {
-							verticalBoostPower *= -1; 
-						}
-					}
+				// Get the direction based on keys down
+				Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-					//Debug.Log(new Vector2(horizontalBoostPower, verticalBoostPower));
-					//Debug.Log(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
-					//_rigidbody.AddForce(new Vector2(horizontalBoostPower, verticalBoostPower));
-					_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
+				// Calculate the new velocity using the fage drag
+				Vector2 newVelocity = (direction * boostForce) - (_rigidbody.velocity * drag);
+
+				// Apply the velocity over time
+				_rigidbody.velocity += newVelocity * Time.deltaTime ;
+
+				// If you are moving using energy
+				if (Mathf.Abs(newVelocity.x) > 0.25f || Mathf.Abs(newVelocity.y) > 0.25f) {
+					_energy.useEnergy(boostCost);
 				}
-			} else if (_rigidbody.velocity.sqrMagnitude > maximumVelocity) {
-				_rigidbody.velocity *= 0.99f;
 			}
+
+
+
+
+
+
+
+			/* OPTION 1 - Separate control of force. Shitty! Move much faster on diagnals
+			if (_rigidbody.velocity.sqrMagnitude > maximumVelocity) {
+				_rigidbody.velocity = _rigidbody.velocity.normalized * maximumVelocity;
+			} else {
+				if (Input.GetAxis("Horizontal") != 0) {
+
+					_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, 0f));
+
+					if (_rigidbody.velocity.x > maximumVelocity){
+					//	_rigidbody.velocity = new Vector2(maximumVelocity, _rigidbody.velocity.y);
+					}
+				}
+
+				if (Input.GetAxis("Vertical") != 0) {
+					_rigidbody.AddForce(new Vector2(0f, Input.GetAxis("Vertical") * boostForce));
+
+					if (_rigidbody.velocity.y > maximumVelocity) {
+					//	_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, maximumVelocity);
+					}
+				}
+			}*/
+
+
+			/* OPTION 2 - Original approach with a coupld cap ideas not idea because you cant turn at high speed
+			 * also does not seem to be a way to find if at max speed
+			Debug.Log(_rigidbody.velocity.sqrMagnitude);
+			if (_rigidbody.velocity.sqrMagnitude < maximumVelocity && _energy.energy >= boostCost) {
+				// If your magnitude is too high you are moving too fast so start throttling down
+				//Debug.Log("Yes");
+				// If you are pressing a key use some energy
+				if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+					_energy.useEnergy(boostCost);
+				}
+
+				// Apply thrust
+				// TODO: The bellow calculations were an attempt to figure out how to make thrust proportanal to 
+				// the time when the player tries to move. Since Input.GetAxis starts really small and build 
+				// I thought I could subtract from a whole number to get a larger fraction then user that as a
+				// multiplier
+				float horizontalBoostPower = 0f;
+				if (Input.GetAxis("Horizontal") != 0) {
+					horizontalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Horizontal"))) * boostForce;
+					if (Input.GetAxis("Horizontal") < 0) {
+						horizontalBoostPower *= -1; 
+					}
+				}
+
+				float verticalBoostPower = 0f;
+				if (Input.GetAxis("Vertical") != 0) {
+					verticalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Vertical"))) * boostForce;
+					if (Input.GetAxis("Vertical") < 0) {
+						verticalBoostPower *= -1; 
+					}
+				}
+
+				_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
+			} else if (_rigidbody.velocity.sqrMagnitude > maximumVelocity) {
+				//Debug.Log("Not");
+				_rigidbody.velocity *= 0.99f;
+			}*/
 		}
 	}
 

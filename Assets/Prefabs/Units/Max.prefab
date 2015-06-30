@@ -64,6 +64,7 @@ GameObject:
   - 4: {fileID: 467388}
   - 61: {fileID: 6123872}
   - 114: {fileID: 11420358}
+  - 50: {fileID: 5001964}
   m_Layer: 0
   m_Name: landingCheck
   m_TagString: Untagged
@@ -179,6 +180,22 @@ Transform:
   - {fileID: 467388}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5001964
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137800}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &5006840
 Rigidbody2D:
   serializedVersion: 2
@@ -278,8 +295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc36bf8a10204610818dbf3f44ff121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumEnergy: 0
   energy: 400
   energyDisplay: {fileID: 0}
+  energyBar: {fileID: 0}
 --- !u!114 &11483368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,8 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumHealth: 0
   health: 400
   healthDisplay: {fileID: 0}
+  healthBar: {fileID: 0}
   damageSoundEffect: {fileID: 8300000, guid: 9e7caf4e213c34c838a7ca09413bc5d1, type: 3}
   isPlayer: 1
 --- !u!114 &11497278
@@ -307,8 +328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  boostForce: 14
-  maximumVelocity: 20
+  boostForce: 8
+  boostCost: 1
+  maximumVelocity: 7
   forwardGroundCheck: {fileID: 486180}
   backwardGroundCheck: {fileID: 463674}
 --- !u!212 &21200426
