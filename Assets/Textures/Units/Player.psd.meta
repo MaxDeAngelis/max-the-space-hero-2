@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 99cce94814a43cc4b8851b5226f3c8a5
+timeCreated: 1435694804
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: player_neck
+    21300002: player_rfoot
+    21300004: player_head
+    21300006: player_hand
+    21300008: player_lfoot
+    21300010: player_lleg
+    21300012: player_lshin
+    21300014: player_rshin
+    21300016: player_rleg
+    21300018: player_chest
+    21300020: player_forearm
+    21300022: player_arm
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: player_neck
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 295
+        width: 18
+        height: 31
+      alignment: 9
+      pivot: {x: .499999583, y: .199621379}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_rfoot
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 319
+        width: 28
+        height: 12
+      alignment: 9
+      pivot: {x: .129272729, y: .902338684}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_head
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 293
+        width: 28
+        height: 39
+      alignment: 9
+      pivot: {x: .241353169, y: .320494831}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_hand
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 295
+        width: 9
+        height: 21
+      alignment: 9
+      pivot: {x: .737934947, y: .995143354}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_lfoot
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 294
+        width: 23
+        height: 16
+      alignment: 9
+      pivot: {x: .206117049, y: .922456741}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_lleg
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 215
+        width: 26
+        height: 73
+      alignment: 9
+      pivot: {x: .644812226, y: .940086067}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_lshin
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 219
+        width: 18
+        height: 65
+      alignment: 9
+      pivot: {x: .663821757, y: .961657703}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_rshin
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 219
+        width: 16
+        height: 64
+      alignment: 9
+      pivot: {x: .690057755, y: .960997581}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_rleg
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 215
+        width: 18
+        height: 69
+      alignment: 9
+      pivot: {x: .620702088, y: .942051053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_chest
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 212
+        width: 42
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_forearm
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 211
+        width: 15
+        height: 54
+      alignment: 9
+      pivot: {x: .467812091, y: .871046841}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_arm
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 211
+        width: 22
+        height: 46
+      alignment: 9
+      pivot: {x: .609728038, y: .804378688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
