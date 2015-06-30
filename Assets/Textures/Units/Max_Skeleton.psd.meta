@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7a0e95a4f6a7509468c1716fc65ef038
-timeCreated: 1435283063
+timeCreated: 1435625081
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,20 @@ TextureImporter:
     21300014: Max_Skeleton_LeftFoot
     21300016: Max_Skeleton_RightHand
     21300018: Max_Skeleton_LeftHand
+    21300020: Head
+    21300022: Right Thigh
+    21300024: Left Thigh
+    21300026: Right Arm
+    21300028: Left Arm
+    21300030: Body
+    21300032: Right Leg
+    21300034: Left Leg
+    21300036: Right Forearm
+    21300038: Left Forearm
+    21300040: Right Foot
+    21300042: Left Foot
+    21300044: Right Hand
+    21300046: Left hand
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,7 +73,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Max_Skeleton_Head
+    - name: Head
       rect:
         serializedVersion: 2
         x: 23
@@ -67,9 +81,9 @@ TextureImporter:
         width: 31
         height: 44
       alignment: 9
-      pivot: {x: .526119947, y: .131946906}
+      pivot: {x: .513059914, y: .141147956}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_RightLeg
+    - name: Right Thigh
       rect:
         serializedVersion: 2
         x: 106
@@ -77,39 +91,39 @@ TextureImporter:
         width: 37
         height: 61
       alignment: 9
-      pivot: {x: .281157196, y: .818576992}
+      pivot: {x: .313983619, y: .811940193}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_LeftLeg
+    - name: Left Thigh
       rect:
         serializedVersion: 2
         x: 225
         y: 277
         width: 37
-        height: 61
+        height: 58
       alignment: 9
-      pivot: {x: .696957946, y: .831851125}
+      pivot: {x: .71884197, y: .876936793}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_RightArm
+    - name: Right Arm
       rect:
         serializedVersion: 2
         x: 288
         y: 285
         width: 33
-        height: 45
+        height: 41
       alignment: 9
-      pivot: {x: .205558077, y: .850876868}
+      pivot: {x: .205558077, y: .93448174}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_LeftArm
+    - name: Left Arm
       rect:
         serializedVersion: 2
         x: 398
         y: 290
         width: 33
-        height: 45
+        height: 42
       alignment: 9
-      pivot: {x: .855784118, y: .841880262}
+      pivot: {x: .831247985, y: .895218611}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_Body
+    - name: Body
       rect:
         serializedVersion: 2
         x: 23
@@ -119,45 +133,85 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_RightFoot
+    - name: Right Leg
       rect:
         serializedVersion: 2
         x: 132
-        y: 224
-        width: 43
-        height: 53
+        y: 234
+        width: 31
+        height: 43
       alignment: 9
-      pivot: {x: .217540294, y: .874303281}
+      pivot: {x: .264920622, y: .838950932}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_LeftFoot
+    - name: Left Leg
       rect:
         serializedVersion: 2
-        x: 204
-        y: 224
-        width: 34
-        height: 54
+        x: 208
+        y: 236
+        width: 30
+        height: 42
       alignment: 9
-      pivot: {x: .773874164, y: .87486887}
+      pivot: {x: .76990509, y: .866300285}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_RightHand
+    - name: Right Forearm
       rect:
         serializedVersion: 2
         x: 305
-        y: 226
-        width: 41
-        height: 50
+        y: 243
+        width: 29
+        height: 33
       alignment: 9
-      pivot: {x: .184013546, y: .94534421}
+      pivot: {x: .27662921, y: .929395258}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Max_Skeleton_LeftHand
+    - name: Left Forearm
       rect:
         serializedVersion: 2
-        x: 377
-        y: 226
-        width: 41
-        height: 50
+        x: 389
+        y: 245
+        width: 29
+        height: 31
       alignment: 9
-      pivot: {x: .80611217, y: .921052873}
+      pivot: {x: .723369718, y: .904857993}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Right Foot
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 213
+        width: 31
+        height: 17
+      alignment: 9
+      pivot: {x: .317160338, y: .809597254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Left Foot
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 213
+        width: 31
+        height: 17
+      alignment: 9
+      pivot: {x: .317160338, y: .809597254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Right Hand
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 212
+        width: 19
+        height: 28
+      alignment: 2
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Left hand
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 213
+        width: 19
+        height: 28
+      alignment: 2
+      pivot: {x: .5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
