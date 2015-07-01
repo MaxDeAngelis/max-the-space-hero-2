@@ -141,8 +141,29 @@ public class PlayerController : MonoBehaviour {
 				// Calculate artifical drag force
 				float drag = boostForce / maximumVelocity;
 
+
+				// Get a reference to the input of vertical and horizontal force
+				float horizontalForce = Input.GetAxis("Horizontal");
+				float verticalForce = Input.GetAxis("Vertical");
+
+				// Modify new force by adding or subtracting 2 this giver a bigger number the smaller the force is
+				// for example when first pressed force might equal 0.05 after mod it equals 1.95
+				// this results in a faster accelaration upfront
+				// Modify horizontal force
+				if (horizontalForce > 0f) {
+					horizontalForce = 2 - horizontalForce;
+				} else if (horizontalForce < 0f) {
+					horizontalForce = -2 - horizontalForce;
+				}
+				// Modify vertical force
+				if (verticalForce > 0f) {
+					verticalForce = 2 - verticalForce;
+				} else if (verticalForce < 0f) {
+					verticalForce = -2 - verticalForce;
+				}
+
 				// Get the direction based on keys down
-				Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+				Vector2 direction = new Vector2(horizontalForce, verticalForce);
 
 				// Calculate the new velocity using the fage drag
 				Vector2 newVelocity = (direction * boostForce) - (_rigidbody.velocity * drag);
@@ -155,73 +176,6 @@ public class PlayerController : MonoBehaviour {
 					_energy.useEnergy(boostCost);
 				}
 			}
-
-
-
-
-
-
-
-			/* OPTION 1 - Separate control of force. Shitty! Move much faster on diagnals
-			if (_rigidbody.velocity.sqrMagnitude > maximumVelocity) {
-				_rigidbody.velocity = _rigidbody.velocity.normalized * maximumVelocity;
-			} else {
-				if (Input.GetAxis("Horizontal") != 0) {
-
-					_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, 0f));
-
-					if (_rigidbody.velocity.x > maximumVelocity){
-					//	_rigidbody.velocity = new Vector2(maximumVelocity, _rigidbody.velocity.y);
-					}
-				}
-
-				if (Input.GetAxis("Vertical") != 0) {
-					_rigidbody.AddForce(new Vector2(0f, Input.GetAxis("Vertical") * boostForce));
-
-					if (_rigidbody.velocity.y > maximumVelocity) {
-					//	_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, maximumVelocity);
-					}
-				}
-			}*/
-
-
-			/* OPTION 2 - Original approach with a coupld cap ideas not idea because you cant turn at high speed
-			 * also does not seem to be a way to find if at max speed
-			Debug.Log(_rigidbody.velocity.sqrMagnitude);
-			if (_rigidbody.velocity.sqrMagnitude < maximumVelocity && _energy.energy >= boostCost) {
-				// If your magnitude is too high you are moving too fast so start throttling down
-				//Debug.Log("Yes");
-				// If you are pressing a key use some energy
-				if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-					_energy.useEnergy(boostCost);
-				}
-
-				// Apply thrust
-				// TODO: The bellow calculations were an attempt to figure out how to make thrust proportanal to 
-				// the time when the player tries to move. Since Input.GetAxis starts really small and build 
-				// I thought I could subtract from a whole number to get a larger fraction then user that as a
-				// multiplier
-				float horizontalBoostPower = 0f;
-				if (Input.GetAxis("Horizontal") != 0) {
-					horizontalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Horizontal"))) * boostForce;
-					if (Input.GetAxis("Horizontal") < 0) {
-						horizontalBoostPower *= -1; 
-					}
-				}
-
-				float verticalBoostPower = 0f;
-				if (Input.GetAxis("Vertical") != 0) {
-					verticalBoostPower = (2 - Mathf.Abs(Input.GetAxis("Vertical"))) * boostForce;
-					if (Input.GetAxis("Vertical") < 0) {
-						verticalBoostPower *= -1; 
-					}
-				}
-
-				_rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal") * boostForce, Input.GetAxis("Vertical") * boostForce));
-			} else if (_rigidbody.velocity.sqrMagnitude > maximumVelocity) {
-				//Debug.Log("Not");
-				_rigidbody.velocity *= 0.99f;
-			}*/
 		}
 	}
 
