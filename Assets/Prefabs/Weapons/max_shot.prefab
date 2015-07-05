@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   range: 7
-  speed: 5
+  speed: 10
   damage: 50
 --- !u!212 &21231466
 SpriteRenderer:
@@ -115,6 +115,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: projectileSpeed
       value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
