@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 99cce94814a43cc4b8851b5226f3c8a5
-timeCreated: 1435697639
+timeCreated: 1436138072
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -117,19 +117,19 @@ TextureImporter:
         x: 28
         y: 215
         width: 26
-        height: 73
+        height: 75
       alignment: 9
-      pivot: {x: .613669038, y: .873533905}
+      pivot: {x: .576512575, y: .867093503}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: player_lshin
       rect:
         serializedVersion: 2
-        x: 56
+        x: 55
         y: 219
-        width: 18
+        width: 19
         height: 65
       alignment: 9
-      pivot: {x: .663821757, y: .961657703}
+      pivot: {x: .685132205, y: .915212333}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: player_rshin
       rect:
