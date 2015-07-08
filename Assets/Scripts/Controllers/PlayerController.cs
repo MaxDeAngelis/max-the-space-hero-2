@@ -3,6 +3,11 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		HIDDEN VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	[HideInInspector] public bool facingRight = true;			// Flag for if the player is facing the right 
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float movementSpeed = 5f;			// Grounded movement speed
@@ -18,7 +23,6 @@ public class PlayerController : MonoBehaviour {
 	private bool _isForwardGrounded = false;	// Flag for when the front of the player is grounded
 	private bool _isBackwardGrounded = false;	// Flag for whant the back of the player is grounded
 	private bool _isAnchored = true;			// Flag for when player is attached to the ground
-	private bool _facingRight = true;			// Flag for if the player is facing the right 
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 
@@ -75,31 +79,6 @@ public class PlayerController : MonoBehaviour {
 			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
 
-		/* ---- AIM THE ARM TO FIRE ----*/
-		// Get a reference the the game object of the arm
-		GameObject arm = _weapon.transform.parent.gameObject;
-
-		// Get mouse position and arm position
-		Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-		Vector3 armPos = Camera.main.WorldToViewportPoint (arm.transform.position);
-
-		// Get arm and mouse position relative to the game object
-		Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
-		Vector2 relativeMousePos = new Vector2 (mousePos.x - 0.5f, mousePos.y - 0.5f) - relativeArmPos;
-
-		// Calculate the angle
-		float angle = Vector2.Angle (Vector2.down, relativeMousePos);
-
-		// Flip the player if aiming in the opposite direction
-		if ((relativeMousePos.x < 0 && _facingRight) || (relativeMousePos.x > 0 && !_facingRight)) {
-			_flipPlayer();
-		}
-
-		// Calculate the Quaternion and rotate the arm
-		Quaternion quat = Quaternion.identity;
-		quat.eulerAngles = new Vector3(0, 0, angle);
-		arm.transform.rotation = quat;
-
 		/* ---- HANDLE MOVEMENT ---- */
 		if (_isAnchored) {
 			// Set the default vertical/horizontal velocity to what it currently is
@@ -118,16 +97,16 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
-			if (_facingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
+			if (facingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
 				// FACING RIGHT MOVING RIGHT
 				horizontalVelocity = 0f;
-			} else if (!_facingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
+			} else if (!facingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
 				// FACING LEFT MOVING RIGHT
 				horizontalVelocity = 0f;
-			} else if (_facingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
+			} else if (facingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
 				// FACING RIGHT MOVING LEFT
 				horizontalVelocity = 0f;
-			} else if (!_facingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
+			} else if (!facingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
 				// FACING LEFT MOVING RIGHT
 				horizontalVelocity = 0f;
 			}
@@ -177,16 +156,6 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		}
-	}
-
-	/**
-	 * @private Flips the transform by reversing its scale
-	 **/
-	void _flipPlayer() {
-		_facingRight = !_facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
 	}
 
 	/**
@@ -270,5 +239,19 @@ public class PlayerController : MonoBehaviour {
 			// After wait stop from moving
 			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
+	}
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @private Flips the transform by reversing its scale
+	 **/
+	public void flipPlayer() {
+		facingRight = !facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 }

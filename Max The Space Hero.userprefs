@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/EnergyController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/GunArmController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Controllers/HealthController.cs" Line="130" Column="4" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="226" Column="3" />
-      <File FileName="Assets/Scripts/Controllers/EnergyController.cs" Line="43" Column="3" />
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="220" Column="50" />
+      <File FileName="Assets/Scripts/Controllers/HealthController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Controllers/EnergyController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Controllers/GunArmController.cs" Line="53" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
