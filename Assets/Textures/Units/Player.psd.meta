@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 99cce94814a43cc4b8851b5226f3c8a5
-timeCreated: 1436138072
+timeCreated: 1436638895
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,8 +9,8 @@ TextureImporter:
     21300004: player_head
     21300006: player_hand
     21300008: player_lfoot
-    21300010: player_lleg
-    21300012: player_lshin
+    21300010: player_leg
+    21300012: player_shin
     21300014: player_rshin
     21300016: player_rleg
     21300018: player_chest
@@ -41,7 +41,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 2
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -111,17 +111,17 @@ TextureImporter:
       alignment: 9
       pivot: {x: .206117049, y: .922456741}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: player_lleg
+    - name: player_leg
       rect:
         serializedVersion: 2
         x: 28
         y: 215
-        width: 26
+        width: 25
         height: 75
       alignment: 9
       pivot: {x: .576512575, y: .867093503}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: player_lshin
+    - name: player_shin
       rect:
         serializedVersion: 2
         x: 55
@@ -130,26 +130,6 @@ TextureImporter:
         height: 65
       alignment: 9
       pivot: {x: .685132205, y: .915212333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: player_rshin
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 219
-        width: 16
-        height: 64
-      alignment: 9
-      pivot: {x: .690057755, y: .960997581}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: player_rleg
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 215
-        width: 18
-        height: 69
-      alignment: 9
-      pivot: {x: .598208964, y: .889243305}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: player_chest
       rect:
