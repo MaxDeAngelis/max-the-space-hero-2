@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65b20b23c3c0f435a862ea40057a415a
-timeCreated: 1441329743
+timeCreated: 1441334556
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,7 @@ TextureImporter:
     21300010: MaxSpriteSheet_5
     21300012: MaxSpriteSheet_6
     21300014: MaxSpriteSheet_7
+    21300016: MaxSpriteSheet_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,10 +35,10 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 8192
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -60,82 +61,92 @@ TextureImporter:
     - name: MaxSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 30
-        height: 46
+        x: 2
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1
-        width: 30
-        height: 46
+        x: 34
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 65
-        y: 1
-        width: 30
-        height: 46
+        x: 66
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 97
-        y: 1
-        width: 30
-        height: 46
+        x: 98
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 129
-        y: 1
-        width: 30
-        height: 46
+        x: 130
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 161
-        y: 1
-        width: 30
-        height: 46
+        x: 162
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 193
-        y: 1
-        width: 30
-        height: 46
+        x: 194
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MaxSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 225
-        y: 1
-        width: 30
-        height: 46
+        x: 226
+        y: 2
+        width: 28
+        height: 44
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MaxSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

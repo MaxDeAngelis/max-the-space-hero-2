@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 	private WeaponController _weapon;
 	private LandingController _landing;
 	private EnergyController _energy;
+	private Animator _animator;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour {
 		_weapon = GetComponentInChildren<WeaponController>();
 		_landing = GetComponentInChildren<LandingController>();
 		_energy = GetComponent<EnergyController>();
+		_animator = GetComponent<Animator>();
 		_originalGravityScale = _rigidbody.gravityScale;
 	}
 
@@ -94,6 +96,9 @@ public class PlayerController : MonoBehaviour {
 				} else {
 					verticalVelocity = 0f;
 				}
+			} else {
+				// Set the run speed to current velocity
+				_animator.SetFloat("runSpeed", Mathf.Abs(_rigidbody.velocity.x));
 			}
 
 			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
@@ -114,6 +119,8 @@ public class PlayerController : MonoBehaviour {
 			/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
 			_rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
 		} else {
+			// Nullify runspeed if you loose anchor
+			_animator.SetFloat("runSpeed", 0f);
 
 			// If direction key is down and there is enough energy then boost
 			if (_energy.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
@@ -243,7 +250,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PRIVATE FUNCTIONS											     ///
+	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @private Flips the transform by reversing its scale

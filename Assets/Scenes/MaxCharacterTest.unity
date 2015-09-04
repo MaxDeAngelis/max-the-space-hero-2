@@ -4574,7 +4574,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 496322, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.12300003
+      value: .822000027
       objectReference: {fileID: 0}
     - target: {fileID: 496322, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4600,14 +4600,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 11483368, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
-      propertyPath: healthDisplay
-      value: 
-      objectReference: {fileID: 584544528}
-    - target: {fileID: 11483368, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 939550458}
     - target: {fileID: 11450312, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: energyDisplay
       value: 
@@ -4616,34 +4608,21 @@ Prefab:
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 1758533045}
-    - target: {fileID: 11450312, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
-      propertyPath: energy
-      value: 1000
-      objectReference: {fileID: 0}
+    - target: {fileID: 11483368, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: healthDisplay
+      value: 
+      objectReference: {fileID: 584544528}
+    - target: {fileID: 11483368, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 939550458}
+    - target: {fileID: 9591114, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9239bfb7e5fe548b9a9b583ef9cf0818, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1454603614 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 106572, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
-  m_PrefabInternal: {fileID: 1454603613}
---- !u!95 &1454603615
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1454603614}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34458a99967b9427eaa9b1e8508cfb3e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1462255480 stripped
 Transform:
   m_PrefabParentObject: {fileID: 487372, guid: 28dcd567f37f444a48d5b6ff21820225, type: 2}
