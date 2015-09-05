@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour {
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
+		// Always set landing flag for animation
+		_animator.SetBool("ableToLand", _landing.isAbleToLand);
+
 		// Line cast to the ground check transform to see if it is over a ground layer to prevent double jump
 		_isForwardGrounded = Physics2D.Linecast(transform.position, forwardGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		_isBackwardGrounded = Physics2D.Linecast(transform.position, backwardGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -79,6 +82,9 @@ public class PlayerController : MonoBehaviour {
 			_collider.isTrigger = false;
 			_rigidbody.gravityScale = _originalGravityScale;
 			_rigidbody.velocity = new Vector2(0f, 0f);
+
+			// Stop flying since you are landing
+			_animator.SetBool("flying", false);
 		}
 
 		/* ---- HANDLE MOVEMENT ---- */
@@ -86,6 +92,9 @@ public class PlayerController : MonoBehaviour {
 			// Set the default vertical/horizontal velocity to what it currently is
 			float verticalVelocity = _rigidbody.velocity.y;
 			float horizontalVelocity = Input.GetAxis("Horizontal") * movementSpeed;
+
+			// Set the run speed to current velocity
+			_animator.SetFloat("runSpeed", Mathf.Abs(_rigidbody.velocity.x));
 
 			/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
 			if (_climbable) {
@@ -96,9 +105,6 @@ public class PlayerController : MonoBehaviour {
 				} else {
 					verticalVelocity = 0f;
 				}
-			} else {
-				// Set the run speed to current velocity
-				_animator.SetFloat("runSpeed", Mathf.Abs(_rigidbody.velocity.x));
 			}
 
 			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
@@ -124,6 +130,9 @@ public class PlayerController : MonoBehaviour {
 
 			// If direction key is down and there is enough energy then boost
 			if (_energy.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+				// Start boosting
+				_animator.SetBool("boosting", true);
+
 				// Calculate artifical drag force
 				float drag = boostForce / maximumVelocity;
 
@@ -161,6 +170,9 @@ public class PlayerController : MonoBehaviour {
 				if (Mathf.Abs(newVelocity.x) > 0.25f || Mathf.Abs(newVelocity.y) > 0.25f) {
 					_energy.useEnergy(boostCost);
 				}
+			} else {
+				// Stop boosting
+				_animator.SetBool("boosting", false);
 			}
 		}
 	}
@@ -237,6 +249,9 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator _takeoff() {
 		// Add inital force to get off ground
 		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
+
+		// Start flying since you have taken off
+		_animator.SetBool("flying", true);
 
 		// If the user does not have a direction key down then stop velocity
 		if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f) {
