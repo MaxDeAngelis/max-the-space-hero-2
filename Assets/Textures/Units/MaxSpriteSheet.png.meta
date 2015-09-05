@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65b20b23c3c0f435a862ea40057a415a
-timeCreated: 1441460612
+timeCreated: 1441478347
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -25,6 +25,8 @@ TextureImporter:
     21300036: MaxSpriteSheet_18
     21300038: MaxSpriteSheet_19
     21300040: MaxSpriteSheet_20
+    21300042: MaxSpriteSheet_21
+    21300044: MaxSpriteSheet_22
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -274,6 +276,26 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MaxSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MaxSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 130
         y: 2
         width: 28
         height: 44

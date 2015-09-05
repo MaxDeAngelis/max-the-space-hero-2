@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour {
 	private bool _isForwardGrounded = false;	// Flag for when the front of the player is grounded
 	private bool _isBackwardGrounded = false;	// Flag for whant the back of the player is grounded
 	private bool _isAnchored = true;			// Flag for when player is attached to the ground
+	private bool _isClimbing = false;			// Flag for when player is actually climbing
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
+	private string[] _groundLayers = new string[2] {"Ground", "Climbable"};
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
@@ -58,12 +60,11 @@ public class PlayerController : MonoBehaviour {
 		// Always set landing flag for animation
 		_animator.SetBool("ableToLand", _landing.isAbleToLand);
 
-		// Line cast to the ground check transform to see if it is over a ground layer to prevent double jump
-		_isForwardGrounded = Physics2D.Linecast(transform.position, forwardGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-		_isBackwardGrounded = Physics2D.Linecast(transform.position, backwardGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		// Line cast to the ground check transform to see if it is over a ground layer
+		_checkIfGrounded();
 
 		/* ---- HANDLE FIRING GUN ---- */
-		if (Input.GetButtonDown("Fire1")) {
+		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
 			Vector3 pos = Input.mousePosition;
 			pos.z = transform.position.z - Camera.main.transform.position.z;
 			pos = Camera.main.ScreenToWorldPoint(pos);
@@ -93,20 +94,35 @@ public class PlayerController : MonoBehaviour {
 			float verticalVelocity = _rigidbody.velocity.y;
 			float horizontalVelocity = Input.GetAxis("Horizontal") * movementSpeed;
 
-			// Set the run speed to current velocity
-			_animator.SetFloat("runSpeed", Mathf.Abs(_rigidbody.velocity.x));
-
 			/* ---- HANDLE IF OVER A CLIMBABLE OBJECT ---- */
 			if (_climbable) {
-				if (Input.GetAxis("Vertical") > 0) {
-					verticalVelocity = _climbable.upSpeed;
-				} else if (Input.GetAxis("Vertical") < 0) {
-					verticalVelocity = _climbable.downSpeed * -1;
-				} else {
-					verticalVelocity = 0f;
-				}
-			}
+				// Default the vertical velocity to the key press
+				verticalVelocity = Input.GetAxis("Vertical");
 
+				if (verticalVelocity != 0f) {
+
+
+					if (!_isClimbing) {
+						_isClimbing = true;
+
+						// Start climbling since you are moving on a climbable object
+						_animator.SetBool("climbing", true);
+
+						// Center Max on the climbable object
+						transform.position = new Vector3(_climbable.transform.position.x, transform.position.y, transform.position.z);
+					}
+					// Set the special speed based on climb controller defaults
+					if (verticalVelocity > 0) {
+						verticalVelocity = _climbable.upSpeed;
+					} else {
+						verticalVelocity = _climbable.downSpeed * -1;
+					}
+				}
+			} else {
+				// Start climbling since you are moving on a climbable object
+				_animator.SetBool("climbing", false);
+			}
+				
 			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
 			if (facingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
 				// FACING RIGHT MOVING RIGHT
@@ -122,11 +138,15 @@ public class PlayerController : MonoBehaviour {
 				horizontalVelocity = 0f;
 			}
 
+			// Set speed floats for  animations
+			_animator.SetFloat("horizontalSpeed", Mathf.Abs(horizontalVelocity));
+			_animator.SetFloat("verticalSpeed", Mathf.Abs(verticalVelocity));
+
 			/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
 			_rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
 		} else {
-			// Nullify runspeed if you loose anchor
-			_animator.SetFloat("runSpeed", 0f);
+			// Nullify horizontalSpeed if you loose anchor
+			_animator.SetFloat("horizontalSpeed", 0f);
 
 			// If direction key is down and there is enough energy then boost
 			if (_energy.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
@@ -204,6 +224,26 @@ public class PlayerController : MonoBehaviour {
 			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
 		}
 	}
+
+	/**
+	 * @private checks if the player is grounded on any of the supported types of grounds
+	 **/
+	void _checkIfGrounded() {
+		// Default to false before the loop
+		_isForwardGrounded = false;
+		_isBackwardGrounded = false;
+		// Loop over all supported ground layers and check if you are grounded
+		foreach(string layerName in _groundLayers) {
+			if (!_isForwardGrounded) {
+				_isForwardGrounded = Physics2D.Linecast(transform.position, forwardGroundCheck.position, 1 << LayerMask.NameToLayer(layerName));
+			}
+
+			if (!_isBackwardGrounded) {
+				_isBackwardGrounded = Physics2D.Linecast(transform.position, backwardGroundCheck.position, 1 << LayerMask.NameToLayer(layerName));
+			}
+		}
+	}
+
 	/**
 	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
 	 **/
@@ -240,6 +280,7 @@ public class PlayerController : MonoBehaviour {
 		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
 			_climbable = null;
+			_isClimbing = false;
 		}
 	}
 
