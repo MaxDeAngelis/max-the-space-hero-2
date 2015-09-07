@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65b20b23c3c0f435a862ea40057a415a
-timeCreated: 1441588212
+timeCreated: 1441598898
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -41,6 +41,7 @@ TextureImporter:
     21300068: Waiting_3
     21300070: Arm_1
     21300072: Arm_2
+    21300074: Arm_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -339,22 +340,32 @@ TextureImporter:
     - name: Arm_1
       rect:
         serializedVersion: 2
-        x: 12
-        y: 14
-        width: 9
-        height: 21
+        x: 2
+        y: 2
+        width: 28
+        height: 44
       alignment: 9
-      pivot: {x: .935000002, y: .925000012}
+      pivot: {x: .657999992, y: .70599997}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Arm_2
       rect:
         serializedVersion: 2
-        x: 44
-        y: 14
-        width: 9
-        height: 21
+        x: 34
+        y: 2
+        width: 28
+        height: 44
       alignment: 9
-      pivot: {x: .935000002, y: .925000012}
+      pivot: {x: .657999992, y: .70599997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arm_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 2
+        width: 28
+        height: 44
+      alignment: 9
+      pivot: {x: .657999992, y: .70599997}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
