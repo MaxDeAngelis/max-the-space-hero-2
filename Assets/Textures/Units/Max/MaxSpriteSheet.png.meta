@@ -1,32 +1,41 @@
 fileFormatVersion: 2
 guid: 65b20b23c3c0f435a862ea40057a415a
-timeCreated: 1441478347
+timeCreated: 1441583779
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: MaxSpriteSheet_0
-    21300002: MaxSpriteSheet_1
-    21300004: MaxSpriteSheet_2
-    21300006: MaxSpriteSheet_3
-    21300008: MaxSpriteSheet_4
-    21300010: MaxSpriteSheet_5
-    21300012: MaxSpriteSheet_6
-    21300014: MaxSpriteSheet_7
-    21300016: MaxSpriteSheet_8
-    21300018: MaxSpriteSheet_9
-    21300020: MaxSpriteSheet_10
-    21300022: MaxSpriteSheet_11
-    21300024: MaxSpriteSheet_12
-    21300026: MaxSpriteSheet_13
-    21300028: MaxSpriteSheet_14
-    21300030: MaxSpriteSheet_15
-    21300032: MaxSpriteSheet_16
-    21300034: MaxSpriteSheet_17
-    21300036: MaxSpriteSheet_18
-    21300038: MaxSpriteSheet_19
-    21300040: MaxSpriteSheet_20
-    21300042: MaxSpriteSheet_21
+    21300000: Flying_Boost_1
+    21300002: Flying_Boost_2
+    21300004: Flying_Boost_3
+    21300006: Flying_1
+    21300008: Flying_2
+    21300010: Flying_3
+    21300012: Running_5
+    21300014: Running_6
+    21300016: Flying_Boost_1
+    21300018: Landing_Boost_1
+    21300020: Landing_Boost_2
+    21300022: Landing_Boost_3
+    21300024: Landing_1
+    21300026: Landing_2
+    21300028: Landing_3
+    21300030: Landing_Boost_2
+    21300032: Landing_Boost_3
+    21300034: Landing_1
+    21300036: Climbing_1
+    21300038: Climbing_2
+    21300040: Climbing_1
+    21300042: Climbing_2
     21300044: MaxSpriteSheet_22
+    21300046: Idle_1
+    21300048: Idle_2
+    21300050: Running_1
+    21300052: Running_2
+    21300054: Running_3
+    21300056: Running_4
+    21300058: Running_5
+    21300060: Running_6
+    21300062: Idle_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -72,7 +81,87 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: MaxSpriteSheet_0
+    - name: Idle_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 194
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Idle_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 194
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Running_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Running_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Running_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Running_4
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Running_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Running_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flying_Boost_1
       rect:
         serializedVersion: 2
         x: 2
@@ -80,9 +169,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_1
+    - name: Flying_Boost_2
       rect:
         serializedVersion: 2
         x: 34
@@ -90,9 +179,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_2
+    - name: Flying_Boost_3
       rect:
         serializedVersion: 2
         x: 66
@@ -100,9 +189,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_3
+    - name: Flying_1
       rect:
         serializedVersion: 2
         x: 98
@@ -110,9 +199,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_4
+    - name: Flying_2
       rect:
         serializedVersion: 2
         x: 130
@@ -120,9 +209,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_5
+    - name: Flying_3
       rect:
         serializedVersion: 2
         x: 162
@@ -130,39 +219,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_6
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 98
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 98
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_8
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 98
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_9
+    - name: Landing_Boost_1
       rect:
         serializedVersion: 2
         x: 2
@@ -170,9 +229,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_10
+    - name: Landing_Boost_2
       rect:
         serializedVersion: 2
         x: 34
@@ -180,9 +239,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_11
+    - name: Landing_Boost_3
       rect:
         serializedVersion: 2
         x: 66
@@ -190,9 +249,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_12
+    - name: Landing_1
       rect:
         serializedVersion: 2
         x: 98
@@ -200,9 +259,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_13
+    - name: Landing_2
       rect:
         serializedVersion: 2
         x: 130
@@ -210,9 +269,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_14
+    - name: Landing_3
       rect:
         serializedVersion: 2
         x: 162
@@ -220,39 +279,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_15
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 50
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_16
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 50
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_17
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 50
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_18
+    - name: Climbing_1
       rect:
         serializedVersion: 2
         x: 2
@@ -260,9 +289,9 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_19
+    - name: Climbing_2
       rect:
         serializedVersion: 2
         x: 34
@@ -270,37 +299,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_20
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 2
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_21
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 2
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MaxSpriteSheet_22
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 2
-        width: 28
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
