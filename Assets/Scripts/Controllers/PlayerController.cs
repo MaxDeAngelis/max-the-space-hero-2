@@ -26,7 +26,13 @@ public class PlayerController : MonoBehaviour {
 	private bool _isClimbing = false;			// Flag for when player is actually climbing
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
-	private string[] _groundLayers = new string[2] {"Ground", "Climbable"};
+	private string[] _groundLayers = new string[2] {"Ground", "Climbable"}; // List of layers to consider ground
+
+	/* VARIABLES FOR WAITING ANIMATION CHECK */
+	private int _framesBeforeWait = 60 * 10;	// Amount of frames to count before considered waiting
+	private int _frameWaitCounter = 0;			// Frame counter for wait animation
+	private Vector3 _previousVelocity;			// Previous frames velocity for max
+	private Vector2 _previousMousePosition;		// Previous frames mouse position
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
@@ -44,19 +50,27 @@ public class PlayerController : MonoBehaviour {
 	 * @private Called on start of the game object to init variables
 	 **/
 	void Start() {
+		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
 		_landing = GetComponentInChildren<LandingController>();
 		_energy = GetComponent<EnergyController>();
 		_animator = GetComponent<Animator>();
+
+		/* INIT VARIABLES */
 		_originalGravityScale = _rigidbody.gravityScale;
+		_previousVelocity = _rigidbody.velocity;
+		_previousMousePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 	}
 
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
+		// Check if Max is waiting
+		_checkIfWaiting();
+
 		// Always set landing flag for animation
 		_animator.SetBool("ableToLand", _landing.isAbleToLand);
 
@@ -197,6 +211,26 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @private checks if max is waiting and if so triggers the wait animation
+	 **/
+	void _checkIfWaiting() {
+		// If the wait limit has been reached then set off the wait animation
+		if (_frameWaitCounter > _framesBeforeWait) {
+			_animator.SetBool("waiting", true);
+		}
+		
+		// Checks if the mouse is still in the same position and that max has not moved since last frame if not then he is active
+		if (Vector3.Distance(_previousVelocity, _rigidbody.velocity) != 0f || Vector2.Distance(_previousMousePosition, Camera.main.ScreenToViewportPoint(Input.mousePosition)) != 0f) {
+			_previousVelocity = _rigidbody.velocity;
+			_previousMousePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+			_animator.SetBool("waiting", false);
+			_frameWaitCounter = 0;
+		} else {
+			_frameWaitCounter += 1;
+		}
+
+	}
 	/**
 	 * @private checks to see if the player is bumping into the boundries and if so it stops the player
 	 **/
