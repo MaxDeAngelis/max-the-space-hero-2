@@ -23,10 +23,17 @@ public class WeaponController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isFiring = false;					// Flag for when the weapon is being fired
 	private int _attackSpeedFrameCounter = 0;		// How many frames should be inbetween each attack
+	private Animator _animator;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @private Called on start of the game object to init variables
+	 **/
+	void Start() {
+		_animator = GetComponentInParent<Animator>();
+	}
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
@@ -49,6 +56,10 @@ public class WeaponController : MonoBehaviour {
 	 **/
 	public void fire(Vector3 target) {
 		if (!_isFiring) {
+			if (_animator) {
+				_animator.SetTrigger("shoot");
+			}
+
 			_attackSpeedFrameCounter = (int)(60 / attackSpeed);
 			_isFiring = true;
 
