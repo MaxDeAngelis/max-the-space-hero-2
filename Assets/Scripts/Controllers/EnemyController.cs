@@ -14,7 +14,8 @@ public class EnemyController : MonoBehaviour {
 	public float sightRange = 5f;						// The range that the unit can see before engaging the player
 	public float patrolDistance = 2f;					// The distance to patrol
 	public Transform groundCheck;
-	
+	public Transform gunArm;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +77,7 @@ public class EnemyController : MonoBehaviour {
 			if (_distanceFromPlayer <= _weapon.range) {
 
 				if (_weapon.isRanged) {
+					_aimWeapon();
 					_weapon.fire(_player.transform.position);
 				} else {
 					_animator.SetTrigger("Attack");
@@ -105,6 +107,28 @@ public class EnemyController : MonoBehaviour {
 			// After charecter has be flipped if needed then move 
 			_move();
 		}
+	}
+
+	/**
+	 * @private Aim the arm/weapon at player before firing
+	 **/
+	void _aimWeapon() {
+		/* ---- AIM THE ARM TO FIRE ----*/		
+		// Get player and arm position
+		Vector3 playerPos = _player.transform.position;
+		Vector3 armPos = gunArm.position;
+		
+		// Get arm and player position relative to the game object
+		Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
+		Vector2 relativePlayerPos = new Vector2 (playerPos.x - 0.5f, playerPos.y - 0.5f) - relativeArmPos;
+		float angle = Vector2.Angle (Vector2.down, relativePlayerPos);
+		
+		// Calculate the Quaternion and rotate the arm
+		Quaternion quat = Quaternion.identity;
+		quat.eulerAngles = new Vector3(0, 0, angle);
+		
+		// Rotate the arm pieces
+		gunArm.transform.rotation = quat;
 	}
 
 	/**

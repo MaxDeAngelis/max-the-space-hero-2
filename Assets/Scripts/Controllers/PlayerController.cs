@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 	private LandingController _landing;
 	private EnergyController _energy;
 	private Animator _animator;
+	private GunArmController _gunArm;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour {
 		_landing = GetComponentInChildren<LandingController>();
 		_energy = GetComponent<EnergyController>();
 		_animator = GetComponent<Animator>();
+		_gunArm = GetComponent<GunArmController>();
 
 		/* INIT VARIABLES */
 		_originalGravityScale = _rigidbody.gravityScale;
@@ -217,6 +219,8 @@ public class PlayerController : MonoBehaviour {
 	void _checkIfWaiting() {
 		// If the wait limit has been reached then set off the wait animation
 		if (_frameWaitCounter > _framesBeforeWait) {
+			_gunArm.resetRotation();
+
 			_animator.SetBool("waiting", true);
 		}
 		

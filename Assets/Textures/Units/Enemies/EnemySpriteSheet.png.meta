@@ -1,15 +1,18 @@
 fileFormatVersion: 2
-guid: 6e10441e1b6704c288a12401d421c952
-timeCreated: 1435461465
+guid: f2e0a6ba70b874d40a5d3d16fbaf594f
+timeCreated: 1441680184
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Health
-    21300002: Speed
-    21300004: Energy
-    21300006: Health_2
-    21300008: Speed_2
-    21300010: Energy_2
+    21300000: Idle_1
+    21300002: Idle_2
+    21300004: Idle_3
+    21300006: Arm_1
+    21300008: Arm_2
+    21300010: Arm_3
+    21300012: Spider_1
+    21300014: Spider_2
+    21300016: Spider_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -33,7 +36,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 64
+  maxTextureSize: 8192
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -55,63 +58,93 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Health
+    - name: Idle_1
       rect:
         serializedVersion: 2
         x: 2
-        y: 51
-        width: 12
-        height: 12
+        y: 242
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Speed
+    - name: Idle_2
       rect:
         serializedVersion: 2
-        x: 17
-        y: 51
-        width: 12
-        height: 12
+        x: 34
+        y: 242
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Energy
+    - name: Idle_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 51
-        width: 12
-        height: 12
+        x: 66
+        y: 242
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Health_2
+    - name: Arm_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 35
-        width: 14
-        height: 14
+        x: 2
+        y: 194
+        width: 28
+        height: 44
+      alignment: 9
+      pivot: {x: .600000024, y: .649999976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arm_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 194
+        width: 28
+        height: 44
+      alignment: 9
+      pivot: {x: .600000024, y: .649999976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arm_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 194
+        width: 28
+        height: 44
+      alignment: 9
+      pivot: {x: .600000024, y: .649999976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 146
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Speed_2
+    - name: Spider_2
       rect:
         serializedVersion: 2
-        x: 16
-        y: 35
-        width: 14
-        height: 14
+        x: 34
+        y: 146
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Energy_2
+    - name: Spider_3
       rect:
         serializedVersion: 2
-        x: 31
-        y: 35
-        width: 14
-        height: 14
+        x: 66
+        y: 146
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
