@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Controllers/GunArmController.cs" Line="34" Column="19" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="226" Column="27" />
+      <File FileName="Assets/Scripts/Controllers/GunArmController.cs" Line="50" Column="3" />
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="223" Column="4" />
+      <File FileName="Assets/Scripts/Controllers/EnemyController.cs" Line="29" Column="82" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
