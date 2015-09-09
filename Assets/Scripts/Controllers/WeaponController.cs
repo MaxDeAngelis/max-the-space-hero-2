@@ -12,7 +12,6 @@ public class WeaponController : MonoBehaviour {
 	public float durabilityLossPerAttack = 0f;		// The ammount of durrability lost per attack
 	public AudioClip attackSoundEffect;				// Sound effect to make on attack
 
-	public bool isActive = false;					// Flag for when the weapon is active
 	public bool isPlayer = false;					// Flag for if the weapon is the player or not
 	public bool isRanged = false;					// Flag for ranged weapons
 
@@ -93,6 +92,5 @@ public class WeaponController : MonoBehaviour {
 	public void broken() {
 		Destroy(gameObject);
 	}
-
-
 }
+

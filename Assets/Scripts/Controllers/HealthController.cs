@@ -48,12 +48,9 @@ public class HealthController : MonoBehaviour {
 		ProjectileController projectile = otherCollider.gameObject.GetComponent<ProjectileController>();
 
 		/* ---- WEAPON DAMAGE ---- */
-		if (weapon != null && weapon.isActive == true && weapon.isPlayer != isPlayer) {
+		if (weapon != null && weapon.isPlayer != isPlayer) {
 			// Set the damage for the weapon
 			damage = weapon.damage;
-
-			// When the weapon makes contact then set to inactive so you only get one hit per swing
-			weapon.isActive = false;
 
 			// Damage the actual weapon
 			weapon.durability -= weapon.durabilityLossPerAttack;
