@@ -10,6 +10,10 @@ public class PowerupManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/* ---- MANAGERS ---- */
+	private EnergyManager _energyManager;
+
 	/**
 	 * @private Called on start of the game object to init variables
 	 **/
@@ -19,6 +23,8 @@ public class PowerupManager : MonoBehaviour {
 			Debug.LogError("Multiple instances of PowerupManager!");
 		}
 		Instance = this;
+
+		_energyManager = EnergyManager.Instance;
 	}
 
 	/**
@@ -59,14 +65,11 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $GameObject$ player - The game object of the player
 	 **/
 	void _useEnergyPowerup(PowerupController powerup, GameObject player) {
-		// Get a handle on the energy controller
-		EnergyController energyController = player.GetComponent<EnergyController>();
-
 		// If the energy and bonus are higher than the maximum then just cap it else add
-		if ((energyController.energy + powerup.bonus) > energyController.maximumEnergy) {
-			energyController.energy = energyController.maximumEnergy;
+		if ((_energyManager.energy + powerup.bonus) > _energyManager.maximumEnergy) {
+			_energyManager.energy = _energyManager.maximumEnergy;
 		} else {
-			energyController.energy += powerup.bonus;
+			_energyManager.energy += powerup.bonus;
 		}
 	}
 

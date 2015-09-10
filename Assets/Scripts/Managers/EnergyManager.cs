@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class EnergyController : MonoBehaviour {
+public class EnergyManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		HIDDEN VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -11,6 +11,7 @@ public class EnergyController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static EnergyManager Instance;
 	public float energy = 400f;				// The maximum health of the unit
 	public Text energyDisplay;				// Text display of the energy value
 	public Slider energyBar;				// Bar that represents amount left
@@ -24,9 +25,15 @@ public class EnergyController : MonoBehaviour {
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * @private Called on awake of the game object to init variables
+	 * @private Called on start of the game object to init variables
 	 **/
-	void Awake () {
+	void Awake() {
+		// Register the singleton
+		if (Instance != null) {
+			Debug.LogError("Multiple instances of PowerupManager!");
+		}
+		Instance = this;
+
 		maximumEnergy = energy;
 		_updateEnergy();
 	}

@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\IHealth.cs" />
+     <Compile Include="Assets\Editor\IPlayer.cs" />
      <Compile Include="Assets\Editor\IWeapon.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
  <Reference Include="UnityEngine.UI">

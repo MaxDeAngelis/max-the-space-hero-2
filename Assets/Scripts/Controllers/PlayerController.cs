@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		HIDDEN VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	[HideInInspector] public bool facingRight = true;			// Flag for if the player is facing the right 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
@@ -14,8 +13,11 @@ public class PlayerController : MonoBehaviour {
 	public float boostForce = 10f;				// Jetpack boost force
 	public float boostCost = 1f;				// The energy cost of using your jetpack
 	public float maximumVelocity = 18f;			// Maximum jetpack velocity
+	public Transform topLandingCheck;
+	public Transform bottomLandingCheck;
 	public Transform forwardGroundCheck;		// GameObject to check if front of player is on ground
 	public Transform backwardGroundCheck;		// GameObject to check if back of player is on ground
+	public Transform gunArm;					// The arm holding the gun
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour {
 	private bool _isBackwardGrounded = false;	// Flag for whant the back of the player is grounded
 	private bool _isAnchored = true;			// Flag for when player is attached to the ground
 	private bool _isClimbing = false;			// Flag for when player is actually climbing
+	private bool _isFacingRight = true;			// Flag for if the player is facing the righ
+	private bool _isAbleToLand = false;
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 	private string[] _groundLayers = new string[2] {"Ground", "Climbable"}; // List of layers to consider ground
@@ -33,16 +37,18 @@ public class PlayerController : MonoBehaviour {
 	private int _frameWaitCounter = 0;			// Frame counter for wait animation
 	private Vector3 _previousVelocity;			// Previous frames velocity for max
 	private Vector2 _previousMousePosition;		// Previous frames mouse position
+	private Quaternion _defaultArmRotation;     // The default arm rotation at start
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
 	private BoxCollider2D _collider;
 	private ClimbController _climbable;
 	private WeaponController _weapon;
-	private LandingController _landing;
-	private EnergyController _energy;
 	private Animator _animator;
-	private GunArmController _gunArm;
+
+	/* ---- MANAGERS ---- */
+	private PowerupManager _powerupManager;
+	private EnergyManager _energyManager;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -55,26 +61,34 @@ public class PlayerController : MonoBehaviour {
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
-		_landing = GetComponentInChildren<LandingController>();
-		_energy = GetComponent<EnergyController>();
 		_animator = GetComponent<Animator>();
-		_gunArm = GetComponent<GunArmController>();
+
+		/* INIT MANAGERS */
+		_powerupManager = PowerupManager.Instance;
+		_energyManager = EnergyManager.Instance;
 
 		/* INIT VARIABLES */
 		_originalGravityScale = _rigidbody.gravityScale;
 		_previousVelocity = _rigidbody.velocity;
 		_previousMousePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		_defaultArmRotation = gunArm.transform.rotation;
 	}
 
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
+		// Aim your weapon towards the mouse
+		_aim();
+
+		// Check if it is possable to land
+		_checkIfAbleToLand();
+
 		// Check if Max is waiting
 		_checkIfWaiting();
 
 		// Always set landing flag for animation
-		_animator.SetBool("ableToLand", _landing.isAbleToLand);
+		_animator.SetBool("ableToLand", _isAbleToLand);
 
 		// Line cast to the ground check transform to see if it is over a ground layer
 		_checkIfGrounded();
@@ -94,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 			_collider.isTrigger = true;
 
 			StartCoroutine(_takeoff());
-		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _landing.isAbleToLand) {
+		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _isAbleToLand) {
 			_isAnchored = true;
 			_collider.isTrigger = false;
 			_rigidbody.gravityScale = _originalGravityScale;
@@ -140,16 +154,16 @@ public class PlayerController : MonoBehaviour {
 			}
 				
 			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
-			if (facingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
+			if (_isFacingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
 				// FACING RIGHT MOVING RIGHT
 				horizontalVelocity = 0f;
-			} else if (!facingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
+			} else if (!_isFacingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
 				// FACING LEFT MOVING RIGHT
 				horizontalVelocity = 0f;
-			} else if (facingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
+			} else if (_isFacingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
 				// FACING RIGHT MOVING LEFT
 				horizontalVelocity = 0f;
-			} else if (!facingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
+			} else if (!_isFacingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
 				// FACING LEFT MOVING RIGHT
 				horizontalVelocity = 0f;
 			}
@@ -165,7 +179,7 @@ public class PlayerController : MonoBehaviour {
 			_animator.SetFloat("horizontalSpeed", 0f);
 
 			// If direction key is down and there is enough energy then boost
-			if (_energy.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+			if (_energyManager.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
 				// Start boosting
 				_animator.SetBool("boosting", true);
 
@@ -204,7 +218,7 @@ public class PlayerController : MonoBehaviour {
 
 				// If you are moving using energy
 				if (Mathf.Abs(newVelocity.x) > 0.25f || Mathf.Abs(newVelocity.y) > 0.25f) {
-					_energy.useEnergy(boostCost);
+					_energyManager.useEnergy(boostCost);
 				}
 			} else {
 				// Stop boosting
@@ -219,8 +233,8 @@ public class PlayerController : MonoBehaviour {
 	void _checkIfWaiting() {
 		// If the wait limit has been reached then set off the wait animation
 		if (_frameWaitCounter > _framesBeforeWait) {
-			_gunArm.resetRotation();
-
+			// Rotate the arm back to the original location
+			gunArm.transform.rotation = _defaultArmRotation;
 			_animator.SetBool("waiting", true);
 		}
 		
@@ -235,6 +249,46 @@ public class PlayerController : MonoBehaviour {
 		}
 
 	}
+
+	void _checkIfAbleToLand() {
+		bool isTopHitting = Physics2D.Linecast(transform.position, topLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		bool isBottomHitting = Physics2D.Linecast(transform.position, bottomLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+		// If the top is not hitting ground and the bottom is then you can land
+		if (!isTopHitting && isBottomHitting) {
+			_isAbleToLand = true;
+		} else {
+			_isAbleToLand = false;
+		}
+	}
+
+	/**
+	 * @private rotate the arm towards the mouse cursor
+	 **/
+	void _aim() {
+		/* ---- AIM THE ARM TO FIRE ----*/		
+		// Get mouse position and arm position
+		Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		Vector3 armPos = Camera.main.WorldToViewportPoint(gunArm.transform.position);
+		
+		// Get arm and mouse position relative to the game object
+		Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
+		Vector2 relativeMousePos = new Vector2 (mousePos.x - 0.5f, mousePos.y - 0.5f) - relativeArmPos;
+		float angle = Vector2.Angle (Vector2.down, relativeMousePos);
+		
+		// Flip the player if aiming in the opposite direction
+		if ((relativeMousePos.x < 0 && _isFacingRight) || (relativeMousePos.x > 0 && !_isFacingRight)) {
+			flipPlayer();
+		}
+		
+		// Calculate the Quaternion and rotate the arm
+		Quaternion quat = Quaternion.identity;
+		quat.eulerAngles = new Vector3(0, 0, angle);
+		
+		// Rotate the arm pieces
+		gunArm.transform.rotation = quat;
+	}
+
 	/**
 	 * @private checks to see if the player is bumping into the boundries and if so it stops the player
 	 **/
@@ -300,7 +354,7 @@ public class PlayerController : MonoBehaviour {
 
 		// Process if you hit a powerup, call manager to gain boost
 		if (_isAnchored && otherCollider.gameObject.tag == "Powerup") {
-			PowerupManager.Instance.process(otherCollider.gameObject.GetComponent<PowerupController>(), gameObject);
+			_powerupManager.process(otherCollider.gameObject.GetComponent<PowerupController>(), gameObject);
 		}
 	}
 
@@ -350,7 +404,7 @@ public class PlayerController : MonoBehaviour {
 	 * @private Flips the transform by reversing its scale
 	 **/
 	public void flipPlayer() {
-		facingRight = !facingRight;
+		_isFacingRight = !_isFacingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
