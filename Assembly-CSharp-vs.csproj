@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Controllers\WeaponController.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SoundEffectsManager.cs" />
+     <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

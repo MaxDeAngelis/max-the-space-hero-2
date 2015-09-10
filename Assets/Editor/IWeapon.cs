@@ -23,7 +23,7 @@ public class IWeapon : Editor {
 		// Display default settings
 		_type = (TYPES)EditorGUILayout.EnumPopup("Type", _type);
 		myWeapon.isPlayer = EditorGUILayout.Toggle("Is Player?", myWeapon.isPlayer);
-		myWeapon.attackSoundEffect = (AudioClip)EditorGUILayout.ObjectField("Sound effect", myWeapon.attackSoundEffect, typeof(AudioClip));
+		myWeapon.attackSoundEffect = (AudioClip)EditorGUILayout.ObjectField("Sound effect", myWeapon.attackSoundEffect, typeof(AudioClip), true);
 
 		// Set ranged flag if type is ranged
 		if (_type == TYPES.Ranged) {
@@ -49,7 +49,7 @@ public class IWeapon : Editor {
 			// If this is a ranged weapon then prompt for range and projectile game object
 			if (_type == TYPES.Ranged) {
 				myWeapon.range = EditorGUILayout.FloatField("Range", myWeapon.range);
-				myWeapon.projectile = (GameObject)EditorGUILayout.ObjectField("Projectile", myWeapon.projectile, typeof(GameObject));
+				myWeapon.projectile = (GameObject)EditorGUILayout.ObjectField("Projectile", myWeapon.projectile, typeof(GameObject), true);
 			} else {
 				myWeapon.range = 0.1f;
 			}
