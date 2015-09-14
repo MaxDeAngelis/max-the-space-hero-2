@@ -460,7 +460,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 90161209}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -1186,11 +1186,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 247684637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1129d9993b9d4245ac91249feebc4f3, type: 3}
+  m_Script: {fileID: 11500000, guid: c3086d71adfc74c5abd97c60946f1b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distance: -7.5
   damper: .150000006
+  player: {fileID: 308551798}
   rightBoundry: {fileID: 1168077803}
   leftBoundry: {fileID: 1195961031}
   topBoundry: {fileID: 90161209}
@@ -1482,7 +1483,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 307077973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -1578,6 +1579,10 @@ Prefab:
     - {fileID: 11465336, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &308551798 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 153024, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+  m_PrefabInternal: {fileID: 308551797}
 --- !u!1 &318565898
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,6 +3070,7 @@ MonoBehaviour:
   energy: 1000
   energyDisplay: {fileID: 247319243}
   energyBar: {fileID: 1758533045}
+  regenerationRate: 30
 --- !u!1 &809730813
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,7 +4423,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1168077803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -4694,7 +4700,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1195961031}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:

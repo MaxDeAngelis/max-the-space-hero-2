@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float distance = -7.5f;				// Z Distance the camera should maintain
 	public float damper = 0.1f;					// Damper value to user for smooth follow
 
+	public GameObject player;					// The player in the scene
 	public GameObject rightBoundry;				// Right boundry game object
 	public GameObject leftBoundry;				// Left boundry game object
 	public GameObject topBoundry;				// Top boundry game object
@@ -16,7 +17,6 @@ public class CameraController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private GameObject _player;					// The player game object
 	private Vector3 _target;					// The loaction to target for the camera
 	private Vector3 _velocity = Vector3.zero;	// Reference value for zero velocity
 	private float _cameraWidth;					// Camera width in game
@@ -30,9 +30,6 @@ public class CameraController : MonoBehaviour {
 	 * @private Called on start of the game object to init variables
 	 **/
 	void Start() {
-		// Get a reference to the player
-		_player = GameObject.FindGameObjectWithTag("Player");
-
 		// Set width and height of the camera
 		_cameraHeight = 2f * Camera.main.orthographicSize;
 		_cameraWidth = _cameraHeight * Camera.main.aspect;
@@ -59,7 +56,7 @@ public class CameraController : MonoBehaviour {
 		*/
 
 		if (!_targetMouse) {
-			_target = _player.transform.position;
+			_target = player.transform.position;
 		}
 
 		// Setup default positions
@@ -94,5 +91,21 @@ public class CameraController : MonoBehaviour {
 
 		// Move camera using smooth damp to give a smooth follow feel
 		transform.position = Vector3.SmoothDamp(transform.position, new Vector3(newXLocation, newYLocation, distance), ref _velocity, damper);
+	}
+
+	void OnDrawGizmos() {
+		Gizmos.color = Color.red;
+		float z = 1f;
+		// Get a reference to boundries positions to make math cleaner
+		Vector3 top = topBoundry.transform.position;
+		Vector3 bottom = bottomBoundry.transform.position;
+		Vector3 left = leftBoundry.transform.position;
+		Vector3 right = rightBoundry.transform.position;
+
+		// Draw a line on all 4 sides
+		Gizmos.DrawLine(new Vector3(left.x, top.y, z), new Vector3(left.x, bottom.y, z));
+		Gizmos.DrawLine(new Vector3(left.x, top.y, z), new Vector3(right.x, top.y, z));
+		Gizmos.DrawLine(new Vector3(right.x, top.y, z), new Vector3(right.x, bottom.y, z));
+		Gizmos.DrawLine(new Vector3(right.x, bottom.y, z), new Vector3(left.x, bottom.y, z));
 	}
 }

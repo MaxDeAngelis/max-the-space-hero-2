@@ -9,15 +9,23 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/* ---- MOVEMENT RELATED ---- */
 	public float movementSpeed = 5f;			// Grounded movement speed
 	public float boostForce = 10f;				// Jetpack boost force
-	public float boostCost = 1f;				// The energy cost of using your jetpack
 	public float maximumVelocity = 18f;			// Maximum jetpack velocity
-	public Transform topLandingCheck;
-	public Transform bottomLandingCheck;
-	public Transform forwardGroundCheck;		// GameObject to check if front of player is on ground
-	public Transform backwardGroundCheck;		// GameObject to check if back of player is on ground
-	public Transform gunArm;					// The arm holding the gun
+
+	/* ---- ENERGY RLATED ---- */
+	public float boostCost = 1f;				// The energy cost of using your jetpack
+	public float takeOffCost = 25f;				// The energy cost of taking off
+	public int flyingEnergyRegenRate = 30;		// The rate of which energy is regenerated when flying
+	public int anchoredEnergyRegenRate = 6;		// The rate of which energy is regenerated when landed
+
+	/* ---- SUPPORTING TRANSFORMS ---- */
+	public Transform topLandingCheck;			// Transform used to check if top is in range to land
+	public Transform bottomLandingCheck;		// Transform used to check if bottom is in range to land
+	public Transform forwardGroundCheck;		// Transform to check if front of player is on ground
+	public Transform backwardGroundCheck;		// Transform to check if back of player is on ground
+	public Transform gunArm;					// Transform of the arm holding the gun
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -28,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	private bool _isClimbing = false;			// Flag for when player is actually climbing
 	private bool _isFacingRight = true;			// Flag for if the player is facing the righ
 	private bool _isAbleToLand = false;
+	private bool _isTakingOff = false;
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 	private string[] _groundLayers = new string[2] {"Ground", "Climbable"}; // List of layers to consider ground
@@ -49,6 +58,10 @@ public class PlayerController : MonoBehaviour {
 	/* ---- MANAGERS ---- */
 	private PowerupManager _powerupManager;
 	private EnergyManager _energyManager;
+
+	/* ---- KEY TRACKER ---- */
+	private enum KEYS {None, Jump, Shoot};
+	private KEYS _keyDown;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -75,6 +88,21 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	/**
+	 * @private called once per frame. Used to capture key events for later
+	 **/
+	void Update() {
+		_keyDown = KEYS.None;
+
+		if (Input.GetButtonDown("Jump")) { 
+			_keyDown = KEYS.Jump;
+		}
+
+		if (Input.GetButtonDown("Fire1")) {
+			_keyDown = KEYS.Shoot;
+		}
+	}
+
+	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
@@ -94,21 +122,26 @@ public class PlayerController : MonoBehaviour {
 		_checkIfGrounded();
 
 		/* ---- HANDLE FIRING GUN ---- */
-		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
+		if (_keyDown == KEYS.Shoot && !_isClimbing) {
 			Vector3 pos = Input.mousePosition;
 			pos.z = transform.position.z - Camera.main.transform.position.z;
 			pos = Camera.main.ScreenToWorldPoint(pos);
 			_weapon.fire(pos);
 		}
 
+
 		/* ---- HANDLE ANCHORING ---- */
-		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
+		if (_keyDown == KEYS.Jump && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
 			_isAnchored = false;
 			_rigidbody.gravityScale = 0;
 			_collider.isTrigger = true;
 
 			StartCoroutine(_takeoff());
-		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _isAbleToLand) {
+		} else if (_keyDown == KEYS.Jump && !_isAnchored && _isAbleToLand) {
+			// Set the regeneration rate since you are no longer flying
+			_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
+
+			// Reset all defaults
 			_isAnchored = true;
 			_collider.isTrigger = false;
 			_rigidbody.gravityScale = _originalGravityScale;
@@ -220,7 +253,7 @@ public class PlayerController : MonoBehaviour {
 				if (Mathf.Abs(newVelocity.x) > 0.25f || Mathf.Abs(newVelocity.y) > 0.25f) {
 					_energyManager.useEnergy(boostCost);
 				}
-			} else {
+			} else if (!_isTakingOff) {
 				// Stop boosting
 				_animator.SetBool("boosting", false);
 			}
@@ -278,7 +311,7 @@ public class PlayerController : MonoBehaviour {
 		
 		// Flip the player if aiming in the opposite direction
 		if ((relativeMousePos.x < 0 && _isFacingRight) || (relativeMousePos.x > 0 && !_isFacingRight)) {
-			flipPlayer();
+			_flipPlayer();
 		}
 		
 		// Calculate the Quaternion and rotate the arm
@@ -380,33 +413,52 @@ public class PlayerController : MonoBehaviour {
 	 * @private Called when taking off from an anchored position
 	 **/
 	IEnumerator _takeoff() {
-		// Add inital force to get off ground
-		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
+		// Set Takeoff flag to allow animation to fire
+		_isTakingOff = true;
+
+		// Use up a chunk of energy since you are taking off
+		_energyManager.useEnergy(takeOffCost);
+
+		// Set the regeneration rate since you are now flying
+		_energyManager.setRegenerationRate(flyingEnergyRegenRate);
 
 		// Start flying since you have taken off
 		_animator.SetBool("flying", true);
 
+		// Start boosting
+		_animator.SetBool("boosting", true);
+
+		// Add inital force to get off ground
+		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
+
 		// If the user does not have a direction key down then stop velocity
 		if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f) {
 			// delay for a quarter second
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForSeconds(0.75f);
 
 			// After wait stop from moving
 			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
+
+		// Stop boosting
+		_animator.SetBool("boosting", true);
+
+		// Now that the take off is done flip flag
+		_isTakingOff = false;
 	}
 
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @private Flips the transform by reversing its scale
 	 **/
-	public void flipPlayer() {
+	private void _flipPlayer() {
 		_isFacingRight = !_isFacingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }

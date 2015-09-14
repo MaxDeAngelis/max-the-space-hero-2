@@ -15,11 +15,12 @@ public class EnergyManager : MonoBehaviour {
 	public float energy = 400f;				// The maximum health of the unit
 	public Text energyDisplay;				// Text display of the energy value
 	public Slider energyBar;				// Bar that represents amount left
+	public int regenerationRate = 30;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private int _energyGeneration = 15;
+	private int _energyGenerationFrameCount;
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -35,6 +36,7 @@ public class EnergyManager : MonoBehaviour {
 		Instance = this;
 
 		maximumEnergy = energy;
+		_energyGenerationFrameCount = regenerationRate;
 		_updateEnergy();
 	}
 
@@ -57,12 +59,12 @@ public class EnergyManager : MonoBehaviour {
 	 **/
 	void FixedUpdate() {
 		// If you do not have full energy and the counter is up then generate some energy
-		if (_energyGeneration <= 0 && energy < maximumEnergy) {
+		if (_energyGenerationFrameCount <= 0 && energy < maximumEnergy) {
 			energy++;
 			_updateEnergy();
-			_energyGeneration = 15;
+			_energyGenerationFrameCount = regenerationRate;
 		} else {
-			_energyGeneration--;
+			_energyGenerationFrameCount--;
 		}
 	}
 
@@ -82,5 +84,14 @@ public class EnergyManager : MonoBehaviour {
 
 		// Update the energy display in the UI
 		_updateEnergy();
+	}
+
+	/**
+	 * @public sets the regeneration rate of energy
+	 * 
+	 * @param {Integer} regenRate - The amount of frames befor next point is regenerated
+	 **/
+	public void setRegenerationRate(int regenRate) {
+		regenerationRate = regenRate;
 	}
 }

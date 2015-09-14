@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
      <Compile Include="Assets\Scripts\Controllers\ClimbController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Controllers\HealthController.cs" />
@@ -54,6 +53,7 @@
      <Compile Include="Assets\Scripts\Controllers\PowerupController.cs" />
      <Compile Include="Assets\Scripts\Controllers\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\Controllers\WeaponController.cs" />
+     <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SoundEffectsManager.cs" />

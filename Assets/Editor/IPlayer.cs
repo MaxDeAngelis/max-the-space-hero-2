@@ -7,11 +7,16 @@ public class IPlayer : Editor {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	     	CONSTANTS						     					     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isMovementOptionsVisible = true;
+	private bool _isEnergyOptionsVisible = true;
 	private bool _isSupportTransformsVisible = false;
 	public override void OnInspectorGUI() {
 		// Get a reference to the extended class
@@ -25,7 +30,19 @@ public class IPlayer : Editor {
 			_player.movementSpeed = EditorGUILayout.FloatField("Movement Speed", _player.movementSpeed);
 			_player.maximumVelocity = EditorGUILayout.FloatField("Maximum Velocity", _player.maximumVelocity);
 			_player.boostForce = EditorGUILayout.FloatField("Boost Force", _player.boostForce);
+			EditorGUI.indentLevel--;
+		}
+
+		// Display expandable section for energy related options
+		_isEnergyOptionsVisible = EditorGUILayout.Foldout(_isEnergyOptionsVisible, "Energy Options");
+		if (_isEnergyOptionsVisible) {
+			// Indent the content of the layout
+			EditorGUI.indentLevel++;
 			_player.boostCost = EditorGUILayout.FloatField("Boost Cost", _player.boostCost);
+			_player.takeOffCost = EditorGUILayout.FloatField("Take Off Cost", _player.takeOffCost);
+			_player.flyingEnergyRegenRate = EditorGUILayout.IntField("Flying Regen Rate (frames before regen)", _player.flyingEnergyRegenRate);
+			_player.anchoredEnergyRegenRate = EditorGUILayout.IntField("Anchored Regen Rate (frames before regen)", _player.anchoredEnergyRegenRate);
+
 			EditorGUI.indentLevel--;
 		}
 
@@ -41,6 +58,5 @@ public class IPlayer : Editor {
 			_player.bottomLandingCheck = (Transform)EditorGUILayout.ObjectField("Bottom Landing Check", _player.bottomLandingCheck, typeof(Transform), true);
 			EditorGUI.indentLevel--;
 		}
-				
 	}
 }
