@@ -69,6 +69,7 @@ public class WeaponController : MonoBehaviour {
 			ProjectileController projectileController = newProjectile.GetComponent<ProjectileController>();
 			projectileController.isPlayer = isPlayer;
 			projectileController.range = range;
+			projectileController.damage = damage;
 
 			// Rotate the new game object towards the target before moving it
 			newProjectile.transform.LookAt(target);

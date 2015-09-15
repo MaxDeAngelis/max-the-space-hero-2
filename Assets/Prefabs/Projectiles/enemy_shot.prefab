@@ -74,7 +74,7 @@ MonoBehaviour:
   isPlayer: 0
   range: 7
   speed: 10
-  damage: 50
+  damage: 20
 --- !u!212 &21271508
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,7 +118,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damage
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileSpeed

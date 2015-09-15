@@ -34,6 +34,9 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $GameObject$ player - The game object of the player
 	 **/
 	IEnumerator _useHealthPowerup(PowerupController powerup, GameObject player) {
+		// Call the powerup to say it was used
+		powerup.use();
+
 		// Get a reference to the players health controller
 		HealthController healthController = player.GetComponent<HealthController>();
 
@@ -43,6 +46,9 @@ public class PowerupManager : MonoBehaviour {
 		// Add a buff to the health
 		healthController.maximumHealth += powerup.bonus;
 		healthController.health += powerup.bonus;
+
+		// Show the increase in health
+		FloatingTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.red);
 
 		yield return new WaitForSeconds(powerup.duration);
 
@@ -65,11 +71,21 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $GameObject$ player - The game object of the player
 	 **/
 	void _useEnergyPowerup(PowerupController powerup, GameObject player) {
-		// If the energy and bonus are higher than the maximum then just cap it else add
-		if ((_energyManager.energy + powerup.bonus) > _energyManager.maximumEnergy) {
-			_energyManager.energy = _energyManager.maximumEnergy;
-		} else {
+		// Only use the powerup if you need it
+		if (_energyManager.energy < _energyManager.maximumEnergy) {
+			// If the energy and bonus are higher than the maximum then adjust the bonus
+			if ((_energyManager.energy + powerup.bonus) > _energyManager.maximumEnergy) {
+				powerup.bonus = _energyManager.maximumEnergy - _energyManager.energy;
+			}
+
+			// Apply the bonus
 			_energyManager.energy += powerup.bonus;
+
+			// Show the increase in energy
+			FloatingTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.blue);
+
+			// Call the powerup to say it was used
+			powerup.use();
 		}
 	}
 
@@ -80,6 +96,9 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $GameObject$ player - The game object of the player
 	 **/
 	IEnumerator _useSpeedPowerup(PowerupController powerup, GameObject player) {
+		// Call the powerup to say it was used
+		powerup.use();
+
 		// Get a handle on the player controller
 		PlayerController playerController = player.GetComponent<PlayerController>();
 
@@ -119,8 +138,5 @@ public class PowerupManager : MonoBehaviour {
 				StartCoroutine(_useSpeedPowerup(powerup, player));
 				break;
 		}
-
-		// Call the powerup to say it was used
-		powerup.use();
 	}
 }

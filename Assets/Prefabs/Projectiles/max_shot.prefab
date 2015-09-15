@@ -74,7 +74,7 @@ MonoBehaviour:
   isPlayer: 0
   range: 7
   speed: 10
-  damage: 50
+  damage: 25
 --- !u!212 &21231466
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -119,6 +119,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

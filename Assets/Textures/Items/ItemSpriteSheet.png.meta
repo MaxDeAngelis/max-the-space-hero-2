@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 6ac341da5b75c432fba180f56e8261bc
-timeCreated: 1441682447
+timeCreated: 1442192465
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Ladder_1
+    21300002: Shield_1
+    21300004: Shiled_2
+    21300006: Shield_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,6 +60,36 @@ TextureImporter:
         y: 98
         width: 28
         height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shield_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 91
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shiled_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 91
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shield_2
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 91
+        width: 40
+        height: 51
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
