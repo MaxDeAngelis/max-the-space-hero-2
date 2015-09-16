@@ -15,6 +15,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &125496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 478204}
+  m_Layer: 0
+  m_Name: HitBoxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &149490
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 423686}
+  - 61: {fileID: 6193032}
+  - 114: {fileID: 11478296}
+  m_Layer: 0
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &151512
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +56,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 415862}
   - 212: {fileID: 21265964}
-  - 61: {fileID: 6126626}
   - 50: {fileID: 5066084}
   - 114: {fileID: 11457102}
   - 114: {fileID: 11472144}
@@ -44,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .419999987, y: -1, z: 0}
+  m_LocalPosition: {x: .419999987, y: -.291000009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 415862}
@@ -56,12 +87,38 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5756588, y: -1.71599996, z: 0}
+  m_LocalPosition: {x: -4.5756588, y: 4.32999992, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 407654}
+  - {fileID: 478204}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &423686
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 478204}
+  m_RootOrder: 0
+--- !u!4 &478204
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 423686}
+  m_Father: {fileID: 415862}
+  m_RootOrder: 1
 --- !u!50 &5066084
 Rigidbody2D:
   serializedVersion: 2
@@ -78,19 +135,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6126626
+--- !u!61 &6193032
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151512}
+  m_GameObject: {fileID: 149490}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .0127182007, y: .0328533649}
+  m_Offset: {x: .0260229111, y: .0468420982}
   serializedVersion: 2
-  m_Size: {x: .346778303, y: .378294468}
+  m_Size: {x: .365033567, y: .365033209}
 --- !u!95 &9564958
 Animator:
   serializedVersion: 3
@@ -142,6 +199,18 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damageSoundEffect: {fileID: 0}
   isPlayer: 0
+--- !u!114 &11478296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 100
 --- !u!114 &11486784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,12 +225,11 @@ MonoBehaviour:
   damage: 200
   range: 1
   attackSpeed: 1
-  durability: 1
-  durabilityLossPerAttack: 1
+  durability: 1000
+  durabilityLossPerAttack: 0
   attackSoundEffect: {fileID: 0}
-  isActive: 0
   isPlayer: 0
-  isRanged: 0
+  isRanged: 1
   projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
 --- !u!212 &21265964
 SpriteRenderer:

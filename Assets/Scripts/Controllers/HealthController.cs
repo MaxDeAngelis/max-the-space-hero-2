@@ -40,54 +40,7 @@ public class HealthController : MonoBehaviour {
 	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
-		// Define damage to be taken
-		float damage = 0f;
-
-		// Try and get the Weapon Controller off the colider to see if you are being hit with a weapon
-		WeaponController weapon = otherCollider.gameObject.GetComponent<WeaponController>();
-		ProjectileController projectile = otherCollider.gameObject.GetComponent<ProjectileController>();
-
-		/* ---- WEAPON DAMAGE ---- */
-		if (weapon != null && weapon.isPlayer != isPlayer) {
-			// Set the damage for the weapon
-			damage = weapon.damage;
-
-			// Damage the actual weapon
-			weapon.durability -= weapon.durabilityLossPerAttack;
-			if(weapon.durability <= 0) {
-				weapon.broken();
-			}
-		}
-
-		/* ---- PROJECTILE DAMAGE ---- */
-		if (projectile != null && projectile.isPlayer != isPlayer) {
-			// Set the damage for the projectile
-			damage = projectile.damage;
-
-			// Fire the hit function for the projectile
-			projectile.hit();
-		}
-
-		// Make a sound and show damage if hurt
-		if (damage > 0) {
-			// Show floating text and play sound
-			FloatingTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
-			SoundEffectsManager.Instance.makeSound(damageSoundEffect);
-
-			// Actually take the damage
-			StartCoroutine(_takeDamage(_renderers));
-		}
-
-		// Deduct the dame that the weapon does from your health
-		health -= damage;
-		
-		// Increment the UI display of health
-		updateHealth();
-		
-		// If your health drops below 0 die
-		if (health <= 0) {
-			_die();
-		}
+		//processCollision(null, otherCollider);
 	}
 
 	/**
@@ -134,6 +87,57 @@ public class HealthController : MonoBehaviour {
 
 			// Update health bar value
 			healthBar.value = healthPercent;
+		}
+	}
+
+	public void processDamage(float damageModifier, Collider2D triggerCollider) {
+		// Define damage to be taken
+		float damage = 0f;
+		
+		// Try and get the Weapon Controller off the colider to see if you are being hit with a weapon
+		WeaponController weapon = triggerCollider.gameObject.GetComponent<WeaponController>();
+		ProjectileController projectile = triggerCollider.gameObject.GetComponent<ProjectileController>();
+		
+		/* ---- WEAPON DAMAGE ---- */
+		if (weapon != null && weapon.isPlayer != isPlayer) {
+			// Set the damage for the weapon
+			damage = Mathf.RoundToInt(weapon.damage * damageModifier);
+			
+			// Damage the actual weapon
+			weapon.durability -= weapon.durabilityLossPerAttack;
+			if(weapon.durability <= 0) {
+				weapon.broken();
+			}
+		}
+		
+		/* ---- PROJECTILE DAMAGE ---- */
+		if (projectile != null && projectile.isPlayer != isPlayer) {
+			// Set the damage for the projectile
+			damage = Mathf.RoundToInt(projectile.damage * damageModifier);
+			
+			// Fire the hit function for the projectile
+			projectile.hit();
+		}
+		
+		// Make a sound and show damage if hurt
+		if (damage > 0) {
+			// Show floating text and play sound
+			FloatingTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
+			SoundEffectsManager.Instance.makeSound(damageSoundEffect);
+			
+			// Actually take the damage
+			StartCoroutine(_takeDamage(_renderers));
+		}
+		
+		// Deduct the dame that the weapon does from your health
+		health -= damage;
+		
+		// Increment the UI display of health
+		updateHealth();
+		
+		// If your health drops below 0 die
+		if (health <= 0) {
+			_die();
 		}
 	}
 }

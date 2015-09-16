@@ -1862,29 +1862,6 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1102 &110258070
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Shield
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d237c683cb4694a8db1f9764610bb05d, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
 --- !u!1102 &110269238
 AnimatorState:
   serializedVersion: 5
@@ -2102,9 +2079,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 110217568}
     m_Position: {x: 228, y: -204, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 110258070}
-    m_Position: {x: 263, y: -139, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 110745838}
@@ -2125,13 +2099,13 @@ AnimatorStateMachine:
       first: {fileID: 110712568}
       second: []
     data:
-      first: {fileID: 110764866}
-      second: []
-    data:
       first: {fileID: 110745838}
       second: []
     data:
       first: {fileID: 110793046}
+      second: []
+    data:
+      first: {fileID: 110764866}
       second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -36, y: -288, z: 0}

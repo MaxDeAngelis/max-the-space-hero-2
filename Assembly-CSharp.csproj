@@ -50,9 +50,11 @@
      <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Controllers\FloatingTextController.cs" />
      <Compile Include="Assets\Scripts\Controllers\HealthController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\HitBoxController.cs" />
      <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Controllers\PowerupController.cs" />
      <Compile Include="Assets\Scripts\Controllers\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\ShieldController.cs" />
      <Compile Include="Assets\Scripts\Controllers\WeaponController.cs" />
      <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
