@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: db698acbd4c074a0db4e0a53b2421fce
+timeCreated: 1442546962
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Shield_1
+    21300002: Shield_2
+    21300004: Shield_3
+    21300006: Shield_4
+    21300008: Flying_Shield_1
+    21300010: Flying_Shield_2
+    21300012: Flying_Shield_3
+    21300014: Flying_Shield_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Shield_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 91
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shield_2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 91
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shield_3
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 91
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shield_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 91
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flying_Shield_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 26
+        width: 40
+        height: 61
+      alignment: 9
+      pivot: {x: .5, y: .550000012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flying_Shield_2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 26
+        width: 40
+        height: 61
+      alignment: 9
+      pivot: {x: .5, y: .550000012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flying_Shield_3
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 26
+        width: 40
+        height: 61
+      alignment: 9
+      pivot: {x: .5, y: .550000012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flying_Shield_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 26
+        width: 40
+        height: 61
+      alignment: 9
+      pivot: {x: .5, y: .550000012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

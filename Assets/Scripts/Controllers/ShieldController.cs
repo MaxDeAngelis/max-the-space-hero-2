@@ -18,11 +18,14 @@ public class ShieldController : MonoBehaviour {
 	private int _refreshRate = 15;			// The amount of frames befor a point is added to the shield
 	private int _refreshDelayCount;			// Counter for delay of shield generation
 	private int _refreshRateCount;			// Counter for rate of shield regeneration
+	private Color _originalColor;			// The original color of the shield on start
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private EdgeCollider2D _collider;
 	private Animator _animator;
 	private HealthController _health;
+	private PlayerController _player;
+	private SpriteRenderer _renderer;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -35,9 +38,12 @@ public class ShieldController : MonoBehaviour {
 		_collider = GetComponent<EdgeCollider2D>();
 		_animator = GetComponent<Animator>();
 		_health = GetComponentInParent<HealthController>();
+		_player = GetComponentInParent<PlayerController>();
+		_renderer = GetComponent<SpriteRenderer>();
 
 		/* INIT VARIABLES */
 		_maximumShield = strength;
+		_originalColor = _renderer.color;
 
 		/* INIT SHIELD DISPLAY */
 		_updateShield();
@@ -47,6 +53,9 @@ public class ShieldController : MonoBehaviour {
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
+		// Set flying boolean in animator
+		_animator.SetBool("flying", _player.isFlying());
+
 		// Only recharge the shield if it is missing some energy
 		if (strength < _maximumShield) {
 			// Process the delay of refreshing the shield
@@ -97,6 +106,9 @@ public class ShieldController : MonoBehaviour {
 
 				// Update shield display
 				_updateShield();
+
+				// Set the color before animation
+				_renderer.color = _originalColor;
 
 				// Fire the animation
 				_animator.SetTrigger("block");

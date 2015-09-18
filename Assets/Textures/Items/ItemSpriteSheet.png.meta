@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6ac341da5b75c432fba180f56e8261bc
-timeCreated: 1442370139
+timeCreated: 1442546170
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,46 +61,6 @@ TextureImporter:
         y: 98
         width: 28
         height: 44
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Shield_1
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 91
-        width: 40
-        height: 51
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Shiled_2
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 91
-        width: 40
-        height: 51
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Shield_3
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 91
-        width: 40
-        height: 51
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Shield_4
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 91
-        width: 40
-        height: 51
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
