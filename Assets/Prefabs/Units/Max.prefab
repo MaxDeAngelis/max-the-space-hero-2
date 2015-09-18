@@ -387,7 +387,7 @@ EdgeCollider2D:
   m_GameObject: {fileID: 195240}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -542,8 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b8484546c044deea1764a28778a608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 100
+  strength: 50
   shieldBar: {fileID: 0}
+  shieldDisplay: {fileID: 0}
 --- !u!114 &11475638
 MonoBehaviour:
   m_ObjectHideFlags: 1

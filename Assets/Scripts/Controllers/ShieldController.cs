@@ -6,15 +6,18 @@ public class ShieldController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float strength = 100f; 
-	public Slider shieldBar;
+	public float strength = 100f; 			// The strength of the shield
+	public Slider shieldBar;				// The slider bar that displays the shield energy left
 	public Text shieldDisplay;				// UI Text component to display the percent of shield left
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private bool _isShieldDepleted = false;
-	private float _maximumShield;
+	private float _maximumShield;			// The maximum strength of the shield
+	private int _refreshDelay = 2 * 60; 	// Delay before shield starts to refresh
+	private int _refreshRate = 15;			// The amount of frames befor a point is added to the shield
+	private int _refreshDelayCount;			// Counter for delay of shield generation
+	private int _refreshRateCount;			// Counter for rate of shield regeneration
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private EdgeCollider2D _collider;
@@ -41,6 +44,28 @@ public class ShieldController : MonoBehaviour {
 	}
 
 	/**
+	 * @private Called 60times per second fixed, handles all processing
+	 **/
+	void FixedUpdate() {
+		// Only recharge the shield if it is missing some energy
+		if (strength < _maximumShield) {
+			// Process the delay of refreshing the shield
+			if (_refreshDelayCount >= _refreshDelay) {
+				// If the refresh rate expires add strength to the shield
+				if (_refreshRateCount >= _refreshRate) {
+					_refreshRateCount = 0;
+					strength++;
+					_updateShield();
+				} else {
+					_refreshRateCount++;
+				}
+			} else {
+				_refreshDelayCount++;
+			}
+		}
+	}
+
+	/**
 	 * @private Collider handler that is triggered when another collider interacts with this game object
 	 * 
 	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
@@ -50,7 +75,12 @@ public class ShieldController : MonoBehaviour {
 		if (projectile != null && !projectile.isPlayer) {
 			float damage = projectile.damage;
 
-			if (!_isShieldDepleted && strength > 0 ) {
+			// Reset timers everytime you are hit
+			_refreshDelayCount = 0;
+			_refreshRateCount = 0;
+
+			// If the shield has power then use it
+			if (strength > 0 ) {
 				// Figure out how much damage to give to absorb and pass along the rest
 				if ((strength - damage) < 0) {
 					// Reset the projectile damage to the remainder
@@ -70,8 +100,6 @@ public class ShieldController : MonoBehaviour {
 
 				// Fire the animation
 				_animator.SetTrigger("block");
-			} else if (strength <= 0) {
-				_isShieldDepleted = true;
 			}
 		}
 	}
