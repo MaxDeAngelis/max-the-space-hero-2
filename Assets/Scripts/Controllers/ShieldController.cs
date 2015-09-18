@@ -8,6 +8,7 @@ public class ShieldController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float strength = 100f; 
 	public Slider shieldBar;
+	public Text shieldDisplay;				// UI Text component to display the percent of shield left
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -34,6 +35,9 @@ public class ShieldController : MonoBehaviour {
 
 		/* INIT VARIABLES */
 		_maximumShield = strength;
+
+		/* INIT SHIELD DISPLAY */
+		_updateShield();
 	}
 
 	/**
@@ -82,7 +86,7 @@ public class ShieldController : MonoBehaviour {
 			float shieldPercent = Mathf.Round((strength/_maximumShield) * 100);
 			
 			// Display the calculated string
-			//healthDisplay.text = health + "/" + maximumHealth;
+			shieldDisplay.text = strength + "/" + _maximumShield;
 			
 			// Update health bar value
 			shieldBar.value = shieldPercent;
