@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f2e0a6ba70b874d40a5d3d16fbaf594f
-timeCreated: 1441680184
+timeCreated: 1442615345
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,10 @@ TextureImporter:
     21300012: Spider_1
     21300014: Spider_2
     21300016: Spider_3
+    21300018: UFO_1
+    21300020: UFO_2
+    21300022: UFO_3
+    21300024: UFO_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -145,6 +149,46 @@ TextureImporter:
         y: 146
         width: 28
         height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 110
+        width: 54
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 110
+        width: 54
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 110
+        width: 54
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 110
+        width: 54
+        height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

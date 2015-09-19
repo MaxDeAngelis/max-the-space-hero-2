@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// 								     		PUBLIC ENUM											             ///
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public enum ENEMY_TYPE {Ground, Flying};
+
 public class EnemyController : MonoBehaviour {
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		HIDDEN VARIABLES											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	[HideInInspector] public float horizontalAxis = -1;	
-	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public ENEMY_TYPE type = ENEMY_TYPE.Ground;
+	public float horizontalAxis = -1;
 	public float maxSpeed = 5f;							// The maximum speed at which to move
 	public float sightRange = 5f;						// The range that the unit can see before engaging the player
 	public float patrolDistance = 2f;					// The distance to patrol
+	public float hoverDistance = 2f;
 	public Transform groundCheck;
 	public Transform gunArm;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private enum TYPES {Ground, Flying};
 	private bool _isGrounded = false;					// Flag for if the unit is grounded
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
 	private GameObject _player;							// The player game object
@@ -35,19 +39,26 @@ public class EnemyController : MonoBehaviour {
 	 * @private Called on start of the game object to init variables
 	 **/
 	void Start() {
+		/* INIT OBJECTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_player = GameObject.FindGameObjectWithTag("Player");
 		_animator = GetComponent<Animator>();
-		_originalPosition = transform.position;
 		_weapon = GetComponentInChildren<WeaponController>();
+
+		/* INIT VARIABLES */
+		_originalPosition = transform.position;
+		_distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
+		_distanceFromOriginalPosition = Vector2.Distance(transform.position, _originalPosition);
 	}
 	
 	/**
 	 * @private Called once per frame handles calculations used durring fixed update
 	 **/
 	void Update () {
-		// Line cast to the ground check transform to see if it is over a ground layer
-		_isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		if (type == ENEMY_TYPE.Ground) {
+			// Line cast to the ground check transform to see if it is over a ground layer
+			_isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		}
 
 		// Figure out the distance from the player
 		_distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
@@ -65,7 +76,7 @@ public class EnemyController : MonoBehaviour {
 			return;
 		}
 
-		if (_isGrounded && _distanceFromPlayer <= sightRange) { 
+		if (_distanceFromPlayer <= sightRange) { 
 			// If within attack range then try and move towards player
 			if (transform.position.x > _player.transform.position.x && transform.localScale.x == 1) {
 				_flipDirection();
@@ -75,7 +86,6 @@ public class EnemyController : MonoBehaviour {
 
 			// If within range then attack 
 			if (_distanceFromPlayer <= _weapon.range) {
-
 				if (_weapon.isRanged) {
 					_aimWeapon();
 					_weapon.fire(_player.transform.position);
@@ -85,7 +95,7 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			// If the enemy has reached a 
-			if (!_isGrounded || _distanceFromPlayer <= _weapon.range) {
+			if ((type == ENEMY_TYPE.Ground && !_isGrounded) || _distanceFromPlayer <= _weapon.range) {
 				_rigidbody.velocity = new Vector2(0f, 0f);
 			} else {
 				_move();
@@ -93,9 +103,9 @@ public class EnemyController : MonoBehaviour {
 		} else {
 			// If you are no longer grounded meaning you have found an edge then switch directions
 			// this is more of a patrolling mechanic will just keep walking back and forth
-			if (!_isGrounded) {
+			if (type == ENEMY_TYPE.Ground && !_isGrounded) {
 				_flipDirection();
-			} else if (_distanceFromOriginalPosition > patrolDistance){
+			} else if (_distanceFromOriginalPosition > patrolDistance) {
 				// Handle only patrolling a distance and if 
 				if (transform.position.x > _originalPosition.x && transform.localScale.x == 1) {
 					_flipDirection();
@@ -103,39 +113,45 @@ public class EnemyController : MonoBehaviour {
 					_flipDirection();
 				}
 			} 
-
+			
 			// After charecter has be flipped if needed then move 
 			_move();
 		}
 	}
 
+
+
 	/**
 	 * @private Aim the arm/weapon at player before firing
 	 **/
 	void _aimWeapon() {
-		/* ---- AIM THE ARM TO FIRE ----*/		
-		// Get player and arm position
-		Vector3 playerPos = _player.transform.position;
-		Vector3 armPos = gunArm.position;
-		
-		// Get arm and player position relative to the game object
-		Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
-		Vector2 relativePlayerPos = new Vector2 (playerPos.x - 0.5f, playerPos.y - 0.5f) - relativeArmPos;
-		float angle = Vector2.Angle (Vector2.down, relativePlayerPos);
-		
-		// Calculate the Quaternion and rotate the arm
-		Quaternion quat = Quaternion.identity;
-		quat.eulerAngles = new Vector3(0, 0, angle);
-		
-		// Rotate the arm pieces
-		gunArm.transform.rotation = quat;
+		if (gunArm != null) {
+			/* ---- AIM THE ARM TO FIRE ----*/		
+			// Get player and arm position
+			Vector3 playerPos = _player.transform.position;
+			Vector3 armPos = gunArm.position;
+			
+			// Get arm and player position relative to the game object
+			Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
+			Vector2 relativePlayerPos = new Vector2 (playerPos.x - 0.5f, playerPos.y - 0.5f) - relativeArmPos;
+			float angle = Vector2.Angle (Vector2.down, relativePlayerPos);
+			
+			// Calculate the Quaternion and rotate the arm
+			Quaternion quat = Quaternion.identity;
+			quat.eulerAngles = new Vector3(0, 0, angle);
+			
+			// Rotate the arm pieces
+			gunArm.transform.rotation = quat;
+		}
 	}
 
 	/**
 	 * @private Move the enemy unit if grounded
 	 **/
 	void _move() {
-		if (_isGrounded) {
+		if (type == ENEMY_TYPE.Ground && _isGrounded) {
+			_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _rigidbody.velocity.y);
+		} else if (type == ENEMY_TYPE.Flying) {
 			_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _rigidbody.velocity.y);
 		} else {
 			_rigidbody.velocity = new Vector2(0f, 0f);

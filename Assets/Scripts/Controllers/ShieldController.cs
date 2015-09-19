@@ -21,9 +21,7 @@ public class ShieldController : MonoBehaviour {
 	private Color _originalColor;			// The original color of the shield on start
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
-	private EdgeCollider2D _collider;
 	private Animator _animator;
-	private HealthController _health;
 	private PlayerController _player;
 	private SpriteRenderer _renderer;
 
@@ -35,9 +33,7 @@ public class ShieldController : MonoBehaviour {
 	 **/
 	void Start() {
 		/* INIT COMPONENTS */
-		_collider = GetComponent<EdgeCollider2D>();
 		_animator = GetComponent<Animator>();
-		_health = GetComponentInParent<HealthController>();
 		_player = GetComponentInParent<PlayerController>();
 		_renderer = GetComponent<SpriteRenderer>();
 
