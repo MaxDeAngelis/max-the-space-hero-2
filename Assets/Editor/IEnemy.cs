@@ -29,7 +29,7 @@ public class IEnemy : Editor {
 
 			// Specific movement options based on type
 			if (_enemy.type == ENEMY_TYPE.Flying) {
-				_enemy.hoverDistance = EditorGUILayout.FloatField("Hover Distance", _enemy.hoverDistance);
+				_enemy.patrolDirection = (PATROL)EditorGUILayout.EnumPopup("Patrol Direction", _enemy.patrolDirection);
 			}
 		}
 

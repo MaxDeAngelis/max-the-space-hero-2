@@ -5,31 +5,40 @@ using System.Collections;
 /// 								     		PUBLIC ENUM											             ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public enum ENEMY_TYPE {Ground, Flying};
+public enum PATROL {Horizontal, Vertical};
 
 public class EnemyController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public ENEMY_TYPE type = ENEMY_TYPE.Ground;
-	public float horizontalAxis = -1;
+	/* GENERAL VARIABLES */
+	public ENEMY_TYPE type = ENEMY_TYPE.Ground;			// The type of enemy this is
 	public float maxSpeed = 5f;							// The maximum speed at which to move
 	public float sightRange = 5f;						// The range that the unit can see before engaging the player
 	public float patrolDistance = 2f;					// The distance to patrol
-	public float hoverDistance = 2f;
-	public Transform groundCheck;
-	public Transform gunArm;
+
+	/* SUPPORTING OBJECTS */
+	public Transform groundCheck;						// Ground check is used to see if the enemy is over ground
+	public Transform gunArm;							// The arm game object holding a weapon used for aiming
+
+	/* FLYING ONLY VARIABLES */
+	public PATROL patrolDirection = PATROL.Horizontal;	// The direction the unit should be patrolling
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private enum TYPES {Ground, Flying};
+	/* BASIC PRIVATE VARIABLES*/
 	private bool _isGrounded = false;					// Flag for if the unit is grounded
+	private bool _returnToPatrol = false;
+	private float _distanceFromPlayer;					// Distance to the player calculated in update
+	private float _distanceFromOriginalPosition;		// The distance from the spawn location
+	private Vector3 _directionModifier;
+	private Vector3 _originalPosition;					// The units spawn position
+
+	/* SUPPORTING COMPONENTS */
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
 	private GameObject _player;							// The player game object
 	private Animator _animator;							// The animator for the current unit
-	private float _distanceFromPlayer;					// Distance to the player calculated in update
-	private Vector3 _originalPosition;					// The units spawn position
-	private float _distanceFromOriginalPosition;		// The distance from the spawn location
 	private WeaponController _weapon;					// Weapon controller of the current weapon
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +55,7 @@ public class EnemyController : MonoBehaviour {
 		_weapon = GetComponentInChildren<WeaponController>();
 
 		/* INIT VARIABLES */
+		_directionModifier = transform.localScale;
 		_originalPosition = transform.position;
 		_distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
 		_distanceFromOriginalPosition = Vector2.Distance(transform.position, _originalPosition);
@@ -64,54 +74,51 @@ public class EnemyController : MonoBehaviour {
 		_distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
 
 		// Figure out haw far ou are from the original location
-		_distanceFromOriginalPosition = Vector2.Distance(transform.position, _originalPosition);
+		_distanceFromOriginalPosition = Vector3.Distance(transform.position, _originalPosition);
 	}
 
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
-		// TODO: Temp fix for dropping players onto the platform. If falling do nothing
-		if (_rigidbody.velocity.y != 0) {
-			return;
-		}
-
+		// If within attack range then try and move towards player
 		if (_distanceFromPlayer <= sightRange) { 
-			// If within attack range then try and move towards player
-			if (transform.position.x > _player.transform.position.x && transform.localScale.x == 1) {
-				_flipDirection();
-			} else if (transform.position.x < _player.transform.position.x && transform.localScale.x == -1) {
-				_flipDirection();
-			}
+			_returnToPatrol = true;
+
+			_calculateDirection(_player.transform.position);
 
 			// If within range then attack 
 			if (_distanceFromPlayer <= _weapon.range) {
 				if (_weapon.isRanged) {
 					_aimWeapon();
-					_weapon.fire(_player.transform.position);
-				} else {
-					_animator.SetTrigger("Attack");
 				}
+
+				// Finally fire the weapon
+				_weapon.fire(_player.transform.position);
 			}
 
-			// If the enemy has reached a 
-			if ((type == ENEMY_TYPE.Ground && !_isGrounded) || _distanceFromPlayer <= _weapon.range) {
-				_rigidbody.velocity = new Vector2(0f, 0f);
+			// If the enemy has reached a spot they can attack from then stop moving. Else keep moving
+			if (type == ENEMY_TYPE.Flying && !_isGrounded && _distanceFromPlayer > _weapon.range) {
+				_moveToLocation(_player.transform.position);
 			} else {
 				_move();
 			}
+		} else if (_returnToPatrol && _distanceFromOriginalPosition > 0.25f) {
+			// Calculate what way to face when returning to original position
+			_calculateDirection(_originalPosition);
+
+			// Move back to the original position
+			_moveToLocation(_originalPosition);
 		} else {
+			_returnToPatrol = false;
+
 			// If you are no longer grounded meaning you have found an edge then switch directions
 			// this is more of a patrolling mechanic will just keep walking back and forth
 			if (type == ENEMY_TYPE.Ground && !_isGrounded) {
 				_flipDirection();
 			} else if (_distanceFromOriginalPosition > patrolDistance) {
 				// Handle only patrolling a distance and if 
-				if (transform.position.x > _originalPosition.x && transform.localScale.x == 1) {
-					_flipDirection();
-				} else if (transform.position.x < _originalPosition.x && transform.localScale.x == -1) {
-					_flipDirection();
-				}
+				_calculateDirection(_originalPosition);
 			} 
 			
 			// After charecter has be flipped if needed then move 
@@ -119,6 +126,32 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @private handles changing the direction of the transform based on a target position
+	 * 
+	 * @param Vector3 target - The target position to base the flip on 
+	 **/
+	void _calculateDirection(Vector3 target) {
+		if (patrolDirection == PATROL.Horizontal) {
+			// Changes the enemies direction based on what way they are moving
+			// 1. Moving RIGHT -> change to moving LEFT
+			// 1. Moving LEFT -> change to moving RIGHT
+			if (transform.position.x > target.x && _directionModifier.x == 1) {
+				_flipDirection();
+			} else if (transform.position.x < target.x && _directionModifier.x == -1) {
+				_flipDirection();
+			}
+		} else if (patrolDirection == PATROL.Vertical) {
+			// Changes the enemies direction based on what way they are moving
+			// 1. Moving UP -> change to moving DOWN
+			// 1. Moving DOWN -> change to moving UP
+			if (transform.position.y > target.y && _directionModifier.y == 1) {
+				_flipDirection();
+			} else if (transform.position.y < target.y && _directionModifier.y == -1) {
+				_flipDirection();
+			}
+		}
+	}
 
 
 	/**
@@ -146,15 +179,25 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	/**
+	 * @private move to position given requardless of direction
+	 * 
+	 * @param Vector3 target - the vector location to move to
+	 **/
+	void _moveToLocation(Vector3 target) {
+		Vector2 delta = target - transform.position;
+		_rigidbody.velocity = delta.normalized * maxSpeed;
+	}
+
+	/**
 	 * @private Move the enemy unit if grounded
 	 **/
 	void _move() {
-		if (type == ENEMY_TYPE.Ground && _isGrounded) {
-			_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _rigidbody.velocity.y);
-		} else if (type == ENEMY_TYPE.Flying) {
-			_rigidbody.velocity = new Vector2(horizontalAxis * maxSpeed, _rigidbody.velocity.y);
-		} else {
+		if (type == ENEMY_TYPE.Ground && !_isGrounded || _distanceFromPlayer <= _weapon.range) {
 			_rigidbody.velocity = new Vector2(0f, 0f);
+		} else if (patrolDirection == PATROL.Horizontal) {
+			_rigidbody.velocity = new Vector2(_directionModifier.x * maxSpeed, 0f);
+		} else if (patrolDirection == PATROL.Vertical) {
+			_rigidbody.velocity = new Vector2(0f, _directionModifier.y * maxSpeed);
 		}
 	}
 
@@ -162,9 +205,22 @@ public class EnemyController : MonoBehaviour {
 	 * @private Flips the transform by reversing its scale
 	 **/
 	void _flipDirection() {
-		horizontalAxis *= -1;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		// If patrolling horizontally then flip x scale else flip y
+		if (patrolDirection == PATROL.Horizontal) {
+			_directionModifier.x *= -1;
+		} else {
+			_directionModifier.y *= -1;
+		}
+
+		// If patrolling horizontally then actually flip the transform
+		if (patrolDirection == PATROL.Horizontal) {
+			transform.localScale = _directionModifier;
+		}
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }

@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.90565848, y: -4.35013008, z: 0}
+  m_LocalPosition: {x: 4.34000015, y: -4.55000019, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 462018}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  range: 15
+  range: 5
   attackSpeed: 3
   durability: 1000
   durabilityLossPerAttack: 0
@@ -387,12 +387,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e3c965d46b941d58399e03ba3f1a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalAxis: -1
+  type: 0
   maxSpeed: 2
   sightRange: 6
   patrolDistance: 1
   groundCheck: {fileID: 410798}
   gunArm: {fileID: 462018}
+  patrolDirection: 0
+  hoverDistance: 2
 --- !u!114 &11487432
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6ac341da5b75c432fba180f56e8261bc
-timeCreated: 1442546170
+timeCreated: 1442804894
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,30 @@ TextureImporter:
     21300004: Shiled_2
     21300006: Shield_3
     21300008: Shield_4
+    21300010: Powerup_Health_1
+    21300012: Powerup_Health_2
+    21300014: Powerup_Health_3
+    21300016: Powerup_Health_4
+    21300018: Powerup_Health_5
+    21300020: Powerup_Shield_1
+    21300022: Powerup_Shield_2
+    21300024: Powerup_Shield_3
+    21300026: Powerup_Shield_4
+    21300028: Powerup_Shield_5
+    21300030: Powerup_Energy_1
+    21300032: Powerup_Energy_2
+    21300034: Powerup_Energy_3
+    21300036: Powerup_Energy_4
+    21300038: Powerup_Energy_5
+    21300040: Powerup_Health_6
+    21300042: Powerup_Health_7
+    21300044: Powerup_Health_8
+    21300046: Powerup_Shield_6
+    21300048: Powerup_Shield_7
+    21300050: Powerup_Shield_8
+    21300052: Powerup_Energy_6
+    21300054: Powerup_Energy_7
+    21300056: Powerup_Energy_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,6 +85,246 @@ TextureImporter:
         y: 98
         width: 28
         height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_4
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_5
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_4
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_5
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_4
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_5
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_6
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Health_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_6
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Shield_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_6
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Powerup_Energy_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 26
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

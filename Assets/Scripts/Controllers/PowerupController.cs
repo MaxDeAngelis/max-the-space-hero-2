@@ -9,7 +9,8 @@ public class PowerupController : MonoBehaviour {
 	[HideInInspector] public enum Type { 
 		Health, 
 		Energy, 
-		Speed 
+		Shield,
+		Speed
 	};		
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,9 +21,48 @@ public class PowerupController : MonoBehaviour {
 	public Type type;			// Type of powerup
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private ParticleSystem _particle;
+	private SpriteRenderer _renderer;
+	private BoxCollider2D _collider;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE FUNCTION											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @private Called on awake of the game object to init variables
+	 **/
+	void Awake () {
+		_particle = GetComponent<ParticleSystem>();
+		_renderer = GetComponent<SpriteRenderer>();
+		_collider = GetComponent<BoxCollider2D>();
+	}
+
+	/**
+	 * @private called from use to trigger an effect to show the powerup was used
+	 **/
+	IEnumerator _triggerUse() {
+		// Play the particle effect for use if there is one
+		if (_particle) {
+			_particle.Play();
+		}
+
+		// delay for a quarter second
+		yield return new WaitForSeconds(2f);
+
+		// Destroy after affect is done
+		Destroy(gameObject);
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTION												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void use() {
-		Destroy(gameObject);
+		// Disable the powerup while the particle is displayed
+		_collider.enabled = false;
+		_renderer.enabled = false;
+
+		// Start particle effect for use
+		StartCoroutine(_triggerUse());
 	}
 }

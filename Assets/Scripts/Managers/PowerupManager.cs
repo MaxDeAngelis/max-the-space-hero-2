@@ -47,6 +47,9 @@ public class PowerupManager : MonoBehaviour {
 		healthController.maximumHealth += powerup.bonus;
 		healthController.health += powerup.bonus;
 
+		// Update the display
+		healthController.updateHealth();
+
 		// Show the increase in health
 		FloatingTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.red);
 
@@ -116,6 +119,34 @@ public class PowerupManager : MonoBehaviour {
 		playerController.maximumVelocity = originalBoostSpeed;
 		playerController.movementSpeed = originalMovementSpeed;
 	}
+
+	/**
+	 * @private Called from the process function to apply a speed bonus
+	 * 
+	 * @param $PowerupController$ powerup - The controller of the powerup to apply
+	 * @param $GameObject$ player - The game object of the player
+	 **/
+	IEnumerator _useShieldPowerup(PowerupController powerup, GameObject player) {
+		// Call the powerup to say it was used
+		powerup.use();
+		
+		// Get a handle on the player controller
+		PlayerController playerController = player.GetComponent<PlayerController>();
+		
+		// Store off the original speed value to be able to revery
+		float originalBoostSpeed = playerController.maximumVelocity;
+		float originalMovementSpeed = playerController.movementSpeed;
+		
+		// Increse both movement values, running and boosting
+		playerController.maximumVelocity += powerup.bonus;
+		playerController.movementSpeed += (powerup.bonus/2);
+		
+		yield return new WaitForSeconds(powerup.duration);
+		
+		// Return to the original state
+		playerController.maximumVelocity = originalBoostSpeed;
+		playerController.movementSpeed = originalMovementSpeed;
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,6 +164,9 @@ public class PowerupManager : MonoBehaviour {
 				break;
 			case PowerupController.Type.Energy:
 				_useEnergyPowerup(powerup, player);
+				break;
+			case PowerupController.Type.Shield:
+				StartCoroutine(_useShieldPowerup(powerup, player));
 				break;
 			case PowerupController.Type.Speed:
 				StartCoroutine(_useSpeedPowerup(powerup, player));
