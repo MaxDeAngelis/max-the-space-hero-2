@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f2e0a6ba70b874d40a5d3d16fbaf594f
-timeCreated: 1442615345
+timeCreated: 1442880735
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,6 +17,11 @@ TextureImporter:
     21300020: UFO_2
     21300022: UFO_3
     21300024: UFO_4
+    21300026: UFO_Bomber_1
+    21300028: Spider_4
+    21300030: UFO_Bomber_2
+    21300032: UFO_Bomber_3
+    21300034: UFO_Bomber_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -189,6 +194,56 @@ TextureImporter:
         y: 110
         width: 54
         height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_Bomber_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 64
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider_4
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 146
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_Bomber_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 64
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_Bomber_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 64
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UFO_Bomber_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 64
+        width: 54
+        height: 42
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
