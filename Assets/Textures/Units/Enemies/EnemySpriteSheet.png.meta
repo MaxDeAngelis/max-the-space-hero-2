@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f2e0a6ba70b874d40a5d3d16fbaf594f
-timeCreated: 1442880735
+timeCreated: 1443055777
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -22,6 +22,9 @@ TextureImporter:
     21300030: UFO_Bomber_2
     21300032: UFO_Bomber_3
     21300034: UFO_Bomber_4
+    21300036: Tank_1
+    21300038: Tank_2
+    21300040: Tank_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -244,6 +247,36 @@ TextureImporter:
         y: 64
         width: 54
         height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tank_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 54
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tank_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 16
+        width: 54
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tank_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 16
+        width: 54
+        height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

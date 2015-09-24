@@ -63,21 +63,39 @@ public class WeaponController : MonoBehaviour {
 			_isFiring = true;
 
 			// Create the new projectile game object
-			GameObject newProjectile = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
+			Vector3 newLocation = transform.position;
+			newLocation.z += 0.1f;
+			GameObject newProjectile = (GameObject)Instantiate(projectile, newLocation, Quaternion.identity);
 
 			//Get a handle on the projectile controller
 			ProjectileController projectileController = newProjectile.GetComponent<ProjectileController>();
 			projectileController.isPlayer = isPlayer;
-			projectileController.range = range;
 			projectileController.damage = damage;
 
-			// Rotate the new game object towards the target before moving it
-			newProjectile.transform.LookAt(target);
-			newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
 
+			// Set the new velocity based on what the weapon is shooting
 			// "Shoot" the projectile by setting its velocity
 			Vector2 delta = target - transform.position;
-			newProjectile.GetComponent<Rigidbody2D>().velocity = delta.normalized * projectileController.speed;
+			Vector2 projectileVelocity = delta.normalized;
+			
+			if (projectileController.type == PROJECTILE_TYPE.Laser) {
+				// Set the projectile range based on weapon
+				projectileController.range = range;
+
+				// Rotate the new game object towards the target before moving it
+				newProjectile.transform.LookAt(target);
+				newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
+			} else if (projectileController.type == PROJECTILE_TYPE.Bomb) {
+				projectileController.range = 100f;
+				projectileVelocity = new Vector2(0f, -1f);
+			} else if (projectileController.type == PROJECTILE_TYPE.Rocket) {
+				newProjectile.transform.LookAt(new Vector3(target.x, newProjectile.transform.position.y, target.z));
+				newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
+				projectileVelocity.y = 0f;
+			}
+
+			//Set the velocity of the projectile
+			newProjectile.GetComponent<Rigidbody2D>().velocity = projectileVelocity * projectileController.speed;
 
 			// Lastly turn on the box collider
 			newProjectile.GetComponent<Collider2D>().enabled = true;

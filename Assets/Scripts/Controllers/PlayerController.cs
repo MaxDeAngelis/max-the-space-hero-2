@@ -100,26 +100,23 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1")) {
 			_keyDown = KEYS.Shoot;
 		}
+
+		// Aim your weapon towards the mouse
+		_aim();
+
+		// Check if it is possable to land
+		_checkIfAbleToLand();
+		
+		// Line cast to the ground check transform to see if it is over a ground layer
+		_checkIfGrounded();
 	}
 
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
-		// Aim your weapon towards the mouse
-		_aim();
-
-		// Check if it is possable to land
-		_checkIfAbleToLand();
-
 		// Check if Max is waiting
 		_checkIfWaiting();
-
-		// Always set landing flag for animation
-		_animator.SetBool("ableToLand", _isAbleToLand);
-
-		// Line cast to the ground check transform to see if it is over a ground layer
-		_checkIfGrounded();
 
 		/* ---- HANDLE FIRING GUN ---- */
 		if (_keyDown == KEYS.Shoot && !_isClimbing) {
@@ -293,6 +290,9 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			_isAbleToLand = false;
 		}
+
+		// Always set landing flag for animation
+		_animator.SetBool("ableToLand", _isAbleToLand);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6ac341da5b75c432fba180f56e8261bc
-timeCreated: 1442941970
+timeCreated: 1443063345
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -35,6 +35,9 @@ TextureImporter:
     21300056: Powerup_Energy_8
     21300058: Bomb_1
     21300060: Bomb_2
+    21300062: Rocket_1
+    21300064: Rocket_2
+    21300066: Rocket_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -346,6 +349,36 @@ TextureImporter:
         x: 26
         y: 2
         width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Rocket_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 2
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Rocket_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 2
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Rocket_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 2
+        width: 27
         height: 20
       alignment: 0
       pivot: {x: .5, y: .5}

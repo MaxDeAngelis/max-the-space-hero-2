@@ -4,7 +4,7 @@ using System.Collections;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// 								     		PUBLIC ENUM											             ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public enum ENEMY_TYPE {Ground, Flying};
+public enum ENEMY_TYPE {Ground, Flying, Bomber};
 public enum PATROL {Horizontal, Vertical};
 
 public class EnemyController : MonoBehaviour {
@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour {
 
 	/* FLYING ONLY VARIABLES */
 	public PATROL patrolDirection = PATROL.Horizontal;	// The direction the unit should be patrolling
+	public float hoverHeight;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -30,8 +31,9 @@ public class EnemyController : MonoBehaviour {
 	/* BASIC PRIVATE VARIABLES*/
 	private bool _isGrounded = false;					// Flag for if the unit is grounded
 	private bool _returnToPatrol = false;
-	private float _distanceFromPlayer;					// Distance to the player calculated in update
+	private float _distanceFromTarget;					// Distance to the player calculated in update
 	private float _distanceFromOriginalPosition;		// The distance from the spawn location
+	private Vector2 _target;
 	private Vector3 _directionModifier;
 	private Vector3 _originalPosition;					// The units spawn position
 
@@ -57,7 +59,8 @@ public class EnemyController : MonoBehaviour {
 		/* INIT VARIABLES */
 		_directionModifier = transform.localScale;
 		_originalPosition = transform.position;
-		_distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
+		_target = new Vector2(_player.transform.position.x, _player.transform.position.y - hoverHeight);
+		_distanceFromTarget = Vector2.Distance(transform.position, _player.transform.position);
 		_distanceFromOriginalPosition = Vector2.Distance(transform.position, _originalPosition);
 	}
 	
@@ -71,7 +74,8 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		// Figure out the distance from the player
-		_distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
+		_target = new Vector2(_player.transform.position.x, _player.transform.position.y - hoverHeight);
+		_distanceFromTarget = Vector2.Distance(transform.position, _target);
 
 		// Figure out haw far ou are from the original location
 		_distanceFromOriginalPosition = Vector3.Distance(transform.position, _originalPosition);
@@ -82,13 +86,13 @@ public class EnemyController : MonoBehaviour {
 	 **/
 	void FixedUpdate() {
 		// If within attack range then try and move towards player
-		if (_distanceFromPlayer <= sightRange) { 
+		if (_distanceFromTarget <= sightRange) { 
 			_returnToPatrol = true;
 
-			_calculateDirection(_player.transform.position);
+			_calculateDirection(_target);
 
 			// If within range then attack 
-			if (_distanceFromPlayer <= _weapon.range) {
+			if (_distanceFromTarget <= _weapon.range) {
 				if (_weapon.isRanged) {
 					_aimWeapon();
 				}
@@ -98,8 +102,8 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			// If the enemy has reached a spot they can attack from then stop moving. Else keep moving
-			if (type == ENEMY_TYPE.Flying && !_isGrounded && _distanceFromPlayer > _weapon.range) {
-				_moveToLocation(_player.transform.position);
+			if ((type == ENEMY_TYPE.Flying || type == ENEMY_TYPE.Bomber) && !_isGrounded && _distanceFromTarget > _weapon.range) {
+				_moveToLocation(_target);
 			} else {
 				_move();
 			}
@@ -192,7 +196,7 @@ public class EnemyController : MonoBehaviour {
 	 * @private Move the enemy unit if grounded
 	 **/
 	void _move() {
-		if (type == ENEMY_TYPE.Ground && !_isGrounded || _distanceFromPlayer <= _weapon.range) {
+		if (type == ENEMY_TYPE.Ground && !_isGrounded || _distanceFromTarget <= _weapon.range) {
 			_rigidbody.velocity = new Vector2(0f, 0f);
 		} else if (patrolDirection == PATROL.Horizontal) {
 			_rigidbody.velocity = new Vector2(_directionModifier.x * maxSpeed, 0f);

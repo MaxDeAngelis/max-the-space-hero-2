@@ -89,32 +89,36 @@ EdgeCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: .119999997}
   m_Points:
-  - {x: -.0239219666, y: -.445851684}
-  - {x: -.144891739, y: -.451200485}
-  - {x: -.282333374, y: -.421830297}
-  - {x: -.492811203, y: -.363391161}
-  - {x: -.675262451, y: -.295691609}
+  - {x: -.0220565796, y: -.470086217}
+  - {x: -.146755219, y: -.471706748}
+  - {x: -.276741028, y: -.470299363}
+  - {x: -.325012207, y: -.415762544}
+  - {x: -.432022095, y: -.410790563}
+  - {x: -.515182495, y: -.38203299}
+  - {x: -.688308716, y: -.306876779}
   - {x: -.795150757, y: -.203479171}
   - {x: -.795017242, y: -.034607172}
-  - {x: -.712970734, y: .0551855564}
-  - {x: -.527206421, y: .148715854}
+  - {x: -.71856308, y: .0682350472}
+  - {x: -.542121887, y: .185999751}
   - {x: -.36722374, y: .236776352}
   - {x: -.208322525, y: .401974201}
-  - {x: -.130430222, y: .44963026}
-  - {x: .127605438, y: .441256046}
-  - {x: .207826614, y: .40015626}
-  - {x: .336551666, y: .254209042}
-  - {x: .449590683, y: .174780011}
-  - {x: .612693787, y: .117737412}
+  - {x: -.130432129, y: .419803023}
+  - {x: .131332397, y: .418885708}
+  - {x: .202232361, y: .381514311}
+  - {x: .344009399, y: .259801507}
+  - {x: .445861816, y: .206471324}
+  - {x: .592189789, y: .171799064}
+  - {x: .718822479, y: .0754026249}
   - {x: .793043137, y: -.0131465197}
   - {x: .794946671, y: -.19896996}
-  - {x: .665821075, y: -.308321357}
-  - {x: .495124817, y: -.376088262}
-  - {x: .302747726, y: -.412420988}
-  - {x: .147930145, y: -.448479652}
-  - {x: -.0251979828, y: -.445851803}
+  - {x: .675140381, y: -.321370721}
+  - {x: .502578735, y: -.389137626}
+  - {x: .340602875, y: -.418134332}
+  - {x: .282238007, y: -.47021091}
+  - {x: .140472412, y: -.47085011}
+  - {x: -.0214729309, y: -.46822226}
 --- !u!95 &9508100
 Animator:
   serializedVersion: 3
@@ -124,7 +128,7 @@ Animator:
   m_GameObject: {fileID: 110198}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 79aa93d14aa1447c7a99130ed8de2b3b, type: 2}
+  m_Controller: {fileID: 9100000, guid: ebd78c47d6f5c4e7aa03d780546d6bfe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,15 +147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  range: 5
-  attackSpeed: .5
+  damage: 100
+  range: .5
+  attackSpeed: .25
   durability: 1000
   durabilityLossPerAttack: 0
   attackSoundEffect: {fileID: 0}
   isPlayer: 0
   isRanged: 1
-  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  projectile: {fileID: 157508, guid: 992eeb3e2240f4e73be884a556ee1b18, type: 2}
 --- !u!114 &11443316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,13 +179,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e3c965d46b941d58399e03ba3f1a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  maxSpeed: 2
+  type: 2
+  maxSpeed: 3
   sightRange: 8
   patrolDistance: 5
   groundCheck: {fileID: 0}
   gunArm: {fileID: 0}
   patrolDirection: 0
+  hoverHeight: -4
 --- !u!114 &11496202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300018, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
+  m_Sprite: {fileID: 21300026, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

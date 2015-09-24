@@ -5,13 +5,13 @@ using UnityEditor;
 [CustomEditor(typeof(EnemyController))]
 public class IEnemy : Editor {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     	     	CONSTANTS						     					     ///
+	/// 								     	     	PRIVATE VARIABLES   			     					     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isMovementOptionsVisible = true;
 	private bool _isSupportingObjectsVisible = false;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PRIVATE VARIABLES											     ///
+	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public override void OnInspectorGUI() {
 		// Get a reference to the extended class
@@ -30,6 +30,13 @@ public class IEnemy : Editor {
 			// Specific movement options based on type
 			if (_enemy.type == ENEMY_TYPE.Flying) {
 				_enemy.patrolDirection = (PATROL)EditorGUILayout.EnumPopup("Patrol Direction", _enemy.patrolDirection);
+			}
+
+			// Specify the hover distance to target above the player
+			if (_enemy.type == ENEMY_TYPE.Bomber) {
+				_enemy.hoverHeight = EditorGUILayout.FloatField("Hover Height", _enemy.hoverHeight);
+			} else {
+				_enemy.hoverHeight = 0f;
 			}
 		}
 

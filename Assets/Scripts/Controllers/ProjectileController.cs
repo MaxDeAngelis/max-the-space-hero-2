@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProjectileController : MonoBehaviour {
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		HIDDEN VARIABLES											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	[HideInInspector] public bool isPlayer = false;
-	[HideInInspector] public float range = 7f;
-	[HideInInspector] public float damage = 50f;
+public enum PROJECTILE_TYPE {Laser, Bomb, Rocket};
 
+public class ProjectileController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float speed = 5f;
+	public bool isPlayer = false;								// Flag for if the projectile if coming from the player
+	public PROJECTILE_TYPE type = PROJECTILE_TYPE.Laser;		// The type of the projectile
+	public float range;											// The range before the projectile destroys
+	public float damage;										// The damage
+	public float speed = 5f;									// The speed of the projectile
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -39,6 +38,18 @@ public class ProjectileController : MonoBehaviour {
 		// If the projectile has gone past its range then destroy it
 		if (_distanceTraveled >= range) {
 			Destroy(gameObject);
+		}
+	}
+
+	/**
+	 * @private Collider handler that is triggered when another collider interacts with this game object
+	 * 
+	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
+	 **/
+	void OnTriggerEnter2D(Collider2D otherCollider) {
+		// If the current projectile is a bomb and it hits ground then blow up
+		if (type == PROJECTILE_TYPE.Bomb && otherCollider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+			hit();
 		}
 	}
 
