@@ -36,10 +36,10 @@ public class EnemyController : MonoBehaviour {
 	private Vector2 _target;
 	private Vector3 _directionModifier;
 	private Vector3 _originalPosition;					// The units spawn position
+	private Vector3 _playerLocation;
 
 	/* SUPPORTING COMPONENTS */
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
-	private GameObject _player;							// The player game object
 	private Animator _animator;							// The animator for the current unit
 	private WeaponController _weapon;					// Weapon controller of the current weapon
 
@@ -52,16 +52,15 @@ public class EnemyController : MonoBehaviour {
 	void Start() {
 		/* INIT OBJECTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
-		_player = GameObject.FindGameObjectWithTag("Player");
 		_animator = GetComponent<Animator>();
 		_weapon = GetComponentInChildren<WeaponController>();
 
 		/* INIT VARIABLES */
 		_directionModifier = transform.localScale;
 		_originalPosition = transform.position;
-		_target = new Vector2(_player.transform.position.x, _player.transform.position.y - hoverHeight);
-		_distanceFromTarget = Vector2.Distance(transform.position, _player.transform.position);
-		_distanceFromOriginalPosition = Vector2.Distance(transform.position, _originalPosition);
+
+		/* INIT DISTANCE VARIABLES */
+		_calculateTargetAndOriginDistance();
 	}
 	
 	/**
@@ -73,12 +72,8 @@ public class EnemyController : MonoBehaviour {
 			_isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		}
 
-		// Figure out the distance from the player
-		_target = new Vector2(_player.transform.position.x, _player.transform.position.y - hoverHeight);
-		_distanceFromTarget = Vector2.Distance(transform.position, _target);
-
-		// Figure out haw far ou are from the original location
-		_distanceFromOriginalPosition = Vector3.Distance(transform.position, _originalPosition);
+		/* Recalculate distance variables */
+		_calculateTargetAndOriginDistance();
 	}
 
 	/**
@@ -98,7 +93,7 @@ public class EnemyController : MonoBehaviour {
 				}
 
 				// Finally fire the weapon
-				_weapon.fire(_player.transform.position);
+				_weapon.fire(_playerLocation);
 			}
 
 			// If the enemy has reached a spot they can attack from then stop moving. Else keep moving
@@ -131,6 +126,23 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	/**
+	 * @private checks and sets distance from target and origin values
+	 **/
+	void _calculateTargetAndOriginDistance() {
+		// Get the player location
+		_playerLocation = PlayerManager.Instance.getLocation();
+
+		// Calculate the target
+		_target = new Vector2(_playerLocation.x, _playerLocation.y - hoverHeight);
+
+		// Figure out the distance from the target
+		_distanceFromTarget = Vector2.Distance(transform.position, _target);
+		
+		// Figure out haw far ou are from the original location
+		_distanceFromOriginalPosition = Vector3.Distance(transform.position, _originalPosition);
+	}
+
+	/**
 	 * @private handles changing the direction of the transform based on a target position
 	 * 
 	 * @param Vector3 target - The target position to base the flip on 
@@ -157,7 +169,6 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-
 	/**
 	 * @private Aim the arm/weapon at player before firing
 	 **/
@@ -165,7 +176,7 @@ public class EnemyController : MonoBehaviour {
 		if (gunArm != null) {
 			/* ---- AIM THE ARM TO FIRE ----*/		
 			// Get player and arm position
-			Vector3 playerPos = _player.transform.position;
+			Vector3 playerPos = _playerLocation;
 			Vector3 armPos = gunArm.position;
 			
 			// Get arm and player position relative to the game object

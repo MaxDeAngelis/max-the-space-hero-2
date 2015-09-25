@@ -7,8 +7,7 @@ public class CameraManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float distance = -7.5f;				// Z Distance the camera should maintain
 	public float damper = 0.1f;					// Damper value to user for smooth follow
-
-	public GameObject player;					// The player in the scene
+	
 	public GameObject rightBoundry;				// Right boundry game object
 	public GameObject leftBoundry;				// Left boundry game object
 	public GameObject topBoundry;				// Top boundry game object
@@ -56,7 +55,7 @@ public class CameraManager : MonoBehaviour {
 		*/
 
 		if (!_targetMouse) {
-			_target = player.transform.position;
+			_target = PlayerManager.Instance.getLocation();
 		}
 
 		// Setup default positions

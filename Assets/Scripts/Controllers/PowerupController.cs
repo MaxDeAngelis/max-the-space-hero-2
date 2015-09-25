@@ -1,29 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PowerupController : MonoBehaviour {
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		HIDDEN VARIABLES											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Enum list of acceptable powerup types
-	[HideInInspector] public enum Type { 
-		Health, 
-		Energy, 
-		Shield,
-		Speed
-	};		
+public enum POWERUP_TYPE { Health, Energy, Shield, Speed };
 
+public class PowerupController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float bonus;			// Bonus to be applied
-	public float duration;		// Duration of the powerup
-	public Type type;			// Type of powerup
+	public float bonus;				// Bonus to be applied
+	public float duration;			// Duration of the powerup
+	public Color colorEffect;				// The color of the particle effect
+	public POWERUP_TYPE type;		// Type of powerup
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private ParticleSystem _particle;
 	private SpriteRenderer _renderer;
 	private BoxCollider2D _collider;
 
@@ -34,35 +25,18 @@ public class PowerupController : MonoBehaviour {
 	 * @private Called on awake of the game object to init variables
 	 **/
 	void Awake () {
-		_particle = GetComponent<ParticleSystem>();
 		_renderer = GetComponent<SpriteRenderer>();
 		_collider = GetComponent<BoxCollider2D>();
 	}
-
-	/**
-	 * @private called from use to trigger an effect to show the powerup was used
-	 **/
-	IEnumerator _triggerUse() {
-		// Play the particle effect for use if there is one
-		if (_particle) {
-			_particle.Play();
-		}
-
-		// delay for a quarter second
-		yield return new WaitForSeconds(2f);
-
-		// Destroy after affect is done
-		Destroy(gameObject);
-	}
+	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTION												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void use() {
-		// Disable the powerup while the particle is displayed
-		_collider.enabled = false;
-		_renderer.enabled = false;
+		// Destroy the powerup
+		Destroy(gameObject);
 
 		// Start particle effect for use
-		StartCoroutine(_triggerUse());
+		PlayerManager.Instance.playParticleEffect(2f, colorEffect);
 	}
 }

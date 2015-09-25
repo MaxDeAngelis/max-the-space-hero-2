@@ -34,7 +34,7 @@ public class ShieldController : MonoBehaviour {
 	void Start() {
 		/* INIT COMPONENTS */
 		_animator = GetComponent<Animator>();
-		_player = GetComponentInParent<PlayerController>();
+		_player = PlayerManager.Instance.getController();
 		_renderer = GetComponent<SpriteRenderer>();
 
 		/* INIT VARIABLES */

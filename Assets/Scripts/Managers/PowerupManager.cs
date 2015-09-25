@@ -159,16 +159,16 @@ public class PowerupManager : MonoBehaviour {
 	public void process(PowerupController powerup, GameObject player) {
 		// Process the powerup that was picked up
 		switch(powerup.type) {
-			case PowerupController.Type.Health:
+			case POWERUP_TYPE.Health:
 				StartCoroutine(_useHealthPowerup(powerup, player));
 				break;
-			case PowerupController.Type.Energy:
+			case POWERUP_TYPE.Energy:
 				_useEnergyPowerup(powerup, player);
 				break;
-			case PowerupController.Type.Shield:
+			case POWERUP_TYPE.Shield:
 				StartCoroutine(_useShieldPowerup(powerup, player));
 				break;
-			case PowerupController.Type.Speed:
+			case POWERUP_TYPE.Speed:
 				StartCoroutine(_useSpeedPowerup(powerup, player));
 				break;
 		}
