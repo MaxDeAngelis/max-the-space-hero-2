@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
      <Compile Include="Assets\Scripts\Managers\FloatingTextManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SoundEffectsManager.cs" />

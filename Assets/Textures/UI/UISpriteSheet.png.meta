@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: ba4047d855dde4e37b0ec35dc9eb1ddd
+timeCreated: 1443300718
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Title
+    21300002: Controls
+    21300004: Game_Over
+    21300006: Button_Default
+    21300008: Button_Hover
+    21300010: Button_Pressed
+    21300012: HUD
+    21300014: Slider_Border
+    21300016: Slider_Fill
+    21300018: Button_Disabled
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Title
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 474
+        width: 210
+        height: 36
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Controls
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 449
+        width: 177
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Game_Over
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 424
+        width: 201
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_Default
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 498
+        width: 64
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_Hover
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 482
+        width: 64
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_Pressed
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 466
+        width: 64
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HUD
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 475
+        width: 92
+        height: 35
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slider_Border
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 459
+        width: 64
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slider_Fill
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 443
+        width: 64
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_Disabled
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 450
+        width: 65
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
