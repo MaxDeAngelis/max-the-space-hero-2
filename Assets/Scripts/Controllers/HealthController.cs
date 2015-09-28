@@ -47,6 +47,9 @@ public class HealthController : MonoBehaviour {
 	 * @private Called when the current gameobject dies
 	 **/
 	void _die() {
+		if (isPlayer) {
+			GameManager.Instance.gameOver();
+		}
 		Destroy(gameObject);
 	}
 

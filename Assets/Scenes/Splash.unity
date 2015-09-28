@@ -231,6 +231,7 @@ GameObject:
   - 92: {fileID: 1024381700}
   - 124: {fileID: 1024381699}
   - 81: {fileID: 1024381698}
+  - 82: {fileID: 1024381703}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -304,6 +305,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!82 &1024381703
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024381697}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fbfad630ae4274dac9b67a08f12737b0, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1320382668
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,12 +440,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1024, y: 768}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: .5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -391,7 +461,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 1024381701}
   m_PlaneDistance: 10
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -408,6 +478,8 @@ GameObject:
   - 222: {fileID: 1715360149}
   - 114: {fileID: 1715360148}
   - 114: {fileID: 1715360147}
+  - 114: {fileID: 1715360150}
+  - 61: {fileID: 1715360151}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -430,7 +502,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: 0, y: -94}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1715360147
@@ -513,6 +585,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1715360145}
+--- !u!114 &1715360150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1715360145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 2
+--- !u!61 &1715360151
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1715360145}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -.0752975345, y: -9.15527344e-05}
+  serializedVersion: 2
+  m_Size: {x: 160.218445, y: 30.523962}
 --- !u!1 &1816296113
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +695,8 @@ GameObject:
   - 222: {fileID: 1834968607}
   - 114: {fileID: 1834968606}
   - 114: {fileID: 1834968605}
+  - 114: {fileID: 1834968608}
+  - 65: {fileID: 1834968609}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -620,7 +719,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -54}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1834968605
@@ -703,6 +802,30 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1834968603}
+--- !u!114 &1834968608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1834968603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 2
+--- !u!65 &1834968609
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1834968603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160.091873, y: 29.9831581, z: 1}
+  m_Center: {x: .164592698, y: -5.34057617e-05, z: 0}
 --- !u!1 &2025719285
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +884,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 176}
+  m_AnchoredPosition: {x: 0, y: 122}
   m_SizeDelta: {x: 210, y: 36}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &2055655257
@@ -852,6 +975,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0a38bc8038c4941a1f513d46bc017c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCursor: 0
+  crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
+  pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
 --- !u!4 &2089087256
 Transform:
   m_ObjectHideFlags: 0

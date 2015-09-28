@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ba4047d855dde4e37b0ec35dc9eb1ddd
-timeCreated: 1443300718
+timeCreated: 1443370774
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,10 @@ TextureImporter:
     21300014: Slider_Border
     21300016: Slider_Fill
     21300018: Button_Disabled
+    21300020: Paused
+    21300022: Movement
+    21300024: Attack
+    21300026: Crosshair
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -156,6 +160,46 @@ TextureImporter:
         y: 450
         width: 65
         height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Paused
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 399
+        width: 133
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Movement
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 384
+        width: 103
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Attack
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 369
+        width: 76
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Crosshair
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 458
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
