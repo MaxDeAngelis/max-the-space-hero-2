@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -13,10 +13,11 @@ public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float health = 400f;				// The maximum health of the unit
 	public Text healthDisplay;				// UI Text component to display the percent of health left
-	public Slider healthBar;
+	public Slider healthBar;				// Slider to display the remaining health
 	public AudioClip damageSoundEffect; 	// Sound effect for when you take damage
 	public AudioClip deathSoundEffect; 		// Sound effect for when you take die
 	public bool isPlayer = false;			// Flag for if the unit is the player
+	public bool isAlienAbleToEject = false;	// Flag for if the alien can eject
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -48,12 +49,20 @@ public class HealthController : MonoBehaviour {
 	 * @private Called when the current gameobject dies
 	 **/
 	void _die() {
+		// If the player dies then game over
 		if (isPlayer) {
 			GameManager.Instance.gameOver();
 		}
-		
-		SpecialEffectsManager.Instance.makeExplosion(gameObject.transform.position, deathSoundEffect);
 
+		// Play and explosion on death
+		SpecialEffectsManager.Instance.playExplosion(gameObject.transform.position, deathSoundEffect);
+
+		// If the enemy can eject then eject
+		if (isAlienAbleToEject) {
+			SpecialEffectsManager.Instance.playAlienEject(gameObject.transform.position, null);
+		}
+
+		// Destroy the game object
 		Destroy(gameObject);
 	}
 
@@ -130,7 +139,7 @@ public class HealthController : MonoBehaviour {
 		if (damage > 0) {
 			// Show floating text and play sound
 			FloatingTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
-			SpecialEffectsManager.Instance.makeSound(damageSoundEffect);
+			SpecialEffectsManager.Instance.playSound(damageSoundEffect);
 			
 			// Actually take the damage
 			StartCoroutine(_takeDamage(_renderers));

@@ -199,6 +199,7 @@ MonoBehaviour:
   damageSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   isPlayer: 0
+  isAlienAbleToEject: 1
 --- !u!212 &21239700
 SpriteRenderer:
   m_ObjectHideFlags: 1

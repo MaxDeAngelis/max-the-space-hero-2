@@ -29,6 +29,8 @@ public class IHealth : Editor {
 		if (_health.isPlayer) {
 			_health.healthDisplay = (Text)EditorGUILayout.ObjectField("Health Text", _health.healthDisplay, typeof(Text), true);
 			_health.healthBar = (Slider)EditorGUILayout.ObjectField("Health Bar", _health.healthBar, typeof(Slider), true);
-		}			
+		} else {
+			_health.isAlienAbleToEject = EditorGUILayout.Toggle("Is Alien Able To Eject", _health.isAlienAbleToEject);
+		}
 	}
 }

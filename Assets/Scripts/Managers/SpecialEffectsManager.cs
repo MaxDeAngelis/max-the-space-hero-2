@@ -7,7 +7,9 @@ public class SpecialEffectsManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static SpecialEffectsManager Instance;
 
-	public GameObject explosion;
+	public GameObject explosion;			// Explosion reference game object
+	public GameObject explosionSmall;		// Small explosion reference game objec
+	public GameObject alienEject;			// Alien eject reference
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -23,6 +25,21 @@ public class SpecialEffectsManager : MonoBehaviour {
 		Instance = this;
 	}
 
+	/**
+	 * @private Called to instantiate a new game object and then destroy it
+	 * 
+	 * @param Vector3 location - the location to create the new object
+	 * @param AudioClip sound - the sound effect to play
+	 * @param GameObject objectToCreate - the object to instantiate
+	 * @param float duration - the amount of time to keep the object alive
+	 **/
+	private void _instantiate(Vector3 location, AudioClip sound, GameObject objectToCreate, float duration) {
+		playSound(sound);
+		
+		GameObject newExplosion = Instantiate(objectToCreate, location, Quaternion.identity) as GameObject;
+		
+		Destroy(newExplosion, duration);
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,18 +48,40 @@ public class SpecialEffectsManager : MonoBehaviour {
 	 * 
 	 * @param $AudioClip$ originalClip - The sound effect to make or null
 	 **/
-	public void makeSound(AudioClip originalClip) {
+	public void playSound(AudioClip originalClip) {
 		// As it is not 3D audio clip, position doesn't matter.
 		if (originalClip != null) {
 			AudioSource.PlayClipAtPoint(originalClip, transform.position);
 		}
 	}
 
-	public void makeExplosion(Vector3 location, AudioClip sound) {
-		makeSound(sound);
+	/**
+	 * @public Called to play a normal sized explosion
+	 * 
+	 * @param Vector3 location - the location to create the new object
+	 * @param AudioClip sound - the sound effect to play
+	 **/
+	public void playExplosion(Vector3 location, AudioClip sound) {
+		_instantiate(location, sound, explosion, 1f);
+	}
 
-		GameObject newExplosion = Instantiate(explosion, location, Quaternion.identity) as GameObject;
+	/**
+	 * @public Called to play a small sized explosion
+	 * 
+	 * @param Vector3 location - the location to create the new object
+	 * @param AudioClip sound - the sound effect to play
+	 **/
+	public void playSmallExplosion(Vector3 location, AudioClip sound) {
+		_instantiate(location, sound, explosionSmall, 1f);
+	}
 
-		Destroy(newExplosion, 1f);
+	/**
+	 * @public Called to play an alien eject
+	 * 
+	 * @param Vector3 location - the location to create the new object
+	 * @param AudioClip sound - the sound effect to play
+	 **/
+	public void playAlienEject(Vector3 location, AudioClip sound) {
+		_instantiate(location, sound, alienEject, 1f);
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public enum CURSOR_TYPE { Default, Crosshairs, Pointer};
 
@@ -7,20 +8,21 @@ public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;
-	public Texture2D crosshairCursor;
-	public Texture2D pointerCursor;
-	public Texture2D defaultCursor;
-	public GameObject pauseMenu;
-	public GameObject gameOverMenu;
+	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;		// The default cursor to display
+	public Text gameTime;											// Text object to display the game time
+	public Texture2D crosshairCursor;								// Crosshair cursor
+	public Texture2D pointerCursor;									// Pointer cursor
+	public Texture2D defaultCursor;									// Default cursor
+	public GameObject pauseMenu;									// Pause Menu canvas game object
+	public GameObject gameOverMenu;									// Game Over canvas game object
 
 	public static GameManager Instance;
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private CURSOR_TYPE _originalCursor;
-	private bool _pause = false;
+	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
+	private bool _pause = false;					// Flag for when the game is paused
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -43,8 +45,10 @@ public class GameManager : MonoBehaviour {
 	 * @private called once per frame. Used to capture key events for later
 	 **/
 	void Update() {
-		if (Input.GetButtonDown("Cancel")) { 
-			_pause = true;
+		if (Input.GetButtonDown("Cancel") && !isPaused()) { 
+			pause();
+		} else if (Input.GetButtonDown("Cancel") && isPaused()) { 
+			resume();
 		}
 	}
 
@@ -52,10 +56,14 @@ public class GameManager : MonoBehaviour {
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
-		if (_pause) {
-			_pause = false;
-			pause();
-		}
+		_updateGameTime();
+	}
+
+	private void _updateGameTime() {
+		string minutes = Mathf.Floor(Time.time / 60).ToString("00");
+		string seconds = (Time.time % 60).ToString("00");
+
+		gameTime.text = minutes + ":" + seconds;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
@@ -116,6 +124,7 @@ public class GameManager : MonoBehaviour {
 	 * @public called to pause the game 
 	 **/
 	public void pause() {
+		_pause = true;
 		setCursor(CURSOR_TYPE.Default);
 		Time.timeScale = 0;
 		pauseMenu.SetActive(true);
@@ -125,6 +134,7 @@ public class GameManager : MonoBehaviour {
 	 * @public called to un pause the game
 	 **/
 	public void resume() {
+		_pause = false;
 		resetCursor();
 		Time.timeScale = 1;
 		pauseMenu.SetActive(false);
@@ -136,5 +146,12 @@ public class GameManager : MonoBehaviour {
 	public void gameOver() {
 		setCursor(CURSOR_TYPE.Default);
 		gameOverMenu.SetActive(true);
+	}
+
+	/**
+	 * @public called to see if the game is paused
+	 **/
+	public bool isPaused() {
+		return _pause;
 	}
 }

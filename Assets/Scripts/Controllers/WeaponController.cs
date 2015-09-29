@@ -101,7 +101,7 @@ public class WeaponController : MonoBehaviour {
 			newProjectile.GetComponent<Collider2D>().enabled = true;
 
 			// Make sound effect
-			SpecialEffectsManager.Instance.makeSound(attackSoundEffect);
+			SpecialEffectsManager.Instance.playSound(attackSoundEffect);
 		}
 	}
 

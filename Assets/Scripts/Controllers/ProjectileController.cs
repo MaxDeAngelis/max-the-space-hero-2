@@ -50,8 +50,10 @@ public class ProjectileController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		// If the current projectile is a bomb and it hits ground then blow up
 		if (type == PROJECTILE_TYPE.Bomb && otherCollider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
-			SpecialEffectsManager.Instance.makeExplosion(transform.position, explosion);
+			// Play a small explosion for the bomb exploding
+			SpecialEffectsManager.Instance.playSmallExplosion(transform.position, explosion);
 
+			// Fire the hit to get rid of the bomb
 			hit();
 		}
 	}

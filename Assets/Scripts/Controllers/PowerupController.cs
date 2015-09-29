@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum POWERUP_TYPE { Health, Energy, Shield, Speed };
@@ -37,6 +37,6 @@ public class PowerupController : MonoBehaviour {
 		// Start particle effect for use
 		PlayerManager.Instance.playParticleEffect(2f, colorEffect);
 
-		SpecialEffectsManager.Instance.makeSound(pickup);
+		SpecialEffectsManager.Instance.playSound(pickup);
 	}
 }

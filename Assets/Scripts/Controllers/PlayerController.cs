@@ -60,8 +60,8 @@ public class PlayerController : MonoBehaviour {
 	private EnergyManager _energyManager;
 
 	/* ---- KEY TRACKER ---- */
-	private enum KEYS {None, Jump, Shoot};
-	private KEYS _keyDown;
+	//private enum KEYS {None, Jump, Shoot};
+	//private KEYS _keyDown;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -91,16 +91,6 @@ public class PlayerController : MonoBehaviour {
 	 * @private called once per frame. Used to capture key events for later
 	 **/
 	void Update() {
-		_keyDown = KEYS.None;
-
-		if (Input.GetButtonDown("Jump")) { 
-			_keyDown = KEYS.Jump;
-		}
-
-		if (Input.GetButtonDown("Fire1")) {
-			_keyDown = KEYS.Shoot;
-		}
-
 		// Aim your weapon towards the mouse
 		_aim();
 
@@ -109,6 +99,36 @@ public class PlayerController : MonoBehaviour {
 		
 		// Line cast to the ground check transform to see if it is over a ground layer
 		_checkIfGrounded();
+
+		/* ---- HANDLE FIRING GUN ---- */
+		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
+			Vector3 pos = Input.mousePosition;
+			pos.z = transform.position.z - Camera.main.transform.position.z;
+			pos = Camera.main.ScreenToWorldPoint(pos);
+			_weapon.fire(pos);
+		}
+		
+		
+		/* ---- HANDLE ANCHORING ---- */
+		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
+			_isAnchored = false;
+			_rigidbody.gravityScale = 0;
+			_collider.isTrigger = true;
+			
+			StartCoroutine(_takeoff());
+		} else if (Input.GetButtonDown("Jump") && !_isAnchored && _isAbleToLand) {
+			// Set the regeneration rate since you are no longer flying
+			_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
+			
+			// Reset all defaults
+			_isAnchored = true;
+			_collider.isTrigger = false;
+			_rigidbody.gravityScale = _originalGravityScale;
+			_rigidbody.velocity = new Vector2(0f, 0f);
+			
+			// Stop flying since you are landing
+			_animator.SetBool("flying", false);
+		}
 	}
 
 	/**
@@ -117,36 +137,6 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 		// Check if Max is waiting
 		_checkIfWaiting();
-
-		/* ---- HANDLE FIRING GUN ---- */
-		if (_keyDown == KEYS.Shoot && !_isClimbing) {
-			Vector3 pos = Input.mousePosition;
-			pos.z = transform.position.z - Camera.main.transform.position.z;
-			pos = Camera.main.ScreenToWorldPoint(pos);
-			_weapon.fire(pos);
-		}
-
-
-		/* ---- HANDLE ANCHORING ---- */
-		if (_keyDown == KEYS.Jump && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
-			_isAnchored = false;
-			_rigidbody.gravityScale = 0;
-			_collider.isTrigger = true;
-
-			StartCoroutine(_takeoff());
-		} else if (_keyDown == KEYS.Jump && !_isAnchored && _isAbleToLand) {
-			// Set the regeneration rate since you are no longer flying
-			_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
-
-			// Reset all defaults
-			_isAnchored = true;
-			_collider.isTrigger = false;
-			_rigidbody.gravityScale = _originalGravityScale;
-			_rigidbody.velocity = new Vector2(0f, 0f);
-
-			// Stop flying since you are landing
-			_animator.SetBool("flying", false);
-		}
 
 		/* ---- HANDLE MOVEMENT ---- */
 		if (_isAnchored) {
@@ -299,27 +289,30 @@ public class PlayerController : MonoBehaviour {
 	 * @private rotate the arm towards the mouse cursor
 	 **/
 	void _aim() {
-		/* ---- AIM THE ARM TO FIRE ----*/		
-		// Get mouse position and arm position
-		Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-		Vector3 armPos = Camera.main.WorldToViewportPoint(gunArm.transform.position);
-		
-		// Get arm and mouse position relative to the game object
-		Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
-		Vector2 relativeMousePos = new Vector2 (mousePos.x - 0.5f, mousePos.y - 0.5f) - relativeArmPos;
-		float angle = Vector2.Angle (Vector2.down, relativeMousePos);
-		
-		// Flip the player if aiming in the opposite direction
-		if ((relativeMousePos.x < 0 && _isFacingRight) || (relativeMousePos.x > 0 && !_isFacingRight)) {
-			_flipPlayer();
+		// Drop out if paused
+		if (!GameManager.Instance.isPaused()) {
+			/* ---- AIM THE ARM TO FIRE ----*/		
+			// Get mouse position and arm position
+			Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+			Vector3 armPos = Camera.main.WorldToViewportPoint(gunArm.transform.position);
+			
+			// Get arm and mouse position relative to the game object
+			Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
+			Vector2 relativeMousePos = new Vector2 (mousePos.x - 0.5f, mousePos.y - 0.5f) - relativeArmPos;
+			float angle = Vector2.Angle (Vector2.down, relativeMousePos);
+			
+			// Flip the player if aiming in the opposite direction
+			if ((relativeMousePos.x < 0 && _isFacingRight) || (relativeMousePos.x > 0 && !_isFacingRight)) {
+				_flipPlayer();
+			}
+			
+			// Calculate the Quaternion and rotate the arm
+			Quaternion quat = Quaternion.identity;
+			quat.eulerAngles = new Vector3(0, 0, angle);
+			
+			// Rotate the arm pieces
+			gunArm.transform.rotation = quat;
 		}
-		
-		// Calculate the Quaternion and rotate the arm
-		Quaternion quat = Quaternion.identity;
-		quat.eulerAngles = new Vector3(0, 0, angle);
-		
-		// Rotate the arm pieces
-		gunArm.transform.rotation = quat;
 	}
 
 	/**
