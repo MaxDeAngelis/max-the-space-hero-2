@@ -12,6 +12,7 @@ public class ProjectileController : MonoBehaviour {
 	public float range;											// The range before the projectile destroys
 	public float damage;										// The damage
 	public float speed = 5f;									// The speed of the projectile
+	public AudioClip explosion;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -49,6 +50,8 @@ public class ProjectileController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		// If the current projectile is a bomb and it hits ground then blow up
 		if (type == PROJECTILE_TYPE.Bomb && otherCollider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+			SpecialEffectsManager.Instance.makeExplosion(transform.position, explosion);
+
 			hit();
 		}
 	}

@@ -18,5 +18,8 @@ public class IProjectile : Editor {
 		// Always needed options
 		_projectile.speed = EditorGUILayout.FloatField("Speed", _projectile.speed);
 
+		if (_projectile.type == PROJECTILE_TYPE.Bomb) {
+			_projectile.explosion =(AudioClip)EditorGUILayout.ObjectField("Explosion Sound", _projectile.explosion, typeof(AudioClip), true);
+		}
 	}
 }

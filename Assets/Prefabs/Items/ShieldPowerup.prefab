@@ -76,6 +76,7 @@ MonoBehaviour:
   duration: 10
   colorEffect: {r: .200000018, g: .800000072, b: 0, a: 0}
   type: 2
+  pickup: {fileID: 8300000, guid: 37c05e9cd53774fa98d40a36014f966f, type: 3}
 --- !u!212 &21252096
 SpriteRenderer:
   m_ObjectHideFlags: 1

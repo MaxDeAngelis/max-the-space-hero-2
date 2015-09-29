@@ -15,6 +15,7 @@ public class HealthController : MonoBehaviour {
 	public Text healthDisplay;				// UI Text component to display the percent of health left
 	public Slider healthBar;
 	public AudioClip damageSoundEffect; 	// Sound effect for when you take damage
+	public AudioClip deathSoundEffect; 		// Sound effect for when you take die
 	public bool isPlayer = false;			// Flag for if the unit is the player
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,9 @@ public class HealthController : MonoBehaviour {
 		if (isPlayer) {
 			GameManager.Instance.gameOver();
 		}
+		
+		SpecialEffectsManager.Instance.makeExplosion(gameObject.transform.position, deathSoundEffect);
+
 		Destroy(gameObject);
 	}
 
@@ -126,7 +130,7 @@ public class HealthController : MonoBehaviour {
 		if (damage > 0) {
 			// Show floating text and play sound
 			FloatingTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
-			SoundEffectsManager.Instance.makeSound(damageSoundEffect);
+			SpecialEffectsManager.Instance.makeSound(damageSoundEffect);
 			
 			// Actually take the damage
 			StartCoroutine(_takeDamage(_renderers));

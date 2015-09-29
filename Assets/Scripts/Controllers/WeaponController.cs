@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class WeaponController : MonoBehaviour {
@@ -101,7 +101,7 @@ public class WeaponController : MonoBehaviour {
 			newProjectile.GetComponent<Collider2D>().enabled = true;
 
 			// Make sound effect
-			SoundEffectsManager.Instance.makeSound(attackSoundEffect);
+			SpecialEffectsManager.Instance.makeSound(attackSoundEffect);
 		}
 	}
 

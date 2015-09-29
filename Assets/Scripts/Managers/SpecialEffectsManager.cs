@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SoundEffectsManager : MonoBehaviour {
+public class SpecialEffectsManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static SoundEffectsManager Instance;
+	public static SpecialEffectsManager Instance;
+
+	public GameObject explosion;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -34,5 +36,13 @@ public class SoundEffectsManager : MonoBehaviour {
 		if (originalClip != null) {
 			AudioSource.PlayClipAtPoint(originalClip, transform.position);
 		}
+	}
+
+	public void makeExplosion(Vector3 location, AudioClip sound) {
+		makeSound(sound);
+
+		GameObject newExplosion = Instantiate(explosion, location, Quaternion.identity) as GameObject;
+
+		Destroy(newExplosion, 1f);
 	}
 }

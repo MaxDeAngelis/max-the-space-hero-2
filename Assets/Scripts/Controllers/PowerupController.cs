@@ -11,6 +11,7 @@ public class PowerupController : MonoBehaviour {
 	public float duration;			// Duration of the powerup
 	public Color colorEffect;				// The color of the particle effect
 	public POWERUP_TYPE type;		// Type of powerup
+	public AudioClip pickup;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -35,5 +36,7 @@ public class PowerupController : MonoBehaviour {
 
 		// Start particle effect for use
 		PlayerManager.Instance.playParticleEffect(2f, colorEffect);
+
+		SpecialEffectsManager.Instance.makeSound(pickup);
 	}
 }

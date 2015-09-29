@@ -20,6 +20,7 @@ public class IHealth : Editor {
 		// Get the basic information needed for health
 		_health.health = EditorGUILayout.FloatField("Health", _health.health);
 		_health.damageSoundEffect =(AudioClip)EditorGUILayout.ObjectField("Damage Sound", _health.damageSoundEffect, typeof(AudioClip), true);
+		_health.deathSoundEffect =(AudioClip)EditorGUILayout.ObjectField("Death Sound", _health.deathSoundEffect, typeof(AudioClip), true);
 
 		// Flag for if is the player. If so more information is needed
 		_health.isPlayer = EditorGUILayout.Toggle("Is Player", _health.isPlayer);

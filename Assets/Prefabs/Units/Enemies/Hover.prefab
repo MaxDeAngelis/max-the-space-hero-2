@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.34000015, y: -4.55000019, z: 0}
+  m_LocalPosition: {x: -2.50999999, y: -4.55000019, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 462018}
@@ -355,7 +355,7 @@ MonoBehaviour:
   attackSpeed: 3
   durability: 1000
   durabilityLossPerAttack: 0
-  attackSoundEffect: {fileID: 0}
+  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
   isPlayer: 0
   isRanged: 1
   projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
@@ -375,6 +375,7 @@ MonoBehaviour:
   healthDisplay: {fileID: 0}
   healthBar: {fileID: 0}
   damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   isPlayer: 0
 --- !u!114 &11479508
 MonoBehaviour:
@@ -394,7 +395,7 @@ MonoBehaviour:
   groundCheck: {fileID: 410798}
   gunArm: {fileID: 462018}
   patrolDirection: 0
-  hoverDistance: 2
+  hoverHeight: 0
 --- !u!114 &11487432
 MonoBehaviour:
   m_ObjectHideFlags: 1
