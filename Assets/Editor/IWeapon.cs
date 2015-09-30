@@ -7,30 +7,21 @@ public class IWeapon : Editor {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	     	CONSTANTS						     					     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private enum TYPES {Ranged, Melee, Suicide};			// Enum for options in the type drop down
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isWeaponStatsVisible = true;					// Flag for when to show weapon stats
-	private bool _indestructible = true;					// Flag for when to show durability options
-	private TYPES _type = TYPES.Ranged;						// Type of weapon defaults to ranged
+	private bool _indestructible = true;						// Flag for when to show durability options
 
 	public override void OnInspectorGUI() {
 		// Get a reference to the extended class
 		WeaponController _weapon = target as WeaponController;
 
 		// Display default settings
-		_type = (TYPES)EditorGUILayout.EnumPopup("Type", _type);
+		_weapon.type = (WEAPON_TYPE)EditorGUILayout.EnumPopup("Type", _weapon.type);
 		_weapon.isPlayer = EditorGUILayout.Toggle("Is Player", _weapon.isPlayer);
 		_weapon.attackSoundEffect = (AudioClip)EditorGUILayout.ObjectField("Sound Effect", _weapon.attackSoundEffect, typeof(AudioClip), true);
-
-		// Set ranged flag if type is ranged
-		if (_type == TYPES.Ranged) {
-			_weapon.isRanged = true;
-		} else {
-			_weapon.isRanged = false;
-		}
 
 		// Display expandable layout for weapon stats
 		_isWeaponStatsVisible = EditorGUILayout.Foldout(_isWeaponStatsVisible, "Weapon Stats");
@@ -42,12 +33,12 @@ public class IWeapon : Editor {
 			_weapon.damage = EditorGUILayout.FloatField("Damage", _weapon.damage);
 
 			// If a sucide bomb then no speed needed
-			if (_type != TYPES.Suicide) {
+			if (_weapon.type != WEAPON_TYPE.Suicide) {
 				_weapon.attackSpeed = EditorGUILayout.FloatField("Attack Speed", _weapon.attackSpeed);
 			}
 
 			// If this is a ranged weapon then prompt for range and projectile game object
-			if (_type == TYPES.Ranged) {
+			if (_weapon.type == WEAPON_TYPE.Ranged) {
 				_weapon.range = EditorGUILayout.FloatField("Range", _weapon.range);
 				_weapon.projectile = (GameObject)EditorGUILayout.ObjectField("Projectile", _weapon.projectile, typeof(GameObject), true);
 			} else {
@@ -55,7 +46,7 @@ public class IWeapon : Editor {
 			}
 
 			// If not sucide then check if indestructable. If sucide it will destroy automatically
-			if (_type != TYPES.Suicide) {
+			if (_weapon.type != WEAPON_TYPE.Suicide) {
 				_indestructible = EditorGUILayout.Toggle("Indestructible", _indestructible);
 
 				// If its not indestructable then prompt for durability and durability lose 

@@ -487,6 +487,7 @@ MonoBehaviour:
   damageSoundEffect: {fileID: 8300000, guid: 9e7caf4e213c34c838a7ca09413bc5d1, type: 3}
   deathSoundEffect: {fileID: 0}
   isPlayer: 1
+  isAlienAbleToEject: 0
 --- !u!114 &11432846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 10
   range: 12
   attackSpeed: 4
   durability: 1000

@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/PlayerController.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/GameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="64" Column="52" />
-      <File FileName="Assets/Scripts/Managers/SpecialEffectsManager.cs" Line="55" Column="4" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="35" Column="86" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="66" Column="1" />
+      <File FileName="Assets/Scripts/Controllers/HealthController.cs" Line="135" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

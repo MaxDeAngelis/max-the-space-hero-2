@@ -61,6 +61,7 @@ GameObject:
   - 114: {fileID: 11472144}
   - 95: {fileID: 9564958}
   - 114: {fileID: 11486784}
+  - 58: {fileID: 5837400}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -135,6 +136,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &5837400
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151512}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: .100000001}
+  serializedVersion: 2
+  m_Radius: .443558216
 --- !u!61 &6193032
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -202,6 +216,7 @@ MonoBehaviour:
   damageSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   isPlayer: 0
+  isAlienAbleToEject: 0
 --- !u!114 &11478296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,15 +240,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 200
-  range: 1
-  attackSpeed: 1
-  durability: 1000
-  durabilityLossPerAttack: 0
-  attackSoundEffect: {fileID: 0}
+  type: 2
   isPlayer: 0
-  isRanged: 1
+  damage: 200
+  attackSpeed: 1
+  attackSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  range: .100000001
+  durability: 1
+  durabilityLossPerAttack: 1
 --- !u!212 &21265964
 SpriteRenderer:
   m_ObjectHideFlags: 1

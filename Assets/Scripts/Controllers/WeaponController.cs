@@ -1,21 +1,29 @@
 using UnityEngine;
 using System.Collections;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// 								     		PUBLIC ENUM											             ///
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public enum WEAPON_TYPE {Ranged, Melee, Suicide};			// Enum for options in the type drop down
+
 public class WeaponController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/* GENERAL VARIABLE */
+	public WEAPON_TYPE type = WEAPON_TYPE.Ranged;	// The type of weapon
+	public bool isPlayer = false;					// Flag for if the weapon is the player or not
 	public float damage = 5f;						// The amount of damage the current weapon can do
-	public float range = 0.75f;						// The range of the weapon before the unit can attack
 	public float attackSpeed = 0.5f;				// How fast can the weapon attack
-	public float durability = 1000f;				// The durrability of the weapon, when 0 its broken
-	public float durabilityLossPerAttack = 0f;		// The ammount of durrability lost per attack
 	public AudioClip attackSoundEffect;				// Sound effect to make on attack
 
-	public bool isPlayer = false;					// Flag for if the weapon is the player or not
-	public bool isRanged = false;					// Flag for ranged weapons
-
+	/* RANGED VARIABLES */
 	public GameObject projectile;					// For ranged weapons this is the projectile it can fire
+	public float range = 0.75f;						// The range of the weapon before the unit can attack
+
+	/* DESTRUCTABLE VARIABLES */
+	public float durability = 1000f;				// The durrability of the weapon, when 0 its broken
+	public float durabilityLossPerAttack = 0f;		// The ammount of durrability lost per attack
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -103,6 +111,12 @@ public class WeaponController : MonoBehaviour {
 			// Make sound effect
 			SpecialEffectsManager.Instance.playSound(attackSoundEffect);
 		}
+	}
+
+	public void explode() {
+		SpecialEffectsManager.Instance.playExplosion(transform.position, attackSoundEffect);
+
+		Destroy(gameObject);
 	}
 
 	/**

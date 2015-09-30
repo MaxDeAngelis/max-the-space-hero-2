@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour {
@@ -23,6 +24,7 @@ public class HealthController : MonoBehaviour {
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private SpriteRenderer[] _renderers;	// The sprite renderer of the object
+	private List<float[]> _damageList = new List<float[]>();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -34,15 +36,6 @@ public class HealthController : MonoBehaviour {
 		_renderers = GetComponentsInChildren<SpriteRenderer>();
 		maximumHealth = health;
 		updateHealth();
-	}
-
-	/**
-	 * @private Collider handler that is triggered when another collider interacts with this game object
-	 * 
-	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
-	 **/
-	void OnTriggerEnter2D(Collider2D otherCollider) {
-		//processCollision(null, otherCollider);
 	}
 
 	/**
@@ -124,6 +117,11 @@ public class HealthController : MonoBehaviour {
 			if(weapon.durability <= 0) {
 				weapon.broken();
 			}
+
+			// For suicide blow up
+			if (weapon.type == WEAPON_TYPE.Suicide) {
+				weapon.explode();
+			}
 		}
 		
 		/* ---- PROJECTILE DAMAGE ---- */
@@ -133,6 +131,12 @@ public class HealthController : MonoBehaviour {
 			
 			// Fire the hit function for the projectile
 			projectile.hit();
+
+			// Add data to damage array
+			if (!isPlayer) {
+				float[] damageItem = new float[]{damageModifier, damage};
+				_damageList.Add(damageItem);
+			}
 		}
 		
 		// Make a sound and show damage if hurt
@@ -150,7 +154,9 @@ public class HealthController : MonoBehaviour {
 		
 		// Increment the UI display of health
 		updateHealth();
-		
+
+
+
 		// If your health drops below 0 die
 		if (health <= 0) {
 			_die();

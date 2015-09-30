@@ -88,12 +88,12 @@ public class EnemyController : MonoBehaviour {
 
 			// If within range then attack 
 			if (_distanceFromTarget <= _weapon.range) {
-				if (_weapon.isRanged) {
+				if (_weapon.type == WEAPON_TYPE.Ranged) {
 					_aimWeapon();
-				}
 
-				// Finally fire the weapon
-				_weapon.fire(_playerLocation);
+					// Finally fire the weapon
+					_weapon.fire(_playerLocation);
+				}
 			}
 
 			// If the enemy has reached a spot they can attack from then stop moving. Else keep moving
