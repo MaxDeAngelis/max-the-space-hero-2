@@ -66,10 +66,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void _updateGameTime() {
-		string minutes = Mathf.Floor(Time.time / 60).ToString("00");
-		string seconds = (Time.time % 60).ToString("00");
+		if (gameTime != null) {
+			string minutes = Mathf.Floor(Time.time / 60).ToString("00");
+			string seconds = (Time.time % 60).ToString("00");
 
-		gameTime.text = minutes + ":" + seconds;
+			gameTime.text = minutes + ":" + seconds;
+		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
