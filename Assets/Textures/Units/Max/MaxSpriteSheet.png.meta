@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65b20b23c3c0f435a862ea40057a415a
-timeCreated: 1441598898
+timeCreated: 1443663218
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -345,7 +345,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 9
-      pivot: {x: .657999992, y: .70599997}
+      pivot: {x: .625, y: .714999974}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Arm_2
       rect:
@@ -355,7 +355,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 9
-      pivot: {x: .657999992, y: .70599997}
+      pivot: {x: .625, y: .714999974}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Arm_3
       rect:
@@ -365,7 +365,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 9
-      pivot: {x: .657999992, y: .70599997}
+      pivot: {x: .625, y: .714999974}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

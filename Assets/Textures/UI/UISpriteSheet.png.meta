@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ba4047d855dde4e37b0ec35dc9eb1ddd
-timeCreated: 1443490845
+timeCreated: 1443668311
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -18,6 +18,8 @@ TextureImporter:
     21300022: Movement
     21300024: Attack
     21300026: Crosshair
+    21300028: HUD_Text
+    21300030: Flying
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -200,6 +202,26 @@ TextureImporter:
         y: 447
         width: 13
         height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HUD_Text
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 354
+        width: 42
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flying
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 339
+        width: 76
+        height: 11
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

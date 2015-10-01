@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public enum CURSOR_TYPE { Default, Crosshairs, Pointer};
 
@@ -35,8 +38,11 @@ public class GameManager : MonoBehaviour {
 		// Register the singleton
 		if (Instance != null) {
 			Debug.LogError("Multiple instances of GameManager!");
+			Destroy(gameObject);
 		}
 		Instance = this;
+
+		//DontDestroyOnLoad(gameObject);
 
 		setCursor(startingCursor);
 	}
@@ -93,6 +99,11 @@ public class GameManager : MonoBehaviour {
 	public void setCursor(CURSOR_TYPE type) {
 		Texture2D _cursorTexture = null;
 		Vector2 _cursorOffset = Vector2.zero;
+
+		// Set default if it is null
+		if (_originalCursor == null) {
+			_originalCursor = type;
+		}
 
 		// Figure out what cursor to use
 		switch(type) {
@@ -154,4 +165,45 @@ public class GameManager : MonoBehaviour {
 	public bool isPaused() {
 		return _pause;
 	}
+
+	/**
+	 * @public handles saving the game
+	 **/
+	public void save() {
+		// Get a handle on the formatter and the file itself
+		BinaryFormatter _formatter = new BinaryFormatter();
+		FileStream _file = File.Create(Application.persistentDataPath + "/playerData.dat");
+
+		// Get a new instance of the game data object
+		GameData _data = new GameData();
+		_data.health = PlayerManager.Instance.getHealthController().health;
+
+		// Serialize and store then close the file
+		_formatter.Serialize(_file, _data);
+		_file.Close();
+	}
+
+	/**
+	 * @public handles loading the game
+	 **/
+	public void load() {
+		// If the file exists
+		if (File.Exists(Application.persistentDataPath + "/playerData.dat")) {
+			// Get a handle on the file
+			BinaryFormatter _formatter = new BinaryFormatter();
+			FileStream _file = File.Open(Application.persistentDataPath + "/playerData.dat", FileMode.Open);
+
+			// Read the data then set back in game land
+			GameData _data = (GameData)_formatter.Deserialize(_file);
+			PlayerManager.Instance.getHealthController().health = _data.health;
+
+			// Close the file
+			_file.Close();
+		}
+	}
+}
+
+[Serializable]
+class GameData {
+	public float health;
 }

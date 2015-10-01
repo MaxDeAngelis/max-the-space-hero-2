@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	private ClimbController _climbable;
 	private WeaponController _weapon;
 	private Animator _animator;
+	private SpriteRenderer _renderer;
 
 	/* ---- MANAGERS ---- */
 	private PowerupManager _powerupManager;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 		_collider = GetComponent<BoxCollider2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
 		_animator = GetComponent<Animator>();
+		_renderer = GetComponent<SpriteRenderer>();
 
 		/* INIT MANAGERS */
 		_powerupManager = PowerupManager.Instance;
@@ -102,10 +104,13 @@ public class PlayerController : MonoBehaviour {
 
 		/* ---- HANDLE FIRING GUN ---- */
 		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
-			Vector3 pos = Input.mousePosition;
-			pos.z = transform.position.z - Camera.main.transform.position.z;
-			pos = Camera.main.ScreenToWorldPoint(pos);
-			_weapon.fire(pos);
+			Vector3 target = Input.mousePosition;
+			target.z = transform.position.z - Camera.main.transform.position.z;
+			target = Camera.main.ScreenToWorldPoint(target);
+
+			//if (!_renderer.bounds.Contains(target)) {
+				_weapon.fire(target);
+			//}
 		}
 		
 		

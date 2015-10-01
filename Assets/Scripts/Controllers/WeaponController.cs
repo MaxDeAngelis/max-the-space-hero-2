@@ -53,15 +53,23 @@ public class WeaponController : MonoBehaviour {
 		}
 	}
 
+	void _instantiateProjectile() {
+
+	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public void fire(Vector3 target) {
+		fire(target, transform.position, new Quaternion());
+	}
 	/**
 	 * @public This function is called from the enemy controller to fire a ranged weapon
 	 * 
 	 * @param $Vector3$ target - The position of the target to fire at
 	 **/
-	public void fire(Vector3 target) {
+	public void fire(Vector3 target, Vector3 origin, Quaternion rotation) {
 		if (!_isFiring) {
 			if (_animator) {
 				_animator.SetTrigger("shoot");
@@ -83,16 +91,19 @@ public class WeaponController : MonoBehaviour {
 
 			// Set the new velocity based on what the weapon is shooting
 			// "Shoot" the projectile by setting its velocity
-			Vector2 delta = target - transform.position;
+			Vector2 delta = target - origin;
 			Vector2 projectileVelocity = delta.normalized;
-			
 			if (projectileController.type == PROJECTILE_TYPE.Laser) {
 				// Set the projectile range based on weapon
 				projectileController.range = range;
 
 				// Rotate the new game object towards the target before moving it
-				newProjectile.transform.LookAt(target);
-				newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
+				if (rotation.Equals(Quaternion.identity)) {
+					newProjectile.transform.rotation = rotation;
+				} else {
+					newProjectile.transform.LookAt(target);
+					newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
+				}
 			} else if (projectileController.type == PROJECTILE_TYPE.Bomb) {
 				projectileController.range = 100f;
 				projectileVelocity = new Vector2(0f, -1f);
@@ -113,6 +124,9 @@ public class WeaponController : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @public handles exploding the weapon in the case of a suicide bomber
+	 **/
 	public void explode() {
 		SpecialEffectsManager.Instance.playExplosion(transform.position, attackSoundEffect);
 
