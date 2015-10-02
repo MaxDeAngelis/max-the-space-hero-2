@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f2e0a6ba70b874d40a5d3d16fbaf594f
-timeCreated: 1443055777
+timeCreated: 1443751675
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -108,7 +108,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 9
-      pivot: {x: .600000024, y: .649999976}
+      pivot: {x: .550000012, y: .649999976}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Arm_2
       rect:
@@ -118,7 +118,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 9
-      pivot: {x: .600000024, y: .649999976}
+      pivot: {x: .550000012, y: .649999976}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Arm_3
       rect:
@@ -128,7 +128,7 @@ TextureImporter:
         width: 28
         height: 44
       alignment: 9
-      pivot: {x: .600000024, y: .649999976}
+      pivot: {x: .550000012, y: .649999976}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider_1
       rect:

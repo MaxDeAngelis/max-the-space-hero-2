@@ -1296,6 +1296,10 @@ Prefab:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 939550458}
+    - target: {fileID: 19914288, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_IsPrefabParent: 0

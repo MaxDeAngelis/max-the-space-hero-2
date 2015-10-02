@@ -91,8 +91,12 @@ public class EnemyController : MonoBehaviour {
 				if (_weapon.type == WEAPON_TYPE.Ranged) {
 					_aimWeapon();
 
-					// Finally fire the weapon
-					_weapon.fire(_playerLocation);
+					// If there is a gun arm use that for origin
+					if (gunArm != null) {
+						_weapon.fire(gunArm.transform.position, _weapon.transform.position);
+					} else {
+						_weapon.fire(_weapon.transform.position, _playerLocation);
+					}
 				}
 			}
 
@@ -173,23 +177,21 @@ public class EnemyController : MonoBehaviour {
 	 * @private Aim the arm/weapon at player before firing
 	 **/
 	void _aimWeapon() {
-		if (gunArm != null) {
+		// Drop out if paused
+		if (!GameManager.Instance.isPaused() && gunArm != null) {
 			/* ---- AIM THE ARM TO FIRE ----*/		
 			// Get player and arm position
 			Vector3 playerPos = _playerLocation;
 			Vector3 armPos = gunArm.position;
+
+			// Calculate the upward rotation
+			Vector3 upward = gunArm.transform.position - playerPos;
 			
-			// Get arm and player position relative to the game object
-			Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
-			Vector2 relativePlayerPos = new Vector2 (playerPos.x - 0.5f, playerPos.y - 0.5f) - relativeArmPos;
-			float angle = Vector2.Angle (Vector2.down, relativePlayerPos);
+			// If not facing right invert x for correct rotation
+			upward.x *= transform.localScale.x;
 			
-			// Calculate the Quaternion and rotate the arm
-			Quaternion quat = Quaternion.identity;
-			quat.eulerAngles = new Vector3(0, 0, angle);
-			
-			// Rotate the arm pieces
-			gunArm.transform.rotation = quat;
+			// Set the look rotation of the arm
+			gunArm.transform.rotation = Quaternion.LookRotation(Vector3.forward, upward);
 		}
 	}
 

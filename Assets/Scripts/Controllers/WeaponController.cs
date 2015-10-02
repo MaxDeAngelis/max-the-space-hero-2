@@ -60,16 +60,12 @@ public class WeaponController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	public void fire(Vector3 target) {
-		fire(target, transform.position, new Quaternion());
-	}
 	/**
 	 * @public This function is called from the enemy controller to fire a ranged weapon
 	 * 
 	 * @param $Vector3$ target - The position of the target to fire at
 	 **/
-	public void fire(Vector3 target, Vector3 origin, Quaternion rotation) {
+	public void fire(Vector3 origin, Vector3 target) {
 		if (!_isFiring) {
 			if (_animator) {
 				_animator.SetTrigger("shoot");
@@ -97,13 +93,8 @@ public class WeaponController : MonoBehaviour {
 				// Set the projectile range based on weapon
 				projectileController.range = range;
 
-				// Rotate the new game object towards the target before moving it
-				if (rotation.Equals(Quaternion.identity)) {
-					newProjectile.transform.rotation = rotation;
-				} else {
-					newProjectile.transform.LookAt(target);
-					newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
-				}
+				// Set the rotation of the projectile
+				newProjectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, origin - target);
 			} else if (projectileController.type == PROJECTILE_TYPE.Bomb) {
 				projectileController.range = 100f;
 				projectileVelocity = new Vector2(0f, -1f);

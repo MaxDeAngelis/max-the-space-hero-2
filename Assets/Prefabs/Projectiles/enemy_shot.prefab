@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.03681517, y: 3.81458354, z: 0}
+  m_LocalPosition: {x: 23.294035, y: -1.3512187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,9 +57,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1.90734863e-06, y: -.0616509914}
   serializedVersion: 2
-  m_Size: {x: .28125, y: .09375}
+  m_Size: {x: .128589153, y: .217051864}
 --- !u!114 &11407018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,9 +72,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  type: 0
   range: 7
-  speed: 10
   damage: 20
+  speed: 10
+  explosion: {fileID: 0}
 --- !u!212 &21271508
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -99,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16de99a82fdc5483d98a592e5585bfcd, type: 3}
+  m_Sprite: {fileID: 21300002, guid: a598acca757b64fb491e08acc4995c98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -143,7 +145,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 16de99a82fdc5483d98a592e5585bfcd,
+      objectReference: {fileID: 21300002, guid: a598acca757b64fb491e08acc4995c98,
         type: 3}
     - target: {fileID: 0}
       propertyPath: isPlayer

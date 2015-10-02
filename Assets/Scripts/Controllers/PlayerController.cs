@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 			target = Camera.main.ScreenToWorldPoint(target);
 
 			//if (!_renderer.bounds.Contains(target)) {
-				_weapon.fire(target);
+				_weapon.fire(gunArm.transform.position, _weapon.transform.position);
 			//}
 		}
 		
@@ -297,26 +297,25 @@ public class PlayerController : MonoBehaviour {
 		// Drop out if paused
 		if (!GameManager.Instance.isPaused()) {
 			/* ---- AIM THE ARM TO FIRE ----*/		
-			// Get mouse position and arm position
-			Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-			Vector3 armPos = Camera.main.WorldToViewportPoint(gunArm.transform.position);
-			
-			// Get arm and mouse position relative to the game object
-			Vector2 relativeArmPos = new Vector2(armPos.x - 0.5f, armPos.y - 0.5f);
-			Vector2 relativeMousePos = new Vector2 (mousePos.x - 0.5f, mousePos.y - 0.5f) - relativeArmPos;
-			float angle = Vector2.Angle (Vector2.down, relativeMousePos);
-			
-			// Flip the player if aiming in the opposite direction
-			if ((relativeMousePos.x < 0 && _isFacingRight) || (relativeMousePos.x > 0 && !_isFacingRight)) {
+			// Get a handle on the player pos and the mouse
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 playerPos = transform.position;
+
+			// If the mouse is on the oposite side then flip and skip
+			if ((mousePos.x < playerPos.x && _isFacingRight) || (mousePos.x > playerPos.x && !_isFacingRight)) {
 				_flipPlayer();
+			} else {
+				// Calculate the upward rotation
+				Vector3 upward = gunArm.transform.position - mousePos;
+
+				// If not facing right invert x for correct rotation
+				if (!_isFacingRight) {
+					upward.x *= -1f;
+				}
+
+				// Set the look rotation of the arm
+				gunArm.transform.rotation = Quaternion.LookRotation(Vector3.forward, upward);
 			}
-			
-			// Calculate the Quaternion and rotate the arm
-			Quaternion quat = Quaternion.identity;
-			quat.eulerAngles = new Vector3(0, 0, angle);
-			
-			// Rotate the arm pieces
-			gunArm.transform.rotation = quat;
 		}
 	}
 
