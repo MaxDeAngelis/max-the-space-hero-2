@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 	private string[] _groundLayers = new string[2] {"Ground", "Climbable"}; // List of layers to consider ground
 
+	/* VARIABLES FOR SECONDARY FIRE */
+	private bool _isFireDown = false;
+	private bool _isSecondaryCharged = false;
+	private float _startChargeTime;
+
 	/* VARIABLES FOR WAITING ANIMATION CHECK */
 	private int _framesBeforeWait = 60 * 10;	// Amount of frames to count before considered waiting
 	private int _frameWaitCounter = 0;			// Frame counter for wait animation
@@ -103,17 +108,29 @@ public class PlayerController : MonoBehaviour {
 		_checkIfGrounded();
 
 		/* ---- HANDLE FIRING GUN ---- */
+		// 1. When first pressed set flag in case of charging
+		// 2. On mouse up check if charged and if you have energy to use a secondary
+		// 3. While fire is down check if charged, play sound, and set flag
 		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
-			Vector3 target = Input.mousePosition;
-			target.z = transform.position.z - Camera.main.transform.position.z;
-			target = Camera.main.ScreenToWorldPoint(target);
-
-			//if (!_renderer.bounds.Contains(target)) {
+			_isFireDown = true;
+			_startChargeTime = Time.time;
+		} else if (Input.GetButtonUp("Fire1") && _isFireDown && !_isClimbing) {
+			_isFireDown = false;
+			// If seconday is charged and there is still enough energy then use it
+			if (_isSecondaryCharged && _energyManager.energy >= _weapon.secondaryEnergyCost) {
+				_isSecondaryCharged = false;
+				_weapon.fireSecondary(gunArm.transform.position, _weapon.transform.position);
+			} else {
 				_weapon.fire(gunArm.transform.position, _weapon.transform.position);
-			//}
+			}
+		} else if (!_isSecondaryCharged && _isFireDown && !_isClimbing) {
+			// If the time is reached and there is enough energy then play a sound
+			if ((Time.time - _startChargeTime) > _weapon.secondaryChargeTime && _energyManager.energy >= _weapon.secondaryEnergyCost) {
+				_isSecondaryCharged = true;
+				SpecialEffectsManager.Instance.playSound(_weapon.secondaryChargedSoundEffect);
+			}
 		}
-		
-		
+
 		/* ---- HANDLE ANCHORING ---- */
 		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
 			_isAnchored = false;
@@ -155,8 +172,6 @@ public class PlayerController : MonoBehaviour {
 				verticalVelocity = Input.GetAxis("Vertical");
 
 				if (verticalVelocity != 0f) {
-
-
 					if (!_isClimbing) {
 						_isClimbing = true;
 
@@ -462,5 +477,12 @@ public class PlayerController : MonoBehaviour {
 	 **/
 	public bool isFlying() {
 		return ((!_isAnchored && !_isTakingOff) || _isClimbing);
+	}
+
+	/**
+	 * @public called to see if player if grounded
+	 **/
+	public bool isGrounded() {
+		return _isAnchored;
 	}
 }

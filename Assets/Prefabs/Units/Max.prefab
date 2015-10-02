@@ -543,6 +543,14 @@ MonoBehaviour:
   range: 12
   durability: 1000
   durabilityLossPerAttack: 0
+  secondaryDamage: 200
+  secondaryChargeTime: 3
+  secondaryEnergyCost: 25
+  secondaryProjectile: {fileID: 180698, guid: b77b3defe84c84316a52c30c8885c532, type: 2}
+  secondarySoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79,
+    type: 3}
+  secondaryChargedSoundEffect: {fileID: 8300000, guid: 37c05e9cd53774fa98d40a36014f966f,
+    type: 3}
 --- !u!114 &11468488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1645,7 +1653,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MaxParticleSize: 1
   m_CameraVelocityScale: 0
@@ -1707,7 +1715,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300046, guid: 65b20b23c3c0f435a862ea40057a415a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21255004
@@ -1733,7 +1741,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300070, guid: 65b20b23c3c0f435a862ea40057a415a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

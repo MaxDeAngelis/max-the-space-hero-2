@@ -12,6 +12,7 @@ GameObject:
   - 50: {fileID: 5073108}
   - 61: {fileID: 6131134}
   - 114: {fileID: 11417648}
+  - 95: {fileID: 9595838}
   m_Layer: 0
   m_Name: max_shot
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.913084, y: -1.23445249, z: 0}
+  m_LocalPosition: {x: 9.27914619, y: -1.21152318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,13 +54,30 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186208}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 1.90734863e-06, y: -.0464538336}
+  m_Offset: {x: 1.90734863e-06, y: -.113778591}
   serializedVersion: 2
-  m_Size: {x: .125841409, y: .250847816}
+  m_Size: {x: .125841409, y: .246203899}
+--- !u!95 &9595838
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186208}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 172a10f5d9291457380a1e4fb628980b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11417648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,7 +93,7 @@ MonoBehaviour:
   type: 0
   range: 7
   damage: 25
-  speed: 10
+  speed: 8
   explosion: {fileID: 0}
 --- !u!212 &21231466
 SpriteRenderer:

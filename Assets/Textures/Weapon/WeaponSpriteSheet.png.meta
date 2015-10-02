@@ -1,11 +1,20 @@
 fileFormatVersion: 2
 guid: a598acca757b64fb491e08acc4995c98
-timeCreated: 1443751529
+timeCreated: 1443757236
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Max_Shot_1
     21300002: Enemy_Shot_1
+    21300004: Max_Shot_2
+    21300006: Max_Shot_3
+    21300008: Enemy_Shot_2
+    21300010: Enemy_Shot_3
+    21300012: Max_Secondary_Shot_1
+    21300014: Max_Secondary_Shot_2
+    21300016: Max_Secondary_Shot_3
+    21300018: Max_Secondary_Shot_4
+    21300020: Max_Secondary_Shot_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,9 +64,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 113
+        y: 109
         width: 10
-        height: 13
+        height: 17
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -65,9 +74,99 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 96
+        y: 63
         width: 10
-        height: 13
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Shot_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 109
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Shot_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 109
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemy_Shot_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 63
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemy_Shot_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 63
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Secondary_Shot_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 84
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Secondary_Shot_2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 84
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Secondary_Shot_3
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 84
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Secondary_Shot_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 84
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Max_Secondary_Shot_5
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 84
+        width: 14
+        height: 21
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

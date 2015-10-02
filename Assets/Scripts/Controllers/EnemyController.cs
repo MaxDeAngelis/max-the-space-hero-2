@@ -182,6 +182,7 @@ public class EnemyController : MonoBehaviour {
 			/* ---- AIM THE ARM TO FIRE ----*/		
 			// Get player and arm position
 			Vector3 playerPos = _playerLocation;
+			playerPos.y += 0.25f;
 			Vector3 armPos = gunArm.position;
 
 			// Calculate the upward rotation
