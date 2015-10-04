@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.8199997, y: -17.9099998, z: 0}
+  m_LocalPosition: {x: 22.8443413, y: -4.01430607, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465806}
@@ -163,8 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   maxSpeed: 2
-  sightRange: 8
-  patrolDistance: 5
+  sightRange: 6
+  patrolDistance: 10
   groundCheck: {fileID: 0}
   gunArm: {fileID: 0}
   patrolDirection: 0
@@ -180,15 +180,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
   damage: 10
-  range: 5
   attackSpeed: .5
+  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
+  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  range: 4
   durability: 1000
   durabilityLossPerAttack: 0
-  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
-  isPlayer: 0
-  isRanged: 1
-  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  secondaryDamage: 5
+  secondaryChargeTime: 0
+  secondaryEnergyCost: 0
+  secondaryProjectile: {fileID: 0}
+  secondarySoundEffect: {fileID: 0}
+  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!114 &11447114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +229,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300018, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

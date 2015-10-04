@@ -14,6 +14,8 @@ public class IEnemy : Editor {
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public override void OnInspectorGUI() {
+		GUI.changed = false;
+
 		// Get a reference to the extended class
 		EnemyController _enemy = target as EnemyController;
 		
@@ -44,6 +46,11 @@ public class IEnemy : Editor {
 		if (_isSupportingObjectsVisible) {
 			_enemy.gunArm = (Transform)EditorGUILayout.ObjectField("Gun Arm", _enemy.gunArm, typeof(Transform), true);
 			_enemy.groundCheck = (Transform)EditorGUILayout.ObjectField("Ground Check", _enemy.groundCheck, typeof(Transform), true);
+		}
+
+		// If changed then you need to set dirty
+		if (GUI.changed) {
+			EditorUtility.SetDirty(_enemy);
 		}
 	}
 }

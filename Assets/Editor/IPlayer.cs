@@ -19,6 +19,8 @@ public class IPlayer : Editor {
 	private bool _isEnergyOptionsVisible = true;
 	private bool _isSupportTransformsVisible = false;
 	public override void OnInspectorGUI() {
+		GUI.changed = false;
+
 		// Get a reference to the extended class
 		PlayerController _player = target as PlayerController;
 
@@ -57,6 +59,11 @@ public class IPlayer : Editor {
 			_player.topLandingCheck = (Transform)EditorGUILayout.ObjectField("Top Landing Check", _player.topLandingCheck, typeof(Transform), true);
 			_player.bottomLandingCheck = (Transform)EditorGUILayout.ObjectField("Bottom Landing Check", _player.bottomLandingCheck, typeof(Transform), true);
 			EditorGUI.indentLevel--;
+		}
+
+		// If changed then you need to set dirty
+		if (GUI.changed) {
+			EditorUtility.SetDirty(_player);
 		}
 	}
 }

@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 	private string[] _groundLayers = new string[2] {"Ground", "Climbable"}; // List of layers to consider ground
+	private GameObject _currentPlatform;
 
 	/* VARIABLES FOR SECONDARY FIRE */
 	private bool _isFireDown = false;
@@ -59,15 +60,10 @@ public class PlayerController : MonoBehaviour {
 	private ClimbController _climbable;
 	private WeaponController _weapon;
 	private Animator _animator;
-	private SpriteRenderer _renderer;
 
 	/* ---- MANAGERS ---- */
 	private PowerupManager _powerupManager;
 	private EnergyManager _energyManager;
-
-	/* ---- KEY TRACKER ---- */
-	//private enum KEYS {None, Jump, Shoot};
-	//private KEYS _keyDown;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -81,7 +77,6 @@ public class PlayerController : MonoBehaviour {
 		_collider = GetComponent<BoxCollider2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
 		_animator = GetComponent<Animator>();
-		_renderer = GetComponent<SpriteRenderer>();
 
 		/* INIT MANAGERS */
 		_powerupManager = PowerupManager.Instance;
@@ -323,7 +318,7 @@ public class PlayerController : MonoBehaviour {
 				// Calculate the upward rotation
 				Vector3 upward = gunArm.transform.position - mousePos;
 
-				// If not facing right invert x for correct rotation
+				// TODO: Make localScale If not facing right invert x for correct rotation
 				if (!_isFacingRight) {
 					upward.x *= -1f;
 				}
@@ -385,6 +380,11 @@ public class PlayerController : MonoBehaviour {
 	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
+		// Store off a reference to the current platform you are one
+		if (isGrounded() && otherCollider.tag == "Ground") {
+			_currentPlatform = otherCollider.gameObject;
+		}
+
 		// Store off the intersection point where the player first hit the collider
 		_boundryIntersectPosition = transform.position;
 

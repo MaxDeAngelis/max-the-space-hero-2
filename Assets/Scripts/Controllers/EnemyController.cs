@@ -35,12 +35,11 @@ public class EnemyController : MonoBehaviour {
 	private float _distanceFromOriginalPosition;		// The distance from the spawn location
 	private Vector2 _target;
 	private Vector3 _directionModifier;
-	private Vector3 _originalPosition;					// The units spawn position
+	private Vector3 _originalPosition = Vector3.zero;					// The units spawn position
 	private Vector3 _playerLocation;
 
 	/* SUPPORTING COMPONENTS */
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
-	private Animator _animator;							// The animator for the current unit
 	private WeaponController _weapon;					// Weapon controller of the current weapon
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +51,6 @@ public class EnemyController : MonoBehaviour {
 	void Start() {
 		/* INIT OBJECTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
-		_animator = GetComponent<Animator>();
 		_weapon = GetComponentInChildren<WeaponController>();
 
 		/* INIT VARIABLES */
@@ -183,7 +181,6 @@ public class EnemyController : MonoBehaviour {
 			// Get player and arm position
 			Vector3 playerPos = _playerLocation;
 			playerPos.y += 0.25f;
-			Vector3 armPos = gunArm.position;
 
 			// Calculate the upward rotation
 			Vector3 upward = gunArm.transform.position - playerPos;
@@ -236,6 +233,38 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @private draws gizmos when the unit is selected
+	 **/
+	void OnDrawGizmosSelected () {
+		// If the _original position is not set meeing the game is not running use transform pos
+		if (_originalPosition == Vector3.zero) {
+			_originalPosition = transform.position;
+		}
+
+		// Init patrol points
+		Gizmos.color = Color.green;
+		Vector3 patrolPointOne = _originalPosition;
+		Vector3 patrolPointTwo = _originalPosition;
+
+		// Calculate patrol end points
+		if (patrolDirection == PATROL.Horizontal) {
+			patrolPointOne.x += patrolDistance;
+			patrolPointTwo.x -= patrolDistance;
+		} else {
+			patrolPointOne.y += patrolDistance;
+			patrolPointTwo.y -= patrolDistance;
+		}
+
+		// DRAW PATROL POINTS AND LINE
+		Gizmos.DrawSphere(patrolPointOne, 0.25f);
+		Gizmos.DrawSphere(patrolPointTwo, 0.25f);
+		Gizmos.DrawLine(patrolPointOne, patrolPointTwo);
+
+		// DRAW SIGHT SPHERE
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(transform.position, sightRange);
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

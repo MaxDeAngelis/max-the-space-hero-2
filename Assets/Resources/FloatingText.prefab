@@ -132,7 +132,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1282040699
   m_SortingOrder: 0
 --- !u!224 &22410336
 RectTransform:
@@ -203,6 +203,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_FontData.m_RichText
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 1282040699
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

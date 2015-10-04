@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour {
 		}
 		Instance = this;
 
-		//DontDestroyOnLoad(gameObject);
-
 		setCursor(startingCursor);
+
+		_originalCursor = startingCursor;
 	}
 
 	/**
@@ -101,11 +101,6 @@ public class GameManager : MonoBehaviour {
 	public void setCursor(CURSOR_TYPE type) {
 		Texture2D _cursorTexture = null;
 		Vector2 _cursorOffset = Vector2.zero;
-
-		// Set default if it is null
-		if (_originalCursor == null) {
-			_originalCursor = type;
-		}
 
 		// Figure out what cursor to use
 		switch(type) {

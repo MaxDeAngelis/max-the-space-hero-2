@@ -14,6 +14,8 @@ public class IHealth : Editor {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public override void OnInspectorGUI() {
+		GUI.changed = false;
+
 		// Get a reference to the extended class
 		HealthController _health = target as HealthController;
 
@@ -31,6 +33,11 @@ public class IHealth : Editor {
 			_health.healthBar = (Slider)EditorGUILayout.ObjectField("Health Bar", _health.healthBar, typeof(Slider), true);
 		} else {
 			_health.isAlienAbleToEject = EditorGUILayout.Toggle("Is Alien Able To Eject", _health.isAlienAbleToEject);
+		}
+
+		// If changed then you need to set dirty
+		if (GUI.changed) {
+			EditorUtility.SetDirty(_health);
 		}
 	}
 }

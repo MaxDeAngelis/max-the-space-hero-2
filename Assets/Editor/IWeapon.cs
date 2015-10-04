@@ -16,6 +16,8 @@ public class IWeapon : Editor {
 	private bool _indestructible = true;						// Flag for when to show durability options
 
 	public override void OnInspectorGUI() {
+		GUI.changed = false;
+
 		// Get a reference to the extended class
 		WeaponController _weapon = target as WeaponController;
 
@@ -76,6 +78,11 @@ public class IWeapon : Editor {
 				_weapon.secondaryChargedSoundEffect = (AudioClip)EditorGUILayout.ObjectField("Charged Sound Effect", _weapon.secondaryChargedSoundEffect, typeof(AudioClip), true);
 				_weapon.secondarySoundEffect = (AudioClip)EditorGUILayout.ObjectField("Sound Effect", _weapon.secondarySoundEffect, typeof(AudioClip), true);
 			}
+		}
+		
+		// If changed then you need to set dirty
+		if (GUI.changed) {
+			EditorUtility.SetDirty(_weapon);
 		}
 	}
 }

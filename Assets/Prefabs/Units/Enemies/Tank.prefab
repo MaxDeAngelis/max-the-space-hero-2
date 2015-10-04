@@ -204,15 +204,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
   damage: 5
-  range: 5
   attackSpeed: .5
+  attackSoundEffect: {fileID: 8300000, guid: d0b259b5acb434e9a86a658793025e9e, type: 3}
+  projectile: {fileID: 186090, guid: 1cc0185ba72c24675927b45094e7bf55, type: 2}
+  range: 5
   durability: 1000
   durabilityLossPerAttack: 0
-  attackSoundEffect: {fileID: 8300000, guid: d0b259b5acb434e9a86a658793025e9e, type: 3}
-  isPlayer: 0
-  isRanged: 1
-  projectile: {fileID: 186090, guid: 1cc0185ba72c24675927b45094e7bf55, type: 2}
+  secondaryDamage: 5
+  secondaryChargeTime: 0
+  secondaryEnergyCost: 0
+  secondaryProjectile: {fileID: 0}
+  secondarySoundEffect: {fileID: 0}
+  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!114 &11459320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,7 +291,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300036, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -295,7 +301,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 888609849
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165650}

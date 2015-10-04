@@ -277,7 +277,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.2600002, y: -1.01999998, z: -1}
+  m_LocalPosition: {x: -6.61999989, y: 8.32999992, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 486944}
@@ -536,15 +536,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   isPlayer: 1
-  damage: 10
-  attackSpeed: 4
+  damage: 15
+  attackSpeed: 5
   attackSoundEffect: {fileID: 8300000, guid: d6a5b0fff2e34471b98b40af13fa1455, type: 3}
   projectile: {fileID: 186208, guid: e7c8135c842d74a5e93d9fc3df5830cb, type: 2}
-  range: 12
+  range: 6
   durability: 1000
   durabilityLossPerAttack: 0
-  secondaryDamage: 200
-  secondaryChargeTime: 3
+  secondaryDamage: 50
+  secondaryChargeTime: 1
   secondaryEnergyCost: 25
   secondaryProjectile: {fileID: 180698, guid: b77b3defe84c84316a52c30c8885c532, type: 2}
   secondarySoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79,
@@ -1652,7 +1652,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 349935317
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MaxParticleSize: 1
@@ -1688,7 +1688,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 350393067
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: .200000018, g: .800000072, b: 0, a: 1}
@@ -1714,7 +1714,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 783484671
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300046, guid: 65b20b23c3c0f435a862ea40057a415a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1740,7 +1740,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 350393067
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300070, guid: 65b20b23c3c0f435a862ea40057a415a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
