@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ba4047d855dde4e37b0ec35dc9eb1ddd
-timeCreated: 1443668311
+timeCreated: 1444012924
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,6 +20,11 @@ TextureImporter:
     21300026: Crosshair
     21300028: HUD_Text
     21300030: Flying
+    21300032: Level_Complete
+    21300034: Levels
+    21300036: Background_50
+    21300038: Background_75
+    21300040: Background_100
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -179,7 +184,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 384
+        y: 344
         width: 103
         height: 11
       alignment: 0
@@ -189,7 +194,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 369
+        y: 329
         width: 76
         height: 11
       alignment: 0
@@ -209,7 +214,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 354
+        y: 314
         width: 42
         height: 11
       alignment: 0
@@ -219,9 +224,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 339
+        y: 299
         width: 76
         height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Level_Complete
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 374
+        width: 303
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Levels
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 359
+        width: 67
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Background_50
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 360
+        width: 64
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Background_75
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 384
+        width: 64
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Background_100
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 408
+        width: 64
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

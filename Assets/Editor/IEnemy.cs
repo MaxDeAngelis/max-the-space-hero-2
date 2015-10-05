@@ -21,6 +21,7 @@ public class IEnemy : Editor {
 		
 		// Display default settings
 		_enemy.type = (ENEMY_TYPE)EditorGUILayout.EnumPopup("Type", _enemy.type);
+		_enemy.rank = (ENEMY_RANK)EditorGUILayout.EnumPopup("Rank", _enemy.rank);
 
 		_isMovementOptionsVisible = EditorGUILayout.Foldout(_isMovementOptionsVisible, "Movement Options");
 		if (_isMovementOptionsVisible) {

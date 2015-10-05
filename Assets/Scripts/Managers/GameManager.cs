@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public enum CURSOR_TYPE { Default, Crosshairs, Pointer};
-
+public enum LEVELS { Level_1};
 public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	public Texture2D defaultCursor;									// Default cursor
 	public GameObject pauseMenu;									// Pause Menu canvas game object
 	public GameObject gameOverMenu;									// Game Over canvas game object
+	public GameObject levelCompleteMenu;
 
 	public static GameManager Instance;
 	
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
 	private bool _pause = false;					// Flag for when the game is paused
+	private List<EnemyController> _enemies = new List<EnemyController>();
+	private List<EnemyController> _enemiesKilled = new List<EnemyController>();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -65,6 +69,9 @@ public class GameManager : MonoBehaviour {
 		_updateGameTime();
 	}
 
+	/**
+	 * @private updated the game timer
+	 **/
 	private void _updateGameTime() {
 		if (gameTime != null) {
 			string minutes = Mathf.Floor(Time.time / 60).ToString("00");
@@ -164,43 +171,27 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/**
-	 * @public handles saving the game
+	 * @public processes an enemy kill so that you know if the end of the level has been reached
 	 **/
-	public void save() {
-		// Get a handle on the formatter and the file itself
-		BinaryFormatter _formatter = new BinaryFormatter();
-		FileStream _file = File.Create(Application.persistentDataPath + "/playerData.dat");
+	public void processKill(List<float[]> damageList, EnemyController enemy) {
+		_enemiesKilled.Add(enemy);
 
-		// Get a new instance of the game data object
-		GameData _data = new GameData();
-		_data.health = PlayerManager.Instance.getHealthController().health;
+		if (enemy.rank == ENEMY_RANK.Boss) {
+			float killRatio = ((float)_enemiesKilled.Count / (float)_enemies.Count);
 
-		// Serialize and store then close the file
-		_formatter.Serialize(_file, _data);
-		_file.Close();
+			_pause = true;
+			setCursor(CURSOR_TYPE.Default);
+			Time.timeScale = 0;
+			levelCompleteMenu.SetActive(true);
+
+			DataManager.Instance.updateLevelData(Application.loadedLevelName, killRatio * 100);
+		}
 	}
 
 	/**
-	 * @public handles loading the game
+	 * @private called when enemies start to regester them as being part of the level
 	 **/
-	public void load() {
-		// If the file exists
-		if (File.Exists(Application.persistentDataPath + "/playerData.dat")) {
-			// Get a handle on the file
-			BinaryFormatter _formatter = new BinaryFormatter();
-			FileStream _file = File.Open(Application.persistentDataPath + "/playerData.dat", FileMode.Open);
-
-			// Read the data then set back in game land
-			GameData _data = (GameData)_formatter.Deserialize(_file);
-			PlayerManager.Instance.getHealthController().health = _data.health;
-
-			// Close the file
-			_file.Close();
-		}
+	public void registerEnemy(EnemyController enemy) {
+		_enemies.Add(enemy);
 	}
-}
-
-[Serializable]
-class GameData {
-	public float health;
 }

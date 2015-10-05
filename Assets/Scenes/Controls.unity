@@ -987,7 +987,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main
+          m_StringArgument: Levels
           m_BoolArgument: 0
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2487,6 +2487,7 @@ MonoBehaviour:
   defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
   pauseMenu: {fileID: 0}
   gameOverMenu: {fileID: 0}
+  levelCompleteMenu: {fileID: 0}
 --- !u!4 &1427653021
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using System.Collections;
 /// 								     		PUBLIC ENUM											             ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public enum ENEMY_TYPE {Ground, Flying, Bomber};
+public enum ENEMY_RANK {Normal, Elite, Boss};
 public enum PATROL {Horizontal, Vertical};
 
 public class EnemyController : MonoBehaviour {
@@ -13,6 +14,7 @@ public class EnemyController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/* GENERAL VARIABLES */
 	public ENEMY_TYPE type = ENEMY_TYPE.Ground;			// The type of enemy this is
+	public ENEMY_RANK rank = ENEMY_RANK.Normal;			// The rank of the player
 	public float maxSpeed = 5f;							// The maximum speed at which to move
 	public float sightRange = 5f;						// The range that the unit can see before engaging the player
 	public float patrolDistance = 2f;					// The distance to patrol
@@ -59,6 +61,9 @@ public class EnemyController : MonoBehaviour {
 
 		/* INIT DISTANCE VARIABLES */
 		_calculateTargetAndOriginDistance();
+
+		/* REGESTER THIS ENEMY*/
+		GameManager.Instance.registerEnemy(this);
 	}
 	
 	/**

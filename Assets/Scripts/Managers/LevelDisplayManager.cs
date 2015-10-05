@@ -1,0 +1,59 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
+public class LevelDisplayManager : MonoBehaviour {	
+	public static LevelDisplayManager Instance;
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public GameObject levelTile;
+	public Transform levelList;
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PRIVATE FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * @private Called on awake of the game object to init variables
+	 **/
+	void Awake() {
+		// Register the singleton
+		if (Instance) {
+			DestroyImmediate(gameObject);
+		} else {
+			Instance = this;
+		}
+	}
+
+	/**
+	 * @private Called on start of the game object to init variables
+	 **/
+	void Start() {
+		List<LevelData> levels = DataManager.Instance.getCurrentGameData().getLevels();
+		int count = 1;
+
+		// Loops over all levels stored off and creates a button for them
+		foreach(LevelData currentLevel in levels) {
+			GameObject newLevelTitle = Instantiate(levelTile);
+			LevelTileController newLevelTitleController = newLevelTitle.GetComponent<LevelTileController>();
+			
+			newLevelTitleController.setContent(count++, currentLevel);
+			newLevelTitle.transform.SetParent(levelList, false);
+		}
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}

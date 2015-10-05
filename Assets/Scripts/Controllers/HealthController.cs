@@ -25,6 +25,7 @@ public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private SpriteRenderer[] _renderers;	// The sprite renderer of the object
 	private List<float[]> _damageList = new List<float[]>();
+	private EnemyController _enemy;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -34,6 +35,7 @@ public class HealthController : MonoBehaviour {
 	 **/
 	void Awake () {
 		_renderers = GetComponentsInChildren<SpriteRenderer>();
+		_enemy = GetComponent<EnemyController>();
 		maximumHealth = health;
 		updateHealth();
 	}
@@ -45,6 +47,8 @@ public class HealthController : MonoBehaviour {
 		// If the player dies then game over
 		if (isPlayer) {
 			GameManager.Instance.gameOver();
+		} else {
+			GameManager.Instance.processKill(_damageList, _enemy);
 		}
 
 		// Play and explosion on death
