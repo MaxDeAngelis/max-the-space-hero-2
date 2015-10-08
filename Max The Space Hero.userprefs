@@ -1,14 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/DataManager.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/LevelTileController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="40" Column="28" />
-      <File FileName="Assets/Scripts/Classes/GameData.cs" Line="35" Column="1" />
-      <File FileName="Assets/Scripts/Classes/LevelData.cs" Line="42" Column="17" />
-      <File FileName="Assets/Scripts/Managers/DataManager.cs" Line="39" Column="11" />
-      <File FileName="Assets/Scripts/Managers/LevelDisplayManager.cs" Line="32" Column="11" />
-      <File FileName="Assets/Scripts/Controllers/LevelTileController.cs" Line="14" Column="37" />
-      <File FileName="Assets/Scripts/Managers/FloatingTextManager.cs" Line="38" Column="3" />
+      <File FileName="Assets/Scripts/Controllers/LevelTileController.cs" Line="31" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
