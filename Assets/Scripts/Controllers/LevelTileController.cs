@@ -11,6 +11,9 @@ public class LevelTileController : MonoBehaviour {
 	public Text number;
 	public Text title;
 	public Text completion;
+	public Text time;
+	public Text accuracy;
+	public Text score;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -31,6 +34,9 @@ public class LevelTileController : MonoBehaviour {
 		number.text = levelNumber.ToString();
 		title.text = level.getTitle();
 		completion.text = level.getCompletion();
+		time.text = level.getTime ();
+		accuracy.text = level.getAccuracy();
+		score.text = level.getScore();
 
 		button.onClick.AddListener(delegate{
 			GameManager.Instance.loadLevel(level.getName());

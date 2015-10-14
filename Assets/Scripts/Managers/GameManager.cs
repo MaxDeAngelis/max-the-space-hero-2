@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;		// The default cursor to display
 	public Text gameTime;											// Text object to display the game time
+	public Text score;												// Text object of the game score
 	public Texture2D crosshairCursor;								// Crosshair cursor
 	public Texture2D pointerCursor;									// Pointer cursor
 	public Texture2D defaultCursor;									// Default cursor
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
 	private bool _pause = false;					// Flag for when the game is paused
+	private int _playerShots = 0;
+	private int _playerHits = 0;
+	private int _score = 0;
 	private List<EnemyController> _enemies = new List<EnemyController>();
 	private List<EnemyController> _enemiesKilled = new List<EnemyController>();
 
@@ -79,6 +83,28 @@ public class GameManager : MonoBehaviour {
 
 			gameTime.text = minutes + ":" + seconds;
 		}
+	}
+
+
+	private void _updateScore(int scoreToAdd, List<float[]> damageList) {
+		float totalModifier = 0f;
+
+		// Loop over the damage list to see what the modifiers were
+		foreach(float[] hit in damageList) {
+			totalModifier += hit[0];
+		}
+
+		// Average out the modifiers
+		totalModifier =  totalModifier / damageList.Count;
+
+		// Multiple the score to add by the multiplier
+		scoreToAdd = Mathf.RoundToInt((float)scoreToAdd * totalModifier);
+		_score += scoreToAdd;
+		score.text = _score.ToString();
+
+		// Get the players location and then display a bonus text
+		Transform player = PlayerManager.Instance.getTransform();
+		FloatingTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
@@ -169,23 +195,33 @@ public class GameManager : MonoBehaviour {
 	public bool isPaused() {
 		return _pause;
 	}
-
+	
 	/**
 	 * @public processes an enemy kill so that you know if the end of the level has been reached
 	 **/
 	public void processKill(List<float[]> damageList, EnemyController enemy) {
+		// Keep track of all the enemies killed
 		_enemiesKilled.Add(enemy);
+		_playerHits += damageList.Count;
 
+		_updateScore(enemy.killScore, damageList);
+
+		// If the level boss was killed then game over
 		if (enemy.rank == ENEMY_RANK.Boss) {
-			float killRatio = ((float)_enemiesKilled.Count / (float)_enemies.Count);
+			float killRatio = ((float)_enemiesKilled.Count / (float)_enemies.Count) * 100;
+			float accuracy = ((float)_playerHits / (float)_playerShots) * 100;
 
 			_pause = true;
 			setCursor(CURSOR_TYPE.Default);
 			Time.timeScale = 0;
 			levelCompleteMenu.SetActive(true);
 
-			DataManager.Instance.updateLevelData(Application.loadedLevelName, killRatio * 100);
+			DataManager.Instance.updateLevelData(Application.loadedLevelName, killRatio, Time.time, accuracy, _score);
 		}
+	}
+
+	public void processShot() {
+		_playerShots++;
 	}
 
 	/**

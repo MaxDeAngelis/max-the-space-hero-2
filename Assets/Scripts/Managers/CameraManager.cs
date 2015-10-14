@@ -18,6 +18,7 @@ public class CameraManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private Vector3 _target;					// The loaction to target for the camera
 	private Vector3 _velocity = Vector3.zero;	// Reference value for zero velocity
+	private Camera _camera;
 	private float _cameraWidth;					// Camera width in game
 	private float _cameraHeight;				// Camera height in game
 	private bool _targetMouse = false;
@@ -29,9 +30,11 @@ public class CameraManager : MonoBehaviour {
 	 * @private Called on start of the game object to init variables
 	 **/
 	void Start() {
+		_camera = GetComponent<Camera>();
+
 		// Set width and height of the camera
-		_cameraHeight = 2f * Camera.main.orthographicSize;
-		_cameraWidth = _cameraHeight * Camera.main.aspect;
+		_cameraHeight = 2f * _camera.orthographicSize;
+		_cameraWidth = _cameraHeight * _camera.aspect;
 	}
 	
 	/**

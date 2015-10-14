@@ -1375,6 +1375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCursor: 0
   gameTime: {fileID: 0}
+  score: {fileID: 0}
   crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
   pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
   defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}

@@ -6,18 +6,30 @@ public class FloatingTextController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public Text displayText;				// Actual text object
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private Text _displayText;				// Display text object itself
+	private Color _textColor;				// Color to use for the text
+	private Material _material;				// The material used for the color
 	private float _alpha = 1;				// The opacity of the text object
 	private float _scrollRate = 1f;			// The rate at which the text scrolls up
 	private float _duration = 1.5f;			// The duration of the text
-	private Color _color;					// The color of the text being displayed
+	//private Color _color;					// The color of the text being displayed
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	void Awake() {
+		// Get a handle on the text object for setting the value
+		_displayText = GetComponentInChildren<Text>();
+
+		// To ensure uniqueness instantiate a new material and set it to be used by the text
+		_material = Instantiate(_displayText.material);
+		_material.color = _textColor;  
+		_displayText.material = _material;   
+	}
+
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
@@ -30,10 +42,9 @@ public class FloatingTextController : MonoBehaviour {
 			// Calculate what the new alpha will be
 			_alpha -= Time.deltaTime / _duration; 
 
-			// Retrieve an editable color variable and reset its alpha before setting it back
-			_color = displayText.material.color;
-			_color.a = _alpha;
-			displayText.material.color = _color;        
+			// Update the alpha of the color then set the text
+			_textColor.a = _alpha;
+			_material.color = _textColor;    
 		} else {
 			Destroy(gameObject); // text vanished - destroy itself
 		}
@@ -46,12 +57,12 @@ public class FloatingTextController : MonoBehaviour {
 	 * @public called to set the internal color of the floating text
 	 **/
 	public void setColor(Color textColor) {
-		displayText.material.color = textColor;
+		_textColor = textColor;
 	}
 	/**
 	 * @public called to set the text of the floating text being displayed
 	 **/
 	public void setText(string text) {
-		displayText.text = text;
+		_displayText.text = text;
 	}
 }

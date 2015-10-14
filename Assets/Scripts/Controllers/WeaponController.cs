@@ -70,7 +70,12 @@ public class WeaponController : MonoBehaviour {
 			if (_animator) {
 				_animator.SetTrigger("shoot");
 			}
-			
+
+			// If this is the players weapon then process the shot
+			if (isPlayer) {
+				GameManager.Instance.processShot();
+			}
+
 			_attackSpeedFrameCounter = (int)(60 / attackSpeed);
 			_isFiring = true;
 			

@@ -36,9 +36,9 @@ public class DataManager : MonoBehaviour {
 
 			GAME_DATA_LOCATION = Application.persistentDataPath + "/gameData.dat";
 
-			load();
-
 			//_updateGameData(new GameData());
+
+			load();
 		}
 	}
 	 
@@ -105,11 +105,14 @@ public class DataManager : MonoBehaviour {
 	/**
 	 * @public called to update the current level data
 	 **/
-	public void updateLevelData(string levelName, float ratio) {
+	public void updateLevelData(string levelName, float ratio, float time, float accuracy, int score) {
 		// Loop until you find the current level and update the completion
 		foreach(LevelData currentLevel in _currentGameData.getLevels()) {
 			if (currentLevel.getName() == levelName) {
 				currentLevel.setCompletion(ratio);
+				currentLevel.setTime(time);
+				currentLevel.setAccuracy(accuracy);
+				currentLevel.setScore(score);
 				break;
 			}
 		}

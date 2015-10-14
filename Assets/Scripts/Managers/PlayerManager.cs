@@ -64,6 +64,13 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	/**
+	 * @public returns the players transform
+	 **/
+	public Transform getTransform() {
+		return _player.transform;
+	}
+
+	/**
 	 * @public returns the player controller of the player
 	 **/
 	public PlayerController getController() {

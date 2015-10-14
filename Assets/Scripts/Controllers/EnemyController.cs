@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour {
 	public float maxSpeed = 5f;							// The maximum speed at which to move
 	public float sightRange = 5f;						// The range that the unit can see before engaging the player
 	public float patrolDistance = 2f;					// The distance to patrol
+	public int killScore = 5;
 
 	/* SUPPORTING OBJECTS */
 	public Transform groundCheck;						// Ground check is used to see if the enemy is over ground

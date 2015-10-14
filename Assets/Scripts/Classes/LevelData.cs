@@ -14,10 +14,10 @@ public class LevelData {
 	private float _time;
 	private float _accuracy;
 	private float _completion;
-	private float _score;
+	private int _score;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     			CONSTRUCTOR												     ///
+	/// 								     			CONSTRUCTORS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public LevelData(string name, string title) {
@@ -26,10 +26,10 @@ public class LevelData {
 		_time = 0f;
 		_accuracy = 0f;
 		_completion = 0f;
-		_score = 0f;
+		_score = 0;
 	}
 
-	public LevelData(string name, string title, float time, float accuracy, float completion, float score) {
+	public LevelData(string name, string title, float time, float accuracy, float completion, int score) {
 		_name = name;
 		_title = title;
 		_time = time;
@@ -38,6 +38,9 @@ public class LevelData {
 		_score = score;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     			GETTERS													     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public string getTitle() {
 		return _title;
 	}
@@ -50,7 +53,37 @@ public class LevelData {
 		return _completion.ToString() + "%";
 	}
 
+	public string getTime() {
+		string minutes = Mathf.Floor(_time / 60).ToString("00");
+		string seconds = (_time % 60).ToString("00");
+		
+		return minutes + ":" + seconds;
+	}
+
+	public string getAccuracy() {
+		return _accuracy.ToString() + "%";
+	}
+
+	public string getScore() {
+		return _score.ToString();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     				SETTERS												     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void setCompletion(float completion) {
-		_completion = completion;
+		_completion = Mathf.Round(completion);
+	}
+
+	public void setTime(float time) {
+		_time = time;
+	}
+
+	public void setAccuracy(float accuracy) {
+		_accuracy = Mathf.Round(accuracy);
+	}
+
+	public void setScore(int score) {
+		_score = score;
 	}
 }

@@ -476,7 +476,7 @@ public class PlayerController : MonoBehaviour {
 	 * @public called to see if flying
 	 **/
 	public bool isFlying() {
-		return ((!_isAnchored && !_isTakingOff) || _isClimbing);
+		return ((!_isAnchored && !_isTakingOff) || _isClimbing || _isTakingOff);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ba4047d855dde4e37b0ec35dc9eb1ddd
-timeCreated: 1444095213
+timeCreated: 1444792314
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -25,7 +25,7 @@ TextureImporter:
     21300036: Background_50
     21300038: Background_75
     21300040: Background_100
-    21300042: Star_Empty
+    21300042: Mini_Map_Border
     21300044: Star_Half
     21300046: Star_Full
   serializedVersion: 2
@@ -283,21 +283,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Star_Empty
+    - name: Mini_Map_Border
       rect:
         serializedVersion: 2
-        x: 490
-        y: 336
-        width: 20
-        height: 20
+        x: 465
+        y: 327
+        width: 45
+        height: 29
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Star_Half
       rect:
         serializedVersion: 2
-        x: 466
-        y: 336
+        x: 467
+        y: 227
         width: 20
         height: 20
       alignment: 0
@@ -306,8 +306,8 @@ TextureImporter:
     - name: Star_Full
       rect:
         serializedVersion: 2
-        x: 442
-        y: 336
+        x: 435
+        y: 227
         width: 20
         height: 20
       alignment: 0
