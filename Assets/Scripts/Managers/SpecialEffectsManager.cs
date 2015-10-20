@@ -9,7 +9,15 @@ public class SpecialEffectsManager : MonoBehaviour {
 
 	public GameObject explosion;			// Explosion reference game object
 	public GameObject explosionSmall;		// Small explosion reference game objec
+	public GameObject weaponCharging;
+	public GameObject weaponCharged;
+	public GameObject weaponFired;
 	public GameObject alienEject;			// Alien eject reference
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC VARIABLES											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private GameObject _currentChargingAnimation;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -33,12 +41,16 @@ public class SpecialEffectsManager : MonoBehaviour {
 	 * @param GameObject objectToCreate - the object to instantiate
 	 * @param float duration - the amount of time to keep the object alive
 	 **/
-	private void _instantiate(Vector3 location, AudioClip sound, GameObject objectToCreate, float duration) {
+	private GameObject _instantiate(Vector3 location, AudioClip sound, GameObject objectToCreate, float duration) {
 		playSound(sound);
 		
 		GameObject newExplosion = Instantiate(objectToCreate, location, Quaternion.identity) as GameObject;
-		
-		Destroy(newExplosion, duration);
+
+		if (duration > 0f) {
+			Destroy(newExplosion, duration);
+		}
+
+		return newExplosion;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
@@ -83,5 +95,20 @@ public class SpecialEffectsManager : MonoBehaviour {
 	 **/
 	public void playAlienEject(Vector3 location, AudioClip sound) {
 		_instantiate(location, sound, alienEject, 1f);
+	}
+
+	public void playWeaponCharged(Vector3 location, AudioClip sound) {
+		stopWeaponCharging();
+		GameObject charged = _instantiate(location, sound, weaponCharged, weaponCharged.GetComponent<ParticleSystem>().duration);
+		charged.transform.parent = PlayerManager.Instance.getWeapon().transform;
+	}
+
+	public void playWeaponCharging(Vector3 location, AudioClip sound) {
+		_currentChargingAnimation = _instantiate(location, sound, weaponCharging, 0f);
+		_currentChargingAnimation.transform.parent = PlayerManager.Instance.getWeapon().transform;
+	}
+
+	public void stopWeaponCharging() {
+		Destroy(_currentChargingAnimation);
 	}
 }

@@ -39,6 +39,7 @@ public class WeaponController : MonoBehaviour {
 	private bool _isFiring = false;					// Flag for when the weapon is being fired
 	private int _attackSpeedFrameCounter = 0;		// How many frames should be inbetween each attack
 	private Animator _animator;
+	private ParticleSystem _particleSystem;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -48,6 +49,7 @@ public class WeaponController : MonoBehaviour {
 	 **/
 	void Start() {
 		_animator = GetComponentInParent<Animator>();
+		_particleSystem = GetComponentInChildren<ParticleSystem>();
 	}
 	/**
 	 * @private Called 60times per second fixed, handles all processing
@@ -100,6 +102,11 @@ public class WeaponController : MonoBehaviour {
 				
 				// Set the rotation of the projectile
 				newProjectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, origin - target);
+
+				if (isPlayer && _particleSystem) {
+					_particleSystem.transform.LookAt(target);
+					_particleSystem.Play();
+				}
 			} else if (projectileController.type == PROJECTILE_TYPE.Bomb) {
 				projectileController.range = 100f;
 				projectileVelocity = new Vector2(0f, -1f);

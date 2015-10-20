@@ -85,6 +85,13 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	/**
+	 * @public return the players weapon controller
+	 **/
+	public WeaponController getWeapon() {
+		return _player.GetComponentInChildren<WeaponController>();
+	}
+
+	/**
 	 * @public plays the particle system attached to the player for the given durration with the given color
 	 * 
 	 * @param float duration - the duration to play the effect for

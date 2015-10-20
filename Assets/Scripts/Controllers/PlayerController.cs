@@ -109,8 +109,11 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
 			_isFireDown = true;
 			_startChargeTime = Time.time;
+			SpecialEffectsManager.Instance.playWeaponCharging(_weapon.transform.position, null);
 		} else if (Input.GetButtonUp("Fire1") && _isFireDown && !_isClimbing) {
 			_isFireDown = false;
+			SpecialEffectsManager.Instance.stopWeaponCharging();
+
 			// If seconday is charged and there is still enough energy then use it
 			if (_isSecondaryCharged && _energyManager.energy >= _weapon.secondaryEnergyCost) {
 				_isSecondaryCharged = false;
@@ -122,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 			// If the time is reached and there is enough energy then play a sound
 			if ((Time.time - _startChargeTime) > _weapon.secondaryChargeTime && _energyManager.energy >= _weapon.secondaryEnergyCost) {
 				_isSecondaryCharged = true;
-				SpecialEffectsManager.Instance.playSound(_weapon.secondaryChargedSoundEffect);
+				SpecialEffectsManager.Instance.playWeaponCharged(_weapon.transform.position, _weapon.secondaryChargedSoundEffect);
 			}
 		}
 
