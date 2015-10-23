@@ -45,6 +45,7 @@ public class EnemyController : MonoBehaviour {
 	/* SUPPORTING COMPONENTS */
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
 	private WeaponController _weapon;					// Weapon controller of the current weapon
+	private BoxCollider2D _collider;					// Box collider for platform detection
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -56,6 +57,7 @@ public class EnemyController : MonoBehaviour {
 		/* INIT OBJECTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_weapon = GetComponentInChildren<WeaponController>();
+		_collider = GetComponent<BoxCollider2D>();
 
 		/* INIT VARIABLES */
 		_directionModifier = transform.localScale;
@@ -227,9 +229,14 @@ public class EnemyController : MonoBehaviour {
 	 * @private returns true if the enemy should engage the player
 	 **/
 	bool _shouldEngage() {
-		bool returnValue = true;
+		bool returnValue = false;
 
-		if (!PlayerManager.Instance.isFlying() && PlayerManager.Instance.getCurrentPlatform() == _currentPlatform) {
+		// Check positive conditions for if the enemy should engage
+		if (type != ENEMY_TYPE.Ground ) {
+			returnValue = true;
+		} else if (PlayerManager.Instance.isFlying()) {
+			returnValue = true;
+		} else if (_collider.IsTouching(PlayerManager.Instance.getCurrentPlatform())) {
 			returnValue = true;
 		}
 
@@ -250,16 +257,6 @@ public class EnemyController : MonoBehaviour {
 		// If patrolling horizontally then actually flip the transform
 		if (patrolDirection == PATROL.Horizontal) {
 			transform.localScale = _directionModifier;
-		}
-	}
-
-	/**
-	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
-	 **/
-	void OnTriggerEnter(Collider2D otherCollider) {
-		// Store off a reference to the current platform you are one
-		if (type == ENEMY_TYPE.Ground && otherCollider.tag == "Ground") {
-			_currentPlatform = otherCollider.gameObject;
 		}
 	}
 

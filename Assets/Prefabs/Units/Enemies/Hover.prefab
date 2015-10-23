@@ -127,6 +127,7 @@ GameObject:
   - 114: {fileID: 11479508}
   - 114: {fileID: 11477414}
   - 95: {fileID: 9561052}
+  - 61: {fileID: 6165178}
   m_Layer: 0
   m_Name: Hover
   m_TagString: Untagged
@@ -189,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.39999998, y: .828291893, z: 0}
+  m_LocalPosition: {x: .614557087, y: 20.0902557, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 462018}
@@ -292,6 +293,19 @@ BoxCollider2D:
   m_Offset: {x: -.0187225342, y: -.566930771}
   serializedVersion: 2
   m_Size: {x: .4233374, y: .561148405}
+--- !u!61 &6165178
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183438}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -.0176099539, y: -.669178009}
+  serializedVersion: 2
+  m_Size: {x: .248084158, y: .586073577}
 --- !u!61 &6194126
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -396,9 +410,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  rank: 0
   maxSpeed: 2
   sightRange: 4
   patrolDistance: 5
+  killScore: 5
   groundCheck: {fileID: 410798}
   gunArm: {fileID: 462018}
   patrolDirection: 0
