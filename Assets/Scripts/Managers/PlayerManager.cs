@@ -100,4 +100,18 @@ public class PlayerManager : MonoBehaviour {
 	public void playParticleEffect(float duration, Color color) {
 		StartCoroutine(_playParticleEffect(duration, color));
 	}
+
+	/**
+	 * @public returns true if the player is flying or not
+	 **/
+	public bool isFlying() {
+		return getController().isFlying();
+	}
+
+	/**
+	 * @public returns the platform that the player is standing on
+	 **/
+	public GameObject getCurrentPlatform() {
+		return getController().getCurrentPlatform();
+	}
 }

@@ -488,4 +488,11 @@ public class PlayerController : MonoBehaviour {
 	public bool isGrounded() {
 		return _isAnchored;
 	}
+
+	/**
+	 * @public returns the platform that the player is standing on
+	 **/
+	public GameObject getCurrentPlatform() {
+		return _currentPlatform;
+	}
 }

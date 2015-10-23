@@ -47,7 +47,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Classes\GameData.cs" />
      <Compile Include="Assets\Scripts\Classes\LevelData.cs" />
-     <Compile Include="Assets\Scripts\Controllers\AttractorController.cs" />
      <Compile Include="Assets\Scripts\Controllers\ClimbController.cs" />
      <Compile Include="Assets\Scripts\Controllers\CursorController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
@@ -69,6 +68,8 @@
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
+     <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
+     <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

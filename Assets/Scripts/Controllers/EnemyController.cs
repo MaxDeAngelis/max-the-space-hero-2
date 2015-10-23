@@ -36,6 +36,7 @@ public class EnemyController : MonoBehaviour {
 	private bool _returnToPatrol = false;
 	private float _distanceFromTarget;					// Distance to the player calculated in update
 	private float _distanceFromOriginalPosition;		// The distance from the spawn location
+	private GameObject _currentPlatform;
 	private Vector2 _target;
 	private Vector3 _directionModifier;
 	private Vector3 _originalPosition = Vector3.zero;					// The units spawn position
@@ -85,7 +86,7 @@ public class EnemyController : MonoBehaviour {
 	 **/
 	void FixedUpdate() {
 		// If within attack range then try and move towards player
-		if (_distanceFromTarget <= sightRange) { 
+		if (_distanceFromTarget <= sightRange && _shouldEngage()) { 
 			_returnToPatrol = true;
 
 			_calculateDirection(_target);
@@ -223,6 +224,19 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	/**
+	 * @private returns true if the enemy should engage the player
+	 **/
+	bool _shouldEngage() {
+		bool returnValue = true;
+
+		if (!PlayerManager.Instance.isFlying() && PlayerManager.Instance.getCurrentPlatform() == _currentPlatform) {
+			returnValue = true;
+		}
+
+		return returnValue;
+	}
+
+	/**
 	 * @private Flips the transform by reversing its scale
 	 **/
 	void _flipDirection() {
@@ -236,6 +250,16 @@ public class EnemyController : MonoBehaviour {
 		// If patrolling horizontally then actually flip the transform
 		if (patrolDirection == PATROL.Horizontal) {
 			transform.localScale = _directionModifier;
+		}
+	}
+
+	/**
+	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
+	 **/
+	void OnTriggerEnter(Collider2D otherCollider) {
+		// Store off a reference to the current platform you are one
+		if (type == ENEMY_TYPE.Ground && otherCollider.tag == "Ground") {
+			_currentPlatform = otherCollider.gameObject;
 		}
 	}
 

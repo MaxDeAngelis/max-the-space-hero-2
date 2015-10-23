@@ -1,19 +1,12 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/AttractorController.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/SpecialEffectsManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Controllers/AttractorController.cs" Line="31" Column="3" />
-      <File FileName="Assets/Scripts/Controllers/EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/SpecialEffectsManager.cs" Line="103" Column="75" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="97" Column="10" />
-      <File FileName="Assets/Scripts/Controllers/WeaponController.cs" Line="97" Column="36" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="77" Column="47" />
+      <File FileName="Assets/Scripts/Managers/SpecialEffectsManager.cs" Line="108" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/MaxwellDeAngelis/Documents/Max The Space Hero/Assets/Scripts/Controllers/AttractorController.cs" line="33" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

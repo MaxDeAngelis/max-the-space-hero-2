@@ -97,17 +97,32 @@ public class SpecialEffectsManager : MonoBehaviour {
 		_instantiate(location, sound, alienEject, 1f);
 	}
 
+	/**
+	 * @public Called to play weapon charged effect
+	 * 
+	 * @param Vector3 location - the location to create the new object
+	 * @param AudioClip sound - the sound effect to play
+	 **/
 	public void playWeaponCharged(Vector3 location, AudioClip sound) {
 		stopWeaponCharging();
-		GameObject charged = _instantiate(location, sound, weaponCharged, weaponCharged.GetComponent<ParticleSystem>().duration);
+		GameObject charged = _instantiate(location, sound, weaponCharged, 1f);
 		charged.transform.parent = PlayerManager.Instance.getWeapon().transform;
 	}
 
+	/**
+	 * @public Called to play weapon charging effect
+	 * 
+	 * @param Vector3 location - the location to create the new object
+	 * @param AudioClip sound - the sound effect to play
+	 **/
 	public void playWeaponCharging(Vector3 location, AudioClip sound) {
 		_currentChargingAnimation = _instantiate(location, sound, weaponCharging, 0f);
-		_currentChargingAnimation.transform.parent = PlayerManager.Instance.getWeapon().transform;
+		_currentChargingAnimation.GetComponent<FollowGameObject>().gameObjectToFollow = PlayerManager.Instance.getWeapon().gameObject;
 	}
 
+	/**
+	 * @public Called to stop the weapon charging
+	 **/
 	public void stopWeaponCharging() {
 		Destroy(_currentChargingAnimation);
 	}
