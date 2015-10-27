@@ -67,7 +67,7 @@ public class WeaponController : MonoBehaviour {
 
 	}
 
-	private void _fire(Vector3 origin, Vector3 target, float dmg, GameObject shot, AudioClip sound) {
+	private void _fire(Vector3 origin, Vector3 target, float dmg, GameObject shot, AudioClip sound, bool firedFromGround) {
 		if (!_isFiring) {
 			if (_animator) {
 				_animator.SetTrigger("shoot");
@@ -90,6 +90,7 @@ public class WeaponController : MonoBehaviour {
 			ProjectileController projectileController = newProjectile.GetComponent<ProjectileController>();
 			projectileController.isPlayer = isPlayer;
 			projectileController.damage = dmg;
+			projectileController.isFiredFromGround = firedFromGround;
 			
 			
 			// Set the new velocity based on what the weapon is shooting
@@ -143,14 +144,14 @@ public class WeaponController : MonoBehaviour {
 	 * 
 	 * @param $Vector3$ target - The position of the target to fire at
 	 **/
-	public void fire(Vector3 origin, Vector3 target) {
-		_fire(origin, target, damage, projectile, attackSoundEffect);
+	public void fire(Vector3 origin, Vector3 target, bool firedFromGround) {
+		_fire(origin, target, damage, projectile, attackSoundEffect, firedFromGround);
 	}
 
-	public void fireSecondary(Vector3 origin, Vector3 target) {
+	public void fireSecondary(Vector3 origin, Vector3 target, bool firedFromGround) {
 		EnergyManager.Instance.useEnergy(secondaryEnergyCost);
 
-		_fire(origin, target, secondaryDamage, secondaryProjectile, secondarySoundEffect);
+		_fire(origin, target, secondaryDamage, secondaryProjectile, secondarySoundEffect, firedFromGround);
 	}
 
 	/**

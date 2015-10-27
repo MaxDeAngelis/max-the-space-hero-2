@@ -8,6 +8,7 @@ public class ProjectileController : MonoBehaviour {
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public bool isPlayer = false;								// Flag for if the projectile if coming from the player
+	public bool isFiredFromGround;								// Flag for if the projectile was fired from the ground
 	public PROJECTILE_TYPE type = PROJECTILE_TYPE.Laser;		// The type of the projectile
 	public float range;											// The range before the projectile destroys
 	public float damage;										// The damage

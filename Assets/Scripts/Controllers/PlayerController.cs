@@ -117,9 +117,9 @@ public class PlayerController : MonoBehaviour {
 			// If seconday is charged and there is still enough energy then use it
 			if (_isSecondaryCharged && _energyManager.energy >= _weapon.secondaryEnergyCost) {
 				_isSecondaryCharged = false;
-				_weapon.fireSecondary(gunArm.transform.position, _weapon.transform.position);
+				_weapon.fireSecondary(gunArm.transform.position, _weapon.transform.position, isGrounded());
 			} else {
-				_weapon.fire(gunArm.transform.position, _weapon.transform.position);
+				_weapon.fire(gunArm.transform.position, _weapon.transform.position, isGrounded());
 			}
 		} else if (!_isSecondaryCharged && _isFireDown && !_isClimbing) {
 			// If the time is reached and there is enough energy then play a sound
@@ -479,14 +479,14 @@ public class PlayerController : MonoBehaviour {
 	 * @public called to see if flying
 	 **/
 	public bool isFlying() {
-		return ((!_isAnchored && !_isTakingOff) || _isClimbing || _isTakingOff);
+		return ((!_isAnchored && !_isTakingOff) || _isTakingOff);
 	}
 
 	/**
 	 * @public called to see if player if grounded
 	 **/
 	public bool isGrounded() {
-		return _isAnchored;
+		return !isFlying();
 	}
 
 	/**

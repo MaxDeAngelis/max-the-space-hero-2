@@ -100,9 +100,9 @@ public class EnemyController : MonoBehaviour {
 
 					// If there is a gun arm use that for origin
 					if (gunArm != null) {
-						_weapon.fire(gunArm.transform.position, _weapon.transform.position);
+						_weapon.fire(gunArm.transform.position, _weapon.transform.position, (type == ENEMY_TYPE.Ground));
 					} else {
-						_weapon.fire(_weapon.transform.position, _playerLocation);
+						_weapon.fire(_weapon.transform.position, _playerLocation, (type == ENEMY_TYPE.Ground));
 					}
 				}
 			}
@@ -232,6 +232,9 @@ public class EnemyController : MonoBehaviour {
 		bool returnValue = false;
 
 		// Check positive conditions for if the enemy should engage
+		// 1. If not a ground unit always engage
+		// 2. If the player is flying then engage
+		// 3. If the player is on the same playform 
 		if (type != ENEMY_TYPE.Ground ) {
 			returnValue = true;
 		} else if (PlayerManager.Instance.isFlying()) {
