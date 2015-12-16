@@ -99,7 +99,14 @@ public class DataManager : MonoBehaviour {
 	 * @public getter for the current game data object
 	 **/
 	public GameData getCurrentGameData() {
-		return (GameData)_currentGameData;
+		return _currentGameData;
+	}
+
+	/**
+	 * @public getter for the current player data object
+	 **/
+	public PlayerData getCurrentPlayerData() {
+		return _currentGameData.getPlayerData();
 	}
 
 	/**

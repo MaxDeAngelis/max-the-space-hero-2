@@ -256,7 +256,7 @@ public class EnemyController : MonoBehaviour {
 	/**
 	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
 	 **/
-	void OnTriggerEnter(Collider2D otherCollider) {
+	void OnTriggerEnter(Collider otherCollider) {
 		// Store off a reference to the current platform you are one
 		if (type == ENEMY_TYPE.Ground && otherCollider.tag == "Ground") {
 			_currentPlatform = otherCollider.gameObject;

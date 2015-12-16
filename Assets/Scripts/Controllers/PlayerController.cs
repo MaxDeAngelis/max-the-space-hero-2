@@ -341,19 +341,19 @@ public class PlayerController : MonoBehaviour {
 		// 2. Hitting right boundry and still moving right
 		// 3. Hitting top boundry and still moving up
 		// 4. Hitting bottom boundry and still moving down
-		if (otherCollider.gameObject.tag == "LEFT_BOUNDRY" && Input.GetAxis("Horizontal") <= 0){
+		if (otherCollider.gameObject.tag == "LEFT_BOUNDRY" && _rigidbody.velocity.x < 0){
 			// Lock the players horizontal position and velocity
 			transform.position = new Vector3(_boundryIntersectPosition.x, transform.position.y);
 			_rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
-		} else if (otherCollider.gameObject.tag == "RIGHT_BOUNDRY" && Input.GetAxis("Horizontal") >= 0) {
+		} else if (otherCollider.gameObject.tag == "RIGHT_BOUNDRY" && _rigidbody.velocity.x > 0) {
 			// Lock the players horizontal position and velocity
 			transform.position = new Vector3(_boundryIntersectPosition.x, transform.position.y);
 			_rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
-		} else if (otherCollider.gameObject.tag == "TOP_BOUNDRY" && Input.GetAxis("Vertical") >= 0) {
+		} else if (otherCollider.gameObject.tag == "TOP_BOUNDRY" && _rigidbody.velocity.y > 0) {
 			// Lock the players vertical position and velocity
 			transform.position = new Vector3(transform.position.x, _boundryIntersectPosition.y);
 			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
-		} else if (otherCollider.gameObject.tag == "BOTTOM_BOUNDRY" && Input.GetAxis("Vertical") <= 0) {
+		} else if (otherCollider.gameObject.tag == "BOTTOM_BOUNDRY" && _rigidbody.velocity.y < 0) {
 			// Lock the players vertical position and velocity
 			transform.position = new Vector3(transform.position.x, _boundryIntersectPosition.y);
 			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);

@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public enum CURSOR_TYPE { Default, Crosshairs, Pointer};
-public enum LEVELS { Level_1};
 public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
@@ -15,6 +14,8 @@ public class GameManager : MonoBehaviour {
 	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;		// The default cursor to display
 	public Text gameTime;											// Text object to display the game time
 	public Text score;												// Text object of the game score
+	public Text level;
+	public Slider experience;
 	public Texture2D crosshairCursor;								// Crosshair cursor
 	public Texture2D pointerCursor;									// Pointer cursor
 	public Texture2D defaultCursor;									// Default cursor
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour {
 		setCursor(startingCursor);
 
 		_originalCursor = startingCursor;
+
+		_updateExperience(0);
 	}
 
 	/**
@@ -105,6 +108,19 @@ public class GameManager : MonoBehaviour {
 		// Get the players location and then display a bonus text
 		Transform player = PlayerManager.Instance.getTransform();
 		FloatingTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
+	}
+
+	private void _updateExperience(int experienceToAdd) {
+		PlayerData _player = DataManager.Instance.getCurrentPlayerData();
+
+		int _experience = _player.getExperience();
+		int _newExperience = _experience += experienceToAdd;
+		_player.setExperience(_newExperience);
+
+		experience.maxValue = _player.getExperienceForNextLevel();
+		experience.value = _newExperience;
+
+		level.text = _player.getLevel().ToString();
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
@@ -205,6 +221,7 @@ public class GameManager : MonoBehaviour {
 		_playerHits += damageList.Count;
 
 		_updateScore(enemy.killScore, damageList);
+		_updateExperience(enemy.killScore);
 
 		// If the level boss was killed then game over
 		if (enemy.rank == ENEMY_RANK.Boss) {

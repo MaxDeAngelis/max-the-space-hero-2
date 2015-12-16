@@ -21,9 +21,9 @@ TagManager:
   - 
   - Ground
   - Climable
-  - 
-  - 
-  - 
+  - Background
+  - Map Markers
+  - Max
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2897460147
+    locked: 0
+  - name: Map Markers
+    uniqueID: 3121132811
     locked: 0
   - name: Items
     uniqueID: 349935317

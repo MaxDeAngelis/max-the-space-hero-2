@@ -6,39 +6,47 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 [Serializable]
-public class GameData {
+public class PlayerData {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private List<LevelData> _levels;
-	private PlayerData _player;
+	private int _experience;
+	private int _level;
+	private int _experienceForNextLevel;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     			CONSTRUCTOR												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public GameData() {
-		_levels = new List<LevelData>();
-		_levels.Add(new LevelData("Level_1", "Space Station"));
-		_levels.Add(new LevelData("Level_2", "Space Base"));
-		_levels.Add(new LevelData("Level_3", "Surface"));
-		_levels.Add(new LevelData("Level_4", "Cargo Bay"));
-		_levels.Add(new LevelData("Level_5", "Escape"));
-
-		_player = new PlayerData();
+	public PlayerData() {
+		_level = 1;
+		_experience = 0;
+		_experienceForNextLevel = 15;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     			GETTERS													     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void storeLevelData(LevelData levelData) {
-		_levels.Add(levelData);
+	public int getLevel() {
+		return _level;
 	}
 
-	public List<LevelData> getLevels() {
-		return _levels;
+	public int getExperience() {
+		return _experience;
 	}
 
-	public PlayerData getPlayerData() {
-		return _player;
+	public int getExperienceForNextLevel() {
+		return _experienceForNextLevel;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     				SETTERS												     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void setExperience(int experience) {
+		_experience = experience;
+
+		if (_experience >= _experienceForNextLevel) {
+			_experience -= _experienceForNextLevel;
+			_level++;
+		}
 	}
 }
