@@ -111,7 +111,7 @@ public class PlayerManager : MonoBehaviour {
 	/**
 	 * @public returns the platform that the player is standing on
 	 **/
-	public GameObject getCurrentPlatform() {
-		return getController().getCurrentPlatform();
+	public BoxCollider2D getCurrentPlatform() {
+		return getController().getCurrentPlatform().GetComponent<BoxCollider2D>();
 	}
 }

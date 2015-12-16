@@ -25,7 +25,10 @@ public class HealthController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private SpriteRenderer[] _renderers;	// The sprite renderer of the object
 	private List<float[]> _damageList = new List<float[]>();
+
+	/* ---- OBJECTS/CONTROLLERS ---- */
 	private EnemyController _enemy;
+	private PlayerController _player;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -33,9 +36,15 @@ public class HealthController : MonoBehaviour {
 	/**
 	 * @private Called on awake of the game object to init variables
 	 **/
-	void Awake () {
+	void Start () {
 		_renderers = GetComponentsInChildren<SpriteRenderer>();
-		_enemy = GetComponent<EnemyController>();
+
+		if (isPlayer) {
+			_player = PlayerManager.Instance.getController();
+		} else {
+			_enemy = GetComponent<EnemyController>();
+		}
+
 		maximumHealth = health;
 		updateHealth();
 	}
@@ -165,5 +174,19 @@ public class HealthController : MonoBehaviour {
 		if (health <= 0) {
 			_die();
 		}
+	}
+
+	bool _shouldProjectileHurt(ProjectileController controller) {
+		bool returnValue = false;
+
+		if (isPlayer) {
+
+		} else {
+			if (controller.isPlayer) {
+
+			}
+		}
+
+		return returnValue;
 	}
 }
