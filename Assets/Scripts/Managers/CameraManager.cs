@@ -13,6 +13,9 @@ public class CameraManager : MonoBehaviour {
 	public GameObject topBoundry;				// Top boundry game object
 	public GameObject bottomBoundry;			// Bottom boundry game object
 
+	public Camera miniMap;
+	public GameObject miniMapBorder;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,6 +44,17 @@ public class CameraManager : MonoBehaviour {
 	 * @private Called once per frame after all updates and fixed updates finish
 	 **/
 	void LateUpdate () {
+
+		/*if (miniMap) {
+			Vector3 test = _camera.WorldToScreenPoint(miniMapBorder.transform.position);
+
+
+			Rect newRect = new Rect((test.x / _cameraWidth) / 100, (test.y / _cameraHeight) / 100, 0.15f, 0.15f);
+
+			miniMap.rect = newRect;
+
+		}*/
+
 		/* TODO: Commented out the target mouse logic because as it targets is keeps following mouse
 		 * seems a bit weird but didnt want to loose code so leaving disabled for now
 		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {

@@ -1,12 +1,19 @@
 fileFormatVersion: 2
 guid: 31d2c1b0b684044bfa302cbe4a8368b5
-timeCreated: 1441817186
+timeCreated: 1450324460
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Platform_Center
+    21300000: Platform_Tripple_Center
     21300002: Platform_Left
     21300004: Platform_Right
+    21300006: Platform_Center_Verticle_Rail
+    21300008: Platform_Center_Horizontal_Rail
+    21300010: Platform_Prefab_2
+    21300012: Platform_Prefab_3
+    21300014: Platform_Prefab_5
+    21300016: Platform_Prefab_10
+    21300018: Platform_Prefab_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -20,7 +27,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -40,11 +47,12 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 32
   alphaIsTransparency: 1
@@ -52,36 +60,298 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Platform_Center
+    - name: Platform_Tripple_Center
       rect:
         serializedVersion: 2
-        x: 0
-        y: 38
+        x: 2
+        y: 452
         width: 81
-        height: 79
+        height: 47
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
     - name: Platform_Left
       rect:
         serializedVersion: 2
-        x: 95
-        y: 38
-        width: 27
-        height: 79
+        x: 98
+        y: 452
+        width: 26
+        height: 47
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
     - name: Platform_Right
       rect:
         serializedVersion: 2
-        x: 132
-        y: 38
+        x: 134
+        y: 452
         width: 27
-        height: 79
+        height: 47
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+    - name: Platform_Center_Verticle_Rail
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 452
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+    - name: Platform_Center_Horizontal_Rail
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 452
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+        - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+      - - {x: -40.5, y: 23.5}
+        - {x: -40.5, y: -23.5}
+        - {x: 40.5, y: -23.5}
+        - {x: 40.5, y: 23.5}
+    - name: Platform_Prefab_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 215
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -98.5, y: 23.5}
+        - {x: -107.5, y: 10.5}
+        - {x: -107.5, y: -23.5}
+        - {x: 107.5, y: -23.5}
+        - {x: 107.5, y: 12.5}
+        - {x: 97.5, y: 23.5}
+    - name: Platform_Prefab_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 337
+        width: 296
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -139, y: 23.5}
+        - {x: -148, y: 10.5}
+        - {x: -148, y: -23.5}
+        - {x: 148, y: -23.5}
+        - {x: 148, y: 12.5}
+        - {x: 138, y: 23.5}
+    - name: Platform_Prefab_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 282
+        width: 458
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 219, y: 10.5}
+        - {x: 219, y: 23.5}
+        - {x: -220, y: 23.5}
+        - {x: -228, y: 10.5}
+        - {x: -229, y: 9.5}
+        - {x: -229, y: -23.5}
+        - {x: 229, y: -23.5}
+        - {x: 229, y: 9.5}
+        - {x: 228, y: 10.5}
+    - name: Platform_Prefab_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 225
+        width: 863
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 421.5, y: 10.5}
+        - {x: 421.5, y: 23.5}
+        - {x: -422.5, y: 23.5}
+        - {x: -422.5, y: 10.5}
+        - {x: -430.5, y: 10.5}
+        - {x: -431.5, y: 9.5}
+        - {x: -431.5, y: -23.5}
+        - {x: 431.5, y: -23.5}
+        - {x: 431.5, y: 9.5}
+        - {x: 430.5, y: 10.5}
+    - name: Platform_Prefab_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 164
+        width: 1025
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 502.5, y: 10.5}
+        - {x: 502.5, y: 23.5}
+        - {x: -503.5, y: 23.5}
+        - {x: -503.5, y: 10.5}
+        - {x: -511.5, y: 10.5}
+        - {x: -512.5, y: 9.5}
+        - {x: -512.5, y: -23.5}
+        - {x: 512.5, y: -23.5}
+        - {x: 512.5, y: 9.5}
+        - {x: 511.5, y: 10.5}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
