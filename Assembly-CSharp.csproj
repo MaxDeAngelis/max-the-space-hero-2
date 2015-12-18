@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
+     <Compile Include="Assets\Scripts\Utilities\RenderTexture.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
