@@ -111,16 +111,18 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void _updateExperience(int experienceToAdd) {
-		PlayerData _player = DataManager.Instance.getCurrentPlayerData();
+		if (experience) {
+			PlayerData _player = DataManager.Instance.getCurrentPlayerData();
 
-		int _experience = _player.getExperience();
-		int _newExperience = _experience += experienceToAdd;
-		_player.setExperience(_newExperience);
+			int _experience = _player.getExperience();
+			int _newExperience = _experience += experienceToAdd;
+			_player.setExperience(_newExperience);
 
-		experience.maxValue = _player.getExperienceForNextLevel();
-		experience.value = _newExperience;
+			experience.maxValue = _player.getExperienceForNextLevel();
+			experience.value = _newExperience;
 
-		level.text = _player.getLevel().ToString();
+			level.text = _player.getLevel().ToString();
+		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
