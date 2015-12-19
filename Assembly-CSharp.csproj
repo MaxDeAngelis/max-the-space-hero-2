@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
+     <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

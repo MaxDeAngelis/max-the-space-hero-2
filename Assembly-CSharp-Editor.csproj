@@ -51,6 +51,7 @@
      <Compile Include="Assets\Editor\IProjectile.cs" />
      <Compile Include="Assets\Editor\IWeapon.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
+     <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
