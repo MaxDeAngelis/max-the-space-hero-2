@@ -44,14 +44,16 @@ public class EnergyManager : MonoBehaviour {
 	 * @private Called to update the display of the current enery
 	 **/
 	void _updateEnergy() {
-		// Calculate the percentage of health left
-		float energyPercent = Mathf.Round((energy/maximumEnergy) * 100);
-			
-		// Display the calculated string
-		energyDisplay.text = energy + "/" + maximumEnergy;
+		if (energyBar) {
+			// Calculate the percentage of health left
+			float energyPercent = Mathf.Round((energy/maximumEnergy) * 100);
+				
+			// Display the calculated string
+			energyDisplay.text = energy + "/" + maximumEnergy;
 
-		// Update energy bar size
-		energyBar.value = energyPercent;
+			// Update energy bar size
+			energyBar.value = energyPercent;
+		}
 	}
 
 	/**
