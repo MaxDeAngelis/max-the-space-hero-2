@@ -28,7 +28,6 @@ public class HealthController : MonoBehaviour {
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private EnemyController _enemy;
-	private PlayerController _player;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -39,11 +38,8 @@ public class HealthController : MonoBehaviour {
 	void Start () {
 		_renderers = GetComponentsInChildren<SpriteRenderer>();
 
-		if (isPlayer) {
-			_player = PlayerManager.Instance.getController();
-		} else {
-			_enemy = GetComponent<EnemyController>();
-		}
+
+		_enemy = GetComponent<EnemyController>();
 
 		maximumHealth = health;
 		updateHealth();

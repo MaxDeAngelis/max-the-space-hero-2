@@ -3,10 +3,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		HIDDEN VARIABLES											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/* ---- MOVEMENT RELATED ---- */
@@ -207,11 +203,12 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			// Set speed floats for  animations
-			_animator.SetFloat("horizontalSpeed", Mathf.Abs(horizontalVelocity));
-			_animator.SetFloat("verticalSpeed", Mathf.Abs(verticalVelocity));
+			_animator.SetFloat("horizontalSpeed", Mathf.Abs(_rigidbody.velocity.x));
+			_animator.SetFloat("verticalSpeed", Mathf.Abs(_rigidbody.velocity.y));
 
 			/* ---- HANDLE MOVING HORIZONTALLY AND VERTICALLY ---- */
 			_rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+
 		} else {
 			// Nullify horizontalSpeed if you loose anchor
 			_animator.SetFloat("horizontalSpeed", 0f);

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour {
 	 **/
 	public void loadLevel(string levelName) {
 		resume();
-		Application.LoadLevel(levelName);
+		SceneManager.LoadScene(levelName);
 	}
 
 	/**
@@ -271,7 +272,7 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale = 0;
 			levelCompleteMenu.SetActive(true);
 
-			DataManager.Instance.updateLevelData(Application.loadedLevelName, killRatio, Time.time, accuracy, _score);
+			DataManager.Instance.updateLevelData(SceneManager.GetActiveScene().name, killRatio, Time.time, accuracy, _score);
 		}
 	}
 
