@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject pauseMenu;									// Pause Menu canvas game object
 	public GameObject gameOverMenu;									// Game Over canvas game object
 	public GameObject levelCompleteMenu;
+	public GameObject levelSelectMenu;
 
 	public static GameManager Instance;
 	
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
 	private int _playerShots = 0;
 	private int _playerHits = 0;
 	private int _score = 0;
+	private GameObject _activeMenu;
 	private List<EnemyController> _enemies = new List<EnemyController>();
 	private List<EnemyController> _enemiesKilled = new List<EnemyController>();
 
@@ -63,9 +65,9 @@ public class GameManager : MonoBehaviour {
 	 **/
 	void Update() {
 		if (Input.GetButtonDown("Cancel") && !isPaused()) { 
-			pause();
+			showMenu(pauseMenu);
 		} else if (Input.GetButtonDown("Cancel") && isPaused()) { 
-			resume();
+			hideMenu();
 		}
 	}
 
@@ -88,7 +90,12 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
+	/**
+	 * @private Called to update the text of the score that is displayed in the hud. Handles calculating the score
+	 * 
+	 * @param Integer scoreToAdd - The amount to add to the score
+	 * @param List<float[]> damageList - The list of damage done to the enemy used to adjust the score
+	 **/
 	private void _updateScore(int scoreToAdd, List<float[]> damageList) {
 		float totalModifier = 0f;
 
@@ -110,6 +117,11 @@ public class GameManager : MonoBehaviour {
 		FloatingTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
 	}
 
+	/**
+	 * @private Called to update the experience bar in the HUD
+	 * 
+	 * @param Integer experianceToAdd - The experience to add to the xp bar
+	 **/
 	private void _updateExperience(int experienceToAdd) {
 		if (experience) {
 			PlayerData _player = DataManager.Instance.getCurrentPlayerData();
@@ -134,6 +146,7 @@ public class GameManager : MonoBehaviour {
 	 * @param String levelName - the name of the scene to load
 	 **/
 	public void loadLevel(string levelName) {
+		resume();
 		Application.LoadLevel(levelName);
 	}
 
@@ -180,13 +193,34 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/**
+	 * @public Called to show a given menu. Handles pausing the game and setting correct flags
+	 * 
+	 * @param GameObject menu - The menu game object to show
+	 **/
+	public void showMenu(GameObject menu) {
+		pause();
+
+		_activeMenu = menu;
+		_activeMenu.SetActive(true);
+	}
+
+	/**
+	 * @public Called to hid what ever menu is currently showing
+	 **/
+	public void hideMenu() {
+		resume();
+
+		_activeMenu.SetActive(false);
+		_activeMenu = null;
+	}
+
+	/**
 	 * @public called to pause the game 
 	 **/
 	public void pause() {
 		_pause = true;
 		setCursor(CURSOR_TYPE.Default);
 		Time.timeScale = 0;
-		pauseMenu.SetActive(true);
 	}
 
 	/**
@@ -196,7 +230,6 @@ public class GameManager : MonoBehaviour {
 		_pause = false;
 		resetCursor();
 		Time.timeScale = 1;
-		pauseMenu.SetActive(false);
 	}
 
 	/**
@@ -216,6 +249,9 @@ public class GameManager : MonoBehaviour {
 	
 	/**
 	 * @public processes an enemy kill so that you know if the end of the level has been reached
+	 * 
+	 * @param List<float[]> damageList - The list of damage information about the enemy killed
+	 * @param EnemyController enemy - The controller of the killed enemy
 	 **/
 	public void processKill(List<float[]> damageList, EnemyController enemy) {
 		// Keep track of all the enemies killed
@@ -239,12 +275,17 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @public Called to increment the shot counter to keep track of accuracy
+	 **/
 	public void processShot() {
 		_playerShots++;
 	}
 
 	/**
 	 * @private called when enemies start to regester them as being part of the level
+	 * 
+	 * @param EnemyController enemy - The enemy controller of the enemy to register
 	 **/
 	public void registerEnemy(EnemyController enemy) {
 		_enemies.Add(enemy);

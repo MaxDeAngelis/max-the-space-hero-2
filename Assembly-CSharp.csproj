@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Utilities\MapMarker.cs" />
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />
+     <Compile Include="Assets\Scripts\Utilities\ShowMenuOnEnter.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
      <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEngine.UI">

@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Splash.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
   - enabled: 1
     path: Assets/Scenes/Controls.unity
@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_1.unity
   - enabled: 1
     path: Assets/Scenes/Levels.unity
+  - enabled: 1
+    path: Assets/Scenes/Ship.unity
