@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11468996}
   - 50: {fileID: 5032632}
   - 114: {fileID: 11449508}
-  - 114: {fileID: 11473038}
+  - 114: {fileID: 11467616}
   m_Layer: 0
   m_Name: UFO_Vertical
   m_TagString: Untagged
@@ -29,8 +29,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 462924}
-  - 114: {fileID: 11480266}
   - 60: {fileID: 6024460}
+  - 114: {fileID: 11426964}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.80434132, y: 7.17986965, z: 0}
+  m_LocalPosition: {x: 0.4, y: 11.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 462924}
@@ -70,9 +70,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111982}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -86,32 +87,33 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156076}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -.270126343, y: .350791931}
-      - {x: -.0890655518, y: .456309319}
-      - {x: .10496521, y: .450683594}
-      - {x: .217956543, y: .394135475}
-      - {x: .327632904, y: .281197548}
-      - {x: .366466522, y: .201490402}
-      - {x: .468997955, y: .176425934}
-      - {x: .638717651, y: .090256691}
-      - {x: .724533081, y: .0386009216}
-      - {x: .793609619, y: -.0303688049}
-      - {x: .790699005, y: -.207970619}
-      - {x: .573299408, y: -.337029457}
-      - {x: .383655548, y: -.391910553}
-      - {x: .167926788, y: -.448637962}
-      - {x: -.160476685, y: -.450922012}
-      - {x: -.586021423, y: -.345890999}
-      - {x: -.790714264, y: -.189724922}
-      - {x: -.790294647, y: -.0223531723}
-      - {x: -.567352295, y: .128394127}
-      - {x: -.366752625, y: .207551003}
+    - - {x: -0.27012634, y: 0.35079193}
+      - {x: -0.08906555, y: 0.45630932}
+      - {x: 0.10496521, y: 0.4506836}
+      - {x: 0.21795654, y: 0.39413548}
+      - {x: 0.3276329, y: 0.28119755}
+      - {x: 0.36646652, y: 0.2014904}
+      - {x: 0.46899796, y: 0.17642593}
+      - {x: 0.63871765, y: 0.09025669}
+      - {x: 0.7245331, y: 0.03860092}
+      - {x: 0.7936096, y: -0.030368805}
+      - {x: 0.790699, y: -0.20797062}
+      - {x: 0.5732994, y: -0.33702946}
+      - {x: 0.38365555, y: -0.39191055}
+      - {x: 0.16792679, y: -0.44863796}
+      - {x: -0.16047668, y: -0.450922}
+      - {x: -0.5860214, y: -0.345891}
+      - {x: -0.79071426, y: -0.18972492}
+      - {x: -0.79029465, y: -0.022353172}
+      - {x: -0.5673523, y: 0.12839413}
+      - {x: -0.36675262, y: 0.207551}
 --- !u!95 &9573236
 Animator:
   serializedVersion: 3
@@ -129,6 +131,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11426964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 100
+  health: {fileID: 11467616}
 --- !u!114 &11449508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,13 +156,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  rank: 0
   maxSpeed: 2
   sightRange: 4
-  patrolDistance: 5
+  patrolDistance: 2
+  killScore: 5
   groundCheck: {fileID: 0}
   gunArm: {fileID: 0}
   patrolDirection: 1
   hoverHeight: 0
+--- !u!114 &11467616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maximumHealth: 0
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
+  isPlayer: 0
+  isAlienAbleToEject: 1
 --- !u!114 &11468996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,7 +196,7 @@ MonoBehaviour:
   type: 0
   isPlayer: 0
   damage: 10
-  attackSpeed: .5
+  attackSpeed: 0.5
   attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
   projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
   range: 3
@@ -174,37 +208,6 @@ MonoBehaviour:
   secondaryProjectile: {fileID: 0}
   secondarySoundEffect: {fileID: 0}
   secondaryChargedSoundEffect: {fileID: 0}
---- !u!114 &11473038
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumHealth: 0
-  health: 100
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
-  isPlayer: 0
-  isAlienAbleToEject: 1
---- !u!114 &11480266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageModifier: 100
 --- !u!212 &21263712
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -223,14 +226,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300018, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

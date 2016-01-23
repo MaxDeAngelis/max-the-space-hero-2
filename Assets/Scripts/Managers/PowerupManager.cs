@@ -38,7 +38,7 @@ public class PowerupManager : MonoBehaviour {
 		powerup.use();
 
 		// Get a reference to the players health controller
-		HealthController healthController = player.GetComponent<HealthController>();
+		PlayerHealth healthController = player.GetComponent<PlayerHealth>();
 
 		// Store off the original max heath to reduce after duration finishes
 		float originalMaxHealth = healthController.maximumHealth;

@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423686}
   - 61: {fileID: 6193032}
-  - 114: {fileID: 11478296}
+  - 114: {fileID: 11429566}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -58,10 +58,11 @@ GameObject:
   - 212: {fileID: 21265964}
   - 50: {fileID: 5066084}
   - 114: {fileID: 11457102}
-  - 114: {fileID: 11472144}
   - 95: {fileID: 9564958}
   - 114: {fileID: 11486784}
   - 58: {fileID: 5837400}
+  - 114: {fileID: 11491404}
+  - 61: {fileID: 6111542}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -76,7 +77,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .419999987, y: -.291000009, z: 0}
+  m_LocalPosition: {x: 0.42, y: -0.291, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 415862}
@@ -88,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5756588, y: 4.32999992, z: 0}
+  m_LocalPosition: {x: -8.698975, y: 14.91, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 407654}
@@ -127,9 +128,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151512}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -142,13 +144,28 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151512}
-  m_Enabled: 1
+  m_Enabled: 0
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: .100000001}
+  m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
-  m_Radius: .443558216
+  m_Radius: 0.44355822
+--- !u!61 &6111542
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151512}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.026241302, y: 0.057728767}
+  serializedVersion: 2
+  m_Size: {x: 0.40267372, y: 0.3778628}
 --- !u!61 &6193032
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -156,12 +173,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149490}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .0260229111, y: .0468420982}
+  m_Offset: {x: 0.026022911, y: 0.0468421}
   serializedVersion: 2
-  m_Size: {x: .365033567, y: .365033209}
+  m_Size: {x: 0.36503357, y: 0.3650332}
 --- !u!95 &9564958
 Animator:
   serializedVersion: 3
@@ -179,6 +197,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11429566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 100
+  health: {fileID: 11491404}
 --- !u!114 &11457102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,44 +222,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  rank: 0
   maxSpeed: 2
   sightRange: 6
   patrolDistance: 1
+  killScore: 5
   groundCheck: {fileID: 407654}
   gunArm: {fileID: 0}
   patrolDirection: 0
   hoverHeight: 0
---- !u!114 &11472144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumHealth: 0
-  health: 100
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
-  isPlayer: 0
-  isAlienAbleToEject: 0
---- !u!114 &11478296
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageModifier: 100
 --- !u!114 &11486784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,9 +248,32 @@ MonoBehaviour:
   attackSpeed: 1
   attackSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
-  range: .100000001
+  range: 0.1
   durability: 1
   durabilityLossPerAttack: 1
+  secondaryDamage: 5
+  secondaryChargeTime: 0
+  secondaryEnergyCost: 0
+  secondaryProjectile: {fileID: 0}
+  secondarySoundEffect: {fileID: 0}
+  secondaryChargedSoundEffect: {fileID: 0}
+--- !u!114 &11491404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maximumHealth: 0
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
+  isPlayer: 0
+  isAlienAbleToEject: 0
 --- !u!212 &21265964
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -267,14 +292,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300012, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -13,6 +13,9 @@ public class PlayerData {
 	private int _experience;
 	private int _level;
 	private int _experienceForNextLevel;
+	private int _health;
+	private int _energy;
+	private int _shield;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     			CONSTRUCTOR												     ///
@@ -21,6 +24,7 @@ public class PlayerData {
 		_level = 1;
 		_experience = 0;
 		_experienceForNextLevel = 15;
+		_health = 50;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +40,10 @@ public class PlayerData {
 
 	public int getExperienceForNextLevel() {
 		return _experienceForNextLevel;
+	}
+
+	public int getHealth() {
+		return _health;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

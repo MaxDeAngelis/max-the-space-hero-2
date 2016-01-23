@@ -1,36 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HitBoxController : MonoBehaviour {
+public class Hitbox : MonoBehaviour {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float damageModifier = 100f;
-
+	public Health health;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private HealthController _health;
 	private float _damageModifierPercent;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTION											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	* @private Called on start of the game object to init variables
+	**/
 	void Start() {
-		_health = GetComponentInParent<HealthController>();
-
 		_damageModifierPercent = damageModifier / 100;
 	}
+
 	/**
 	 * @private Collider handler that is triggered when another collider interacts with this game object
 	 * 
 	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
-		_health.processDamage(_damageModifierPercent, otherCollider);
+		health.processDamage(_damageModifierPercent, otherCollider);
 	}
 }

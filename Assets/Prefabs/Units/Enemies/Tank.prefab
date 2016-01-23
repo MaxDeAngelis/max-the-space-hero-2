@@ -59,6 +59,7 @@ GameObject:
   - 114: {fileID: 11462860}
   - 114: {fileID: 11459320}
   - 95: {fileID: 9512164}
+  - 114: {fileID: 11440034}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -75,7 +76,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 439042}
   - 61: {fileID: 6121710}
-  - 114: {fileID: 11481096}
+  - 114: {fileID: 11458260}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -90,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .779999971, y: -.745999992, z: 0}
+  m_LocalPosition: {x: 0.78, y: -0.746, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459948}
@@ -102,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .69599998, y: -.108000003, z: 0}
+  m_LocalPosition: {x: 0.696, y: -0.108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459948}
@@ -126,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.2199993, y: -4.69099998, z: 0}
+  m_LocalPosition: {x: -9.973736, y: 15.424809, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 404870}
@@ -154,9 +155,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165650}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -170,12 +172,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187594}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .00248527527, y: -.0778560638}
+  m_Offset: {x: 0.0024852753, y: -0.077856064}
   serializedVersion: 2
-  m_Size: {x: 1.44126344, y: 1.1635716}
+  m_Size: {x: 1.4412634, y: 1.1635716}
 --- !u!95 &9512164
 Animator:
   serializedVersion: 3
@@ -207,7 +210,7 @@ MonoBehaviour:
   type: 0
   isPlayer: 0
   damage: 5
-  attackSpeed: .5
+  attackSpeed: 0.5
   attackSoundEffect: {fileID: 8300000, guid: d0b259b5acb434e9a86a658793025e9e, type: 3}
   projectile: {fileID: 186090, guid: 1cc0185ba72c24675927b45094e7bf55, type: 2}
   range: 5
@@ -219,6 +222,36 @@ MonoBehaviour:
   secondaryProjectile: {fileID: 0}
   secondarySoundEffect: {fileID: 0}
   secondaryChargedSoundEffect: {fileID: 0}
+--- !u!114 &11440034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maximumHealth: 0
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
+  isPlayer: 0
+  isAlienAbleToEject: 0
+--- !u!114 &11458260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 100
+  health: {fileID: 11440034}
 --- !u!114 &11459320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,25 +283,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  rank: 0
   maxSpeed: 2
   sightRange: 6
   patrolDistance: 1
+  killScore: 5
   groundCheck: {fileID: 404870}
   gunArm: {fileID: 0}
   patrolDirection: 0
   hoverHeight: 0
---- !u!114 &11481096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 187594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageModifier: 100
 --- !u!212 &21239508
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -287,14 +310,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300036, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

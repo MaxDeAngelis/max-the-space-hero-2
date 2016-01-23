@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 494726}
   - 61: {fileID: 6194126}
-  - 114: {fileID: 11487432}
+  - 114: {fileID: 11407036}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 406866}
   - 61: {fileID: 6108984}
-  - 114: {fileID: 11490526}
+  - 114: {fileID: 11422304}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -143,9 +143,9 @@ GameObject:
   - 212: {fileID: 21218142}
   - 50: {fileID: 5035156}
   - 114: {fileID: 11479508}
-  - 114: {fileID: 11477414}
   - 95: {fileID: 9561052}
   - 61: {fileID: 6165178}
+  - 114: {fileID: 11426636}
   m_Layer: 0
   m_Name: Hover
   m_TagString: Untagged
@@ -208,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.72, y: 12.65, z: 0}
+  m_LocalPosition: {x: -0.0663414, y: 19.400131, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 462018}
@@ -404,6 +404,49 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11407036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 200
+  health: {fileID: 11426636}
+--- !u!114 &11422304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 100
+  health: {fileID: 11426636}
+--- !u!114 &11426636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumHealth: 0
+  health: 100
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 0}
+  isPlayer: 0
+  isAlienAbleToEject: 0
 --- !u!114 &11435632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,25 +484,6 @@ MonoBehaviour:
   secondaryProjectile: {fileID: 0}
   secondarySoundEffect: {fileID: 0}
   secondaryChargedSoundEffect: {fileID: 0}
---- !u!114 &11477414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumHealth: 0
-  health: 100
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
-  isPlayer: 0
-  isAlienAbleToEject: 0
 --- !u!114 &11479508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,36 +499,12 @@ MonoBehaviour:
   rank: 0
   maxSpeed: 2
   sightRange: 4
-  patrolDistance: 3.5
+  patrolDistance: 2.5
   killScore: 5
   groundCheck: {fileID: 410798}
   gunArm: {fileID: 462018}
   patrolDirection: 0
   hoverHeight: 0
---- !u!114 &11487432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageModifier: 200
---- !u!114 &11490526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 142986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageModifier: 100
 --- !u!212 &21207450
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -8,8 +8,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 470574}
-  - 114: {fileID: 11443316}
   - 60: {fileID: 6083588}
+  - 114: {fileID: 11461292}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11400300}
   - 50: {fileID: 5084814}
   - 114: {fileID: 11475648}
-  - 114: {fileID: 11496202}
+  - 114: {fileID: 11437880}
   m_Layer: 0
   m_Name: UFO_Bomber_Horizontal
   m_TagString: Untagged
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.4422188, y: -2.41999245, z: 0}
+  m_LocalPosition: {x: -16.84657, y: 14.2498, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470574}
@@ -70,9 +70,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110198}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -86,33 +87,34 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104274}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -.547222137, y: .3140378}
-      - {x: -.4103508, y: .34017086}
-      - {x: -.327320099, y: .407625675}
-      - {x: -.118629456, y: .550498605}
-      - {x: .130020142, y: .547755718}
-      - {x: .287590027, y: .447446585}
-      - {x: .347396851, y: .378608704}
-      - {x: .440917969, y: .338180542}
-      - {x: .582523346, y: .304615974}
-      - {x: .693241119, y: .226213932}
-      - {x: .792770386, y: .122466087}
-      - {x: .792869568, y: -.115469933}
-      - {x: .597671509, y: -.249348164}
-      - {x: .339050293, y: -.308721781}
-      - {x: .287742615, y: -.361053944}
-      - {x: -.284835815, y: -.355514765}
-      - {x: -.355545044, y: -.30747509}
-      - {x: -.584960938, y: -.240885019}
-      - {x: -.794372559, y: -.0948929787}
-      - {x: -.79561615, y: .134938002}
-      - {x: -.66558075, y: .246833563}
+    - - {x: -0.54722214, y: 0.3140378}
+      - {x: -0.4103508, y: 0.34017086}
+      - {x: -0.3273201, y: 0.40762568}
+      - {x: -0.118629456, y: 0.5504986}
+      - {x: 0.13002014, y: 0.5477557}
+      - {x: 0.28759003, y: 0.44744658}
+      - {x: 0.34739685, y: 0.3786087}
+      - {x: 0.44091797, y: 0.33818054}
+      - {x: 0.58252335, y: 0.30461597}
+      - {x: 0.6932411, y: 0.22621393}
+      - {x: 0.7927704, y: 0.12246609}
+      - {x: 0.79286957, y: -0.11546993}
+      - {x: 0.5976715, y: -0.24934816}
+      - {x: 0.3390503, y: -0.30872178}
+      - {x: 0.2877426, y: -0.36105394}
+      - {x: -0.28483582, y: -0.35551476}
+      - {x: -0.35554504, y: -0.3074751}
+      - {x: -0.58496094, y: -0.24088502}
+      - {x: -0.79437256, y: -0.09489298}
+      - {x: -0.79561615, y: 0.134938}
+      - {x: -0.66558075, y: 0.24683356}
 --- !u!95 &9508100
 Animator:
   serializedVersion: 3
@@ -144,10 +146,10 @@ MonoBehaviour:
   type: 0
   isPlayer: 0
   damage: 100
-  attackSpeed: .25
+  attackSpeed: 0.25
   attackSoundEffect: {fileID: 0}
   projectile: {fileID: 152602, guid: 992eeb3e2240f4e73be884a556ee1b18, type: 2}
-  range: .5
+  range: 0.5
   durability: 1000
   durabilityLossPerAttack: 0
   secondaryDamage: 5
@@ -156,7 +158,24 @@ MonoBehaviour:
   secondaryProjectile: {fileID: 0}
   secondarySoundEffect: {fileID: 0}
   secondaryChargedSoundEffect: {fileID: 0}
---- !u!114 &11443316
+--- !u!114 &11437880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maximumHealth: 0
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
+  isPlayer: 0
+  isAlienAbleToEject: 1
+--- !u!114 &11461292
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -164,10 +183,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 104274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageModifier: 100
+  health: {fileID: 11437880}
 --- !u!114 &11475648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,32 +200,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  rank: 0
   maxSpeed: 3
   sightRange: 8
   patrolDistance: 5
+  killScore: 5
   groundCheck: {fileID: 0}
   gunArm: {fileID: 0}
   patrolDirection: 0
   hoverHeight: -4
---- !u!114 &11496202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumHealth: 0
-  health: 100
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
-  isPlayer: 0
-  isAlienAbleToEject: 1
 --- !u!212 &21239700
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -224,14 +227,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300026, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

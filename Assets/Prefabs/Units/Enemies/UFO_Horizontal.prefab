@@ -8,8 +8,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 465806}
-  - 114: {fileID: 11447114}
   - 60: {fileID: 6054562}
+  - 114: {fileID: 11400146}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11422546}
   - 50: {fileID: 5008162}
   - 114: {fileID: 11415414}
-  - 114: {fileID: 11407620}
+  - 114: {fileID: 11472780}
   m_Layer: 0
   m_Name: UFO_Horizontal
   m_TagString: Untagged
@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.8443413, y: -4.01430607, z: 0}
+  m_LocalPosition: {x: 21, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465806}
@@ -70,9 +70,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174504}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -86,34 +87,35 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155506}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -.389732361, y: .213115692}
-      - {x: -.261299133, y: .355758667}
-      - {x: -.180210114, y: .419088364}
-      - {x: -.0911216736, y: .446399689}
-      - {x: .0931510925, y: .443616867}
-      - {x: .197227478, y: .407871246}
-      - {x: .267829895, y: .333061218}
-      - {x: .376522064, y: .215705872}
-      - {x: .633476257, y: .0945796967}
-      - {x: .789932251, y: -.0258197784}
-      - {x: .789852142, y: -.185386658}
-      - {x: .695114136, y: -.276506424}
-      - {x: .485462189, y: -.365783691}
-      - {x: .312671661, y: -.407102585}
-      - {x: .164833069, y: -.441452026}
-      - {x: -.154762268, y: -.446487427}
-      - {x: -.505908966, y: -.356376648}
-      - {x: -.691833496, y: -.287128448}
-      - {x: -.787719727, y: -.196519852}
-      - {x: -.786708832, y: -.0216369629}
-      - {x: -.67206192, y: .0755329132}
-      - {x: -.545726776, y: .130268097}
+    - - {x: -0.38973236, y: 0.21311569}
+      - {x: -0.26129913, y: 0.35575867}
+      - {x: -0.18021011, y: 0.41908836}
+      - {x: -0.09112167, y: 0.4463997}
+      - {x: 0.09315109, y: 0.44361687}
+      - {x: 0.19722748, y: 0.40787125}
+      - {x: 0.2678299, y: 0.33306122}
+      - {x: 0.37652206, y: 0.21570587}
+      - {x: 0.63347626, y: 0.0945797}
+      - {x: 0.78993225, y: -0.025819778}
+      - {x: 0.78985214, y: -0.18538666}
+      - {x: 0.69511414, y: -0.27650642}
+      - {x: 0.4854622, y: -0.3657837}
+      - {x: 0.31267166, y: -0.40710258}
+      - {x: 0.16483307, y: -0.44145203}
+      - {x: -0.15476227, y: -0.44648743}
+      - {x: -0.50590897, y: -0.35637665}
+      - {x: -0.6918335, y: -0.28712845}
+      - {x: -0.7877197, y: -0.19651985}
+      - {x: -0.78670883, y: -0.021636963}
+      - {x: -0.6720619, y: 0.07553291}
+      - {x: -0.5457268, y: 0.1302681}
 --- !u!95 &9513316
 Animator:
   serializedVersion: 3
@@ -131,25 +133,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11407620
+--- !u!114 &11400146
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174504}
+  m_GameObject: {fileID: 155506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumHealth: 0
-  health: 100
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
-  isPlayer: 0
-  isAlienAbleToEject: 1
+  damageModifier: 100
+  health: {fileID: 11472780}
 --- !u!114 &11415414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,9 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  rank: 0
   maxSpeed: 2
   sightRange: 6
   patrolDistance: 10
+  killScore: 5
   groundCheck: {fileID: 0}
   gunArm: {fileID: 0}
   patrolDirection: 0
@@ -183,7 +181,7 @@ MonoBehaviour:
   type: 0
   isPlayer: 0
   damage: 10
-  attackSpeed: .5
+  attackSpeed: 0.5
   attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
   projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
   range: 4
@@ -195,18 +193,23 @@ MonoBehaviour:
   secondaryProjectile: {fileID: 0}
   secondarySoundEffect: {fileID: 0}
   secondaryChargedSoundEffect: {fileID: 0}
---- !u!114 &11447114
+--- !u!114 &11472780
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155506}
+  m_GameObject: {fileID: 174504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0396f2cce59fb4daaac69f5af5e04fbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageModifier: 100
+  health: 100
+  maximumHealth: 0
+  damageSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
+  deathSoundEffect: {fileID: 0}
+  isPlayer: 0
+  isAlienAbleToEject: 1
 --- !u!212 &21231228
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -225,14 +228,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 888609849
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300018, guid: f2e0a6ba70b874d40a5d3d16fbaf594f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

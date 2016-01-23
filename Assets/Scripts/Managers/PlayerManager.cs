@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private GameObject _player;
 	private ParticleSystem _particle;
-	private HealthController _health;
+	private PlayerHealth _health;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour {
 		/* INIT VARIABLES */
 		_player = GameObject.FindGameObjectWithTag("Player");
 		_particle = _player.GetComponent<ParticleSystem>();
-		_health = _player.GetComponent<HealthController>();
+		_health = _player.GetComponent<PlayerHealth>();
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour {
 	/**
 	 * @public returns the player health controller
 	 **/
-	public HealthController getHealthController() {
+	public PlayerHealth getHealthController() {
 		return _health;
 	}
 
