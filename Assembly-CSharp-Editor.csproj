@@ -45,13 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\Base\IHealth.cs" />
+     <Compile Include="Assets\Editor\Base\IWeapon.cs" />
      <Compile Include="Assets\Editor\Enemy\IEnemyHealth.cs" />
      <Compile Include="Assets\Editor\IEnemy.cs" />
-     <Compile Include="Assets\Editor\IHealth.cs" />
      <Compile Include="Assets\Editor\IProjectile.cs" />
-     <Compile Include="Assets\Editor\IWeapon.cs" />
      <Compile Include="Assets\Editor\Player\IPlayer.cs" />
      <Compile Include="Assets\Editor\Player\IPlayerHealth.cs" />
+     <Compile Include="Assets\Editor\Player\IPlayerWeapon.cs" />
+     <Compile Include="Assets\Editor\Weapons\IBomber.cs" />
+     <Compile Include="Assets\Editor\Weapons\ILaser.cs" />
+     <Compile Include="Assets\Editor\Weapons\IRocketLauncher.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
      <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEditor.Advertisements">

@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 435842}
   - 212: {fileID: 21263712}
   - 95: {fileID: 9573236}
-  - 114: {fileID: 11468996}
   - 50: {fileID: 5032632}
   - 114: {fileID: 11449508}
   - 114: {fileID: 11467616}
+  - 114: {fileID: 11424012}
   m_Layer: 0
   m_Name: UFO_Vertical
   m_TagString: Untagged
@@ -131,6 +131,24 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11424012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10a47e9ca89b41059de8fc881a2c754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
+  damage: 25
+  attackSpeed: 0.5
+  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
+  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  range: 3
 --- !u!114 &11426964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,32 +200,6 @@ MonoBehaviour:
   deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   isPlayer: 0
   isAlienAbleToEject: 1
---- !u!114 &11468996
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  isPlayer: 0
-  damage: 10
-  attackSpeed: 0.5
-  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
-  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
-  range: 3
-  durability: 1000
-  durabilityLossPerAttack: 0
-  secondaryDamage: 5
-  secondaryChargeTime: 0
-  secondaryEnergyCost: 0
-  secondaryProjectile: {fileID: 0}
-  secondarySoundEffect: {fileID: 0}
-  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!212 &21263712
 SpriteRenderer:
   m_ObjectHideFlags: 1

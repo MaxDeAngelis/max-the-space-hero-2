@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 413650}
-  - 114: {fileID: 11436790}
+  - 114: {fileID: 11467234}
   m_Layer: 0
   m_Name: gun
   m_TagString: Untagged
@@ -57,7 +57,6 @@ GameObject:
   - 212: {fileID: 21239508}
   - 50: {fileID: 5064480}
   - 114: {fileID: 11462860}
-  - 114: {fileID: 11459320}
   - 95: {fileID: 9512164}
   - 114: {fileID: 11440034}
   m_Layer: 0
@@ -127,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.973736, y: 15.424809, z: 0}
+  m_LocalPosition: {x: -10.324444, y: 15.528219, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 404870}
@@ -196,32 +195,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11436790
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  isPlayer: 0
-  damage: 5
-  attackSpeed: 0.5
-  attackSoundEffect: {fileID: 8300000, guid: d0b259b5acb434e9a86a658793025e9e, type: 3}
-  projectile: {fileID: 186090, guid: 1cc0185ba72c24675927b45094e7bf55, type: 2}
-  range: 5
-  durability: 1000
-  durabilityLossPerAttack: 0
-  secondaryDamage: 5
-  secondaryChargeTime: 0
-  secondaryEnergyCost: 0
-  secondaryProjectile: {fileID: 0}
-  secondarySoundEffect: {fileID: 0}
-  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!114 &11440034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,25 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageModifier: 100
   health: {fileID: 11440034}
---- !u!114 &11459320
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 165650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562061e61ed754ebbb7ce2d28a6337f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumHealth: 0
-  health: 100
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
-  isPlayer: 0
-  isAlienAbleToEject: 1
 --- !u!114 &11462860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,6 +246,24 @@ MonoBehaviour:
   gunArm: {fileID: 0}
   patrolDirection: 0
   hoverHeight: 0
+--- !u!114 &11467234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f9829c1a29e4a1a913dcbea0c6b9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
+  damage: 30
+  attackSpeed: 0.5
+  attackSoundEffect: {fileID: 8300000, guid: d0b259b5acb434e9a86a658793025e9e, type: 3}
+  projectile: {fileID: 186090, guid: 1cc0185ba72c24675927b45094e7bf55, type: 2}
+  range: 5
 --- !u!212 &21239508
 SpriteRenderer:
   m_ObjectHideFlags: 1

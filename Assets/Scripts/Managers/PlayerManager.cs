@@ -87,8 +87,8 @@ public class PlayerManager : MonoBehaviour {
 	/**
 	 * @public return the players weapon controller
 	 **/
-	public WeaponController getWeapon() {
-		return _player.GetComponentInChildren<WeaponController>();
+	public PlayerWeapon getWeapon() {
+		return _player.GetComponentInChildren<PlayerWeapon>();
 	}
 
 	/**

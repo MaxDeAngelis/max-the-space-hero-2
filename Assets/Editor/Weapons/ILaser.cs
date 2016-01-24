@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using UnityEditor;
 
-[CustomEditor(typeof(PlayerHealth))]
-public class IPlayerHealth : IHealth {
+[CustomEditor(typeof(Laser))]
+public class ILaser : IWeapon {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS										     	 ///
+	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @public Call on GUI to update the custom inspector. Also, calls parent version for common functionality
 	 **/
 	public override void OnInspectorGUI() {
 		GUI.changed = false;
-		PlayerHealth _health = target as PlayerHealth;
+		Laser _weapon = target as Laser;
 
-		// If this is a player prompt for health bar information
-		_health.healthDisplay = (Text)EditorGUILayout.ObjectField("Health Text", _health.healthDisplay, typeof(Text), true);
-		_health.healthBar = (Slider)EditorGUILayout.ObjectField("Health Bar", _health.healthBar, typeof(Slider), true);
 		base.OnInspectorGUI();
+
+		_weapon.projectile = (GameObject)EditorGUILayout.ObjectField("Projectile", _weapon.projectile, typeof(GameObject), true);
 
 		// If changed then you need to set dirty
 		if (GUI.changed) {
-			EditorUtility.SetDirty(_health);
+			EditorUtility.SetDirty(_weapon);
 		}
 	}
 }

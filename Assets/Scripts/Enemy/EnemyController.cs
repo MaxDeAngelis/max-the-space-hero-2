@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour {
 
 	/* SUPPORTING COMPONENTS */
 	private Rigidbody2D _rigidbody;						// The ridged body of the unit
-	private WeaponController _weapon;					// Weapon controller of the current weapon
+	private Weapon _weapon;					// Weapon controller of the current weapon
 	private BoxCollider2D _collider;					// Box collider for platform detection
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour {
 	void Start() {
 		/* INIT OBJECTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
-		_weapon = GetComponentInChildren<WeaponController>();
+		_weapon = GetComponentInChildren<Weapon>();
 		_collider = GetComponent<BoxCollider2D>();
 
 		/* INIT VARIABLES */

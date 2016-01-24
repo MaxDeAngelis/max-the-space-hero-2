@@ -51,7 +51,7 @@ public class PowerupManager : MonoBehaviour {
 		healthController.updateHealth();
 
 		// Show the increase in health
-		FloatingTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.red);
+		FadeAwayTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.red);
 
 		yield return new WaitForSeconds(powerup.duration);
 
@@ -85,7 +85,7 @@ public class PowerupManager : MonoBehaviour {
 			_energyManager.energy += powerup.bonus;
 
 			// Show the increase in energy
-			FloatingTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.blue);
+			FadeAwayTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.blue);
 
 			// Call the powerup to say it was used
 			powerup.use();

@@ -25,7 +25,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 412998}
-  - 114: {fileID: 11454176}
+  - 114: {fileID: 11408542}
   m_Layer: 0
   m_Name: gun
   m_TagString: Untagged
@@ -208,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0663414, y: 19.400131, z: 0}
+  m_LocalPosition: {x: -7.422, y: 15.79, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 462018}
@@ -417,6 +417,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageModifier: 200
   health: {fileID: 11426636}
+--- !u!114 &11408542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10a47e9ca89b41059de8fc881a2c754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
+  damage: 10
+  attackSpeed: 3
+  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
+  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  range: 3
 --- !u!114 &11422304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,8 +459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e63839bc74e142d8bfdcbff6d0dc3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumHealth: 0
   health: 100
+  maximumHealth: 0
   damageSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 0}
   isPlayer: 0
@@ -458,32 +476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0487c33f949140a59f0f1ab2ecbb2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11454176
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  isPlayer: 0
-  damage: 1
-  attackSpeed: 3
-  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
-  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
-  range: 3
-  durability: 1000
-  durabilityLossPerAttack: 0
-  secondaryDamage: 5
-  secondaryChargeTime: 0
-  secondaryEnergyCost: 0
-  secondaryProjectile: {fileID: 0}
-  secondarySoundEffect: {fileID: 0}
-  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!114 &11479508
 MonoBehaviour:
   m_ObjectHideFlags: 1

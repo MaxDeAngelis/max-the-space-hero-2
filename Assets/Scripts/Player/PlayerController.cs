@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D _rigidbody;
 	private BoxCollider2D _collider;
 	private ClimbController _climbable;
-	private WeaponController _weapon;
+	private PlayerWeapon _weapon;
 	private Animator _animator;
 
 	/* ---- MANAGERS ---- */
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();
-		_weapon = GetComponentInChildren<WeaponController>();
+		_weapon = GetComponentInChildren<PlayerWeapon>();
 		_animator = GetComponent<Animator>();
 
 		/* INIT MANAGERS */
@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour {
 				_isSecondaryCharged = false;
 				_weapon.fireSecondary(gunArm.transform.position, _weapon.transform.position, isGrounded());
 			} else {
+				Debug.Log("Fire");
 				_weapon.fire(gunArm.transform.position, _weapon.transform.position, isGrounded());
 			}
 		} else if (!_isSecondaryCharged && _isFireDown && !_isClimbing) {

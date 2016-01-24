@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour {
 
 		// Get the players location and then display a bonus text
 		Transform player = PlayerManager.Instance.getTransform();
-		FloatingTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
+		FadeAwayTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6,7 +6,7 @@ using System.Collections;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public enum WEAPON_TYPE {Ranged, Melee, Suicide};			// Enum for options in the type drop down
 
-public class WeaponController : MonoBehaviour {
+public class Weapon : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,36 +21,16 @@ public class WeaponController : MonoBehaviour {
 	public GameObject projectile;					// For ranged weapons this is the projectile it can fire
 	public float range = 0.75f;						// The range of the weapon before the unit can attack
 
-	/* DESTRUCTABLE VARIABLES */
-	public float durability = 1000f;				// The durrability of the weapon, when 0 its broken
-	public float durabilityLossPerAttack = 0f;		// The ammount of durrability lost per attack
-
-	/* SECONDARY FIRE VARIABLES */
-	public float secondaryDamage = 5f;
-	public float secondaryChargeTime;
-	public float secondaryEnergyCost;
-	public GameObject secondaryProjectile;
-	public AudioClip secondarySoundEffect;
-	public AudioClip secondaryChargedSoundEffect;
-
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private bool _isFiring = false;					// Flag for when the weapon is being fired
 	private int _attackSpeedFrameCounter = 0;		// How many frames should be inbetween each attack
 	private Animator _animator;
-	private ParticleSystem _particleSystem;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
-	void Start() {
-		_animator = GetComponentInParent<Animator>();
-		_particleSystem = GetComponentInChildren<ParticleSystem>();
-	}
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
@@ -63,66 +43,51 @@ public class WeaponController : MonoBehaviour {
 		}
 	}
 
-	void _instantiateProjectile() {
-
-	}
-
-	private void _fire(Vector3 origin, Vector3 target, float dmg, GameObject shot, AudioClip sound, bool firedFromGround) {
+	/**
+	 * @protected Called to actually do the work of attacking
+	 * 
+	 * @param $Vector3$ origin - The origin of the weapon
+	 * @param $Vector3$ target - The target of the attack
+	 * @param $Float$ dmg - The amount of damage to do
+	 * @param $GameObject$ shot - The game object of the projectile to create
+	 * @param $AudioClip$ sound - The sound to make 
+	 * @param $Boolean$ firedFromGround - Flag for if the weapon is being used from the ground
+	 **/
+	protected void attack(Vector3 origin, Vector3 target, float dmg, GameObject shot, AudioClip sound, bool firedFromGround) {
 		if (!_isFiring) {
 			if (_animator) {
 				_animator.SetTrigger("shoot");
 			}
 
-			// If this is the players weapon then process the shot
-			if (isPlayer) {
-				GameManager.Instance.processShot();
-			}
-
 			_attackSpeedFrameCounter = (int)(60 / attackSpeed);
 			_isFiring = true;
-			
+
 			// Create the new projectile game object
 			Vector3 newLocation = transform.position;
 			newLocation.z += 0.1f;
 			GameObject newProjectile = (GameObject)Instantiate(shot, newLocation, Quaternion.identity);
-			
+
 			//Get a handle on the projectile controller
 			ProjectileController projectileController = newProjectile.GetComponent<ProjectileController>();
 			projectileController.isPlayer = isPlayer;
 			projectileController.damage = dmg;
 			projectileController.isFiredFromGround = firedFromGround;
-			
-			
+			projectileController.range = range;
+
 			// Set the new velocity based on what the weapon is shooting
 			// "Shoot" the projectile by setting its velocity
 			Vector2 delta = target - origin;
 			Vector2 projectileVelocity = delta.normalized;
-			if (projectileController.type == PROJECTILE_TYPE.Laser) {
-				// Set the projectile range based on weapon
-				projectileController.range = range;
-				
-				// Set the rotation of the projectile
-				newProjectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, origin - target);
+		
+			// Adjust the projectile itself and its velocity if needed
+			projectileVelocity = adjustProjectile(origin, target, newProjectile, projectileVelocity);
 
-				if (isPlayer && _particleSystem) {
-					_particleSystem.transform.LookAt(target);
-					_particleSystem.Play();
-				}
-			} else if (projectileController.type == PROJECTILE_TYPE.Bomb) {
-				projectileController.range = 100f;
-				projectileVelocity = new Vector2(0f, -1f);
-			} else if (projectileController.type == PROJECTILE_TYPE.Rocket) {
-				newProjectile.transform.LookAt(new Vector3(target.x, newProjectile.transform.position.y, target.z));
-				newProjectile.transform.Rotate(new Vector3(0,-90,0), Space.Self);
-				projectileVelocity.y = 0f;
-			}
-			
 			//Set the velocity of the projectile
 			newProjectile.GetComponent<Rigidbody2D>().velocity = projectileVelocity * projectileController.speed;
-			
+
 			// Lastly turn on the box collider
 			newProjectile.GetComponent<BoxCollider2D>().enabled = true;
-			
+
 			// Make sound effect
 			SpecialEffectsManager.Instance.playSound(sound);
 		}
@@ -140,20 +105,12 @@ public class WeaponController : MonoBehaviour {
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * @public This function is called from the enemy controller to fire a ranged weapon
-	 * 
-	 * @param $Vector3$ target - The position of the target to fire at
-	 **/
-	public void fire(Vector3 origin, Vector3 target, bool firedFromGround) {
-		_fire(origin, target, damage, projectile, attackSoundEffect, firedFromGround);
+	* @private Called on start of the game object to init variables
+	**/
+	public virtual void Start() {
+		_animator = GetComponentInParent<Animator>();
 	}
-
-	public void fireSecondary(Vector3 origin, Vector3 target, bool firedFromGround) {
-		EnergyManager.Instance.useEnergy(secondaryEnergyCost);
-
-		_fire(origin, target, secondaryDamage, secondaryProjectile, secondarySoundEffect, firedFromGround);
-	}
-
+		
 	/**
 	 * @public handles exploding the weapon in the case of a suicide bomber
 	 **/
@@ -163,11 +120,30 @@ public class WeaponController : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		VIRTUAL FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * @public This function is called from the health script for when a weapons durrability it 0
+	 * @protected Called from attack to adjust the projectiles rotation. Overriden in different weapon classes
+	 *
+	 * @param $Vector3$ origin - The position of the origin of the gun
+	 * @param $Vector3$ target - The position of the target to fire at
+	 * @param $GameObject$ projectile - The projectile game object to adjust its location
+	 * @param $Vector2$ velocity - The projectile velocity
 	 **/
-	public void broken() {
-		Destroy(gameObject);
+	protected virtual Vector2 adjustProjectile(Vector3 origin, Vector3 target, GameObject projectile, Vector2 velocity) {
+		return velocity;
+	}
+
+	/**
+	* @public This function is called from the enemy controller to fire a ranged weapon
+	* 
+	* @param $Vector3$ origin - The position of the origin of the gun
+	* @param $Vector3$ target - The position of the target to fire at
+	* @param $Boolean$ firedFromGround - Is the weapon fired from the ground
+	**/
+	public virtual void fire(Vector3 origin, Vector3 target, bool firedFromGround) {
+		attack(origin, target, damage, projectile, attackSoundEffect, firedFromGround);
 	}
 }
 

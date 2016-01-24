@@ -27,10 +27,10 @@ GameObject:
   - 4: {fileID: 402510}
   - 212: {fileID: 21231228}
   - 95: {fileID: 9513316}
-  - 114: {fileID: 11422546}
   - 50: {fileID: 5008162}
   - 114: {fileID: 11415414}
   - 114: {fileID: 11472780}
+  - 114: {fileID: 11414238}
   m_Layer: 0
   m_Name: UFO_Horizontal
   m_TagString: Untagged
@@ -146,6 +146,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageModifier: 100
   health: {fileID: 11472780}
+--- !u!114 &11414238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10a47e9ca89b41059de8fc881a2c754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
+  damage: 25
+  attackSpeed: 0.5
+  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
+  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
+  range: 4
 --- !u!114 &11415414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,32 +185,6 @@ MonoBehaviour:
   gunArm: {fileID: 0}
   patrolDirection: 0
   hoverHeight: 0
---- !u!114 &11422546
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  isPlayer: 0
-  damage: 10
-  attackSpeed: 0.5
-  attackSoundEffect: {fileID: 8300000, guid: 93a8f1e7925894076ac82914f9780e79, type: 3}
-  projectile: {fileID: 167348, guid: 1c9e4e9ca9c604aa3b3ed6b363611825, type: 2}
-  range: 4
-  durability: 1000
-  durabilityLossPerAttack: 0
-  secondaryDamage: 5
-  secondaryChargeTime: 0
-  secondaryEnergyCost: 0
-  secondaryProjectile: {fileID: 0}
-  secondarySoundEffect: {fileID: 0}
-  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!114 &11472780
 MonoBehaviour:
   m_ObjectHideFlags: 1

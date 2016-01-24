@@ -46,10 +46,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Component Classes\Health.cs" />
+     <Compile Include="Assets\Scripts\Component Classes\Weapon.cs" />
      <Compile Include="Assets\Scripts\Controllers\CursorController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\FloatingTextController.cs" />
      <Compile Include="Assets\Scripts\Controllers\LevelTileController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\WeaponController.cs" />
      <Compile Include="Assets\Scripts\Data Classes\GameData.cs" />
      <Compile Include="Assets\Scripts\Data Classes\LevelData.cs" />
      <Compile Include="Assets\Scripts\Data Classes\PlayerData.cs" />
@@ -61,7 +60,7 @@
      <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\FloatingTextManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\FadeAwayTextManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\LevelDisplayManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
@@ -69,13 +68,18 @@
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
      <Compile Include="Assets\Scripts\Player\ShieldController.cs" />
+     <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\Hitbox.cs" />
      <Compile Include="Assets\Scripts\Utilities\MapMarker.cs" />
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />
      <Compile Include="Assets\Scripts\Utilities\ShowMenuOnEnter.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Bomber.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Laser.cs" />
+     <Compile Include="Assets\Scripts\Weapons\RocketLauncher.cs" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
      <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEngine.UI">

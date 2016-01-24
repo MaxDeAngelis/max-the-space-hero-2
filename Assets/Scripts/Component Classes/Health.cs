@@ -63,19 +63,13 @@ public class Health : MonoBehaviour {
 		float damage = 0f;
 
 		// Try and get the Weapon Controller off the colider to see if you are being hit with a weapon
-		WeaponController weapon = triggerCollider.gameObject.GetComponent<WeaponController>();
+		Weapon weapon = triggerCollider.gameObject.GetComponent<Weapon>();
 		ProjectileController projectile = triggerCollider.gameObject.GetComponent<ProjectileController>();
 
 		/* ---- WEAPON DAMAGE ---- */
 		if (weapon != null && weapon.isPlayer != isPlayer) {
 			// Set the damage for the weapon
 			damage = Mathf.RoundToInt(weapon.damage * damageModifier);
-
-			// Damage the actual weapon
-			weapon.durability -= weapon.durabilityLossPerAttack;
-			if(weapon.durability <= 0) {
-				weapon.broken();
-			}
 
 			// For suicide blow up
 			if (weapon.type == WEAPON_TYPE.Suicide) {
@@ -98,7 +92,7 @@ public class Health : MonoBehaviour {
 		// Make a sound and show damage if hurt
 		if (damage > 0) {
 			// Show floating text and play sound
-			FloatingTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
+			FadeAwayTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
 			SpecialEffectsManager.Instance.playSound(damageSoundEffect);
 
 			// Actually take the damage

@@ -27,10 +27,10 @@ GameObject:
   - 4: {fileID: 486910}
   - 212: {fileID: 21239700}
   - 95: {fileID: 9508100}
-  - 114: {fileID: 11400300}
   - 50: {fileID: 5084814}
   - 114: {fileID: 11475648}
   - 114: {fileID: 11437880}
+  - 114: {fileID: 11478304}
   m_Layer: 0
   m_Name: UFO_Bomber_Horizontal
   m_TagString: Untagged
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.84657, y: 14.2498, z: 0}
+  m_LocalPosition: {x: -8.395148, y: 18.349974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470574}
@@ -132,32 +132,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11400300
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f7bb223bf9e472398ee6e624ae1ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  isPlayer: 0
-  damage: 100
-  attackSpeed: 0.25
-  attackSoundEffect: {fileID: 0}
-  projectile: {fileID: 152602, guid: 992eeb3e2240f4e73be884a556ee1b18, type: 2}
-  range: 0.5
-  durability: 1000
-  durabilityLossPerAttack: 0
-  secondaryDamage: 5
-  secondaryChargeTime: 0
-  secondaryEnergyCost: 0
-  secondaryProjectile: {fileID: 0}
-  secondarySoundEffect: {fileID: 0}
-  secondaryChargedSoundEffect: {fileID: 0}
 --- !u!114 &11437880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,6 +183,24 @@ MonoBehaviour:
   gunArm: {fileID: 0}
   patrolDirection: 0
   hoverHeight: -4
+--- !u!114 &11478304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431eeac95c5c345c3b17444bf7d98d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  isPlayer: 0
+  damage: 100
+  attackSpeed: 0.25
+  attackSoundEffect: {fileID: 0}
+  projectile: {fileID: 152602, guid: 992eeb3e2240f4e73be884a556ee1b18, type: 2}
+  range: 0.5
 --- !u!212 &21239700
 SpriteRenderer:
   m_ObjectHideFlags: 1
