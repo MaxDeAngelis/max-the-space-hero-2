@@ -98,7 +98,6 @@ GameObject:
   - 198: {fileID: 19876318}
   - 199: {fileID: 19914288}
   - 114: {fileID: 11448644}
-  - 114: {fileID: 11429960}
   m_Layer: 12
   m_Name: Max
   m_TagString: Player
@@ -477,24 +476,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11429960
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8a1ee05a3b21455d868862390d811c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
-  maximumHealth: 0
-  damageSoundEffect: {fileID: 8300000, guid: 9e7caf4e213c34c838a7ca09413bc5d1, type: 3}
-  deathSoundEffect: {fileID: 0}
-  isPlayer: 1
-  healthDisplay: {fileID: 0}
-  healthBar: {fileID: 0}
 --- !u!114 &11432846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -530,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageModifier: 150
-  health: {fileID: 11429960}
+  health: {fileID: 0}
 --- !u!114 &11448644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,6 +570,7 @@ MonoBehaviour:
     type: 3}
   secondaryChargedSoundEffect: {fileID: 8300000, guid: 37c05e9cd53774fa98d40a36014f966f,
     type: 3}
+  gunArm: {fileID: 486944}
 --- !u!114 &11487294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -627,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageModifier: 100
-  health: {fileID: 11429960}
+  health: {fileID: 0}
 --- !u!198 &19876318
 ParticleSystem:
   m_ObjectHideFlags: 1

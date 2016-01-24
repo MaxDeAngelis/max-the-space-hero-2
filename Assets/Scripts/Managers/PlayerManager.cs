@@ -109,6 +109,20 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	/**
+	 * @public returns true if the player is grounded
+	 **/
+	public bool isGrounded() {
+		return getController().isGrounded();
+	}
+
+	/**
+	 * @public returns true if the player is climbing something
+	 **/
+	public bool isClimbing() {
+		return getController().isClimbing();
+	}
+
+	/**
 	 * @public returns the platform that the player is standing on
 	 **/
 	public BoxCollider2D getCurrentPlatform() {

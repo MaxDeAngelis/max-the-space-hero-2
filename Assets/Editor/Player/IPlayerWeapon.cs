@@ -15,6 +15,9 @@ public class IPlayerWeapon : ILaser {
 		GUI.changed = false;
 		PlayerWeapon _weapon = target as PlayerWeapon;
 
+		_weapon.gunArm = (Transform)EditorGUILayout.ObjectField("Gun Arm", _weapon.gunArm, typeof(Transform), true);
+		EditorGUILayout.Separator();
+
 		base.OnInspectorGUI();
 
 		EditorGUILayout.Separator();

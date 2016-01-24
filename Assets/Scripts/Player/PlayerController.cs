@@ -30,18 +30,12 @@ public class PlayerController : MonoBehaviour {
 	private bool _isBackwardGrounded = false;	// Flag for whant the back of the player is grounded
 	private bool _isAnchored = true;			// Flag for when player is attached to the ground
 	private bool _isClimbing = false;			// Flag for when player is actually climbing
-	private bool _isFacingRight = true;			// Flag for if the player is facing the righ
 	private bool _isAbleToLand = false;
 	private bool _isTakingOff = false;
 	private float _originalGravityScale;		// Starting gravity 
 	private Vector3 _boundryIntersectPosition;	// The position the player was in as he intersects with a boundry
 	private string[] _groundLayers = new string[2] {"Ground", "Climbable"}; // List of layers to consider ground
 	private GameObject _currentPlatform;
-
-	/* VARIABLES FOR SECONDARY FIRE */
-	private bool _isFireDown = false;
-	private bool _isSecondaryCharged = false;
-	private float _startChargeTime;
 
 	/* VARIABLES FOR WAITING ANIMATION CHECK */
 	private int _framesBeforeWait = 60 * 10;	// Amount of frames to count before considered waiting
@@ -53,8 +47,7 @@ public class PlayerController : MonoBehaviour {
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
 	private BoxCollider2D _collider;
-	private ClimbController _climbable;
-	private PlayerWeapon _weapon;
+	private Climbable _climbable;
 	private Animator _animator;
 
 	/* ---- MANAGERS ---- */
@@ -71,7 +64,6 @@ public class PlayerController : MonoBehaviour {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();
-		_weapon = GetComponentInChildren<PlayerWeapon>();
 		_animator = GetComponent<Animator>();
 
 		/* INIT MANAGERS */
@@ -89,42 +81,11 @@ public class PlayerController : MonoBehaviour {
 	 * @private called once per frame. Used to capture key events for later
 	 **/
 	void Update() {
-		// Aim your weapon towards the mouse
-		_aim();
-
 		// Check if it is possable to land
 		_checkIfAbleToLand();
 		
 		// Line cast to the ground check transform to see if it is over a ground layer
 		_checkIfGrounded();
-
-		/* ---- HANDLE FIRING GUN ---- */
-		// 1. When first pressed set flag in case of charging
-		// 2. On mouse up check if charged and if you have energy to use a secondary
-		// 3. While fire is down check if charged, play sound, and set flag
-		if (Input.GetButtonDown("Fire1") && !_isClimbing) {
-			_isFireDown = true;
-			_startChargeTime = Time.time;
-			SpecialEffectsManager.Instance.playWeaponCharging(_weapon.transform.position, null);
-		} else if (Input.GetButtonUp("Fire1") && _isFireDown && !_isClimbing) {
-			_isFireDown = false;
-			SpecialEffectsManager.Instance.stopWeaponCharging();
-
-			// If seconday is charged and there is still enough energy then use it
-			if (_isSecondaryCharged && _energyManager.energy >= _weapon.secondaryEnergyCost) {
-				_isSecondaryCharged = false;
-				_weapon.fireSecondary(gunArm.transform.position, _weapon.transform.position, isGrounded());
-			} else {
-				Debug.Log("Fire");
-				_weapon.fire(gunArm.transform.position, _weapon.transform.position, isGrounded());
-			}
-		} else if (!_isSecondaryCharged && _isFireDown && !_isClimbing) {
-			// If the time is reached and there is enough energy then play a sound
-			if ((Time.time - _startChargeTime) > _weapon.secondaryChargeTime && _energyManager.energy >= _weapon.secondaryEnergyCost) {
-				_isSecondaryCharged = true;
-				SpecialEffectsManager.Instance.playWeaponCharged(_weapon.transform.position, _weapon.secondaryChargedSoundEffect);
-			}
-		}
 
 		/* ---- HANDLE ANCHORING ---- */
 		if (Input.GetButtonDown("Jump") && _isAnchored && !_climbable && (_isForwardGrounded || _isBackwardGrounded)) {
@@ -189,17 +150,8 @@ public class PlayerController : MonoBehaviour {
 			}
 				
 			/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
-			if (_isFacingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
+			if (_checkIfFalling(horizontalVelocity)) { 
 				// FACING RIGHT MOVING RIGHT
-				horizontalVelocity = 0f;
-			} else if (!_isFacingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
-				// FACING LEFT MOVING RIGHT
-				horizontalVelocity = 0f;
-			} else if (_isFacingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
-				// FACING RIGHT MOVING LEFT
-				horizontalVelocity = 0f;
-			} else if (!_isFacingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
-				// FACING LEFT MOVING RIGHT
 				horizontalVelocity = 0f;
 			}
 
@@ -264,6 +216,31 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	/**
+	 * @private Checks if the player is falling off of a platform 
+	 * 
+	 * @param $Float$ horizontalVelocity - The current horizontal velocity
+	 **/
+	bool _checkIfFalling(float horizontalVelocity) {
+		bool _isFacingRight = (transform.localScale.x > 0);
+		/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
+		if (_isFacingRight && horizontalVelocity > 0 && !_isForwardGrounded) { 
+			// FACING RIGHT MOVING RIGHT
+			return true;
+		} else if (!_isFacingRight && horizontalVelocity > 0 && !_isBackwardGrounded) {
+			// FACING LEFT MOVING RIGHT
+			return true;
+		} else if (_isFacingRight && horizontalVelocity < 0 && !_isBackwardGrounded) {
+			// FACING RIGHT MOVING LEFT
+			return true;
+		} else if (!_isFacingRight && horizontalVelocity < 0 && !_isForwardGrounded) {
+			// FACING LEFT MOVING RIGHT
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * @private checks if max is waiting and if so triggers the wait animation
 	 **/
 	void _checkIfWaiting() {
@@ -300,36 +277,7 @@ public class PlayerController : MonoBehaviour {
 		// Always set landing flag for animation
 		_animator.SetBool("ableToLand", _isAbleToLand);
 	}
-
-	/**
-	 * @private rotate the arm towards the mouse cursor
-	 **/
-	void _aim() {
-		// Drop out if paused
-		if (!GameManager.Instance.isPaused()) {
-			/* ---- AIM THE ARM TO FIRE ----*/		
-			// Get a handle on the player pos and the mouse
-			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector3 playerPos = transform.position;
-
-			// If the mouse is on the oposite side then flip and skip
-			if ((mousePos.x < playerPos.x && _isFacingRight) || (mousePos.x > playerPos.x && !_isFacingRight)) {
-				_flipPlayer();
-			} else {
-				// Calculate the upward rotation
-				Vector3 upward = gunArm.transform.position - mousePos;
-
-				// TODO: Make localScale If not facing right invert x for correct rotation
-				if (!_isFacingRight) {
-					upward.x *= -1f;
-				}
-
-				// Set the look rotation of the arm
-				gunArm.transform.rotation = Quaternion.LookRotation(Vector3.forward, upward);
-			}
-		}
-	}
-
+		
 	/**
 	 * @private checks to see if the player is bumping into the boundries and if so it stops the player
 	 **/
@@ -393,9 +341,9 @@ public class PlayerController : MonoBehaviour {
 		_checkIfHittingBoundry(otherCollider);
 
 		// Ladder logic to allow climbing
-		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
+		if (_isAnchored && otherCollider.gameObject.GetComponent<Climbable>() != null) {
 			_rigidbody.gravityScale = 0;
-			_climbable = otherCollider.gameObject.GetComponent<ClimbController>();
+			_climbable = otherCollider.gameObject.GetComponent<Climbable>();
 		}
 
 		// Process if you hit a powerup, call manager to gain boost
@@ -415,7 +363,7 @@ public class PlayerController : MonoBehaviour {
 	 * @private Handles checking if the player is no longer over a climbable object. Sets gravity back
 	 **/
 	void OnTriggerExit2D(Collider2D otherCollider) {
-		if (_isAnchored && otherCollider.gameObject.GetComponent<ClimbController>() != null) {
+		if (_isAnchored && otherCollider.gameObject.GetComponent<Climbable>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
 			_climbable = null;
 			_isClimbing = false;
@@ -460,15 +408,7 @@ public class PlayerController : MonoBehaviour {
 		_isTakingOff = false;
 	}
 
-	/**
-	 * @private Flips the transform by reversing its scale
-	 **/
-	private void _flipPlayer() {
-		_isFacingRight = !_isFacingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
@@ -485,6 +425,13 @@ public class PlayerController : MonoBehaviour {
 	 **/
 	public bool isGrounded() {
 		return !isFlying();
+	}
+
+	/**
+	 * @public called to see if player if climbing
+	 **/
+	public bool isClimbing() {
+		return _isClimbing;
 	}
 
 	/**
