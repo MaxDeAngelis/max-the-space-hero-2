@@ -92,6 +92,7 @@ public class PowerupManager : MonoBehaviour {
 		}
 	}
 
+
 	/**
 	 * @private Called from the process function to apply a speed bonus
 	 * 
@@ -99,6 +100,7 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $GameObject$ player - The game object of the player
 	 **/
 	IEnumerator _useSpeedPowerup(PowerupController powerup, GameObject player) {
+		/* TODO: Should not use maximum velocity from the player */
 		// Call the powerup to say it was used
 		powerup.use();
 
@@ -106,18 +108,19 @@ public class PowerupManager : MonoBehaviour {
 		PlayerController playerController = player.GetComponent<PlayerController>();
 
 		// Store off the original speed value to be able to revery
-		float originalBoostSpeed = playerController.maximumVelocity;
+		//float originalBoostSpeed = playerController.maximumVelocity;
 		float originalMovementSpeed = playerController.movementSpeed;
 
 		// Increse both movement values, running and boosting
-		playerController.maximumVelocity += powerup.bonus;
+		//playerController.maximumVelocity += powerup.bonus;
 		playerController.movementSpeed += (powerup.bonus/2);
 
 		yield return new WaitForSeconds(powerup.duration);
 
 		// Return to the original state
-		playerController.maximumVelocity = originalBoostSpeed;
+		//playerController.maximumVelocity = originalBoostSpeed;
 		playerController.movementSpeed = originalMovementSpeed;
+
 	}
 
 	/**
@@ -127,26 +130,9 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $GameObject$ player - The game object of the player
 	 **/
 	IEnumerator _useShieldPowerup(PowerupController powerup, GameObject player) {
-		// Call the powerup to say it was used
-		powerup.use();
-		
-		// Get a handle on the player controller
-		PlayerController playerController = player.GetComponent<PlayerController>();
-		
-		// Store off the original speed value to be able to revery
-		float originalBoostSpeed = playerController.maximumVelocity;
-		float originalMovementSpeed = playerController.movementSpeed;
-		
-		// Increse both movement values, running and boosting
-		playerController.maximumVelocity += powerup.bonus;
-		playerController.movementSpeed += (powerup.bonus/2);
-		
 		yield return new WaitForSeconds(powerup.duration);
-		
-		// Return to the original state
-		playerController.maximumVelocity = originalBoostSpeed;
-		playerController.movementSpeed = originalMovementSpeed;
 	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\Hitbox.cs" />
+     <Compile Include="Assets\Scripts\Utilities\KeepInBounds.cs" />
      <Compile Include="Assets\Scripts\Utilities\MapMarker.cs" />
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />

@@ -25,7 +25,6 @@ GameObject:
   - 4: {fileID: 409338}
   - 61: {fileID: 6199656}
   - 114: {fileID: 11489366}
-  - 114: {fileID: 11492442}
   m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
@@ -74,7 +73,6 @@ GameObject:
   - 4: {fileID: 428952}
   - 61: {fileID: 6178350}
   - 114: {fileID: 11487294}
-  - 114: {fileID: 11444268}
   m_Layer: 12
   m_Name: Head
   m_TagString: Untagged
@@ -98,6 +96,8 @@ GameObject:
   - 198: {fileID: 19876318}
   - 199: {fileID: 19914288}
   - 114: {fileID: 11448644}
+  - 114: {fileID: 11404154}
+  - 114: {fileID: 11491172}
   m_Layer: 12
   m_Name: Max
   m_TagString: Player
@@ -476,6 +476,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11404154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7283b6bd5ac6c416aa06bff0dcd1a2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostForce: 5
+  maximumVelocity: 8
+  boostCost: 2
+  takeOffCost: 25
+  flyingEnergyRegenRate: 30
+  anchoredEnergyRegenRate: 6
+  topLandingCheck: {fileID: 485696}
+  bottomLandingCheck: {fileID: 455962}
 --- !u!114 &11432846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,30 +507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  boostForce: 8
-  maximumVelocity: 7
-  boostCost: 1
-  takeOffCost: 25
-  flyingEnergyRegenRate: 30
-  anchoredEnergyRegenRate: 6
-  topLandingCheck: {fileID: 485696}
-  bottomLandingCheck: {fileID: 455962}
   forwardGroundCheck: {fileID: 429632}
   backwardGroundCheck: {fileID: 402352}
   gunArm: {fileID: 486944}
---- !u!114 &11444268
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 142448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageModifier: 150
-  health: {fileID: 0}
 --- !u!114 &11448644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -597,19 +595,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageModifier: 100
   health: {fileID: 11448644}
---- !u!114 &11492442
+--- !u!114 &11491172
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104254}
+  m_GameObject: {fileID: 153024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8516e543a29934581ac0728623c0de6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b72b859c936c49be83590fec6c1e6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageModifier: 100
-  health: {fileID: 0}
 --- !u!198 &19876318
 ParticleSystem:
   m_ObjectHideFlags: 1

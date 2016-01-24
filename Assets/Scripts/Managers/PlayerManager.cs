@@ -55,6 +55,56 @@ public class PlayerManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @public plays the particle system attached to the player for the given durration with the given color
+	 * 
+	 * @param float duration - the duration to play the effect for
+	 * @param Color color - the color to set the effect to
+	 **/
+	public void playParticleEffect(float duration, Color color) {
+		StartCoroutine(_playParticleEffect(duration, color));
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     	    	  FLAGS 	  							     	    	     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @public returns true if the player is anchored
+	 **/
+	public bool isAnchored() {
+		return getJetPack().isAnchored();
+	}
+
+	/**
+	 * @public returns true if the player is flying or not
+	 **/
+	public bool isFlying() {
+		return getJetPack().isFlying();
+	}
+
+	/**
+	 * @public returns true if the player is grounded
+	 **/
+	public bool isGrounded() {
+		return getController().isGrounded();
+	}
+
+	/**
+	 * @public returns true if the player is climbing something
+	 **/
+	public bool isClimbing() {
+		return getController().isClimbing();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     	    	  GETTERS 	  							     	    	     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * @public returns the platform that the player is standing on
+	 **/
+	public BoxCollider2D getCurrentPlatform() {
+		return getController().getCurrentPlatform().GetComponent<BoxCollider2D>();
+	}
 
 	/**
 	 * @public returns the location of the player
@@ -92,40 +142,9 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	/**
-	 * @public plays the particle system attached to the player for the given durration with the given color
-	 * 
-	 * @param float duration - the duration to play the effect for
-	 * @param Color color - the color to set the effect to
+	 * @public return the players weapon controller
 	 **/
-	public void playParticleEffect(float duration, Color color) {
-		StartCoroutine(_playParticleEffect(duration, color));
-	}
-
-	/**
-	 * @public returns true if the player is flying or not
-	 **/
-	public bool isFlying() {
-		return getController().isFlying();
-	}
-
-	/**
-	 * @public returns true if the player is grounded
-	 **/
-	public bool isGrounded() {
-		return getController().isGrounded();
-	}
-
-	/**
-	 * @public returns true if the player is climbing something
-	 **/
-	public bool isClimbing() {
-		return getController().isClimbing();
-	}
-
-	/**
-	 * @public returns the platform that the player is standing on
-	 **/
-	public BoxCollider2D getCurrentPlatform() {
-		return getController().getCurrentPlatform().GetComponent<BoxCollider2D>();
+	public JetPack getJetPack() {
+		return _player.GetComponentInChildren<JetPack>();
 	}
 }

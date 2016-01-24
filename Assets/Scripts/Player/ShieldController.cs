@@ -22,7 +22,6 @@ public class ShieldController : MonoBehaviour {
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Animator _animator;
-	private PlayerController _player;
 	private SpriteRenderer _renderer;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +33,6 @@ public class ShieldController : MonoBehaviour {
 	void Start() {
 		/* INIT COMPONENTS */
 		_animator = GetComponent<Animator>();
-		_player = PlayerManager.Instance.getController();
 		_renderer = GetComponent<SpriteRenderer>();
 
 		/* INIT VARIABLES */
@@ -50,7 +48,7 @@ public class ShieldController : MonoBehaviour {
 	 **/
 	void FixedUpdate() {
 		// Set flying boolean in animator
-		_animator.SetBool("flying", _player.isFlying());
+		_animator.SetBool("flying", PlayerManager.Instance.isFlying());
 
 		// Only recharge the shield if it is missing some energy
 		if (strength < _maximumShield) {
