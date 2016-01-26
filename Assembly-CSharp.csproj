@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />
      <Compile Include="Assets\Scripts\Utilities\ShowMenuOnEnter.cs" />
+     <Compile Include="Assets\Scripts\Utilities\TypeText.cs" />
      <Compile Include="Assets\Scripts\Weapons\Bomber.cs" />
      <Compile Include="Assets\Scripts\Weapons\Laser.cs" />
      <Compile Include="Assets\Scripts\Weapons\RocketLauncher.cs" />

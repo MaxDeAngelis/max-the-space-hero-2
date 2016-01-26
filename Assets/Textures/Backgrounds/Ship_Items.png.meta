@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: de97233c1f7454d7b81cb525cdcd2a83
-timeCreated: 1453349309
+timeCreated: 1453778534
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Ship_Doctor
     21300002: Ship_Medical_Table
+    21300004: Ship_Doctor_Head
+    21300006: Ship_Heart
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -70,6 +72,28 @@ TextureImporter:
         y: 409
         width: 46
         height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Ship_Doctor_Head
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 416
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Ship_Heart
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 422
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
