@@ -55,8 +55,8 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Items\Climbable.cs" />
-     <Compile Include="Assets\Scripts\Items\PowerupController.cs" />
-     <Compile Include="Assets\Scripts\Items\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\Items\Powerup.cs" />
+     <Compile Include="Assets\Scripts\Items\Projectile.cs" />
      <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
@@ -66,11 +66,11 @@
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
-     <Compile Include="Assets\Scripts\Player\JetPack.cs" />
+     <Compile Include="Assets\Scripts\Player\Jetpack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
-     <Compile Include="Assets\Scripts\Player\ShieldController.cs" />
+     <Compile Include="Assets\Scripts\Player\Shield.cs" />
      <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\Hitbox.cs" />

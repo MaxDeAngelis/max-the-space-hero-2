@@ -1,13 +1,11 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
+﻿<Properties StartupItem="Assembly-CSharp.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerHealth.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Data Classes/PlayerData.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player/PlayerController.cs" Line="75" Column="1" />
-      <File FileName="Assets/Scripts/Player/JetPack.cs" Line="33" Column="2" />
-      <File FileName="Assets/Scripts/Utilities/ShowMenuOnEnter.cs" Line="25" Column="1" />
-      <File FileName="Assets/Scripts/Utilities/FadeAwayText.cs" Line="6" Column="1" />
-      <File FileName="Assets/Scripts/Utilities/TypeText.cs" Line="34" Column="49" />
-      <File FileName="Assets/Scripts/Player/PlayerHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Data Classes/PlayerData.cs" Line="44" Column="2" />
+      <File FileName="Assets/Scripts/Data Classes/GameData.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/DataManager.cs" Line="133" Column="3" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="262" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
