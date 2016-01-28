@@ -123,8 +123,9 @@ public class DataManager : MonoBehaviour {
 				break;
 			}
 		}
+	}
 
-		// Once global object is updated save to game file
-		save();
+	public void updatePlayerData(int score) {
+		_currentGameData.getPlayerData().addToScore(score);
 	}
 }

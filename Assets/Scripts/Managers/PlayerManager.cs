@@ -144,7 +144,7 @@ public class PlayerManager : MonoBehaviour {
 	/**
 	 * @public return the players weapon controller
 	 **/
-	public JetPack getJetPack() {
-		return _player.GetComponentInChildren<JetPack>();
+	public Jetpack getJetPack() {
+		return _player.GetComponentInChildren<Jetpack>();
 	}
 }

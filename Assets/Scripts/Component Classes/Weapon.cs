@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour {
 			GameObject newProjectile = (GameObject)Instantiate(shot, newLocation, Quaternion.identity);
 
 			//Get a handle on the projectile controller
-			ProjectileController projectileController = newProjectile.GetComponent<ProjectileController>();
+			Projectile projectileController = newProjectile.GetComponent<Projectile>();
 			projectileController.isPlayer = isPlayer;
 			projectileController.damage = dmg;
 			projectileController.isFiredFromGround = firedFromGround;

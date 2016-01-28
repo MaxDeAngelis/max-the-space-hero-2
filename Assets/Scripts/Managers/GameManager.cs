@@ -54,11 +54,13 @@ public class GameManager : MonoBehaviour {
 		}
 		Instance = this;
 
-		setCursor(startingCursor);
-
+		/* -- INIT VARIABLES -- */
 		_originalCursor = startingCursor;
 
+		/* -- INIT DISPLAY -- */
+		setCursor(startingCursor);
 		_updateExperience(0);
+		_updateScore(0);
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/**
-	 * @private Called to update the text of the score that is displayed in the hud. Handles calculating the score
+	 * @private Calculates the new score to add based on damageList given
 	 * 
 	 * @param Integer scoreToAdd - The amount to add to the score
 	 * @param List<float[]> damageList - The list of damage done to the enemy used to adjust the score
@@ -110,12 +112,31 @@ public class GameManager : MonoBehaviour {
 
 		// Multiple the score to add by the multiplier
 		scoreToAdd = Mathf.RoundToInt((float)scoreToAdd * totalModifier);
-		_score += scoreToAdd;
-		score.text = _score.ToString();
+
+		// After calculating based on modifier then call base version
+		_updateScore(scoreToAdd);
 
 		// Get the players location and then display a bonus text
 		Transform player = PlayerManager.Instance.getTransform();
 		FadeAwayTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
+	}
+
+	/**
+	 * @private Called to update the text of the score that is displayed in the hud
+	 * 
+	 * @param Integer scoreToAdd - The amount to add to the score
+	 **/
+	private void _updateScore(int scoreToAdd) {
+		// If there is a score text object then populate it
+		if (score) {
+			_score += scoreToAdd;
+
+			// Calculate level score plus overall score for display
+			int scoreToDisplay = DataManager.Instance.getCurrentPlayerData().getScore() + _score;
+
+			// Display the combined score
+			score.text = scoreToDisplay.ToString();
+		}
 	}
 
 	/**
@@ -237,8 +258,7 @@ public class GameManager : MonoBehaviour {
 	 * @public called when the player dies and the game is over
 	 **/
 	public void gameOver() {
-		setCursor(CURSOR_TYPE.Default);
-		gameOverMenu.SetActive(true);
+		showMenu(gameOverMenu);
 	}
 
 	/**
@@ -264,15 +284,17 @@ public class GameManager : MonoBehaviour {
 
 		// If the level boss was killed then game over
 		if (enemy.rank == ENEMY_RANK.Boss) {
+			// Display the actual level complete menue
+			showMenu(levelCompleteMenu);
+
+			// Calculate the kill ratio and the accuracy stats for the level
 			float killRatio = ((float)_enemiesKilled.Count / (float)_enemies.Count) * 100;
 			float accuracy = ((float)_playerHits / (float)_playerShots) * 100;
 
-			_pause = true;
-			setCursor(CURSOR_TYPE.Default);
-			Time.timeScale = 0;
-			levelCompleteMenu.SetActive(true);
-
+			// Save the level and the player data
 			DataManager.Instance.updateLevelData(SceneManager.GetActiveScene().name, killRatio, Time.time, accuracy, _score);
+			DataManager.Instance.updatePlayerData(_score);
+			DataManager.Instance.save();
 		}
 	}
 

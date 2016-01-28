@@ -2,18 +2,18 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ShieldController : MonoBehaviour {
+public class Shield : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public float strength = 100f; 			// The strength of the shield
 	public Slider shieldBar;				// The slider bar that displays the shield energy left
 	public Text shieldDisplay;				// UI Text component to display the percent of shield left
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private float _maximumShield;			// The maximum strength of the shield
+	private float _strength; 				// The _strength of the shield
+	private float _maximumShield;			// The maximum _strength of the shield
 	private int _refreshDelay = 2 * 60; 	// Delay before shield starts to refresh
 	private int _refreshRate = 15;			// The amount of frames befor a point is added to the shield
 	private int _refreshDelayCount;			// Counter for delay of shield generation
@@ -36,7 +36,8 @@ public class ShieldController : MonoBehaviour {
 		_renderer = GetComponent<SpriteRenderer>();
 
 		/* INIT VARIABLES */
-		_maximumShield = strength;
+		_strength = DataManager.Instance.getCurrentPlayerData().getShield();
+		_maximumShield = _strength;
 		_originalColor = _renderer.color;
 
 		/* INIT SHIELD DISPLAY */
@@ -51,13 +52,13 @@ public class ShieldController : MonoBehaviour {
 		_animator.SetBool("flying", PlayerManager.Instance.isFlying());
 
 		// Only recharge the shield if it is missing some energy
-		if (strength < _maximumShield) {
+		if (_strength < _maximumShield) {
 			// Process the delay of refreshing the shield
 			if (_refreshDelayCount >= _refreshDelay) {
-				// If the refresh rate expires add strength to the shield
+				// If the refresh rate expires add _strength to the shield
 				if (_refreshRateCount >= _refreshRate) {
 					_refreshRateCount = 0;
-					strength++;
+					_strength++;
 					_updateShield();
 				} else {
 					_refreshRateCount++;
@@ -74,7 +75,7 @@ public class ShieldController : MonoBehaviour {
 	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
 	 **/
 	void OnTriggerEnter2D(Collider2D otherCollider) {
-		ProjectileController projectile = otherCollider.gameObject.GetComponent<ProjectileController>();
+		Projectile projectile = otherCollider.gameObject.GetComponent<Projectile>();
 		if (projectile != null && !projectile.isPlayer) {
 			float damage = projectile.damage;
 
@@ -83,20 +84,20 @@ public class ShieldController : MonoBehaviour {
 			_refreshRateCount = 0;
 
 			// If the shield has power then use it
-			if (strength > 0 ) {
+			if (_strength > 0 ) {
 				// Figure out how much damage to give to absorb and pass along the rest
-				if ((strength - damage) < 0) {
+				if ((_strength - damage) < 0) {
 					// Reset the projectile damage to the remainder
-					projectile.damage = damage - strength;
+					projectile.damage = damage - _strength;
 
 					// Set damage to what is left in the shield
-					damage = strength;
+					damage = _strength;
 				} else {
 					projectile.hit();
 				}
 
 				// Take the damage 
-				strength -= damage;
+				_strength -= damage;
 
 				// Update shield display
 				_updateShield();
@@ -115,12 +116,12 @@ public class ShieldController : MonoBehaviour {
 	 **/
 	public void _updateShield() {
 		// Only update text in UI if it was configured to do so
-		if (shieldBar != null) {
+		if (shieldBar) {
 			// Calculate the percentage of health left
-			float shieldPercent = Mathf.Round((strength/_maximumShield) * 100);
+			float shieldPercent = Mathf.Round((_strength/_maximumShield) * 100);
 			
 			// Display the calculated string
-			shieldDisplay.text = strength + "/" + _maximumShield;
+			shieldDisplay.text = _strength + "/" + _maximumShield;
 			
 			// Update health bar value
 			shieldBar.value = shieldPercent;

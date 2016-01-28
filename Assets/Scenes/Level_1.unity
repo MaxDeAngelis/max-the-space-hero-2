@@ -856,6 +856,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11448644, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: healthDisplay
+      value: 
+      objectReference: {fileID: 584544528}
+    - target: {fileID: 11448644, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 939550458}
     - target: {fileID: 11468488, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: shieldBar
       value: 
@@ -3338,17 +3346,6 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 153024, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_PrefabInternal: {fileID: 402280019}
---- !u!114 &1041156691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1041156690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b72b859c936c49be83590fec6c1e6d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1043951246
 GameObject:
   m_ObjectHideFlags: 0

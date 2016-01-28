@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor(typeof(ProjectileController))]
+[CustomEditor(typeof(Projectile))]
 public class IProjectile : Editor {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -11,7 +11,7 @@ public class IProjectile : Editor {
 		GUI.changed = false;
 
 		// Get a reference to the extended class
-		ProjectileController _projectile = target as ProjectileController;
+		Projectile _projectile = target as Projectile;
 
 
 		// Display default settings

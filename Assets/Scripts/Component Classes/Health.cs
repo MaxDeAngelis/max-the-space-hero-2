@@ -64,7 +64,7 @@ public class Health : MonoBehaviour {
 
 		// Try and get the Weapon Controller off the colider to see if you are being hit with a weapon
 		Weapon weapon = triggerCollider.gameObject.GetComponent<Weapon>();
-		ProjectileController projectile = triggerCollider.gameObject.GetComponent<ProjectileController>();
+		Projectile projectile = triggerCollider.gameObject.GetComponent<Projectile>();
 
 		/* ---- WEAPON DAMAGE ---- */
 		if (weapon != null && weapon.isPlayer != isPlayer) {

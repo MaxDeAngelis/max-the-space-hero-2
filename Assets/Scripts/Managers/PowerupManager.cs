@@ -33,7 +33,7 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $PowerupController$ powerup - The controller of the powerup to apply
 	 * @param $GameObject$ player - The game object of the player
 	 **/
-	IEnumerator _useHealthPowerup(PowerupController powerup, GameObject player) {
+	IEnumerator _useHealthPowerup(Powerup powerup, GameObject player) {
 		// Call the powerup to say it was used
 		powerup.use();
 
@@ -73,7 +73,7 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $PowerupController$ powerup - The controller of the powerup to apply
 	 * @param $GameObject$ player - The game object of the player
 	 **/
-	void _useEnergyPowerup(PowerupController powerup, GameObject player) {
+	void _useEnergyPowerup(Powerup powerup, GameObject player) {
 		// Only use the powerup if you need it
 		if (_energyManager.energy < _energyManager.maximumEnergy) {
 			// If the energy and bonus are higher than the maximum then adjust the bonus
@@ -99,7 +99,7 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $PowerupController$ powerup - The controller of the powerup to apply
 	 * @param $GameObject$ player - The game object of the player
 	 **/
-	IEnumerator _useSpeedPowerup(PowerupController powerup, GameObject player) {
+	IEnumerator _useSpeedPowerup(Powerup powerup, GameObject player) {
 		/* TODO: Should not use maximum velocity from the player */
 		// Call the powerup to say it was used
 		powerup.use();
@@ -129,7 +129,7 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $PowerupController$ powerup - The controller of the powerup to apply
 	 * @param $GameObject$ player - The game object of the player
 	 **/
-	IEnumerator _useShieldPowerup(PowerupController powerup, GameObject player) {
+	IEnumerator _useShieldPowerup(Powerup powerup, GameObject player) {
 		yield return new WaitForSeconds(powerup.duration);
 	}
 
@@ -142,7 +142,7 @@ public class PowerupManager : MonoBehaviour {
 	 * @param $PowerupController$ powerup - The controller of the powerup to apply
 	 * @param $GameObject$ player - The game object of the player
 	 **/
-	public void process(PowerupController powerup, GameObject player) {
+	public void process(Powerup powerup, GameObject player) {
 		// Process the powerup that was picked up
 		switch(powerup.type) {
 			case POWERUP_TYPE.Health:

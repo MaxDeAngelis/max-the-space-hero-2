@@ -12,7 +12,6 @@ public class TypeText : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private Text _text;				// Display text object itself
 	private string _textString;
-	private int _charCount = 0;
 	private int _frameDelay = 3;
 	private int _frameCount = 3;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,8 +22,6 @@ public class TypeText : MonoBehaviour {
 		_text = GetComponentInChildren<Text>();
 		_textString = _text.text;
 		_text.text = "";
-
-		//StartCoroutine(AnimateText());
 	}
 
 	/**

@@ -11,11 +11,12 @@ public class PlayerData {
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private int _experience;
-	private int _level;
 	private int _experienceForNextLevel;
+	private int _level;
 	private int _health;
 	private int _energy;
 	private int _shield;
+	private int _score;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     			CONSTRUCTOR												     ///
@@ -25,6 +26,9 @@ public class PlayerData {
 		_experience = 0;
 		_experienceForNextLevel = 15;
 		_health = 50;
+		_energy = 250;
+		_shield = 10;
+		_score = 0;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +50,14 @@ public class PlayerData {
 		return _health;
 	}
 
+	public int getScore() {
+		return _score;
+	}
+
+	public int getShield() {
+		return _shield;
+	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     				SETTERS												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,8 +65,12 @@ public class PlayerData {
 		_experience = experience;
 
 		if (_experience >= _experienceForNextLevel) {
-			_experience -= _experienceForNextLevel;
+			_experience = 0;
 			_level++;
 		}
+	}
+
+	public void addToScore(int score) {
+		_score += score;
 	}
 }

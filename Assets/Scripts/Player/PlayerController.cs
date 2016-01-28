@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour {
 
 		// Process if you hit a powerup, call manager to gain boost
 		if (PlayerManager.Instance.isAnchored() && otherCollider.gameObject.tag == "Powerup") {
-			_powerupManager.process(otherCollider.gameObject.GetComponent<PowerupController>(), gameObject);
+			_powerupManager.process(otherCollider.gameObject.GetComponent<Powerup>(), gameObject);
 		}
 	}
 
