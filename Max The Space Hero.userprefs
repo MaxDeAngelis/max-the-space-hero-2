@@ -1,15 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Data Classes/PlayerData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/Shield.cs">
     <Files>
-      <File FileName="Assets/Scripts/Data Classes/PlayerData.cs" Line="44" Column="2" />
-      <File FileName="Assets/Scripts/Data Classes/GameData.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/DataManager.cs" Line="133" Column="3" />
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="262" Column="45" />
+      <File FileName="Assets/Scripts/Data Classes/PlayerData.cs" Line="58" Column="17" />
+      <File FileName="Assets/Scripts/Data Classes/GameData.cs" Line="42" Column="1" />
+      <File FileName="Assets/Scripts/Managers/DataManager.cs" Line="37" Column="65" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="133" Column="4" />
+      <File FileName="Assets/Scripts/Player/Shield.cs" Line="52" Column="66" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/MaxwellDeAngelis/Documents/Max The Space Hero/Assets/Scripts/Managers/GameManager.cs" line="295" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
