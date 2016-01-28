@@ -75,14 +75,9 @@ public class PowerupManager : MonoBehaviour {
 	 **/
 	void _useEnergyPowerup(Powerup powerup, GameObject player) {
 		// Only use the powerup if you need it
-		if (_energyManager.energy < _energyManager.maximumEnergy) {
-			// If the energy and bonus are higher than the maximum then adjust the bonus
-			if ((_energyManager.energy + powerup.bonus) > _energyManager.maximumEnergy) {
-				powerup.bonus = _energyManager.maximumEnergy - _energyManager.energy;
-			}
-
+		if (_energyManager.getEnergy() < _energyManager.getMaxEnergy()) {
 			// Apply the bonus
-			_energyManager.energy += powerup.bonus;
+			_energyManager.addEnergy(powerup.bonus);
 
 			// Show the increase in energy
 			FadeAwayTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.blue);
@@ -91,8 +86,7 @@ public class PowerupManager : MonoBehaviour {
 			powerup.use();
 		}
 	}
-
-
+		
 	/**
 	 * @private Called from the process function to apply a speed bonus
 	 * 

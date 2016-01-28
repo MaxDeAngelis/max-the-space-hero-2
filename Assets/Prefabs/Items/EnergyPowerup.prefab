@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.8839998, y: 5.20032406, z: 0}
+  m_LocalPosition: {x: -7.808762, y: 15.236544, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,12 +38,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194090}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .375, y: .375}
+  m_Size: {x: 0.375, y: 0.375}
 --- !u!95 &9599024
 Animator:
   serializedVersion: 3
@@ -69,12 +70,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 194090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55472274faa204bfea38170ec0852d83, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b26e4a0aa3964ec49378ece8eb9f1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonus: 75
+  bonus: 100
   duration: 0
-  colorEffect: {r: 0, g: .400000036, b: .866666734, a: 0}
+  colorEffect: {r: 0.050980397, g: 0.33333334, b: 0.7568628, a: 0}
   type: 1
   pickup: {fileID: 8300000, guid: 37c05e9cd53774fa98d40a36014f966f, type: 3}
 --- !u!212 &21243080
@@ -95,14 +96,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 349935317
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300030, guid: 6ac341da5b75c432fba180f56e8261bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

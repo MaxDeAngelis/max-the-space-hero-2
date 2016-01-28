@@ -147,7 +147,7 @@ public class Jetpack : MonoBehaviour {
 			_animator.SetFloat("horizontalSpeed", 0f);
 
 			// If direction key is down and there is enough energy then boost
-			if (_energyManager.energy >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+			if (_energyManager.getEnergy() >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
 				// Start boosting
 				_animator.SetBool("boosting", true);
 

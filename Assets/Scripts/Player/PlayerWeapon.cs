@@ -95,7 +95,7 @@ public class PlayerWeapon : Laser {
 			SpecialEffectsManager.Instance.stopWeaponCharging();
 
 			// If seconday is charged and there is still enough energy then use it
-			if (_isSecondaryCharged && EnergyManager.Instance.energy >= secondaryEnergyCost) {
+			if (_isSecondaryCharged && EnergyManager.Instance.getEnergy() >= secondaryEnergyCost) {
 				_isSecondaryCharged = false;
 				fireSecondary(gunArm.transform.position, transform.position, PlayerManager.Instance.isGrounded());
 			} else {
@@ -103,7 +103,7 @@ public class PlayerWeapon : Laser {
 			}
 		} else if (!_isSecondaryCharged && _isFireDown && !PlayerManager.Instance.isClimbing()) {
 			// If the time is reached and there is enough energy then play a sound
-			if ((Time.time - _startChargeTime) > secondaryChargeTime && EnergyManager.Instance.energy >= secondaryEnergyCost) {
+			if ((Time.time - _startChargeTime) > secondaryChargeTime && EnergyManager.Instance.getEnergy() >= secondaryEnergyCost) {
 				_isSecondaryCharged = true;
 				SpecialEffectsManager.Instance.playWeaponCharged(transform.position, secondaryChargedSoundEffect);
 			}
