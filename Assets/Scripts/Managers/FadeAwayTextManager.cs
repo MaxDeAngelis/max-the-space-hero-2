@@ -17,7 +17,7 @@ public class FadeAwayTextManager : MonoBehaviour {
 	void Awake() {
 		// Register the singleton
 		if (Instance != null) {
-			Debug.LogError("Multiple instances of FloatingTextManager!");
+			Debug.LogError("Multiple instances of FadeAwayTextManager!");
 		}
 		Instance = this;
 

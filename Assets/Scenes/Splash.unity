@@ -465,7 +465,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!82 &1024381703
 AudioSource:
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ RectTransform:
   - {fileID: 532865702}
   - {fileID: 1715360146}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -708,45 +708,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
---- !u!1 &1588746610
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1588746612}
-  - 114: {fileID: 1588746611}
-  m_Layer: 0
-  m_Name: Data
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1588746611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588746610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c65aca383c1b4ea28435aa90038c488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1588746612
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588746610}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.102397, y: 9.094264, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!1 &1715360145
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +931,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1834968603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1224,7 @@ GameObject:
   - 4: {fileID: 2089087256}
   - 114: {fileID: 2089087255}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: Scene Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,7 +1252,10 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   gameOverMenu: {fileID: 0}
   levelCompleteMenu: {fileID: 0}
-  levelSelectMenu: {fileID: 0}
+  levelScore: {fileID: 0}
+  levelCompletion: {fileID: 0}
+  levelAccuracy: {fileID: 0}
+  levelTime: {fileID: 0}
 --- !u!4 &2089087256
 Transform:
   m_ObjectHideFlags: 0
@@ -1303,4 +1267,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0

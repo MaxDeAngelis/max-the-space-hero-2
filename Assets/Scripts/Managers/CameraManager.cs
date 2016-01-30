@@ -23,13 +23,21 @@ public class CameraManager : MonoBehaviour {
 	private float _cameraHeight;				// Camera height in game
 	private bool _targetMouse = false;
 
+	private CameraManager Instance;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Start() {
+		// Register the singleton
+		if (Instance != null) {
+			Debug.LogError("Multiple instances of CameraManager!");
+		}
+
+		Instance = this;
+
 		transform.position = PlayerManager.Instance.getLocation();
 
 		/* INIT COMPONENTS */
@@ -39,10 +47,10 @@ public class CameraManager : MonoBehaviour {
 		_cameraHeight = 2f * _camera.orthographicSize;
 		_cameraWidth = _cameraHeight * _camera.aspect;
 	}
-	
-	/**
-	 * @private Called once per frame after all updates and fixed updates finish
-	 **/
+
+	/// <summary>
+	/// Called once per frame after all updates and fixed updates finish
+	/// </summary>
 	void LateUpdate () {
 		/* TODO: Commented out the target mouse logic because as it targets is keeps following mouse
 		 * seems a bit weird but didnt want to loose code so leaving disabled for now
@@ -97,7 +105,10 @@ public class CameraManager : MonoBehaviour {
 		// Move camera using smooth damp to give a smooth follow feel
 		transform.position = Vector3.SmoothDamp(transform.position, new Vector3(newXLocation, newYLocation, distance), ref _velocity, damper);
 	}
-
+		
+	/// <summary>
+	/// Raises the draw gizmos event.
+	/// </summary>
 	void OnDrawGizmos() {
 		Gizmos.color = Color.red;
 		float z = 1f;
@@ -112,5 +123,12 @@ public class CameraManager : MonoBehaviour {
 		Gizmos.DrawLine(new Vector3(left.x, top.y, z), new Vector3(right.x, top.y, z));
 		Gizmos.DrawLine(new Vector3(right.x, top.y, z), new Vector3(right.x, bottom.y, z));
 		Gizmos.DrawLine(new Vector3(right.x, bottom.y, z), new Vector3(left.x, bottom.y, z));
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public Camera getCamera() {
+		return _camera;
 	}
 }

@@ -23,23 +23,22 @@ public class DataManager : MonoBehaviour {
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called when the game object wakes up
+	/// </summary>
 	void Awake() {
 		// Register the singleton
-		if (Instance) {
-			DestroyImmediate(gameObject);
-		} else {
-			DontDestroyOnLoad(gameObject);
-			Instance = this;
-
-			GAME_DATA_LOCATION = Application.persistentDataPath + "/gameData.dat";
-
-			//_updateGameData(new GameData());
-
-			load();
+		if (Instance != null) {
+			Debug.LogError("Multiple instances of DataManager!");
 		}
+
+		Instance = this;
+
+		GAME_DATA_LOCATION = Application.persistentDataPath + "/gameData.dat";
+
+		//_updateGameData(new GameData());
+
+		load();
 	}
 	 
 	/**

@@ -142,7 +142,7 @@ public class Jetpack : MonoBehaviour {
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
 	void FixedUpdate() {
-		if (!isAnchored()) {
+		if (isFlying()) {
 			// Nullify horizontalSpeed if you loose anchor
 			_animator.SetFloat("horizontalSpeed", 0f);
 
@@ -185,7 +185,7 @@ public class Jetpack : MonoBehaviour {
 				_rigidbody.velocity += newVelocity * Time.deltaTime ;
 
 				// If you are moving using energy
-				if (Mathf.Abs(newVelocity.x) > 0.25f || Mathf.Abs(newVelocity.y) > 0.25f) {
+				if (Mathf.Abs(newVelocity.x) > 0.5f || Mathf.Abs(newVelocity.y) > 0.5f) {
 					_energyManager.useEnergy(boostCost);
 				}
 			} else if (!_isTakingOff) {

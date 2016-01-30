@@ -34,6 +34,18 @@ public class PlayerManager : MonoBehaviour {
 		_health = _player.GetComponent<PlayerHealth>();
 	}
 
+	/// <summary>
+	/// Called on level load to place the player on the spawn
+	/// </summary>
+	/// <param name="level">The level number</param>
+	void OnLevelWasLoaded(int level) {
+		GameObject _spawn = GameObject.FindGameObjectWithTag("Respawn");
+
+		if (_spawn) {
+			_player.transform.position = _spawn.transform.position;
+		}
+	}
+
 	/**
 	 * @private called from use to trigger an effect to show the powerup was used
 	 **/

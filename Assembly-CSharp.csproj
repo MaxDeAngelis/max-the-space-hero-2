@@ -60,9 +60,11 @@
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
      <Compile Include="Assets\Scripts\Managers\FadeAwayTextManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\LevelDisplayManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\LoadLevelList.cs" />
+     <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\SceneSettings.cs" />
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
      <Compile Include="Assets\Scripts\Player\Jetpack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
@@ -73,6 +75,7 @@
      <Compile Include="Assets\Scripts\User Interface\LevelTile.cs" />
      <Compile Include="Assets\Scripts\User Interface\ShowMenuOnEnter.cs" />
      <Compile Include="Assets\Scripts\User Interface\TypeText.cs" />
+     <Compile Include="Assets\Scripts\Utilities\DontDestroyOnLoad.cs" />
      <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\Hitbox.cs" />

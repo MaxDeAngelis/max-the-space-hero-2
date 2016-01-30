@@ -3,9 +3,6 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 
 public enum CURSOR_TYPE { Default, Crosshairs, Pointer};
 public class GameManager : MonoBehaviour {
@@ -15,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;		// The default cursor to display
 
 	[Header("HUD Display Settings")]
+	public Canvas hudCanvas;
 	public Text gameTime;											// Text object to display the game time
 	public Text score;												// Text object of the game score
 	public Text level;
@@ -71,6 +69,16 @@ public class GameManager : MonoBehaviour {
 		setCursor(startingCursor);
 		_updateExperience(0);
 		_updateScore(0);
+	}
+
+	/// <summary>
+	/// Called on level load to set the renderer camera of the HUD
+	/// </summary>
+	/// <param name="level">The level number</param>
+	void OnLevelWasLoaded(int level) {
+		if (hudCanvas) {
+			hudCanvas.worldCamera = Camera.main;
+		}
 	}
 
 	/// <summary>
@@ -174,7 +182,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="levelName">the name of the scene to load</param>
 	public void loadLevel(string levelName) {
-		resume();
+		hideMenu();
 		SceneManager.LoadScene(levelName);
 	}
 		
@@ -236,8 +244,10 @@ public class GameManager : MonoBehaviour {
 	public void hideMenu() {
 		resume();
 
-		_activeMenu.SetActive(false);
-		_activeMenu = null;
+		if (_activeMenu) {
+			_activeMenu.SetActive(false);
+			_activeMenu = null;
+		}
 	}
 
 	/// <summary>
@@ -262,6 +272,7 @@ public class GameManager : MonoBehaviour {
 	/// Called when the player dies and the game is over
 	/// </summary>
 	public void gameOver() {
+		PlayerManager.Instance.enabled = false;
 		showMenu(gameOverMenu);
 	}
 

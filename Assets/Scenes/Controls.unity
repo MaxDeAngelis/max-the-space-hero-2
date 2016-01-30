@@ -2872,7 +2872,7 @@ GameObject:
   - 4: {fileID: 1427653021}
   - 114: {fileID: 1427653020}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: Scene Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2892,12 +2892,18 @@ MonoBehaviour:
   startingCursor: 0
   gameTime: {fileID: 0}
   score: {fileID: 0}
+  level: {fileID: 0}
+  experience: {fileID: 0}
   crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
   pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
   defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
   pauseMenu: {fileID: 0}
   gameOverMenu: {fileID: 0}
   levelCompleteMenu: {fileID: 0}
+  levelScore: {fileID: 0}
+  levelCompletion: {fileID: 0}
+  levelAccuracy: {fileID: 0}
+  levelTime: {fileID: 0}
 --- !u!4 &1427653021
 Transform:
   m_ObjectHideFlags: 0
