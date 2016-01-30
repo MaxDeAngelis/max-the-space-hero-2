@@ -45,7 +45,7 @@ public class LevelDisplayManager : MonoBehaviour {
 		// Loops over all levels stored off and creates a button for them
 		foreach(LevelData currentLevel in levels) {
 			GameObject newLevelTitle = Instantiate(levelTile);
-			LevelTileController newLevelTitleController = newLevelTitle.GetComponent<LevelTileController>();
+			LevelTile newLevelTitleController = newLevelTitle.GetComponent<LevelTile>();
 			
 			newLevelTitleController.setContent(count++, currentLevel);
 			newLevelTitle.transform.SetParent(levelList, false);

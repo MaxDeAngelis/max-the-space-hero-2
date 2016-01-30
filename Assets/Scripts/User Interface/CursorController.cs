@@ -10,10 +10,16 @@ public class CursorController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/// <summary>
+	/// Raises the mouse enter event
+	/// </summary>
 	void OnMouseEnter() {
 		GameManager.Instance.setCursor(cursorType);
 	}
+
+	/// <summary>
+	/// Raises the mouse exit event.
+	/// </summary>
 	void OnMouseExit() {
 		GameManager.Instance.resetCursor();
 	}

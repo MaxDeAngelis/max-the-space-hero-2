@@ -47,8 +47,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Component Classes\Health.cs" />
      <Compile Include="Assets\Scripts\Component Classes\Weapon.cs" />
-     <Compile Include="Assets\Scripts\Controllers\CursorController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\LevelTileController.cs" />
      <Compile Include="Assets\Scripts\Data Classes\GameData.cs" />
      <Compile Include="Assets\Scripts\Data Classes\LevelData.cs" />
      <Compile Include="Assets\Scripts\Data Classes\PlayerData.cs" />
@@ -71,6 +69,10 @@
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
      <Compile Include="Assets\Scripts\Player\Shield.cs" />
+     <Compile Include="Assets\Scripts\User Interface\CursorController.cs" />
+     <Compile Include="Assets\Scripts\User Interface\LevelTile.cs" />
+     <Compile Include="Assets\Scripts\User Interface\ShowMenuOnEnter.cs" />
+     <Compile Include="Assets\Scripts\User Interface\TypeText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\Hitbox.cs" />
@@ -78,8 +80,6 @@
      <Compile Include="Assets\Scripts\Utilities\MapMarker.cs" />
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />
-     <Compile Include="Assets\Scripts\Utilities\ShowMenuOnEnter.cs" />
-     <Compile Include="Assets\Scripts\Utilities\TypeText.cs" />
      <Compile Include="Assets\Scripts\Weapons\Bomber.cs" />
      <Compile Include="Assets\Scripts\Weapons\Laser.cs" />
      <Compile Include="Assets\Scripts\Weapons\RocketLauncher.cs" />

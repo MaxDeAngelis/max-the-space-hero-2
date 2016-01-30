@@ -109,9 +109,15 @@ public class DataManager : MonoBehaviour {
 		return _currentGameData.getPlayerData();
 	}
 
-	/**
-	 * @public called to update the current level data
-	 **/
+	/// <summary>
+	/// Called to save off the current level data
+	/// </summary>
+	/// <returns>The level data.</returns>
+	/// <param name="levelName">Level name.</param>
+	/// <param name="ratio">Ratio.</param>
+	/// <param name="time">Time.</param>
+	/// <param name="accuracy">Accuracy.</param>
+	/// <param name="score">Score.</param>
 	public void updateLevelData(string levelName, float ratio, float time, float accuracy, int score) {
 		// Loop until you find the current level and update the completion
 		foreach(LevelData currentLevel in _currentGameData.getLevels()) {

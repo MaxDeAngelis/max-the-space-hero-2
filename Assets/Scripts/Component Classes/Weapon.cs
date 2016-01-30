@@ -31,9 +31,9 @@ public class Weapon : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called 60times per second fixed, handles all processing
-	 **/
+	/// <summary>
+	/// Called 60times per second fixed, handles all processing
+	/// </summary>
 	void FixedUpdate() {
 		// If you are firing and attack counter is 0 or less then you are no longer fireing otherwise increment count
 		if (_isFiring && _attackSpeedFrameCounter <= 0) {
@@ -42,17 +42,16 @@ public class Weapon : MonoBehaviour {
 			_attackSpeedFrameCounter--;
 		}
 	}
-
-	/**
-	 * @protected Called to actually do the work of attacking
-	 * 
-	 * @param $Vector3$ origin - The origin of the weapon
-	 * @param $Vector3$ target - The target of the attack
-	 * @param $Float$ dmg - The amount of damage to do
-	 * @param $GameObject$ shot - The game object of the projectile to create
-	 * @param $AudioClip$ sound - The sound to make 
-	 * @param $Boolean$ firedFromGround - Flag for if the weapon is being used from the ground
-	 **/
+		
+	/// <summary>
+	/// Called to actually do the work of attacking
+	/// </summary>
+	/// <param name="origin">The origin of the weapon</param>
+	/// <param name="target">The target of the attack</param>
+	/// <param name="dmg">The amount of damage to do</param>
+	/// <param name="shot">The game object of the projectile to create</param>
+	/// <param name="sound">The to make</param>
+	/// <param name="firedFromGround">If set to <c>true</c> fired from ground</param>
 	protected void attack(Vector3 origin, Vector3 target, float dmg, GameObject shot, AudioClip sound, bool firedFromGround) {
 		if (!_isFiring) {
 			if (_animator) {
@@ -93,9 +92,9 @@ public class Weapon : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private draws gizmos when the unit is selected
-	 **/
+	/// <summary>
+	/// draws gizmos when the unit is selected
+	/// </summary>
 	void OnDrawGizmosSelected () {
 		// DRAW WEAPON RANGE
 		Gizmos.color = Color.red;
@@ -104,16 +103,16 @@ public class Weapon : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	* @private Called on start of the game object to init variables
-	**/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	public virtual void Start() {
 		_animator = GetComponentInParent<Animator>();
 	}
 		
-	/**
-	 * @public handles exploding the weapon in the case of a suicide bomber
-	 **/
+	/// <summary>
+	/// handles exploding the weapon in the case of a suicide bomber
+	/// </summary>
 	public void explode() {
 		SpecialEffectsManager.Instance.playExplosion(transform.position, attackSoundEffect);
 
@@ -123,25 +122,24 @@ public class Weapon : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		VIRTUAL FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @protected Called from attack to adjust the projectiles rotation. Overriden in different weapon classes
-	 *
-	 * @param $Vector3$ origin - The position of the origin of the gun
-	 * @param $Vector3$ target - The position of the target to fire at
-	 * @param $GameObject$ projectile - The projectile game object to adjust its location
-	 * @param $Vector2$ velocity - The projectile velocity
-	 **/
+	/// <summary>
+	/// Called from attack to adjust the projectiles rotation. Overriden in different weapon classes
+	/// </summary>
+	/// <returns>The velocity of the projectile</returns>
+	/// <param name="origin">The position of the origin of the gun</param>
+	/// <param name="target">The position of the target to fire at</param>
+	/// <param name="projectile">The projectile game object to adjust its location</param>
+	/// <param name="velocity">The projectile velocity</param>
 	protected virtual Vector2 adjustProjectile(Vector3 origin, Vector3 target, GameObject projectile, Vector2 velocity) {
 		return velocity;
 	}
-
-	/**
-	* @public This function is called from the enemy controller to fire a ranged weapon
-	* 
-	* @param $Vector3$ origin - The position of the origin of the gun
-	* @param $Vector3$ target - The position of the target to fire at
-	* @param $Boolean$ firedFromGround - Is the weapon fired from the ground
-	**/
+		
+	/// <summary>
+	/// This function is called from the enemy controller to fire a ranged weapon
+	/// </summary>
+	/// <param name="origin">The position of the origin of the gun</param>
+	/// <param name="target">The position of the target to fire at</param>
+	/// <param name="firedFromGround">If set to <c>true</c> fired from ground</param>
 	public virtual void fire(Vector3 origin, Vector3 target, bool firedFromGround) {
 		attack(origin, target, damage, projectile, attackSoundEffect, firedFromGround);
 	}
