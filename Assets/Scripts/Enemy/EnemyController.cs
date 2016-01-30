@@ -185,7 +185,7 @@ public class EnemyController : MonoBehaviour {
 	 **/
 	void _aimWeapon() {
 		// Drop out if paused
-		if (!GameManager.Instance.isPaused() && gunArm != null) {
+		if (!MenuManager.Instance.isPaused() && gunArm != null) {
 			/* ---- AIM THE ARM TO FIRE ----*/		
 			// Get player and arm position
 			Vector3 playerPos = _playerLocation;

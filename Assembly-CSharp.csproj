@@ -73,9 +73,10 @@
      <Compile Include="Assets\Scripts\Player\Shield.cs" />
      <Compile Include="Assets\Scripts\User Interface\CursorController.cs" />
      <Compile Include="Assets\Scripts\User Interface\LevelTile.cs" />
+     <Compile Include="Assets\Scripts\User Interface\OpenShop.cs" />
      <Compile Include="Assets\Scripts\User Interface\ShowMenuOnEnter.cs" />
      <Compile Include="Assets\Scripts\User Interface\TypeText.cs" />
-     <Compile Include="Assets\Scripts\Utilities\DontDestroyOnLoad.cs" />
+     <Compile Include="Assets\Scripts\Utilities\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />
      <Compile Include="Assets\Scripts\Utilities\FollowGameObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\Hitbox.cs" />

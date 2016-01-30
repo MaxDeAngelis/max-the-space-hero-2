@@ -41,7 +41,7 @@ public class PlayerWeapon : Laser {
 	void _aim() {
 		bool _isFacingRight = (PlayerManager.Instance.getTransform().localScale.x > 0);
 		// Drop out if paused
-		if (!GameManager.Instance.isPaused()) {
+		if (!MenuManager.Instance.isPaused()) {
 			/* ---- AIM THE ARM TO FIRE ----*/		
 			// Get a handle on the player pos and the mouse
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

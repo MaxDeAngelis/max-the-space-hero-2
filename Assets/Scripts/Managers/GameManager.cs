@@ -23,11 +23,6 @@ public class GameManager : MonoBehaviour {
 	public Texture2D pointerCursor;									// Pointer cursor
 	public Texture2D defaultCursor;									// Default cursor
 
-	[Header("Menu Objects")]
-	public GameObject pauseMenu;									// Pause Menu canvas game object
-	public GameObject gameOverMenu;									// Game Over canvas game object
-	public GameObject levelCompleteMenu;
-
 	[Header("Level Complete Objects")]
 	public Text levelScore;
 	public Text levelCompletion;
@@ -40,11 +35,9 @@ public class GameManager : MonoBehaviour {
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
-	private bool _pause = false;					// Flag for when the game is paused
 	private int _playerShots = 0;
 	private int _playerHits = 0;
 	private int _score = 0;
-	private GameObject _activeMenu;
 	private List<EnemyController> _enemies = new List<EnemyController>();
 	private List<EnemyController> _enemiesKilled = new List<EnemyController>();
 
@@ -78,17 +71,6 @@ public class GameManager : MonoBehaviour {
 	void OnLevelWasLoaded(int level) {
 		if (hudCanvas) {
 			hudCanvas.worldCamera = Camera.main;
-		}
-	}
-
-	/// <summary>
-	/// called once per frame. Used to capture key events for later
-	/// </summary>
-	void Update() {
-		if (Input.GetButtonDown("Cancel") && !isPaused()) { 
-			showMenu(pauseMenu);
-		} else if (Input.GetButtonDown("Cancel") && isPaused()) { 
-			hideMenu();
 		}
 	}
 		
@@ -182,7 +164,12 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="levelName">the name of the scene to load</param>
 	public void loadLevel(string levelName) {
-		hideMenu();
+		MenuManager.Instance.hideMenu();
+
+		if (levelName == "Splash") {
+			DontDestroy.Instance.Destroy();
+		}
+
 		SceneManager.LoadScene(levelName);
 	}
 		
@@ -226,62 +213,14 @@ public class GameManager : MonoBehaviour {
 	public void resetCursor() {
 		setCursor(_originalCursor);
 	}
-
-	/// <summary>
-	/// Called to show a given menu. Handles pausing the game and setting correct flags
-	/// </summary>
-	/// <param name="menu">The menu object to show</param>
-	public void showMenu(GameObject menu) {
-		pause();
-
-		_activeMenu = menu;
-		_activeMenu.SetActive(true);
-	}
-
-	/// <summary>
-	/// Called to hid what ever menu is currently showing
-	/// </summary>
-	public void hideMenu() {
-		resume();
-
-		if (_activeMenu) {
-			_activeMenu.SetActive(false);
-			_activeMenu = null;
-		}
-	}
-
-	/// <summary>
-	/// called to pause the game 
-	/// </summary>
-	public void pause() {
-		_pause = true;
-		setCursor(CURSOR_TYPE.Default);
-		Time.timeScale = 0;
-	}
-
-	/// <summary>
-	/// Called to un pause the game
-	/// </summary>
-	public void resume() {
-		_pause = false;
-		resetCursor();
-		Time.timeScale = 1;
-	}
+		
 
 	/// <summary>
 	/// Called when the player dies and the game is over
 	/// </summary>
 	public void gameOver() {
 		PlayerManager.Instance.enabled = false;
-		showMenu(gameOverMenu);
-	}
-
-	/// <summary>
-	/// Called to see if the game is paused
-	/// </summary>
-	/// <returns><c>true</c>, if paused was ised, <c>false</c> otherwise.</returns>
-	public bool isPaused() {
-		return _pause;
+		MenuManager.Instance.showMenu(MENU_TYPE.GameOver);
 	}
 
 	/// <summary>
@@ -310,7 +249,7 @@ public class GameManager : MonoBehaviour {
 			levelTime.text = gameTime.text;
 
 			// Display the actual level complete menue
-			showMenu(levelCompleteMenu);
+			MenuManager.Instance.showMenu(MENU_TYPE.LevelComplete);
 
 			// Save the level and the player data
 			DataManager.Instance.updateLevelData(SceneManager.GetActiveScene().name, killRatio, Time.time, accuracy, _score);

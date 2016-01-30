@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+public enum MENU_TYPE {Pause, GameOver, LevelComplete, LevelSelect, MedicalShop};
 public class MenuManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
@@ -8,15 +9,14 @@ public class MenuManager : MonoBehaviour {
 	public GameObject pauseMenu;									// Pause Menu canvas game object
 	public GameObject gameOverMenu;									// Game Over canvas game object
 	public GameObject levelCompleteMenu;
-
-
+	public GameObject levelSelectMenu;
+	public GameObject medicalShopMenu;
 
 	public static MenuManager Instance;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
 	private bool _pause = false;					// Flag for when the game is paused
 	private GameObject _activeMenu;
 
@@ -44,11 +44,13 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	void Update() {
 		if (Input.GetButtonDown("Cancel") && !isPaused()) { 
-			showMenu(pauseMenu);
+			showMenu(MENU_TYPE.Pause);
 		} else if (Input.GetButtonDown("Cancel") && isPaused()) { 
 			hideMenu();
 		}
 	}
+
+
 		
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
@@ -57,10 +59,27 @@ public class MenuManager : MonoBehaviour {
 	/// Called to show a given menu. Handles pausing the game and setting correct flags
 	/// </summary>
 	/// <param name="menu">The menu object to show</param>
-	public void showMenu(GameObject menu) {
+	public void showMenu(MENU_TYPE menuType) {
 		pause();
 
-		_activeMenu = menu;
+		switch (menuType) {
+		case MENU_TYPE.Pause:
+			_activeMenu = pauseMenu;
+			break;
+		case MENU_TYPE.GameOver:
+			_activeMenu = gameOverMenu;
+			break;
+		case MENU_TYPE.LevelComplete:
+			_activeMenu = levelCompleteMenu;
+			break;
+		case MENU_TYPE.LevelSelect:
+			_activeMenu = levelSelectMenu;
+			break;
+		case MENU_TYPE.MedicalShop:
+			_activeMenu = medicalShopMenu;
+			break;
+		}
+
 		_activeMenu.SetActive(true);
 	}
 
@@ -81,7 +100,7 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	public void pause() {
 		_pause = true;
-		//setCursor(CURSOR_TYPE.Default);
+		GameManager.Instance.setCursor(CURSOR_TYPE.Default);
 		Time.timeScale = 0;
 	}
 
@@ -90,7 +109,7 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	public void resume() {
 		_pause = false;
-		//resetCursor();
+		GameManager.Instance.resetCursor();
 		Time.timeScale = 1;
 	}
 

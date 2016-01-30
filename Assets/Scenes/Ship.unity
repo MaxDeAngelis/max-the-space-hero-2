@@ -736,11 +736,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207483765}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b735c7fae5e6d4dfd88b754b6485523c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1681863368}
+  gameOverMenu: {fileID: 1503424506}
+  levelCompleteMenu: {fileID: 1651958257}
+  levelSelectMenu: {fileID: 1239597518}
+  medicalShopMenu: {fileID: 1096075463}
 --- !u!4 &207483768
 Transform:
   m_ObjectHideFlags: 0
@@ -773,9 +778,6 @@ MonoBehaviour:
   crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
   pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
   defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
-  pauseMenu: {fileID: 1681863368}
-  gameOverMenu: {fileID: 1503424506}
-  levelCompleteMenu: {fileID: 1651958257}
   levelScore: {fileID: 1070109227}
   levelCompletion: {fileID: 1793363951}
   levelAccuracy: {fileID: 197019569}
@@ -1970,7 +1972,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 207483769}
+      - m_Target: {fileID: 207483767}
         m_MethodName: hideMenu
         m_Mode: 1
         m_Arguments:
@@ -3432,7 +3434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31bb8613599435ca4d0236575b3388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuToActivate: {fileID: 1239597518}
+  menuToActivate: 3
 --- !u!61 &723374012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3577,7 +3579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def511953f5b148f0a083ded0d8cf3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectToFollow: {fileID: 153024, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+  gameObjectToFollow: {fileID: 1532151457}
 --- !u!20 &795555147
 Camera:
   m_ObjectHideFlags: 0
@@ -3740,7 +3742,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 870012484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9099b5449fa854689a04a88ba4ac56e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e7a479f7a8414727bd263002129b0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &906011209
@@ -4494,7 +4496,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 207483769}
+      - m_Target: {fileID: 207483767}
         m_MethodName: hideMenu
         m_Mode: 1
         m_Arguments:
@@ -6761,6 +6763,7 @@ GameObject:
   - 222: {fileID: 1489213037}
   - 114: {fileID: 1489213036}
   - 114: {fileID: 1489213038}
+  - 114: {fileID: 1489213035}
   m_Layer: 10
   m_Name: Ship_Doctor
   m_TagString: Untagged
@@ -6785,6 +6788,18 @@ RectTransform:
   m_AnchoredPosition: {x: 435.8, y: -307.8}
   m_SizeDelta: {x: 63.7, y: 100.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1489213035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1489213033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbda9e53a2db4ab6987faa0cb65571f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToActivate: 4
 --- !u!114 &1489213036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6834,12 +6849,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 207483769}
-          m_MethodName: showMenu
-          m_Mode: 2
+        - m_Target: {fileID: 1489213035}
+          m_MethodName: open
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 1096075463}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -7401,6 +7416,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526101375}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1532151457 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 153024, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+  m_PrefabInternal: {fileID: 192559402}
 --- !u!1 &1549228940
 GameObject:
   m_ObjectHideFlags: 0
@@ -8994,7 +9013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31bb8613599435ca4d0236575b3388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuToActivate: {fileID: 1681863368}
+  menuToActivate: 0
 --- !u!61 &1910856299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9230,7 +9249,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 207483769}
+      - m_Target: {fileID: 207483767}
         m_MethodName: hideMenu
         m_Mode: 1
         m_Arguments:

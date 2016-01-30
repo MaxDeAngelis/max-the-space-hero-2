@@ -1,24 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (BoxCollider2D))]
-
-public class ShowMenuOnEnter : MonoBehaviour {
+public class OpenShop : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public MENU_TYPE menuToActivate;	// The menu game object to activate on enter of the collider
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PRIVATE FUNCTIONS											     ///
+	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	* @private Handles checking if this game object is intersecting with the player and if so show the menu 
-	**/
-	void OnTriggerEnter2D(Collider2D otherCollider) {
-		if (otherCollider.gameObject.tag == "Player") {
-			MenuManager.Instance.showMenu(menuToActivate);
-		}
+	/// <summary>
+	/// Open this instance of the shop.
+	/// </summary>
+	public void open() {
+		MenuManager.Instance.showMenu(menuToActivate);
 	}
 }
