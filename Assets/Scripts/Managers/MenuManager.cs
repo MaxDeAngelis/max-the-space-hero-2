@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-public enum MENU_TYPE {Pause, GameOver, LevelComplete, LevelSelect, MedicalShop};
+public enum MENU_TYPE {Pause, Controls, GameOver, LevelComplete, LevelSelect, MedicalShop};
 public class MenuManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	[Header("Menu Objects")]
 	public GameObject pauseMenu;									// Pause Menu canvas game object
+	public GameObject controlsMenu;
 	public GameObject gameOverMenu;									// Game Over canvas game object
 	public GameObject levelCompleteMenu;
 	public GameObject levelSelectMenu;
@@ -60,11 +61,15 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="menu">The menu object to show</param>
 	public void showMenu(MENU_TYPE menuType) {
+		hideMenu();
 		pause();
 
 		switch (menuType) {
 		case MENU_TYPE.Pause:
 			_activeMenu = pauseMenu;
+			break;
+		case MENU_TYPE.Controls:
+			_activeMenu = controlsMenu;
 			break;
 		case MENU_TYPE.GameOver:
 			_activeMenu = gameOverMenu;
