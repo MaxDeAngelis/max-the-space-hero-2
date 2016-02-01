@@ -69,9 +69,18 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="level">The level number</param>
 	void OnLevelWasLoaded(int level) {
+		// Make sure HUD is using the main camera
 		if (hudCanvas) {
 			hudCanvas.worldCamera = Camera.main;
 		}
+			
+		// Reset variables
+		int _playerShots = 0;
+		int _playerHits = 0;
+		int _score = 0;
+
+		// Reset the player
+		PlayerManager.Instance.reset();
 	}
 		
 	/// <summary>
@@ -219,7 +228,8 @@ public class GameManager : MonoBehaviour {
 	/// Called when the player dies and the game is over
 	/// </summary>
 	public void gameOver() {
-		PlayerManager.Instance.enabled = false;
+		PlayerManager.Instance.getTransform().gameObject.SetActive(false);
+
 		MenuManager.Instance.showMenu(MENU_TYPE.GameOver);
 	}
 

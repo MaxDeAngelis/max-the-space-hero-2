@@ -17,10 +17,9 @@ public class PlayerManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Awake() {
 		// Register the singleton
 		if (Instance != null) {
@@ -46,9 +45,11 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private called from use to trigger an effect to show the powerup was used
-	 **/
+	/// <summary>
+	/// Called from use to trigger an effect to show the powerup was used
+	/// </summary>
+	/// <param name="duration">Duration of particle effect</param>
+	/// <param name="color">Color of the particle effect</param>
 	IEnumerator _playParticleEffect(float duration, Color color) {
 		// Make sure the alpha is set to 1, for some reason it seems to be 0 alot of the time
 		color.a = 1f;
@@ -67,96 +68,130 @@ public class PlayerManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public plays the particle system attached to the player for the given durration with the given color
-	 * 
-	 * @param float duration - the duration to play the effect for
-	 * @param Color color - the color to set the effect to
-	 **/
+	/// <summary>
+	/// Plays the particle system attached to the player for the given durration with the given color
+	/// </summary>
+	/// <param name="duration">Duration of particle effect</param>
+	/// <param name="color">Color of the particle effect</param>
 	public void playParticleEffect(float duration, Color color) {
 		StartCoroutine(_playParticleEffect(duration, color));
+	}
+
+	/// <summary>
+	/// Reset the player's components
+	/// </summary>
+	public void reset() {
+		getShield().reset();
+		getJetPack().reset();
+		getHealthController().reset();
+		getController().reset();
+
+		// Reset the energy manager
+		EnergyManager.Instance.reset();
+
+		// Finally set active
+		getTransform().gameObject.SetActive(true);
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	    	  FLAGS 	  							     	    	     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public returns true if the player is anchored
-	 **/
+	/// <summary>
+	/// Returns true if the player is anchored
+	/// </summary>
+	/// <returns><c>true</c>, if player is anchored, <c>false</c> otherwise.</returns>
 	public bool isAnchored() {
 		return getJetPack().isAnchored();
 	}
 
-	/**
-	 * @public returns true if the player is flying or not
-	 **/
+	/// <summary>
+	/// Returns true if the player is flying or not
+	/// </summary>
+	/// <returns><c>true</c>, if player is flying, <c>false</c> otherwise.</returns>
 	public bool isFlying() {
 		return getJetPack().isFlying();
 	}
 
-	/**
-	 * @public returns true if the player is grounded
-	 **/
+	/// <summary>
+	/// Returns true if the player is grounded
+	/// </summary>
+	/// <returns><c>true</c>, if player is grounded, <c>false</c> otherwise.</returns>
 	public bool isGrounded() {
 		return getController().isGrounded();
 	}
 
-	/**
-	 * @public returns true if the player is climbing something
-	 **/
+	/// <summary>
+	/// Returns true if the player is climbing something
+	/// </summary>
+	/// <returns><c>true</c>, if player is climbing, <c>false</c> otherwise.</returns>
 	public bool isClimbing() {
 		return getController().isClimbing();
 	}
-
+		
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	    	  GETTERS 	  							     	    	     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public returns the platform that the player is standing on
-	 **/
+	/// <summary>
+	/// Return the platform that the player is on
+	/// </summary>
+	/// <returns>The current platform.</returns>
 	public BoxCollider2D getCurrentPlatform() {
 		return getController().getCurrentPlatform().GetComponent<BoxCollider2D>();
 	}
 
-	/**
-	 * @public returns the location of the player
-	 **/
+	/// <summary>
+	/// Return the players location
+	/// </summary>
+	/// <returns>The location.</returns>
 	public Vector3 getLocation() {
 		return _player.transform.position;
 	}
 
-	/**
-	 * @public returns the players transform
-	 **/
+	/// <summary>
+	/// Return the players transform
+	/// </summary>
+	/// <returns>The transform.</returns>
 	public Transform getTransform() {
 		return _player.transform;
 	}
 
-	/**
-	 * @public returns the player controller of the player
-	 **/
+	/// <summary>
+	/// Return the players controller
+	/// </summary>
+	/// <returns>The controller.</returns>
 	public PlayerController getController() {
 		return _player.GetComponent<PlayerController>();
 	}
 
-	/**
-	 * @public returns the player health controller
-	 **/
+	/// <summary>
+	/// Return the players health controller
+	/// </summary>
+	/// <returns>The health controller.</returns>
 	public PlayerHealth getHealthController() {
 		return _health;
 	}
 
-	/**
-	 * @public return the players weapon controller
-	 **/
+	/// <summary>
+	/// Return the players weapon
+	/// </summary>
+	/// <returns>The weapon.</returns>
 	public PlayerWeapon getWeapon() {
 		return _player.GetComponentInChildren<PlayerWeapon>();
 	}
 
-	/**
-	 * @public return the players weapon controller
-	 **/
+	/// <summary>
+	/// Return the players jetpack
+	/// </summary>
+	/// <returns>The jet pack.</returns>
 	public Jetpack getJetPack() {
 		return _player.GetComponentInChildren<Jetpack>();
+	}
+
+	/// <summary>
+	/// Return the players shield
+	/// </summary>
+	/// <returns>The shield.</returns>
+	public Shield getShield() {
+		return _player.GetComponentInChildren<Shield>();
 	}
 }

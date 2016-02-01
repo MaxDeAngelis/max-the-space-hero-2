@@ -24,16 +24,16 @@ public class Projectile : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS   										     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Start () {
 		_origin = transform.position;
 	}
-	
-	/**
-	 * @private Called 60times per second fixed, handles all processing
-	 **/
+
+	/// <summary>
+	/// Called 60times per second fixed, handles all processing
+	/// </summary>
 	void FixedUpdate () {
 		_distanceTraveled = Vector2.Distance(transform.position, _origin);
 
@@ -42,12 +42,11 @@ public class Projectile : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-
-	/**
-	 * @private Collider handler that is triggered when another collider interacts with this game object
-	 * 
-	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
-	 **/
+		
+	/// <summary>
+	/// Collider handler that is triggered when another collider interacts with this game object
+	/// </summary>
+	/// <param name="otherCollider">The collider that is interacting with this game object</param>
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		// If the current projectile is a bomb and it hits ground then blow up
 		if (type == PROJECTILE_TYPE.Bomb && otherCollider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
@@ -62,9 +61,9 @@ public class Projectile : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public This function is called when the projectile hits something
-	 **/
+	/// <summary>
+	/// This function is called when the projectile hits something
+	/// </summary>
 	public void hit() {
 		Destroy(gameObject);
 	}

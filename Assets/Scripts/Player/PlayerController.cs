@@ -41,9 +41,9 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Start() {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
@@ -59,17 +59,17 @@ public class PlayerController : MonoBehaviour {
 		_defaultArmRotation = gunArm.transform.rotation;
 	}
 
-	/**
-	 * @private called once per frame. Used to capture key events for later
-	 **/
+	/// <summary>
+	/// Called once per frame. Used to capture key events for later
+	/// </summary>
 	void Update() {		
 		// Line cast to the ground check transform to see if it is over a ground layer
 		_checkIfGrounded();
 	}
 
-	/**
-	 * @private Called 60times per second fixed, handles all processing
-	 **/
+	/// <summary>
+	/// Called 60times per second fixed, handles all processing
+	/// </summary>
 	void FixedUpdate() {
 		/* ---- HANDLE MOVEMENT ---- */
 		if (PlayerManager.Instance.isAnchored()) {
@@ -122,11 +122,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private Checks if the player is falling off of a platform 
-	 * 
-	 * @param $Float$ horizontalVelocity - The current horizontal velocity
-	 **/
+	/// <summary>
+	/// Checks if the player is falling off of a platform 
+	/// </summary>
+	/// <returns><c>true</c>, if falling, <c>false</c> otherwise.</returns>
+	/// <param name="horizontalVelocity">Horizontal velocity</param>
 	bool _checkIfFalling(float horizontalVelocity) {
 		bool _isFacingRight = (transform.localScale.x > 0);
 		/* ---- CHECK IF USER IS GOING TO FALL ---- */ 
@@ -147,9 +147,9 @@ public class PlayerController : MonoBehaviour {
 		return false;
 	}
 
-	/**
-	 * @private checks if max is waiting and if so triggers the wait animation
-	 **/
+	/// <summary>
+	/// Checks if max is waiting and if so triggers the wait animation
+	/// </summary>
 	void _checkIfWaiting() {
 		// If the wait limit has been reached then set off the wait animation
 		if (_frameWaitCounter > _framesBeforeWait) {
@@ -170,9 +170,9 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	/**
-	 * @private checks if the player is grounded on any of the supported types of grounds
-	 **/
+	/// <summary>
+	/// Checks if the player is grounded on any of the supported types of grounds
+	/// </summary>
 	void _checkIfGrounded() {
 		// Default to false before the loop
 		_isForwardGrounded = false;
@@ -189,9 +189,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
-	 **/
+	/// <summary>
+	/// Handles checking if the player is over a climbable object. Changes the gravity to allow climbing
+	/// </summary>
+	/// <param name="otherCollider">The collider hitting this collider</param>
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		// Store off a reference to the current platform you are one
 		if (isGrounded() && otherCollider.tag == "Ground") {
@@ -210,9 +211,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private Handles checking if the player is no longer over a climbable object. Sets gravity back
-	 **/
+	/// <summary>
+	/// Handles checking if the player is no longer over a climbable object. Sets gravity back
+	/// </summary>
+	/// <param name="otherCollider">The collider hitting this collider</param>
 	void OnTriggerExit2D(Collider2D otherCollider) {
 		if (PlayerManager.Instance.isAnchored() && otherCollider.gameObject.GetComponent<Climbable>() != null) {
 			_rigidbody.gravityScale = _originalGravityScale;
@@ -224,24 +226,47 @@ public class PlayerController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public called to see if player if grounded
-	 **/
+	/// <summary>
+	/// Reset the players controller settings
+	/// </summary>
+	public void reset() {
+		// Reset variables
+		_isForwardGrounded = false;
+		_isBackwardGrounded = false;
+		_isClimbing = false;
+
+		// Reset the animator settings
+		_animator.SetBool("climbing", false);
+		_animator.SetFloat("horizontalSpeed", 0f);
+		_animator.SetFloat("verticalSpeed", 0f);
+	}
+
+	/// <summary>
+	/// Returns the platform that the player is standing on
+	/// </summary>
+	/// <returns>The platform the player is standing on</returns>
+	public GameObject getCurrentPlatform() {
+		return _currentPlatform;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		FLAGS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
+	/// Called to see if player if grounded
+	/// </summary>
+	/// <returns><c>true</c>, if grounded, <c>false</c> otherwise.</returns>
 	public bool isGrounded() {
 		return !PlayerManager.Instance.isFlying();
 	}
 
-	/**
-	 * @public called to see if player if climbing
-	 **/
+	/// <summary>
+	/// Called to see if player if climbing
+	/// </summary>
+	/// <returns><c>true</c>, if climbing, <c>false</c> otherwise.</returns>
 	public bool isClimbing() {
 		return _isClimbing;
 	}
 
-	/**
-	 * @public returns the platform that the player is standing on
-	 **/
-	public GameObject getCurrentPlatform() {
-		return _currentPlatform;
-	}
+
 }

@@ -37,70 +37,9 @@ public class Jetpack : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called to check if you are able to land
-	 **/
-	private bool _checkIfAbleToLand() {
-		bool _isAbleToLand = false;
-		bool isTopHitting = Physics2D.Linecast(transform.position, topLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-		bool isBottomHitting = Physics2D.Linecast(transform.position, bottomLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-
-		// If the top is not hitting ground and the bottom is then you can land
-		if (!isTopHitting && isBottomHitting) {
-			_isAbleToLand = true;
-		} else {
-			_isAbleToLand = false;
-		}
-
-		// Always set landing flag for animation
-		_animator.SetBool("ableToLand", _isAbleToLand);
-
-		return _isAbleToLand;
-	}
-
-	/**
-	 * @private Called when taking off from an anchored position
-	 **/
-	private IEnumerator _takeoff() {
-		// Set Takeoff flag to allow animation to fire
-		_isTakingOff = true;
-
-		// Use up a chunk of energy since you are taking off
-		_energyManager.useEnergy(takeOffCost);
-
-		// Set the regeneration rate since you are now flying
-		_energyManager.setRegenerationRate(flyingEnergyRegenRate);
-
-		// Start flying since you have taken off
-		_animator.SetBool("flying", true);
-
-		// Start boosting
-		_animator.SetBool("boosting", true);
-
-		// Add inital force to get off ground
-		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
-
-		// If the user does not have a direction key down then stop velocity
-		if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f) {
-			// delay for a quarter second
-			yield return new WaitForSeconds(0.75f);
-
-			// After wait stop from moving
-			_rigidbody.velocity = new Vector2(0f, 0f);
-		}
-
-		// Stop boosting
-		_animator.SetBool("boosting", true);
-
-		// Now that the take off is done flip flag
-		_isTakingOff = false;
-	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// Use this for initialization
+	/// <summary>
+	/// Called on start of game object
+	/// </summary>
 	void Start () {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
@@ -113,8 +52,10 @@ public class Jetpack : MonoBehaviour {
 		/* INIT MANAGERS */
 		_energyManager = EnergyManager.Instance;
 	}
-	
-	// Update is called once per frame
+
+	/// <summary>
+	/// Called once per frame
+	/// </summary>
 	void Update () {
 		/* ---- HANDLE ANCHORING ---- */
 		if (Input.GetButtonDown("Jump") && !isFlying()) {
@@ -123,7 +64,7 @@ public class Jetpack : MonoBehaviour {
 			_collider.isTrigger = true;
 
 			StartCoroutine(_takeoff());
-		} else if (Input.GetButtonDown("Jump") && isFlying() && _checkIfAbleToLand()) {
+		} else if (_checkIfAbleToLand() && isFlying() && Input.GetButtonDown("Jump")) {
 			// Set the regeneration rate since you are no longer flying
 			_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
 
@@ -138,9 +79,9 @@ public class Jetpack : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private Called 60times per second fixed, handles all processing
-	 **/
+	/// <summary>
+	/// Called 60times per second fixed, handles all processing
+	/// </summary>
 	void FixedUpdate() {
 		if (isFlying()) {
 			// Nullify horizontalSpeed if you loose anchor
@@ -195,21 +136,102 @@ public class Jetpack : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Called to check if you are able to land
+	/// </summary>
+	/// <returns><c>true</c>, if if able to land was checked, <c>false</c> otherwise.</returns>
+	private bool _checkIfAbleToLand() {
+		bool _isAbleToLand = false;
+		bool isTopHitting = Physics2D.Linecast(transform.position, topLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		bool isBottomHitting = Physics2D.Linecast(transform.position, bottomLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+		// If the top is not hitting ground and the bottom is then you can land
+		if (!isTopHitting && isBottomHitting) {
+			_isAbleToLand = true;
+		} else {
+			_isAbleToLand = false;
+		}
+
+		// Always set landing flag for animation
+		_animator.SetBool("ableToLand", _isAbleToLand);
+
+		return _isAbleToLand;
+	}
+
+	/// <summary>
+	/// Called when taking off from an anchored position
+	/// </summary>
+	private IEnumerator _takeoff() {
+		// Set Takeoff flag to allow animation to fire
+		_isTakingOff = true;
+
+		// Use up a chunk of energy since you are taking off
+		_energyManager.useEnergy(takeOffCost);
+
+		// Set the regeneration rate since you are now flying
+		_energyManager.setRegenerationRate(flyingEnergyRegenRate);
+
+		// Start flying since you have taken off
+		_animator.SetBool("flying", true);
+
+		// Start boosting
+		_animator.SetBool("boosting", true);
+
+		// Add inital force to get off ground
+		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
+
+		// If the user does not have a direction key down then stop velocity
+		if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f) {
+			// delay for a quarter second
+			yield return new WaitForSeconds(0.75f);
+
+			// After wait stop from moving
+			_rigidbody.velocity = new Vector2(0f, 0f);
+		}
+
+		// Stop boosting
+		_animator.SetBool("boosting", true);
+
+		// Now that the take off is done flip flag
+		_isTakingOff = false;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
+	/// Called to reset the state of the jetpack
+	/// </summary>
+	public void reset() {
+		// Reset the defaults
+		_isAnchored = true;
+		_isTakingOff = false;
+
+		// Reset physics
+		_collider.isTrigger = false;
+		_rigidbody.gravityScale = _originalGravityScale;
+
+		// Reset the animator flags
+		_animator.SetBool("flying", false);
+		_animator.SetBool("boosting", false);
+		_animator.SetBool("ableToLand", false);
+	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	    	  FLAGS 	  							     	    	     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 
-	/**
-	 * @public called to see if flying
-	 **/
+	/// <summary>
+	/// Called to see if flying
+	/// </summary>
+	/// <returns><c>true</c>, if flying, <c>false</c> otherwise.</returns>
 	public bool isFlying() {
 		return ((!_isAnchored && !_isTakingOff) || _isTakingOff);
 	}
 
-	/**
-	 * @public called to see if player is anchored
-	 **/
+	/// <summary>
+	/// Called to see if anchored
+	/// </summary>
+	/// <returns><c>true</c>, if anchored, <c>false</c> otherwise.</returns>
 	public bool isAnchored() {
 		return _isAnchored;
 	}

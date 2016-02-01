@@ -18,6 +18,11 @@ public class IJetpack : Editor {
 		_jetpack.maximumVelocity = EditorGUILayout.FloatField("Maximum Velocity", _jetpack.maximumVelocity);
 		_jetpack.boostForce = EditorGUILayout.FloatField("Boost Force", _jetpack.boostForce);
 
+		// Display section for landing options
+		EditorGUILayout.Separator();
+		EditorGUILayout.LabelField("Landing Options", EditorStyles.boldLabel);
+		_jetpack.topLandingCheck = (Transform)EditorGUILayout.ObjectField("Top Landing Range Check", _jetpack.topLandingCheck, typeof(Transform), true);
+		_jetpack.bottomLandingCheck = (Transform)EditorGUILayout.ObjectField("Bottom Landing Range Check", _jetpack.bottomLandingCheck, typeof(Transform), true);
 
 		// Display expandable section for energy related options.
 		EditorGUILayout.Separator();

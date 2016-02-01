@@ -27,9 +27,9 @@ public class Shield : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Start() {
 		/* INIT COMPONENTS */
 		_animator = GetComponent<Animator>();
@@ -44,9 +44,9 @@ public class Shield : MonoBehaviour {
 		_updateShield();
 	}
 
-	/**
-	 * @private Called 60times per second fixed, handles all processing
-	 **/
+	/// <summary>
+	/// Called 60times per second fixed, handles all processing
+	/// </summary>
 	void FixedUpdate() {
 		// Set flying boolean in animator
 		_animator.SetBool("flying", PlayerManager.Instance.isFlying());
@@ -69,11 +69,10 @@ public class Shield : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private Collider handler that is triggered when another collider interacts with this game object
-	 * 
-	 * @param $Collider2D$ otherCollider - The collider that is interacting with this game object
-	 **/
+	/// <summary>
+	/// Collider handler that is triggered when another collider interacts with this game object
+	/// </summary>
+	/// <param name="otherCollider">The collider causing the trigger</param>
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		Projectile projectile = otherCollider.gameObject.GetComponent<Projectile>();
 		if (projectile != null && !projectile.isPlayer) {
@@ -111,9 +110,22 @@ public class Shield : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @public Called to update any display of the health in the UI
-	 **/
+	/// <summary>
+	/// Reset the players shield
+	/// </summary>
+	public void reset() {
+		// Reset shield power and color
+		_strength = DataManager.Instance.getCurrentPlayerData().getShield();
+		_maximumShield = _strength;
+		_renderer.color = _originalColor;
+
+		/* INIT SHIELD DISPLAY */
+		_updateShield();
+	}
+
+	/// <summary>
+	/// Called to update any display of the health in the UI
+	/// </summary>
 	public void _updateShield() {
 		// Only update text in UI if it was configured to do so
 		if (shieldBar) {

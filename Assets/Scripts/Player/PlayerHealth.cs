@@ -12,9 +12,9 @@ public class PlayerHealth : Health {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	  PROTECTED FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	* @public Called to update any display of the health in the UI
-	**/
+	/// <summary>
+	/// Called to update any display of the health in the UI
+	/// </summary>
 	public override void updateHealth() {
 		// Only update text in UI if it was configured to do so
 		if (healthDisplay != null) {
@@ -29,19 +29,20 @@ public class PlayerHealth : Health {
 		}
 	}
 
-	/**
-	 * @protected Called when the current gameobject dies
-	 **/
+	/// <summary>
+	/// Called when the current gameobject dies
+	/// </summary>
 	protected override void die() {
+		SpecialEffectsManager.Instance.playExplosion(transform.position, deathSoundEffect);
 		GameManager.Instance.gameOver();
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public Called on start of game object
-	 **/
+	/// <summary>
+	/// Called on start of game object
+	/// </summary>
 	public override void Start() {
 		isPlayer = true;
 		health = DataManager.Instance.getCurrentPlayerData().getHealth();
@@ -50,5 +51,14 @@ public class PlayerHealth : Health {
 		updateHealth();
 
 		base.Start();
+	}
+
+	/// <summary>
+	/// Reset the Players health
+	/// </summary>
+	public void reset() {
+		Start();
+
+		base.reset();
 	}
 }

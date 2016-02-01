@@ -18,9 +18,9 @@ public class EnemyHealth : Health {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	  PROTECTED FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	* @protected Called on death
-	**/
+	/// <summary>
+	/// Called on death
+	/// </summary>
 	protected override void die() {
 		GameManager.Instance.processKill(_damageList, _enemy);
 
@@ -31,13 +31,12 @@ public class EnemyHealth : Health {
 
 		base.die();
 	}
-
-	/**
-	 * @protected Called to add to the damage list that is sent to game manager on death for score keeping
-	 * 
-	 * @param $Float$ modifier - The modifier that is calculated by the hitbox
-	 * @param $Float$ damage - The amount of damage that was taken
-	 **/
+		
+	/// <summary>
+	/// Called to add to the damage list that is sent to game manager on death for score keeping
+	/// </summary>
+	/// <param name="modifier">The modifier that is calculated by the hitbox</param>
+	/// <param name="damage">The amount of damage that was taken</param>
 	protected override void damaged(float modifier, float damage) {
 		float[] damageItem = new float[]{ modifier, damage };
 		_damageList.Add(damageItem);
@@ -46,9 +45,9 @@ public class EnemyHealth : Health {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public Called on start of game object
-	 **/
+	/// <summary>
+	/// Called on start of the game obect
+	/// </summary>
 	public override void Start() {
 		isPlayer = false;
 

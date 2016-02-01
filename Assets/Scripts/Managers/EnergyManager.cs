@@ -76,6 +76,16 @@ public class EnergyManager : MonoBehaviour {
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+	public void reset() {
+		// Reset variables
+		_energy = DataManager.Instance.getCurrentPlayerData().getEnergy();
+		_maxEnergy = _energy;
+		_energyGenerationFrameCount = regenerationRate;
+
+		// Reset the display
+		_updateEnergy();
+	}
+
 	/// <summary>
 	/// Called to add energy to the player
 	/// </summary>

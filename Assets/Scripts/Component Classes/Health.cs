@@ -125,6 +125,18 @@ public class Health : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Reset the health componenet and make sure all renderers are white again
+	/// </summary>
+	public virtual void reset() {
+		Start();
+
+		// Turn all renderers back to white
+		for (int i = 0; i < _renderers.Length; i++) {       
+			_renderers[i].color = Color.white;
+		}
+	}
+
+	/// <summary>
 	/// Extension point to be used when the units health changes
 	/// </summary>
 	public virtual void updateHealth(){}
