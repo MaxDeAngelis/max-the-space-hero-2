@@ -7,6 +7,7 @@ public class SpecialEffectsManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static SpecialEffectsManager Instance;
 
+	[Header("Particle Effects")]
 	public GameObject explosion;			// Explosion reference game object
 	public GameObject explosionSmall;		// Small explosion reference game objec
 	public GameObject weaponCharging;
@@ -14,10 +15,16 @@ public class SpecialEffectsManager : MonoBehaviour {
 	public GameObject weaponFired;
 	public GameObject alienEject;			// Alien eject reference
 
+	[Header("Sounds")]
+	public AudioClip buttonHoverSound;
+	public AudioClip buttonClickSound;
+	public AudioClip typingSound;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC VARIABLES											     ///
+	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private GameObject _currentChargingAnimation;
+	private AudioSource _audioSource;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
@@ -31,6 +38,16 @@ public class SpecialEffectsManager : MonoBehaviour {
 			Debug.LogError("Multiple instances of SoundEffectsManager!");
 		}
 		Instance = this;
+
+		OnLevelWasLoaded(0);
+	}
+
+	/// <summary>
+	/// Called on level load to set the renderer camera of the HUD
+	/// </summary>
+	/// <param name="level">The level number</param>
+	void OnLevelWasLoaded(int level) {
+		_audioSource = Camera.main.GetComponent<AudioSource>();
 	}
 
 	/**
@@ -55,6 +72,27 @@ public class SpecialEffectsManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
+	/// Plays sound for button hover
+	/// </summary>
+	public void playButtonHover() {
+		playSound(buttonHoverSound);
+	}
+
+	/// <summary>
+	/// Plays sound for button click
+	/// </summary>
+	public void playButtonClick() {
+		playSound(buttonClickSound);
+	}
+
+	/// <summary>
+	/// Plays a typing sound
+	/// </summary>
+	public void playTypingSound() {
+		playSound(typingSound);
+	}
+
 	/**
 	 * @public Function responsable for making the sound effect given
 	 * 
@@ -63,7 +101,7 @@ public class SpecialEffectsManager : MonoBehaviour {
 	public void playSound(AudioClip originalClip) {
 		// As it is not 3D audio clip, position doesn't matter.
 		if (originalClip != null) {
-			AudioSource.PlayClipAtPoint(originalClip, transform.position);
+			_audioSource.PlayOneShot(originalClip);
 		}
 	}
 

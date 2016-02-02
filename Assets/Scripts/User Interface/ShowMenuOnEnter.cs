@@ -12,10 +12,10 @@ public class ShowMenuOnEnter : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	* @private Handles checking if this game object is intersecting with the player and if so show the menu 
-	**/
+	/// <summary>
+	/// Handles checking if this game object is intersecting with the player and if so show the menu 
+	/// </summary>
+	/// <param name="otherCollider">The collider that caused the trigger</param>
 	void OnTriggerEnter2D(Collider2D otherCollider) {
 		if (otherCollider.gameObject.tag == "Player") {
 			MenuManager.Instance.showMenu(menuToActivate);

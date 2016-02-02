@@ -82,7 +82,7 @@ public class PlayerManager : MonoBehaviour {
 	/// </summary>
 	public void reset() {
 		getShield().reset();
-		getJetPack().reset();
+		getJetpack().reset();
 		getHealthController().reset();
 		getController().reset();
 
@@ -101,7 +101,7 @@ public class PlayerManager : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if player is anchored, <c>false</c> otherwise.</returns>
 	public bool isAnchored() {
-		return getJetPack().isAnchored();
+		return getJetpack().isAnchored();
 	}
 
 	/// <summary>
@@ -109,7 +109,7 @@ public class PlayerManager : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if player is flying, <c>false</c> otherwise.</returns>
 	public bool isFlying() {
-		return getJetPack().isFlying();
+		return getJetpack().isFlying();
 	}
 
 	/// <summary>
@@ -183,7 +183,7 @@ public class PlayerManager : MonoBehaviour {
 	/// Return the players jetpack
 	/// </summary>
 	/// <returns>The jet pack.</returns>
-	public Jetpack getJetPack() {
+	public Jetpack getJetpack() {
 		return _player.GetComponentInChildren<Jetpack>();
 	}
 

@@ -10,7 +10,7 @@ TagManager:
   - TOP_BOUNDRY
   - BOTTOM_BOUNDRY
   - Powerup
-  - Radar
+  - MiniMap
   layers:
   - Default
   - TransparentFX

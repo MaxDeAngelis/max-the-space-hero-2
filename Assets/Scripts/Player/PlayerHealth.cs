@@ -13,6 +13,17 @@ public class PlayerHealth : Health {
 	/// 								     	  PROTECTED FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>
+	/// Called when the current gameobject dies
+	/// </summary>
+	protected override void die() {
+		SpecialEffectsManager.Instance.playExplosion(transform.position, deathSoundEffect);
+		GameManager.Instance.gameOver();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
 	/// Called to update any display of the health in the UI
 	/// </summary>
 	public override void updateHealth() {
@@ -30,23 +41,11 @@ public class PlayerHealth : Health {
 	}
 
 	/// <summary>
-	/// Called when the current gameobject dies
-	/// </summary>
-	protected override void die() {
-		SpecialEffectsManager.Instance.playExplosion(transform.position, deathSoundEffect);
-		GameManager.Instance.gameOver();
-	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>
 	/// Called on start of game object
 	/// </summary>
 	public override void Start() {
 		isPlayer = true;
 		health = DataManager.Instance.getCurrentPlayerData().getHealth();
-
 
 		updateHealth();
 
@@ -56,7 +55,7 @@ public class PlayerHealth : Health {
 	/// <summary>
 	/// Reset the Players health
 	/// </summary>
-	public void reset() {
+	public override void reset() {
 		Start();
 
 		base.reset();

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 
 	[Header("HUD Display Settings")]
 	public Canvas hudCanvas;
+	public GameObject miniMap;
 	public Text gameTime;											// Text object to display the game time
 	public Text score;												// Text object of the game score
 	public Text level;
@@ -29,12 +30,13 @@ public class GameManager : MonoBehaviour {
 	public Text levelAccuracy;
 	public Text levelTime;
 
+
 	public static GameManager Instance;
-	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
+	private float _levelStartTime;
 	private int _playerShots = 0;
 	private int _playerHits = 0;
 	private int _score = 0;
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour {
 
 		/* -- INIT VARIABLES -- */
 		_originalCursor = startingCursor;
+		_levelStartTime = Time.time;
 
 		/* -- INIT DISPLAY -- */
 		setCursor(startingCursor);
@@ -75,9 +78,10 @@ public class GameManager : MonoBehaviour {
 		}
 			
 		// Reset variables
-		int _playerShots = 0;
-		int _playerHits = 0;
-		int _score = 0;
+		_levelStartTime = Time.time;
+		_playerShots = 0;
+		_playerHits = 0;
+		_score = 0;
 
 		// Reset the player
 		PlayerManager.Instance.reset();
@@ -95,8 +99,9 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	private void _updateGameTime() {
 		if (gameTime != null) {
-			string minutes = Mathf.Floor(Time.time / 60).ToString("00");
-			string seconds = (Time.time % 60).ToString("00");
+			float _newTime = Time.time - _levelStartTime;
+			string minutes = Mathf.Floor(_newTime / 60).ToString("00");
+			string seconds = (_newTime % 60).ToString("00");
 
 			gameTime.text = minutes + ":" + seconds;
 		}
@@ -262,7 +267,7 @@ public class GameManager : MonoBehaviour {
 			MenuManager.Instance.showMenu(MENU_TYPE.LevelComplete);
 
 			// Save the level and the player data
-			DataManager.Instance.updateLevelData(SceneManager.GetActiveScene().name, killRatio, Time.time, accuracy, _score);
+			DataManager.Instance.updateLevelData(SceneManager.GetActiveScene().name, killRatio, (Time.time - _levelStartTime), accuracy, _score);
 			DataManager.Instance.updatePlayerData(_score);
 			DataManager.Instance.save();
 		}
@@ -281,5 +286,13 @@ public class GameManager : MonoBehaviour {
 	/// <param name="enemy">The enemy controller of the enemy to register</param>
 	public void registerEnemy(EnemyController enemy) {
 		_enemies.Add(enemy);
+	}
+
+	/// <summary>
+	/// Set the state of the mini map
+	/// </summary>
+	/// <param name="state">If set to <c>true</c> the mini map will be set to active. Otherwise it is hidden</param>
+	public void setMiniMapState(bool state) {
+		miniMap.SetActive(state);
 	}
 }

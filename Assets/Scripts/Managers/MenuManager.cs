@@ -13,6 +13,10 @@ public class MenuManager : MonoBehaviour {
 	public GameObject levelSelectMenu;
 	public GameObject medicalShopMenu;
 
+	[Header("Sounds")]
+	public AudioClip showSound;
+	public AudioClip hideSound;
+
 	public static MenuManager Instance;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,6 +52,9 @@ public class MenuManager : MonoBehaviour {
 			showMenu(MENU_TYPE.Pause);
 		} else if (Input.GetButtonDown("Cancel") && isPaused()) { 
 			hideMenu();
+
+			// If hiding the menu using the esc key play hide sound
+			SpecialEffectsManager.Instance.playSound(hideSound);
 		}
 	}
 
@@ -66,6 +73,7 @@ public class MenuManager : MonoBehaviour {
 
 		switch (menuType) {
 		case MENU_TYPE.Pause:
+			SpecialEffectsManager.Instance.playSound(showSound);
 			_activeMenu = pauseMenu;
 			break;
 		case MENU_TYPE.Controls:

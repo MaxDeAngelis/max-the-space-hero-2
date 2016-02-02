@@ -22,6 +22,7 @@ public class Jetpack : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private bool _isEnabled;
 	private bool _isAnchored = true;			// Flag for when player is attached to the ground
 	private bool _isTakingOff = false;
 	private float _originalGravityScale;		// Starting gravity 
@@ -40,7 +41,7 @@ public class Jetpack : MonoBehaviour {
 	/// <summary>
 	/// Called on start of game object
 	/// </summary>
-	void Start () {
+	private void Start () {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();
@@ -56,33 +57,36 @@ public class Jetpack : MonoBehaviour {
 	/// <summary>
 	/// Called once per frame
 	/// </summary>
-	void Update () {
-		/* ---- HANDLE ANCHORING ---- */
-		if (Input.GetButtonDown("Jump") && !isFlying()) {
-			_isAnchored = false;
-			_rigidbody.gravityScale = 0;
-			_collider.isTrigger = true;
+	private void Update () {
+		// If enabled the process controls
+		if (_isEnabled) {
+			/* ---- HANDLE ANCHORING ---- */
+			if (Input.GetButtonDown("Jump") && !isFlying()) {
+				_isAnchored = false;
+				_rigidbody.gravityScale = 0;
+				_collider.isTrigger = true;
 
-			StartCoroutine(_takeoff());
-		} else if (_checkIfAbleToLand() && isFlying() && Input.GetButtonDown("Jump")) {
-			// Set the regeneration rate since you are no longer flying
-			_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
+				StartCoroutine(_takeoff());
+			} else if (_checkIfAbleToLand() && isFlying() && Input.GetButtonDown("Jump")) {
+				// Set the regeneration rate since you are no longer flying
+				_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
 
-			// Reset all defaults
-			_isAnchored = true;
-			_collider.isTrigger = false;
-			_rigidbody.gravityScale = _originalGravityScale;
-			_rigidbody.velocity = new Vector2(0f, 0f);
+				// Reset all defaults
+				_isAnchored = true;
+				_collider.isTrigger = false;
+				_rigidbody.gravityScale = _originalGravityScale;
+				_rigidbody.velocity = new Vector2(0f, 0f);
 
-			// Stop flying since you are landing
-			_animator.SetBool("flying", false);
+				// Stop flying since you are landing
+				_animator.SetBool("flying", false);
+			}
 		}
 	}
 
 	/// <summary>
 	/// Called 60times per second fixed, handles all processing
 	/// </summary>
-	void FixedUpdate() {
+	private void FixedUpdate() {
 		if (isFlying()) {
 			// Nullify horizontalSpeed if you loose anchor
 			_animator.SetFloat("horizontalSpeed", 0f);
@@ -215,6 +219,14 @@ public class Jetpack : MonoBehaviour {
 		_animator.SetBool("flying", false);
 		_animator.SetBool("boosting", false);
 		_animator.SetBool("ableToLand", false);
+	}
+
+	/// <summary>
+	/// Sets the state of the jetpack
+	/// </summary>
+	/// <param name="state">If set to <c>true</c> _isEnabled will be set true and jetpack will work</param>
+	public void setState(bool state) {
+		_isEnabled = state;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
