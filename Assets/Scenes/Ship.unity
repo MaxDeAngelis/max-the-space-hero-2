@@ -265,6 +265,68 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 45005082}
+--- !u!1 &51027368 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 102760, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+  m_PrefabInternal: {fileID: 1111753727}
+--- !u!114 &51027369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51027368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483774}
+          m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &72481564
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,37 +637,6 @@ BoxCollider2D:
   m_Offset: {x: 0.26932526, y: -81.46087}
   serializedVersion: 2
   m_Size: {x: 59.137615, y: 491.23914}
---- !u!1 &143957612 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 106450, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-  m_PrefabInternal: {fileID: 670978584}
---- !u!114 &143957614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 143957612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300006, guid: de97233c1f7454d7b81cb525cdcd2a83, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!1001 &192559402
 Prefab:
   m_ObjectHideFlags: 0
@@ -773,7 +804,6 @@ GameObject:
   - 114: {fileID: 200255117}
   - 114: {fileID: 200255116}
   - 61: {fileID: 200255115}
-  - 114: {fileID: 200255114}
   - 114: {fileID: 200255119}
   m_Layer: 5
   m_Name: Exit
@@ -800,18 +830,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0015652, y: -70.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &200255114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 200255112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &200255115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -950,6 +968,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -1042,6 +1088,7 @@ GameObject:
   - 114: {fileID: 207483771}
   - 114: {fileID: 207483770}
   - 114: {fileID: 207483767}
+  - 114: {fileID: 207483775}
   m_Layer: 0
   m_Name: Game Managers
   m_TagString: Untagged
@@ -1102,16 +1149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0a38bc8038c4941a1f513d46bc017c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCursor: 0
   hudCanvas: {fileID: 1171613288}
   miniMap: {fileID: 258853575}
   gameTime: {fileID: 832428967}
   score: {fileID: 1695394241}
   level: {fileID: 290045391}
   experience: {fileID: 1126661628}
-  crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
-  pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
-  defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
   levelScore: {fileID: 1070109227}
   levelCompletion: {fileID: 1793363951}
   levelAccuracy: {fileID: 197019569}
@@ -1183,6 +1226,20 @@ MonoBehaviour:
   buttonHoverSound: {fileID: 8300000, guid: 4c60f4fe6840d7f4fa604cd7b60469c4, type: 3}
   buttonClickSound: {fileID: 8300000, guid: fdd8e9c3f6bb7154eb5e6168548c6733, type: 3}
   typingSound: {fileID: 8300000, guid: eb43be47580624945887f5bd177fbed8, type: 3}
+--- !u!114 &207483775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207483765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98048e2f2677749bdaae5dfa8bb37212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
+  pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
 --- !u!1 &220395142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,10 +1727,10 @@ Canvas:
   m_GameObject: {fileID: 264492190}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 10
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2225,7 +2282,8 @@ Prefab:
       value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 11468448, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &336670789
@@ -2411,14 +2469,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85098046, g: 0.427451, b: 0.29803923, a: 0.392}
+  m_Color: {r: 0.09019608, g: 0.054901965, b: 0.14901961, a: 0.95}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300038, guid: ba4047d855dde4e37b0ec35dc9eb1ddd, type: 3}
+  m_Sprite: {fileID: 21300040, guid: ba4047d855dde4e37b0ec35dc9eb1ddd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2943,7 +3001,6 @@ GameObject:
   - 114: {fileID: 482799649}
   - 114: {fileID: 482799648}
   - 61: {fileID: 482799647}
-  - 114: {fileID: 482799646}
   - 114: {fileID: 482799651}
   m_Layer: 5
   m_Name: Back
@@ -2970,18 +3027,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.0086676, y: 129}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &482799646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 482799644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &482799647
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3111,6 +3156,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3276,7 +3349,6 @@ GameObject:
   - 114: {fileID: 520436111}
   - 114: {fileID: 520436110}
   - 61: {fileID: 520436109}
-  - 114: {fileID: 520436108}
   - 114: {fileID: 520436113}
   - 114: {fileID: 520436114}
   m_Layer: 5
@@ -3304,18 +3376,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0016066, y: 5.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &520436108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 520436106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &520436109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3466,6 +3526,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -3536,6 +3624,68 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 522407201}
+--- !u!1 &525758198 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 102760, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+  m_PrefabInternal: {fileID: 308539809}
+--- !u!114 &525758199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 525758198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483774}
+          m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &526126089
 GameObject:
   m_ObjectHideFlags: 0
@@ -4063,7 +4213,6 @@ GameObject:
   - 114: {fileID: 598632706}
   - 114: {fileID: 598632705}
   - 61: {fileID: 598632704}
-  - 114: {fileID: 598632703}
   - 114: {fileID: 598632708}
   m_Layer: 5
   m_Name: Exit
@@ -4090,18 +4239,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.90003, y: -37.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &598632703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 598632701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &598632704
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4231,6 +4368,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4504,84 +4669,23 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 11471392, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_MinHeight
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 11445698, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_Text
-      value: +1  Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 117408, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_Name
-      value: cost
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427850, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_Text
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 22421494, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.000099658966
-      objectReference: {fileID: 0}
-    - target: {fileID: 22421494, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 40.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 22421494, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 338.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 22421494, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 41.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 106450, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_Name
-      value: heart
-      objectReference: {fileID: 0}
-    - target: {fileID: 22498474, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 132.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132272, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_Offset.y
-      value: -1.0305634
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132272, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_Size.y
-      value: 71.77094
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132272, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 102760, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
       propertyPath: m_Name
       value: Medical_Shop_Row (+1)
       objectReference: {fileID: 0}
-    - target: {fileID: 102760, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117408, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 154558, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 106450, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22477586, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -41
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11468448, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+    - target: {fileID: 11486282, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 207483774}
+    - target: {fileID: 11486282, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 207483775}
+    - target: {fileID: 11486282, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 207483775}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &684874494
@@ -4729,7 +4833,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1882592498}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 375.5, y: 10.7}
@@ -5636,7 +5740,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1882592498}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 394.2, y: 10.7}
@@ -5703,6 +5807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4afd312f83914d9ca835ad5b6eb1702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCursor: 0
   isMiniMapEnabled: 0
   isWeaponEnabled: 0
   isJetpackEnabled: 0
@@ -6374,7 +6479,6 @@ GameObject:
   - 114: {fileID: 1025737215}
   - 114: {fileID: 1025737214}
   - 61: {fileID: 1025737213}
-  - 114: {fileID: 1025737212}
   - 114: {fileID: 1025737217}
   m_Layer: 5
   m_Name: Back
@@ -6401,18 +6505,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000034332275, y: 42.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1025737212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1025737210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &1025737213
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6542,6 +6634,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7482,7 +7602,8 @@ Prefab:
       value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 11468448, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1112476487
@@ -8095,7 +8216,6 @@ GameObject:
   - 114: {fileID: 1179415304}
   - 114: {fileID: 1179415303}
   - 61: {fileID: 1179415302}
-  - 114: {fileID: 1179415301}
   - 114: {fileID: 1179415306}
   m_Layer: 5
   m_Name: Main Menu
@@ -8122,18 +8242,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00002025201, y: -33.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1179415301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1179415299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &1179415302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8263,6 +8371,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8576,7 +8712,6 @@ GameObject:
   - 114: {fileID: 1278109180}
   - 114: {fileID: 1278109179}
   - 61: {fileID: 1278109178}
-  - 114: {fileID: 1278109177}
   - 114: {fileID: 1278109182}
   m_Layer: 5
   m_Name: Done
@@ -8603,18 +8738,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.0000032186508, y: -176.94998}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1278109177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1278109175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &1278109178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8744,6 +8867,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10132,7 +10283,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 1
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -10308,6 +10459,68 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1518251896}
+--- !u!1 &1520256870 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 102760, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+  m_PrefabInternal: {fileID: 2006168478}
+--- !u!114 &1520256871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520256870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483774}
+          m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1520809694
 GameObject:
   m_ObjectHideFlags: 0
@@ -11787,6 +12000,68 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1773375480}
+--- !u!1 &1785051586 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 102760, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+  m_PrefabInternal: {fileID: 1882592497}
+--- !u!114 &1785051587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1785051586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483774}
+          m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1787172960
 GameObject:
   m_ObjectHideFlags: 0
@@ -12159,14 +12434,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22421494, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22477586, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 11468448, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1882592498 stripped
@@ -12764,7 +13040,6 @@ GameObject:
   - 114: {fileID: 1930817685}
   - 114: {fileID: 1930817684}
   - 61: {fileID: 1930817683}
-  - 114: {fileID: 1930817682}
   - 114: {fileID: 1930817687}
   m_Layer: 5
   m_Name: Back
@@ -12791,18 +13066,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00002193451, y: 60.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1930817682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1930817680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &1930817683
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12932,6 +13195,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13606,7 +13897,8 @@ Prefab:
       value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 11468448, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2016214911
@@ -13847,7 +14139,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1.25
-  m_Text: "  Being Damaged uses\n\n  Blocking used\n\n  Flying uses"
+  m_Text: "  Being Damaged uses\n\n  Blocking uses\n\n  Flying uses"
 --- !u!222 &2043026946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14278,7 +14570,6 @@ GameObject:
   - 114: {fileID: 2119526604}
   - 114: {fileID: 2119526603}
   - 61: {fileID: 2119526602}
-  - 114: {fileID: 2119526601}
   - 114: {fileID: 2119526606}
   m_Layer: 5
   m_Name: Back
@@ -14305,18 +14596,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000012035, y: -281}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2119526601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2119526599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &2119526602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14446,6 +14725,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 207483774}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 207483775}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207483775}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -5,6 +5,7 @@ public class SceneSettings : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;		// The default cursor to display
 	public bool isMiniMapEnabled;
 	public bool isWeaponEnabled;
 	public bool isJetpackEnabled;
@@ -20,20 +21,22 @@ public class SceneSettings : MonoBehaviour {
 	private void Awake() {
 		// Register the singleton
 		if (Instance != null) {
-			Debug.LogError("Multiple instances of SceneManager!");
+			Debug.LogError("Multiple instances of SceneSettings!");
 			Destroy(gameObject);
 		}
 		Instance = this;
 	}
 
 	private void Start() {
-		// Set if mini map is enabled for this scene
-		GameManager.Instance.setMiniMapState(isMiniMapEnabled);
+		if (PlayerManager.Instance != null) {
+			// Set if mini map is enabled for this scene
+			GameManager.Instance.setMiniMapState(isMiniMapEnabled);
 
-		// Set the state of the Jetpack
-		PlayerManager.Instance.getJetpack().setState(isJetpackEnabled);
+			// Set the state of the Jetpack
+			PlayerManager.Instance.getJetpack().setState(isJetpackEnabled);
 
-		// Set the state of the Weapon
-		PlayerManager.Instance.getWeapon().setState(isWeaponEnabled);
+			// Set the state of the Weapon
+			PlayerManager.Instance.getWeapon().setState(isWeaponEnabled);
+		}
 	}
 }

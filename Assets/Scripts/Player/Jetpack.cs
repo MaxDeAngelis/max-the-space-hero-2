@@ -39,9 +39,9 @@ public class Jetpack : MonoBehaviour {
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>
-	/// Called on start of game object
+	/// Called on awake of game object
 	/// </summary>
-	private void Start () {
+	private void Awake() {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<BoxCollider2D>();

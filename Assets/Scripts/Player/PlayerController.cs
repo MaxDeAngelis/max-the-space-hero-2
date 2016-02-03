@@ -42,9 +42,9 @@ public class PlayerController : MonoBehaviour {
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>
-	/// Called on start of the game object to init variables
+	/// Called on awake of the game object to init variables
 	/// </summary>
-	void Start() {
+	void Awake() {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();

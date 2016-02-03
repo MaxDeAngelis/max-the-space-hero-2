@@ -4,13 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public enum CURSOR_TYPE { Default, Crosshairs, Pointer};
 public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public CURSOR_TYPE startingCursor = CURSOR_TYPE.Default;		// The default cursor to display
-
 	[Header("HUD Display Settings")]
 	public Canvas hudCanvas;
 	public GameObject miniMap;
@@ -18,11 +15,6 @@ public class GameManager : MonoBehaviour {
 	public Text score;												// Text object of the game score
 	public Text level;
 	public Slider experience;
-
-	[Header("Cursors")]
-	public Texture2D crosshairCursor;								// Crosshair cursor
-	public Texture2D pointerCursor;									// Pointer cursor
-	public Texture2D defaultCursor;									// Default cursor
 
 	[Header("Level Complete Objects")]
 	public Text levelScore;
@@ -35,7 +27,6 @@ public class GameManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private CURSOR_TYPE _originalCursor;			// Stores the originally used cursor
 	private float _levelStartTime;
 	private int _playerShots = 0;
 	private int _playerHits = 0;
@@ -58,11 +49,9 @@ public class GameManager : MonoBehaviour {
 		Instance = this;
 
 		/* -- INIT VARIABLES -- */
-		_originalCursor = startingCursor;
 		_levelStartTime = Time.time;
 
 		/* -- INIT DISPLAY -- */
-		setCursor(startingCursor);
 		_updateExperience(0);
 		_updateScore(0);
 	}
@@ -82,9 +71,6 @@ public class GameManager : MonoBehaviour {
 		_playerShots = 0;
 		_playerHits = 0;
 		_score = 0;
-
-		// Reset the player
-		PlayerManager.Instance.reset();
 	}
 		
 	/// <summary>
@@ -192,42 +178,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	public void quit() {
 		Application.Quit();
-	}
-		
-	/// <summary>
-	/// called to change the cursor that is being used
-	/// </summary>
-	/// <param name="type">The type of cursor to change to</param>
-	public void setCursor(CURSOR_TYPE type) {
-		Texture2D _cursorTexture = null;
-		Vector2 _cursorOffset = Vector2.zero;
-
-		// Figure out what cursor to use
-		switch(type) {
-			case CURSOR_TYPE.Crosshairs:
-				_cursorTexture = crosshairCursor;
-				_cursorOffset = new Vector2(13f, 13f);
-				break;
-			case CURSOR_TYPE.Pointer:
-				_cursorTexture = pointerCursor;
-				_cursorOffset = new Vector2(12f, 3f);
-				break;
-			case CURSOR_TYPE.Default:
-				_cursorTexture = defaultCursor;
-				break;
-		}
-
-		// Set the cursor texture
-		Cursor.SetCursor(_cursorTexture, _cursorOffset, CursorMode.Auto);
-	}
-		
-	/// <summary>
-	/// Called to reset the cursor back to the original
-	/// </summary>
-	public void resetCursor() {
-		setCursor(_originalCursor);
-	}
-		
+	}		
 
 	/// <summary>
 	/// Called when the player dies and the game is over
@@ -293,6 +244,8 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="state">If set to <c>true</c> the mini map will be set to active. Otherwise it is hidden</param>
 	public void setMiniMapState(bool state) {
-		miniMap.SetActive(state);
+		if (miniMap) {
+			miniMap.SetActive(state);
+		}
 	}
 }

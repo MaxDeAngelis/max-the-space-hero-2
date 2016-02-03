@@ -497,7 +497,6 @@ GameObject:
   - 222: {fileID: 1715360149}
   - 114: {fileID: 1715360148}
   - 114: {fileID: 1715360147}
-  - 114: {fileID: 1715360150}
   - 61: {fileID: 1715360151}
   - 114: {fileID: 1715360152}
   m_Layer: 5
@@ -622,18 +621,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1715360145}
---- !u!114 &1715360150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1715360145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!61 &1715360151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -666,6 +653,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2089087258}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2089087260}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2089087260}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -763,7 +778,6 @@ GameObject:
   - 222: {fileID: 1834968607}
   - 114: {fileID: 1834968606}
   - 114: {fileID: 1834968605}
-  - 114: {fileID: 1834968608}
   - 65: {fileID: 1834968609}
   - 114: {fileID: 1834968610}
   m_Layer: 5
@@ -888,18 +902,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1834968603}
---- !u!114 &1834968608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1834968603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4f28953475429ebac8547b4a28b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorType: 2
 --- !u!65 &1834968609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -930,6 +932,34 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2089087258}
           m_MethodName: playButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2089087260}
+          m_MethodName: setCursorToPointer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2089087260}
+          m_MethodName: resetCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1087,6 +1117,8 @@ GameObject:
   - 114: {fileID: 2089087255}
   - 114: {fileID: 2089087257}
   - 114: {fileID: 2089087258}
+  - 114: {fileID: 2089087260}
+  - 114: {fileID: 2089087259}
   m_Layer: 0
   m_Name: Scene Managers
   m_TagString: Untagged
@@ -1105,15 +1137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0a38bc8038c4941a1f513d46bc017c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCursor: 0
   hudCanvas: {fileID: 0}
+  miniMap: {fileID: 0}
   gameTime: {fileID: 0}
   score: {fileID: 0}
   level: {fileID: 0}
   experience: {fileID: 0}
-  crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
-  pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
-  defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}
   levelScore: {fileID: 0}
   levelCompletion: {fileID: 0}
   levelAccuracy: {fileID: 0}
@@ -1147,6 +1176,8 @@ MonoBehaviour:
   levelCompleteMenu: {fileID: 0}
   levelSelectMenu: {fileID: 0}
   medicalShopMenu: {fileID: 0}
+  showSound: {fileID: 0}
+  hideSound: {fileID: 0}
 --- !u!114 &2089087258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,3 +1197,33 @@ MonoBehaviour:
   alienEject: {fileID: 0}
   buttonHoverSound: {fileID: 8300000, guid: 4c60f4fe6840d7f4fa604cd7b60469c4, type: 3}
   buttonClickSound: {fileID: 8300000, guid: fdd8e9c3f6bb7154eb5e6168548c6733, type: 3}
+  typingSound: {fileID: 0}
+--- !u!114 &2089087259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089087254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4afd312f83914d9ca835ad5b6eb1702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingCursor: 0
+  isMiniMapEnabled: 0
+  isWeaponEnabled: 0
+  isJetpackEnabled: 0
+--- !u!114 &2089087260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089087254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98048e2f2677749bdaae5dfa8bb37212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairCursor: {fileID: 2800000, guid: 3d614a507968d493d8e977a77805327d, type: 3}
+  pointerCursor: {fileID: 2800000, guid: d95be5320b59c48d2828e48eb8980f74, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 09d8c665753024a9f856b1dc7fde45a8, type: 3}

@@ -1432,6 +1432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4afd312f83914d9ca835ad5b6eb1702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCursor: 1
   isMiniMapEnabled: 1
   isWeaponEnabled: 1
   isJetpackEnabled: 1

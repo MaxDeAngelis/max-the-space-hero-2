@@ -43,6 +43,8 @@ public class PlayerManager : MonoBehaviour {
 		if (_spawn) {
 			_player.transform.position = _spawn.transform.position;
 		}
+
+		reset();
 	}
 
 	/// <summary>

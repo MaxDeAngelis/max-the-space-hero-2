@@ -35,4 +35,19 @@ public class LevelTile : MonoBehaviour {
 			GameManager.Instance.loadLevel(level.getName());
 		});
 	}
+
+	/// <summary>
+	/// Handles when the mouse enters the level tile object
+	/// </summary>
+	public void handleMouseEnter() {
+		SpecialEffectsManager.Instance.playButtonHover();
+		CursorManager.Instance.setCursorToPointer();
+	}
+
+	/// <summary>
+	/// Handles when the mouse leaves the level tile
+	/// </summary>
+	public void handleMouseLeave() {
+		CursorManager.Instance.resetCursor();
+	}
 }

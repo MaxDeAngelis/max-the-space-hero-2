@@ -113,7 +113,7 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	public void pause() {
 		_pause = true;
-		GameManager.Instance.setCursor(CURSOR_TYPE.Default);
+		CursorManager.Instance.setCursor(CURSOR_TYPE.Default);
 		Time.timeScale = 0;
 	}
 
@@ -122,7 +122,7 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	public void resume() {
 		_pause = false;
-		GameManager.Instance.resetCursor();
+		CursorManager.Instance.resetCursor();
 		Time.timeScale = 1;
 	}
 
