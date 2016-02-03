@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour {
 	public Text levelAccuracy;
 	public Text levelTime;
 
-
 	public static GameManager Instance;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour {
 
 		// Get the players location and then display a bonus text
 		Transform player = PlayerManager.Instance.getTransform();
-		FadeAwayTextManager.Instance.show(player, "+" + scoreToAdd.ToString(), Color.yellow);
+		Utilities.Instance.showFadeAwayText(player, "+" + scoreToAdd.ToString(), Color.yellow);
 	}
 		
 	/// <summary>

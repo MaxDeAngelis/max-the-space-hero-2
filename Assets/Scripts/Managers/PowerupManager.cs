@@ -51,9 +51,9 @@ public class PowerupManager : MonoBehaviour {
 		healthController.updateHealth();
 
 		// Show the increase in health
-		FadeAwayTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.red);
+		Utilities.Instance.showFadeAwayText(player.transform, "+" + powerup.bonus.ToString(), Color.red);
 
-		yield return new WaitForSeconds(powerup.duration);
+		yield return new WaitForSeconds(1);
 
 		// Set back the health once the timer finishes
 		healthController.maximumHealth = originalMaxHealth;
@@ -80,7 +80,7 @@ public class PowerupManager : MonoBehaviour {
 			_energyManager.addEnergy(powerup.bonus);
 
 			// Show the increase in energy
-			FadeAwayTextManager.Instance.show(player.transform, "+" + powerup.bonus.ToString(), Color.blue);
+			Utilities.Instance.showFadeAwayText(player.transform, "+" + powerup.bonus.ToString(), Color.blue);
 
 			// Call the powerup to say it was used
 			powerup.use();
@@ -109,48 +109,11 @@ public class PowerupManager : MonoBehaviour {
 		//playerController.maximumVelocity += powerup.bonus;
 		playerController.movementSpeed += (powerup.bonus/2);
 
-		yield return new WaitForSeconds(powerup.duration);
+		yield return new WaitForSeconds(1);
 
 		// Return to the original state
 		//playerController.maximumVelocity = originalBoostSpeed;
 		playerController.movementSpeed = originalMovementSpeed;
 
-	}
-
-	/**
-	 * @private Called from the process function to apply a speed bonus
-	 * 
-	 * @param $PowerupController$ powerup - The controller of the powerup to apply
-	 * @param $GameObject$ player - The game object of the player
-	 **/
-	IEnumerator _useShieldPowerup(Powerup powerup, GameObject player) {
-		yield return new WaitForSeconds(powerup.duration);
-	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @public Called to process a powerup that was picked up by the player
-	 * 
-	 * @param $PowerupController$ powerup - The controller of the powerup to apply
-	 * @param $GameObject$ player - The game object of the player
-	 **/
-	public void process(Powerup powerup, GameObject player) {
-		// Process the powerup that was picked up
-		switch(powerup.type) {
-			case POWERUP_TYPE.Health:
-				StartCoroutine(_useHealthPowerup(powerup, player));
-				break;
-			case POWERUP_TYPE.Energy:
-				_useEnergyPowerup(powerup, player);
-				break;
-			case POWERUP_TYPE.Shield:
-				StartCoroutine(_useShieldPowerup(powerup, player));
-				break;
-			case POWERUP_TYPE.Speed:
-				StartCoroutine(_useSpeedPowerup(powerup, player));
-				break;
-		}
 	}
 }

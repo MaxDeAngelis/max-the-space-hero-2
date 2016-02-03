@@ -26,17 +26,4 @@ public class SceneSettings : MonoBehaviour {
 		}
 		Instance = this;
 	}
-
-	private void Start() {
-		if (PlayerManager.Instance != null) {
-			// Set if mini map is enabled for this scene
-			GameManager.Instance.setMiniMapState(isMiniMapEnabled);
-
-			// Set the state of the Jetpack
-			PlayerManager.Instance.getJetpack().setState(isJetpackEnabled);
-
-			// Set the state of the Weapon
-			PlayerManager.Instance.getWeapon().setState(isWeaponEnabled);
-		}
-	}
 }

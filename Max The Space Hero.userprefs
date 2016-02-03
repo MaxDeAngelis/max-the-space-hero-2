@@ -1,15 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/Jetpack.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/PowerupManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/User Interface/ShowMenuOnEnter.cs" Line="14" Column="118" />
-      <File FileName="Assets/Scripts/User Interface/OpenMenu.cs" Line="18" Column="3" />
-      <File FileName="Assets/Scripts/User Interface/LevelTile.cs" Line="39" Column="1" />
-      <File FileName="Assets/Scripts/User Interface/LevelList.cs" Line="30" Column="2" />
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="82" Column="20" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="186" Column="27" />
-      <File FileName="Assets/Scripts/Player/Shield.cs" Line="111" Column="3" />
-      <File FileName="Assets/Scripts/Player/Jetpack.cs" Line="219" Column="1" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="119" Column="38" />
+      <File FileName="Assets/Scripts/Items/HealthPack.cs" Line="26" Column="1" />
+      <File FileName="Assets/Scripts/Component Classes/Powerup.cs" Line="28" Column="1" />
+      <File FileName="Assets/Scripts/Managers/PowerupManager.cs" Line="90" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

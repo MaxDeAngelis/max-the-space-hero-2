@@ -46,24 +46,24 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Component Classes\Health.cs" />
+     <Compile Include="Assets\Scripts\Component Classes\Powerup.cs" />
      <Compile Include="Assets\Scripts\Component Classes\Weapon.cs" />
      <Compile Include="Assets\Scripts\Data Classes\GameData.cs" />
      <Compile Include="Assets\Scripts\Data Classes\LevelData.cs" />
      <Compile Include="Assets\Scripts\Data Classes\PlayerData.cs" />
+     <Compile Include="Assets\Scripts\Data Classes\SceneSettings.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Items\Climbable.cs" />
-     <Compile Include="Assets\Scripts\Items\Powerup.cs" />
+     <Compile Include="Assets\Scripts\Items\HealthPack.cs" />
      <Compile Include="Assets\Scripts\Items\Projectile.cs" />
      <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\FadeAwayTextManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PowerupManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\SceneSettings.cs" />
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
      <Compile Include="Assets\Scripts\Player\Jetpack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\Utilities\MapMarker.cs" />
      <Compile Include="Assets\Scripts\Utilities\ParticleAttractor.cs" />
      <Compile Include="Assets\Scripts\Utilities\Rotate.cs" />
+     <Compile Include="Assets\Scripts\Utilities\Utilities.cs" />
      <Compile Include="Assets\Scripts\Weapons\Bomber.cs" />
      <Compile Include="Assets\Scripts\Weapons\Laser.cs" />
      <Compile Include="Assets\Scripts\Weapons\RocketLauncher.cs" />

@@ -45,6 +45,15 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		reset();
+
+		// Set if mini map is enabled for this scene
+		GameManager.Instance.setMiniMapState(SceneSettings.Instance.isMiniMapEnabled);
+
+		// Set the state of the Jetpack
+		getJetpack().setState(SceneSettings.Instance.isJetpackEnabled);
+
+		// Set the state of the Weapon
+		getWeapon().setState(SceneSettings.Instance.isWeaponEnabled);
 	}
 
 	/// <summary>

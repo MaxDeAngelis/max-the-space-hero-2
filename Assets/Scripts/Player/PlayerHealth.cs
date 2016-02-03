@@ -24,6 +24,22 @@ public class PlayerHealth : Health {
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>
+	/// Add the given amount of health to the player
+	/// </summary>
+	/// <param name="ammount">Amount to add</param>
+	public void add(float amount) {
+		// If the addition will be greater than the max health just cap
+		if ((health + amount) > maximumHealth) {
+			health = maximumHealth;
+		} else {
+			health += amount;
+		}
+
+		// Refresh display
+		updateHealth();
+	}
+
+	/// <summary>
 	/// Called to update any display of the health in the UI
 	/// </summary>
 	public override void updateHealth() {
@@ -59,5 +75,12 @@ public class PlayerHealth : Health {
 		Start();
 
 		base.reset();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		   	FLAGS													     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public bool isFull() {
+		return (health >= maximumHealth);
 	}
 }

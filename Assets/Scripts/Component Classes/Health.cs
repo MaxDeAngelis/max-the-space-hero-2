@@ -90,7 +90,7 @@ public class Health : MonoBehaviour {
 		// Make a sound and show damage if hurt
 		if (damage > 0) {
 			// Show floating text and play sound
-			FadeAwayTextManager.Instance.show(transform, "-" + damage.ToString(), Color.red);
+			Utilities.Instance.showFadeAwayText(transform, "-" + damage.ToString(), Color.red);
 			SpecialEffectsManager.Instance.playSound(damageSoundEffect);
 
 			// Actually take the damage

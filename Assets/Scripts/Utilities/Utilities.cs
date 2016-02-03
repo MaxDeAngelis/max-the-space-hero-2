@@ -1,36 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FadeAwayTextManager : MonoBehaviour {
+public class Utilities : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static FadeAwayTextManager Instance;
-	
+	public static Utilities Instance;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	* @private Called on start of the game object to init variables
+	**/
 	void Awake() {
 		// Register the singleton
 		if (Instance != null) {
-			Debug.LogError("Multiple instances of FadeAwayTextManager!");
+			Debug.LogError("Multiple instances of Utilities!");
 		}
 		Instance = this;
 
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PRIVATE FUNCTIONS											     ///
+	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	 * @public called to display floating text that auto scrolls up then vanishes
-	 **/
-	public void show(Transform target, string text, Color textColor) {
+	/// <summary>
+	/// Called to show text that fades away
+	/// </summary>
+	/// <param name="target">The target transform</param>
+	/// <param name="text">Text to display</param>
+	/// <param name="textColor">Text color</param>
+	public void showFadeAwayText(Transform target, string text, Color textColor) {
 		// Get a handle on the target renderer to beter adjust the text location
 		Renderer targetRenderer = target.GetComponent<SpriteRenderer>();
 
