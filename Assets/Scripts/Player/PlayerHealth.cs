@@ -20,6 +20,35 @@ public class PlayerHealth : Health {
 		GameManager.Instance.gameOver();
 	}
 
+	/// <summary>
+	/// Called to update any display of the health in the UI
+	/// </summary>
+	protected override void updateHealth() {
+		// Only update text in UI if it was configured to do so
+		if (healthDisplay != null) {
+			// Calculate the percentage of health left
+			float healthPercent = Mathf.Round((health/maximumHealth) * 100);
+
+			// Display the calculated string
+			healthDisplay.text = health + "/" + maximumHealth;
+
+			// Update health bar value
+			healthBar.value = healthPercent;
+		}
+	}
+
+	/// <summary>
+	/// Called on start of game object
+	/// </summary>
+	protected override void Start() {
+		isPlayer = true;
+		health = DataManager.Instance.getCurrentPlayerData().getHealth();
+
+		updateHealth();
+
+		base.Start();
+	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,35 +66,6 @@ public class PlayerHealth : Health {
 
 		// Refresh display
 		updateHealth();
-	}
-
-	/// <summary>
-	/// Called to update any display of the health in the UI
-	/// </summary>
-	public override void updateHealth() {
-		// Only update text in UI if it was configured to do so
-		if (healthDisplay != null) {
-			// Calculate the percentage of health left
-			float healthPercent = Mathf.Round((health/maximumHealth) * 100);
-
-			// Display the calculated string
-			healthDisplay.text = health + "/" + maximumHealth;
-
-			// Update health bar value
-			healthBar.value = healthPercent;
-		}
-	}
-
-	/// <summary>
-	/// Called on start of game object
-	/// </summary>
-	public override void Start() {
-		isPlayer = true;
-		health = DataManager.Instance.getCurrentPlayerData().getHealth();
-
-		updateHealth();
-
-		base.Start();
 	}
 
 	/// <summary>

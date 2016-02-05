@@ -38,19 +38,45 @@ public class Health : MonoBehaviour {
 			sprites[i].color = Color.white;
 		}
 	}
-
+		
 	/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
+	/// 								     		PROTECTED FUNCTIONS											     ///
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 	/// <summary>
 	/// Called on start of the game obect
 	/// </summary>
-	public virtual void Start () {
+	protected virtual void Start () {
 		_renderers = GetComponentsInChildren<SpriteRenderer>();
 
 		maximumHealth = health;
 	}
 
+	/// <summary>
+	/// Called on death
+	/// </summary>
+	protected virtual void die() {
+		// Play and explosion on death
+		SpecialEffectsManager.Instance.playExplosion(gameObject.transform.position, deathSoundEffect);
+
+		// Destroy the game object
+		Destroy(gameObject);
+	}
+
+	/// <summary>
+	/// Extension point to be used when the units health changes
+	/// </summary>
+	protected virtual void updateHealth(){}
+
+	/// <summary>
+	/// Extension point to be called when damaged
+	/// </summary>
+	/// <param name="modifier">The damage modifier</param>
+	/// <param name="damage">The amount of damage that was taken</param>
+	protected virtual void damaged(float modifier, float damage) {}
+
+	/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 	/// <summary>
 	/// Called from hitboxes to process damage against the unit
 	/// </summary>
@@ -110,20 +136,6 @@ public class Health : MonoBehaviour {
 		}
 	}
 
-	/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		VIRTUAL FUNCTIONS											     ///
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-	/// <summary>
-	/// Called on death
-	/// </summary>
-	protected virtual void die() {
-		// Play and explosion on death
-		SpecialEffectsManager.Instance.playExplosion(gameObject.transform.position, deathSoundEffect);
-
-		// Destroy the game object
-		Destroy(gameObject);
-	}
-
 	/// <summary>
 	/// Reset the health componenet and make sure all renderers are white again
 	/// </summary>
@@ -135,16 +147,4 @@ public class Health : MonoBehaviour {
 			_renderers[i].color = Color.white;
 		}
 	}
-
-	/// <summary>
-	/// Extension point to be used when the units health changes
-	/// </summary>
-	public virtual void updateHealth(){}
-
-	/// <summary>
-	/// Extension point to be called when damaged
-	/// </summary>
-	/// <param name="modifier">The damage modifier</param>
-	/// <param name="damage">The amount of damage that was taken</param>
-	protected virtual void damaged(float modifier, float damage) {}
 }
