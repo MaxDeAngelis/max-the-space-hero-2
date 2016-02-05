@@ -138,6 +138,7 @@ public class Shield : MonoBehaviour {
 		_strength = DataManager.Instance.getCurrentPlayerData().getShield();
 		_maximumShield = _strength;
 		_renderer.color = _originalColor;
+		_renderer.enabled = false;
 
 		/* INIT SHIELD DISPLAY */
 		_updateShield();

@@ -16,4 +16,18 @@ public class OpenMenu : MonoBehaviour {
 	public void open() {
 		MenuManager.Instance.showMenu(menuToActivate);
 	}
+
+	/// <summary>
+	/// Handles changing the cursor to a pointer
+	/// </summary>
+	public void mouseEnter() {
+		CursorManager.Instance.setCursorToPointer();
+	}
+
+	/// <summary>
+	/// Handles resetting the cursor
+	/// </summary>
+	public void mouseLeave() {
+		CursorManager.Instance.resetCursor();
+	}
 }
