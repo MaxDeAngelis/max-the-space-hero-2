@@ -7,7 +7,7 @@ public class Powerup : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public float bonus;				// Bonus to be applied
 	public Color colorEffect;		// The color of the particle effect
-	public AudioClip pickup;
+	public AudioClip pickup;		// The audio clip to play on pickup
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTION												     ///
@@ -16,12 +16,26 @@ public class Powerup : MonoBehaviour {
 	/// Called to use the powerup
 	/// </summary>
 	public virtual void use() {
-		// Destroy the powerup
-		Destroy(gameObject);
+		// Display a fade away text to show bonus ammount
+		Utilities.Instance.showFadeAwayText(PlayerManager.Instance.getTransform(), "+" + bonus.ToString(), colorEffect);
+
+		// Remove the powerup from the scene
+		remove();
 
 		// Start particle effect for use
 		PlayerManager.Instance.playParticleEffect(2f, colorEffect);
 
 		SpecialEffectsManager.Instance.playSound(pickup);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     	PROTECTED FUNCTION												     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
+	/// Destroys the game object
+	/// </summary>
+	protected virtual void remove() {
+		// Destroy the powerup
+		Destroy(gameObject);
 	}
 }

@@ -29,9 +29,9 @@ public class SpecialEffectsManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Awake() {
 		// Register the singleton
 		if (Instance != null) {
@@ -50,14 +50,13 @@ public class SpecialEffectsManager : MonoBehaviour {
 		_audioSource = Camera.main.GetComponent<AudioSource>();
 	}
 
-	/**
-	 * @private Called to instantiate a new game object and then destroy it
-	 * 
-	 * @param Vector3 location - the location to create the new object
-	 * @param AudioClip sound - the sound effect to play
-	 * @param GameObject objectToCreate - the object to instantiate
-	 * @param float duration - the amount of time to keep the object alive
-	 **/
+	/// <summary>
+	/// Called to instantiate a new game object and then destroy it
+	/// </summary>
+	/// <param name="location">The location to create the new object</param>
+	/// <param name="sound">The sound effect to play</param>
+	/// <param name="objectToCreate">The object to instantiate</param>
+	/// <param name="duration">The amount of time to keep the object alive</param>
 	private GameObject _instantiate(Vector3 location, AudioClip sound, GameObject objectToCreate, float duration) {
 		playSound(sound);
 		
@@ -92,25 +91,23 @@ public class SpecialEffectsManager : MonoBehaviour {
 	public void playTypingSound() {
 		playSound(typingSound);
 	}
-
-	/**
-	 * @public Function responsable for making the sound effect given
-	 * 
-	 * @param $AudioClip$ originalClip - The sound effect to make or null
-	 **/
+		
+	/// <summary>
+	/// Function responsable for making the sound effect given
+	/// </summary>
+	/// <param name="originalClip">The sound effect to make or null</param>
 	public void playSound(AudioClip originalClip) {
 		// As it is not 3D audio clip, position doesn't matter.
 		if (originalClip != null) {
 			_audioSource.PlayOneShot(originalClip);
 		}
 	}
-
-	/**
-	 * @public Called to play a normal sized explosion
-	 * 
-	 * @param Vector3 location - the location to create the new object
-	 * @param AudioClip sound - the sound effect to play
-	 **/
+		
+	/// <summary>
+	/// Called to play a normal sized explosion
+	/// </summary>
+	/// <param name="location">The location to create the new object</param>
+	/// <param name="sound">The sound effect to play</param>
 	public void playExplosion(Vector3 location, AudioClip sound) {
 		_instantiate(location, sound, explosion, 1f);
 	}

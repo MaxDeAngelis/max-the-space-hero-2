@@ -30,7 +30,7 @@ public class Shield : MonoBehaviour {
 	/// <summary>
 	/// Called on awake of the game object to init variables
 	/// </summary>
-	void Awake() {
+	private void Awake() {
 		/* INIT COMPONENTS */
 		_animator = GetComponent<Animator>();
 		_renderer = GetComponent<SpriteRenderer>();
@@ -47,7 +47,7 @@ public class Shield : MonoBehaviour {
 	/// <summary>
 	/// Called 60times per second fixed, handles all processing
 	/// </summary>
-	void FixedUpdate() {
+	private void FixedUpdate() {
 		// Set flying boolean in animator
 		_animator.SetBool("flying", PlayerManager.Instance.isFlying());
 
@@ -73,7 +73,7 @@ public class Shield : MonoBehaviour {
 	/// Collider handler that is triggered when another collider interacts with this game object
 	/// </summary>
 	/// <param name="otherCollider">The collider causing the trigger</param>
-	void OnTriggerEnter2D(Collider2D otherCollider) {
+	private void OnTriggerEnter2D(Collider2D otherCollider) {
 		Projectile projectile = otherCollider.gameObject.GetComponent<Projectile>();
 		if (projectile != null && !projectile.isPlayer) {
 			float damage = projectile.damage;
@@ -111,22 +111,9 @@ public class Shield : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Reset the players shield
-	/// </summary>
-	public void reset() {
-		// Reset shield power and color
-		_strength = DataManager.Instance.getCurrentPlayerData().getShield();
-		_maximumShield = _strength;
-		_renderer.color = _originalColor;
-
-		/* INIT SHIELD DISPLAY */
-		_updateShield();
-	}
-
-	/// <summary>
 	/// Called to update any display of the health in the UI
 	/// </summary>
-	public void _updateShield() {
+	private void _updateShield() {
 		// Only update text in UI if it was configured to do so
 		if (shieldBar) {
 			// Calculate the percentage of health left
@@ -138,5 +125,59 @@ public class Shield : MonoBehaviour {
 			// Update health bar value
 			shieldBar.value = shieldPercent;
 		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// 								     		PUBLIC FUNCTIONS											     ///
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
+	/// Reset the players shield
+	/// </summary>
+	public void reset() {
+		// Reset shield power and color
+		_strength = DataManager.Instance.getCurrentPlayerData().getShield();
+		_maximumShield = _strength;
+		_renderer.color = _originalColor;
+
+		/* INIT SHIELD DISPLAY */
+		_updateShield();
+	}
+	/// <summary>
+	/// Called to add more strength to the shield
+	/// </summary>
+	/// <param name="strengthToAdd">Strength to add</param>
+	public void addStrength(float strengthToAdd) {
+		// If the new strength is going to be more than the max then cap it
+		if ((_strength + strengthToAdd) > _maximumShield) {
+			_strength = _maximumShield;
+		} else {
+			_strength += strengthToAdd;
+		}
+
+		// Update the UI of the shield to display new values
+		_updateShield();
+	}
+
+	/// <summary>
+	/// Returns the current strength of the shield
+	/// </summary>
+	/// <returns>The strength of the shield</returns>
+	public float getStrength() {
+		return _strength;
+	}
+
+	/// <summary>
+	/// Called to set the maximum allowed strength of the shield
+	/// </summary>
+	/// <param name="newMaxShield">The new maximum shield strength</param>
+	public void setMaxShield(float newMaxShield) {
+		_maximumShield = newMaxShield;
+
+		if (_strength > _maximumShield) {
+			_strength = _maximumShield;
+		}
+
+		// Update the UI of the shield to display new values
+		_updateShield();
 	}
 }

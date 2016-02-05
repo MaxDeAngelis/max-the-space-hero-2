@@ -35,9 +35,6 @@ public class PlayerController : MonoBehaviour {
 	private Climbable _climbable;
 	private Animator _animator;
 
-	/* ---- MANAGERS ---- */
-	private PowerupManager _powerupManager;
-
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,9 +45,6 @@ public class PlayerController : MonoBehaviour {
 		/* INIT COMPONENTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-
-		/* INIT MANAGERS */
-		_powerupManager = PowerupManager.Instance;
 
 		/* INIT VARIABLES */
 		_originalGravityScale = _rigidbody.gravityScale;

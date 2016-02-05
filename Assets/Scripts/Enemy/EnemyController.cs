@@ -50,9 +50,9 @@ public class EnemyController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * @private Called on start of the game object to init variables
-	 **/
+	/// <summary>
+	/// Called on start of the game object to init variables
+	/// </summary>
 	void Start() {
 		/* INIT OBJECTS */
 		_rigidbody = GetComponent<Rigidbody2D>();
@@ -69,10 +69,10 @@ public class EnemyController : MonoBehaviour {
 		/* REGESTER THIS ENEMY*/
 		GameManager.Instance.registerEnemy(this);
 	}
-	
-	/**
-	 * @private Called once per frame handles calculations used durring fixed update
-	 **/
+
+	/// <summary>
+	/// Called once per frame handles calculations used durring fixed update
+	/// </summary>
 	void Update () {
 		if (type == ENEMY_TYPE.Ground) {
 			// Line cast to the ground check transform to see if it is over a ground layer
@@ -82,10 +82,10 @@ public class EnemyController : MonoBehaviour {
 		/* Recalculate distance variables */
 		_calculateTargetAndOriginDistance();
 	}
-
-	/**
-	 * @private Called 60times per second fixed, handles all processing
-	 **/
+		
+	/// <summary>
+	/// Called 60times per second fixed, handles all processing
+	/// </summary>
 	void FixedUpdate() {
 		// If within attack range then try and move towards player
 		if (_distanceFromTarget <= sightRange && _shouldEngage()) { 
@@ -136,9 +136,9 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private checks and sets distance from target and origin values
-	 **/
+	/// <summary>
+	/// Checks and sets distance from target and origin values
+	/// </summary>
 	void _calculateTargetAndOriginDistance() {
 		// Get the player location
 		_playerLocation = PlayerManager.Instance.getLocation();
@@ -152,12 +152,11 @@ public class EnemyController : MonoBehaviour {
 		// Figure out haw far ou are from the original location
 		_distanceFromOriginalPosition = Vector3.Distance(transform.position, _originalPosition);
 	}
-
-	/**
-	 * @private handles changing the direction of the transform based on a target position
-	 * 
-	 * @param Vector3 target - The target position to base the flip on 
-	 **/
+		
+	/// <summary>
+	/// Handles changing the direction of the transform based on a target position
+	/// </summary>
+	/// <param name="target">The target position to base the flip on </param>
 	void _calculateDirection(Vector3 target) {
 		if (patrolDirection == PATROL.Horizontal) {
 			// Changes the enemies direction based on what way they are moving
@@ -180,9 +179,9 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private Aim the arm/weapon at player before firing
-	 **/
+	/// <summary>
+	/// Aim the arm/weapon at player before firing
+	/// </summary>
 	void _aimWeapon() {
 		// Drop out if paused
 		if (!MenuManager.Instance.isPaused() && gunArm != null) {
@@ -202,19 +201,18 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private move to position given requardless of direction
-	 * 
-	 * @param Vector3 target - the vector location to move to
-	 **/
+	/// <summary>
+	/// Move to position given requardless of direction
+	/// </summary>
+	/// <param name="target">The vector location to move to</param>
 	void _moveToLocation(Vector3 target) {
 		Vector2 delta = target - transform.position;
 		_rigidbody.velocity = delta.normalized * maxSpeed;
 	}
 
-	/**
-	 * @private Move the enemy unit if grounded
-	 **/
+	/// <summary>
+	/// Move the enemy unit if grounded
+	/// </summary>
 	void _move() {
 		if (type == ENEMY_TYPE.Ground && !_isGrounded || _distanceFromTarget <= _weapon.range) {
 			_rigidbody.velocity = new Vector2(0f, 0f);
@@ -225,9 +223,10 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private returns true if the enemy should engage the player
-	 **/
+	/// <summary>
+	/// Returns true if the enemy should engage the player
+	/// </summary>
+	/// <returns><c>true</c>, if engage was shoulded, <c>false</c> otherwise.</returns>
 	bool _shouldEngage() {
 		bool returnValue = false;
 
@@ -246,9 +245,9 @@ public class EnemyController : MonoBehaviour {
 		return returnValue;
 	}
 
-	/**
-	 * @private Flips the transform by reversing its scale
-	 **/
+	/// <summary>
+	/// Flips the transform by reversing its scale
+	/// </summary>
 	void _flipDirection() {
 		// If patrolling horizontally then flip x scale else flip y
 		if (patrolDirection == PATROL.Horizontal) {
@@ -263,9 +262,9 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @private draws gizmos when the unit is selected
-	 **/
+	/// <summary>
+	/// Draws gizmos when the unit is selected
+	/// </summary>
 	void OnDrawGizmosSelected () {
 		// If the _original position is not set meeing the game is not running use transform pos
 		if (_originalPosition == Vector3.zero) {
@@ -295,9 +294,4 @@ public class EnemyController : MonoBehaviour {
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, sightRange);
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 }

@@ -41,9 +41,10 @@ public class DataManager : MonoBehaviour {
 		load();
 	}
 	 
-	/**
-	 * @private updated the game data file
-	 **/
+	/// <summary>
+	/// Updated the game data file
+	/// </summary>
+	/// <param name="data">Data.</param>
 	private void _updateGameData(GameData data) {
 		// Get a handle on the formatter and the file itself
 		BinaryFormatter _formatter = new BinaryFormatter();
@@ -57,17 +58,16 @@ public class DataManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/**
-	 * @public handles saving the game
-	 **/
+	/// <summary>
+	/// Save the actual game data to save file
+	/// </summary>
 	public void save() {
 		_updateGameData(_currentGameData);
 	}
 	
-	/**
-	 * @public handles loading the game
-	 **/
+	/// <summary>
+	/// Load the game from game file if it exists or create a new game object
+	/// </summary>
 	public void load() {
 		// If the file exists
 		if (File.Exists(GAME_DATA_LOCATION)) {
@@ -94,16 +94,18 @@ public class DataManager : MonoBehaviour {
 		}
 	}
 
-	/**
-	 * @public getter for the current game data object
-	 **/
+	/// <summary>
+	/// Called to get the entire saved game data object
+	/// </summary>
+	/// <returns>The current game data object</returns>
 	public GameData getCurrentGameData() {
 		return _currentGameData;
 	}
 
-	/**
-	 * @public getter for the current player data object
-	 **/
+	/// <summary>
+	/// Called to return only the player portion of the game data object
+	/// </summary>
+	/// <returns>The current player data</returns>
 	public PlayerData getCurrentPlayerData() {
 		return _currentGameData.getPlayerData();
 	}
@@ -130,6 +132,10 @@ public class DataManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Called to update the player data with the new score
+	/// </summary>
+	/// <param name="score">The new score to store off</param>
 	public void updatePlayerData(int score) {
 		_currentGameData.getPlayerData().addToScore(score);
 	}

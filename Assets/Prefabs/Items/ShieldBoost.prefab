@@ -1,42 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &194090
+--- !u!1 &133958
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 444470}
-  - 212: {fileID: 21243080}
-  - 95: {fileID: 9599024}
-  - 61: {fileID: 6100922}
-  - 114: {fileID: 11444590}
+  - 4: {fileID: 448662}
+  - 212: {fileID: 21252096}
+  - 95: {fileID: 9522742}
+  - 61: {fileID: 6125638}
+  - 114: {fileID: 11452492}
   m_Layer: 0
-  m_Name: EnergyPowerup
+  m_Name: ShieldBoost
   m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &444470
+--- !u!4 &448662
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194090}
+  m_GameObject: {fileID: 133958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.808762, y: 15.236544, z: 0}
+  m_LocalPosition: {x: -17.481113, y: 12.246084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6100922
+--- !u!61 &6125638
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194090}
+  m_GameObject: {fileID: 133958}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -45,16 +45,16 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.375, y: 0.375}
---- !u!95 &9599024
+--- !u!95 &9522742
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194090}
+  m_GameObject: {fileID: 133958}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8c2723f005664ec48de1eddc2e7304c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7369bf77253404dda88bab2b9d96495b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -62,28 +62,27 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11444590
+--- !u!114 &11452492
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194090}
+  m_GameObject: {fileID: 133958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b26e4a0aa3964ec49378ece8eb9f1ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e488c4435d8b4fd0912b8322c87db0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonus: 100
-  duration: 0
-  colorEffect: {r: 0.050980397, g: 0.33333334, b: 0.7568628, a: 0}
-  type: 1
+  bonus: 20
+  colorEffect: {r: 0.23137257, g: 0.77647066, b: 0.019607844, a: 0}
   pickup: {fileID: 8300000, guid: 37c05e9cd53774fa98d40a36014f966f, type: 3}
---- !u!212 &21243080
+  duration: 30
+--- !u!212 &21252096
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194090}
+  m_GameObject: {fileID: 133958}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -104,7 +103,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 349935317
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300030, guid: 6ac341da5b75c432fba180f56e8261bc, type: 3}
+  m_Sprite: {fileID: 21300020, guid: 6ac341da5b75c432fba180f56e8261bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -116,10 +115,27 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300020, guid: 6ac341da5b75c432fba180f56e8261bc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7369bf77253404dda88bab2b9d96495b, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_SortingLayerID
       value: 349935317
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bonus
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 194090}
+  m_RootGameObject: {fileID: 133958}
   m_IsPrefabParent: 1

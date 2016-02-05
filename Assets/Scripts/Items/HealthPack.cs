@@ -6,6 +6,9 @@ public class HealthPack : Powerup {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC FUNCTION												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>
+	/// Called to use the health pack. Handles only conditionally calling it and showing bonus text
+	/// </summary>
 	public override void use() {
 		// Get a reference to the players health controller
 		PlayerHealth playerHealth = PlayerManager.Instance.getHealthController();
@@ -14,9 +17,6 @@ public class HealthPack : Powerup {
 		if (!playerHealth.isFull()) {
 			// Add the health to the player
 			playerHealth.add(bonus);
-
-			// Show the increase in health
-			Utilities.Instance.showFadeAwayText(PlayerManager.Instance.getTransform(), "+" + bonus.ToString(), Color.red);
 
 			// Call base to use up the powerup
 			base.use();

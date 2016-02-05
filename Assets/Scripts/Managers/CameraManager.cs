@@ -124,11 +124,4 @@ public class CameraManager : MonoBehaviour {
 		Gizmos.DrawLine(new Vector3(right.x, top.y, z), new Vector3(right.x, bottom.y, z));
 		Gizmos.DrawLine(new Vector3(right.x, bottom.y, z), new Vector3(left.x, bottom.y, z));
 	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// 								     		PUBLIC FUNCTIONS											     ///
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public Camera getCamera() {
-		return _camera;
-	}
 }

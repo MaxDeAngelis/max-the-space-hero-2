@@ -97,6 +97,9 @@ public class EnergyManager : MonoBehaviour {
 		} else {
 			_energy += energyToAdd;
 		}
+
+		// Update the energy display in the UI
+		_updateEnergy();
 	}
 
 	/// <summary>
@@ -121,6 +124,23 @@ public class EnergyManager : MonoBehaviour {
 	/// <param name="regenRate">The regen rate to set</param>
 	public void setRegenerationRate(int regenRate) {
 		regenerationRate = regenRate;
+	}
+
+	/// <summary>
+	/// Called to set the maximum allowed energy
+	/// </summary>
+	/// <param name="newMaxEnergy">New maximum energy allowed</param>
+	public void setMaxEnergy(float newMaxEnergy) {
+		// Set the maximum energy allowed
+		_maxEnergy = newMaxEnergy;
+
+		// If the current energy is now higher than the maximum cap it
+		if (_energy > _maxEnergy) {
+			_energy = _maxEnergy;
+		}
+	
+		// Update the energy display in the UI
+		_updateEnergy();
 	}
 
 	/// <summary>
