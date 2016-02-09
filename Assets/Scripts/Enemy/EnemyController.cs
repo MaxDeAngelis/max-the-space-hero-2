@@ -230,16 +230,19 @@ public class EnemyController : MonoBehaviour {
 	bool _shouldEngage() {
 		bool returnValue = false;
 
-		// Check positive conditions for if the enemy should engage
-		// 1. If not a ground unit always engage
-		// 2. If the player is flying then engage
-		// 3. If the player is on the same playform 
-		if (type != ENEMY_TYPE.Ground ) {
-			returnValue = true;
-		} else if (PlayerManager.Instance.isFlying()) {
-			returnValue = true;
-		} else if (_collider.IsTouching(PlayerManager.Instance.getCurrentPlatform())) {
-			returnValue = true;
+		// First and fore most check if the player is still alive before anything
+		if (PlayerManager.Instance.isAlive()) {
+			// Check positive conditions for if the enemy should engage
+			// 1. If not a ground unit always engage
+			// 2. If the player is flying then engage
+			// 3. If the player is on the same playform 
+			if (type != ENEMY_TYPE.Ground ) {
+				returnValue = true;
+			} else if (PlayerManager.Instance.isFlying()) {
+				returnValue = true;
+			} else if (_collider.IsTouching(PlayerManager.Instance.getCurrentPlatform())) {
+				returnValue = true;
+			}
 		}
 
 		return returnValue;

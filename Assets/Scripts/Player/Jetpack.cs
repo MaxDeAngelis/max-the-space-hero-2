@@ -99,7 +99,6 @@ public class Jetpack : MonoBehaviour {
 				// Calculate artifical drag force
 				float drag = boostForce / maximumVelocity;
 
-
 				// Get a reference to the input of vertical and horizontal force
 				float horizontalForce = Input.GetAxis("Horizontal");
 				float verticalForce = Input.GetAxis("Vertical");
@@ -184,11 +183,11 @@ public class Jetpack : MonoBehaviour {
 		// Add inital force to get off ground
 		_rigidbody.AddForce(new Vector2(0f, 5 * maximumVelocity));
 
+		// delay for a quarter second
+		yield return new WaitForSeconds(0.75f);
+
 		// If the user does not have a direction key down then stop velocity
 		if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f) {
-			// delay for a quarter second
-			yield return new WaitForSeconds(0.75f);
-
 			// After wait stop from moving
 			_rigidbody.velocity = new Vector2(0f, 0f);
 		}

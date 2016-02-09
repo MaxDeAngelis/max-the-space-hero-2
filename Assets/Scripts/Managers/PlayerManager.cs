@@ -138,6 +138,14 @@ public class PlayerManager : MonoBehaviour {
 	public bool isClimbing() {
 		return getController().isClimbing();
 	}
+
+	/// <summary>
+	/// Returns true if the player is alive
+	/// </summary>
+	/// <returns><c>true</c>, if player is alive, <c>false</c> otherwise.</returns>
+	public bool isAlive() {
+		return (getHealthController().getHealth() > 0f);
+	}
 		
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     	    	  GETTERS 	  							     	    	     ///

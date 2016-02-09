@@ -68,8 +68,8 @@ public class MenuManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="menu">The menu object to show</param>
 	public void showMenu(MENU_TYPE menuType) {
+		bool pauseTime = true;
 		hideMenu();
-		pause();
 
 		switch (menuType) {
 		case MENU_TYPE.Pause:
@@ -80,6 +80,7 @@ public class MenuManager : MonoBehaviour {
 			_activeMenu = controlsMenu;
 			break;
 		case MENU_TYPE.GameOver:
+			pauseTime = false;
 			_activeMenu = gameOverMenu;
 			break;
 		case MENU_TYPE.LevelComplete:
@@ -91,6 +92,11 @@ public class MenuManager : MonoBehaviour {
 		case MENU_TYPE.MedicalShop:
 			_activeMenu = medicalShopMenu;
 			break;
+		}
+
+		// If time is suposed to pause then pause it
+		if (pauseTime) { 
+			pause();
 		}
 
 		_activeMenu.SetActive(true);
