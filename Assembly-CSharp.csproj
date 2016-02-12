@@ -60,7 +60,6 @@
      <Compile Include="Assets\Scripts\Items\HealthPack.cs" />
      <Compile Include="Assets\Scripts\Items\Projectile.cs" />
      <Compile Include="Assets\Scripts\Items\ShieldBoost.cs" />
-     <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
@@ -72,6 +71,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
      <Compile Include="Assets\Scripts\Player\Shield.cs" />
+     <Compile Include="Assets\Scripts\User Interface\CameraController.cs" />
      <Compile Include="Assets\Scripts\User Interface\CursorManager.cs" />
      <Compile Include="Assets\Scripts\User Interface\LevelList.cs" />
      <Compile Include="Assets\Scripts\User Interface\LevelTile.cs" />

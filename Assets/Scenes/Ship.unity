@@ -704,6 +704,10 @@ Prefab:
       propertyPath: secondarySoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 9a60d623be5915644a1f5aaedd301657, type: 3}
+    - target: {fileID: 11404154, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: maximumVelocity
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_IsPrefabParent: 0
@@ -9573,7 +9577,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1357890489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3086d71adfc74c5abd97c60946f1b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: e8411624dce914620b1d92282a0a2295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distance: -7.5

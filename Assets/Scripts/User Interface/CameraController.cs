@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraManager : MonoBehaviour {
+public class CameraController : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,9 +21,8 @@ public class CameraManager : MonoBehaviour {
 	private Camera _camera;
 	private float _cameraWidth;					// Camera width in game
 	private float _cameraHeight;				// Camera height in game
-	private bool _targetMouse = false;
 
-	private CameraManager Instance;
+	private CameraController Instance;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE FUNCTIONS											     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +37,7 @@ public class CameraManager : MonoBehaviour {
 
 		Instance = this;
 
-		transform.position = PlayerManager.Instance.getLocation();
+		//transform.position = PlayerManager.Instance.getLocation();
 
 		/* INIT COMPONENTS */
 		_camera = GetComponent<Camera>();
@@ -52,25 +51,7 @@ public class CameraManager : MonoBehaviour {
 	/// Called once per frame after all updates and fixed updates finish
 	/// </summary>
 	void LateUpdate () {
-		/* TODO: Commented out the target mouse logic because as it targets is keeps following mouse
-		 * seems a bit weird but didnt want to loose code so leaving disabled for now
-		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
-			_targetMouse = true;
-
-			Vector3 pos = Input.mousePosition;
-			pos.z = transform.position.z - Camera.main.transform.position.z;
-			pos = Camera.main.ScreenToWorldPoint(pos);
-			
-			_target = pos;
-		} 
-		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
-			_targetMouse = false;
-		}
-		*/
-
-		if (!_targetMouse) {
-			_target = PlayerManager.Instance.getLocation();
-		}
+		_target = PlayerManager.Instance.getLocation();
 
 		// Setup default positions
 		float newXLocation = _target.x;
