@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Jetpack : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,6 +27,9 @@ public class Jetpack : MonoBehaviour {
 	private bool _isAnchored = true;			// Flag for when player is attached to the ground
 	private bool _isTakingOff = false;
 	private float _originalGravityScale;		// Starting gravity 
+
+	private enum DIRECTION {Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, Error};
+	private DIRECTION _previousDirection = DIRECTION.Up;
 
 	/* ---- OBJECTS/CONTROLLERS ---- */
 	private Rigidbody2D _rigidbody;
@@ -67,7 +71,7 @@ public class Jetpack : MonoBehaviour {
 				_collider.isTrigger = true;
 
 				StartCoroutine(_takeoff());
-			} else if (_checkIfAbleToLand() && isFlying() && Input.GetButtonDown("Jump")) {
+			} else if (_isAbleToLand() && isFlying() && Input.GetButtonDown("Jump")) {
 				// Set the regeneration rate since you are no longer flying
 				_energyManager.setRegenerationRate(anchoredEnergyRegenRate);
 
@@ -91,47 +95,35 @@ public class Jetpack : MonoBehaviour {
 			// Nullify horizontalSpeed if you loose anchor
 			_animator.SetFloat("horizontalSpeed", 0f);
 
-			// If direction key is down and there is enough energy then boost
-			if (_energyManager.getEnergy() >= boostCost && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+			float currentMagnitude = (float)Math.Round(_rigidbody.velocity.sqrMagnitude);
+
+			// Get a reference to the input of vertical and horizontal force
+			float horizontalForce = Input.GetAxis("Horizontal");
+			float verticalForce = Input.GetAxis("Vertical");
+
+			if (currentMagnitude > maximumVelocity) {
+				// Calculate the difference in velocity from now to cap
+				float brakeSpeed = maximumVelocity - _rigidbody.velocity.sqrMagnitude;
+
+				// Figure out the amount needed to slow current velocity to excepted speed
+				Vector2 normalisedVelocity = _rigidbody.velocity.normalized;
+				Vector2 brakeVelocity = normalisedVelocity * brakeSpeed;
+
+				// Apply the ammount needed to break
+				_rigidbody.AddForce(brakeVelocity);
+			} else if (_isBoostAllowed(currentMagnitude, horizontalForce, verticalForce)) {
 				// Start boosting
 				_animator.SetBool("boosting", true);
-
-				// Calculate artifical drag force
-				float drag = boostForce / maximumVelocity;
-
-				// Get a reference to the input of vertical and horizontal force
-				float horizontalForce = Input.GetAxis("Horizontal");
-				float verticalForce = Input.GetAxis("Vertical");
-
-				// Modify new force by adding or subtracting 2 this giver a bigger number the smaller the force is
-				// for example when first pressed force might equal 0.05 after mod it equals 1.95
-				// this results in a faster accelaration upfront
-				// Modify horizontal force
-				if (horizontalForce > 0f) {
-					horizontalForce = 2 - horizontalForce;
-				} else if (horizontalForce < 0f) {
-					horizontalForce = -2 - horizontalForce;
-				}
-				// Modify vertical force
-				if (verticalForce > 0f) {
-					verticalForce = 2 - verticalForce;
-				} else if (verticalForce < 0f) {
-					verticalForce = -2 - verticalForce;
-				}
 
 				// Get the direction based on keys down
 				Vector2 direction = new Vector2(horizontalForce, verticalForce);
 
 				// Calculate the new velocity using the fage drag
-				Vector2 newVelocity = (direction * boostForce) - (_rigidbody.velocity * drag);
+				Vector2 newVelocity = direction * boostForce;
 
-				// Apply the velocity over time
-				_rigidbody.velocity += newVelocity * Time.deltaTime ;
-
-				// If you are moving using energy
-				if (Mathf.Abs(newVelocity.x) > 0.5f || Mathf.Abs(newVelocity.y) > 0.5f) {
-					_energyManager.useEnergy(boostCost);
-				}
+				// Add the force to boost and use energy
+				_rigidbody.AddForce(newVelocity);
+				_energyManager.useEnergy(boostCost);
 			} else if (!_isTakingOff) {
 				// Stop boosting
 				_animator.SetBool("boosting", false);
@@ -140,10 +132,64 @@ public class Jetpack : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Called to return the direction of a given x,y location
+	/// </summary>
+	/// <returns>The DIRECTION enum value for whice quadrent its in</returns>
+	/// <param name="x">The x coordinate</param>
+	/// <param name="y">The y coordinate</param>
+	private DIRECTION _getDirection(float x, float y) {
+		if (x == 0 && y > 0) {
+			return DIRECTION.Up;
+		} else if (x > 0 && y > 0) {
+			return DIRECTION.UpRight;
+		}if (x > 0 && y == 0) {
+			return DIRECTION.Right;
+		} else if (x > 0 && y < 0) {
+			return DIRECTION.DownRight;
+		} else if (x == 0 && y < 0) {
+			return DIRECTION.Down;
+		} else if (x < 0 && y < 0) {
+			return DIRECTION.DownLeft;
+		} else if (x < 0 && y == 0) {
+			return DIRECTION.Left;
+		} else if (x < 0 && y > 0) {
+			return DIRECTION.UpLeft;
+		}
+
+		return DIRECTION.Error;
+	}
+
+	/// <summary>
+	/// Called to see if boosting is allowed at the moment
+	/// </summary>
+	/// <returns><c>true</c>, if boosting is allowed, <c>false</c> otherwise.</returns>
+	/// <param name="currentMagnitude">Current magnitude</param>
+	/// <param name="horizontalForce">Horizontal force</param>
+	/// <param name="verticalForce">Vertical force</param>
+	private bool _isBoostAllowed(float currentMagnitude, float horizontalForce, float verticalForce) {
+		// First check if directional keys are down and you have energy
+		// No need to even check additional logic if first level fails
+		if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) &&  _energyManager.getEnergy() >= boostCost) {
+			// 1: If capped velocity and trying to head in the same direction the player is moving do not allow
+			// 2: If the velocity is capped but you are trying to move another direction then allow it
+			// 3: If not capped continue moving and also set previous direction
+			if (currentMagnitude == maximumVelocity && _getDirection(horizontalForce, verticalForce) == _getDirection(_rigidbody.velocity.x, _rigidbody.velocity.y)) {
+				return false;
+			} else if (currentMagnitude == maximumVelocity && _previousDirection != _getDirection(horizontalForce, verticalForce)) {
+				return true;
+			} else if (currentMagnitude < maximumVelocity) {
+				_previousDirection = _getDirection(horizontalForce, verticalForce);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
 	/// Called to check if you are able to land
 	/// </summary>
 	/// <returns><c>true</c>, if if able to land was checked, <c>false</c> otherwise.</returns>
-	private bool _checkIfAbleToLand() {
+	private bool _isAbleToLand() {
 		bool _isAbleToLand = false;
 		bool isTopHitting = Physics2D.Linecast(transform.position, topLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		bool isBottomHitting = Physics2D.Linecast(transform.position, bottomLandingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -191,9 +237,6 @@ public class Jetpack : MonoBehaviour {
 			// After wait stop from moving
 			_rigidbody.velocity = new Vector2(0f, 0f);
 		}
-
-		// Stop boosting
-		_animator.SetBool("boosting", true);
 
 		// Now that the take off is done flip flag
 		_isTakingOff = false;
