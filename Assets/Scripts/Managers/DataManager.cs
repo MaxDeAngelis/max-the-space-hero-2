@@ -135,8 +135,16 @@ public class DataManager : MonoBehaviour {
 	/// <summary>
 	/// Called to update the player data with the new score
 	/// </summary>
-	/// <param name="score">The new score to store off</param>
-	public void updatePlayerData(int score) {
+	/// <param name="score">The new score to add</param>
+	public void updateScore(int score) {
 		_currentGameData.getPlayerData().addToScore(score);
+	}
+
+	/// <summary>
+	/// Called to update the player data with the new health
+	/// </summary>
+	/// <param name="score">The new score to add</param>
+	public void updateHealth(int health) {
+		_currentGameData.getPlayerData().addToHealth(health);
 	}
 }

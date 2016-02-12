@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\StoreManager.cs" />
      <Compile Include="Assets\Scripts\Player\Jetpack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
@@ -77,6 +78,7 @@
      <Compile Include="Assets\Scripts\User Interface\LevelTile.cs" />
      <Compile Include="Assets\Scripts\User Interface\OpenMenu.cs" />
      <Compile Include="Assets\Scripts\User Interface\ShowMenuOnEnter.cs" />
+     <Compile Include="Assets\Scripts\User Interface\StoreTile.cs" />
      <Compile Include="Assets\Scripts\User Interface\TypeText.cs" />
      <Compile Include="Assets\Scripts\Utilities\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\Utilities\FadeAwayText.cs" />

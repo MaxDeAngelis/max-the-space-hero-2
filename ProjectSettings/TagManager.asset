@@ -11,6 +11,8 @@ TagManager:
   - BOTTOM_BOUNDRY
   - Powerup
   - MiniMap
+  - Radar
+  - Score
   layers:
   - Default
   - TransparentFX

@@ -77,4 +77,8 @@ public class PlayerData {
 	public void addToScore(int score) {
 		_score += score;
 	}
+
+	public void addToHealth(int health) {
+		_health += health;
+	}
 }

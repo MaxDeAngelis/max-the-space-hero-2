@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour {
 
 			// Save the level and the player data
 			DataManager.Instance.updateLevelData(SceneManager.GetActiveScene().name, killRatio, (Time.time - _levelStartTime), accuracy, _score);
-			DataManager.Instance.updatePlayerData(_score);
+			DataManager.Instance.updateScore(_score);
 			DataManager.Instance.save();
 		}
 	}
@@ -246,5 +246,15 @@ public class GameManager : MonoBehaviour {
 		if (miniMap) {
 			miniMap.SetActive(state);
 		}
+	}
+
+	/// <summary>
+	/// Called to refresh the HUD
+	/// </summary>
+	public void refreshHUD() {
+		_updateExperience(0);
+		_updateScore(0);
+
+		PlayerManager.Instance.getHealthController().reset();
 	}
 }

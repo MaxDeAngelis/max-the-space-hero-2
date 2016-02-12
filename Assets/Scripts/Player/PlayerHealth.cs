@@ -42,6 +42,7 @@ public class PlayerHealth : Health {
 	/// </summary>
 	protected override void Start() {
 		isPlayer = true;
+
 		health = DataManager.Instance.getCurrentPlayerData().getHealth();
 
 		updateHealth();

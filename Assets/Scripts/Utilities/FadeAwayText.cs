@@ -33,7 +33,7 @@ public class FadeAwayText : MonoBehaviour {
 	/**
 	 * @private Called 60times per second fixed, handles all processing
 	 **/
-	void FixedUpdate () {
+	void Update () {
 		if (_alpha > 0){
 			// Calculate the new position and then move the text object
 			float newHorizontalPosition = transform.position.y + (_scrollRate * Time.deltaTime);
