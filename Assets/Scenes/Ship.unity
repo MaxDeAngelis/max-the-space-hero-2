@@ -278,8 +278,8 @@ GameObject:
   - 114: {fileID: 51027373}
   - 114: {fileID: 51027372}
   - 61: {fileID: 51027371}
-  - 114: {fileID: 51027369}
   - 114: {fileID: 51027377}
+  - 114: {fileID: 51027369}
   m_Layer: 5
   m_Name: Medical_Shop_Row (+2)
   m_TagString: Untagged
@@ -295,56 +295,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 51027368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 09afb1e45064f4347ba01f5a720cd356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483774}
-          m_MethodName: playButtonHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 207483775}
-          m_MethodName: setCursorToPointer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483775}
-          m_MethodName: resetCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
+  ignoreClick: 1
 --- !u!61 &51027371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -481,8 +435,8 @@ MonoBehaviour:
   type: 0
   cost: 400
   amount: 2
-  successSound: {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
-  failedSound: {fileID: 8300000, guid: 9022596bbdeb23946bba4f36464c7cf4, type: 3}
+  successSound: {fileID: 8300000, guid: 78b8ee10a11114b3698d88c888098912, type: 3}
+  failedSound: {fileID: 8300000, guid: 4cca8bc774e91435bbc42d1c20f48ed9, type: 3}
 --- !u!1 &72481564
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +756,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 466058, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.616873
+      value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 466058, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: m_LocalPosition.y
@@ -851,19 +805,23 @@ Prefab:
     - target: {fileID: 11476816, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: secondaryChargedSoundEffect
       value: 
-      objectReference: {fileID: 8300000, guid: 1fa3bc5eb41feeb4ea2c542735f8f047, type: 3}
+      objectReference: {fileID: 8300000, guid: c5d1cad724d69409fb0a1ca8549c337c, type: 3}
     - target: {fileID: 11476816, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: attackSoundEffect
       value: 
-      objectReference: {fileID: 8300000, guid: f175aef063a22c043a1d7438d4ae2ccb, type: 3}
+      objectReference: {fileID: 8300000, guid: 81c147c0593fb414683afc736869ae77, type: 3}
     - target: {fileID: 11476816, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: secondarySoundEffect
       value: 
-      objectReference: {fileID: 8300000, guid: 9a60d623be5915644a1f5aaedd301657, type: 3}
+      objectReference: {fileID: 8300000, guid: 92b25b3a4d904403a85d6157188df05a, type: 3}
     - target: {fileID: 11404154, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
       propertyPath: maximumVelocity
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 11448644, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
+      propertyPath: deathSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: a915ba0e6f50d4c45acf255f7dd29a4b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee8f11c1cc42a4f179c8ac7413dd7359, type: 2}
   m_IsPrefabParent: 0
@@ -1284,8 +1242,8 @@ MonoBehaviour:
   levelCompleteMenu: {fileID: 1651958257}
   levelSelectMenu: {fileID: 1239597518}
   medicalShopMenu: {fileID: 1096075463}
-  showSound: {fileID: 8300000, guid: 2f597a0126e6a4b419c445cfd8ef7e29, type: 3}
-  hideSound: {fileID: 8300000, guid: f70b2cbcd0ee06a4b997b7dface099ff, type: 3}
+  showSound: {fileID: 8300000, guid: 48b3a9fc43d1d453587f491cc5ca23c4, type: 3}
+  hideSound: {fileID: 8300000, guid: a72f5df1218cc402e8ba85945d722eab, type: 3}
 --- !u!4 &207483768
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,9 +1341,12 @@ MonoBehaviour:
   weaponCharged: {fileID: 101610, guid: 5a1a051c7ed124c1ca35598fee1d9da6, type: 2}
   weaponFired: {fileID: 147322, guid: 7aabb9da556fb43c492215c5ed69c8d8, type: 2}
   alienEject: {fileID: 109610, guid: dcd33bdf775ef4097982ea7566164413, type: 2}
-  buttonHoverSound: {fileID: 8300000, guid: 4c60f4fe6840d7f4fa604cd7b60469c4, type: 3}
-  buttonClickSound: {fileID: 8300000, guid: fdd8e9c3f6bb7154eb5e6168548c6733, type: 3}
-  typingSound: {fileID: 8300000, guid: eb43be47580624945887f5bd177fbed8, type: 3}
+  buttonHoverSound: {fileID: 8300000, guid: 46ee52ca4f6e24c1199b3bfeb7e9700c, type: 3}
+  buttonClickSound: {fileID: 8300000, guid: ec125123a11464443b022519c51f849d, type: 3}
+  typingSound: {fileID: 8300000, guid: 982e50481276a46edb68e7110d288510, type: 3}
+  doorOpen: {fileID: 8300000, guid: 43d689b56b0d5456f9960f3d28280444, type: 3}
+  doorClose: {fileID: 8300000, guid: ba3dbe1190fa342dea36097a7f5e4e3a, type: 3}
+  levelComplete: {fileID: 8300000, guid: 1cd1eeac162df44228137d476fb4945a, type: 3}
 --- !u!114 &207483775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1582,7 +1543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2457,6 +2418,22 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11499716, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445698, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427850, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413270, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -2578,7 +2555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2791,7 +2768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2885,6 +2862,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 371852429}
+--- !u!4 &373559649 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+  m_PrefabInternal: {fileID: 680403223}
 --- !u!1 &381182664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,7 +2914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3224,8 +3205,8 @@ GameObject:
   - 114: {fileID: 438539929}
   - 114: {fileID: 438539928}
   - 61: {fileID: 438539927}
-  - 114: {fileID: 438539932}
   - 114: {fileID: 438539926}
+  - 114: {fileID: 438539932}
   m_Layer: 5
   m_Name: Medical_Shop_Row (+1)
   m_TagString: Untagged
@@ -3248,8 +3229,8 @@ MonoBehaviour:
   type: 0
   cost: 200
   amount: 1
-  successSound: {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
-  failedSound: {fileID: 8300000, guid: 9022596bbdeb23946bba4f36464c7cf4, type: 3}
+  successSound: {fileID: 8300000, guid: 78b8ee10a11114b3698d88c888098912, type: 3}
+  failedSound: {fileID: 8300000, guid: 4cca8bc774e91435bbc42d1c20f48ed9, type: 3}
 --- !u!61 &438539927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3375,62 +3356,15 @@ CanvasRenderer:
 --- !u!114 &438539932
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11486282, guid: 54806fd2d224e40fb980980c541a5223,
-    type: 2}
-  m_PrefabInternal: {fileID: 670978584}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 438539925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 09afb1e45064f4347ba01f5a720cd356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483774}
-          m_MethodName: playButtonHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 207483775}
-          m_MethodName: setCursorToPointer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483775}
-          m_MethodName: resetCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
+  ignoreClick: 1
 --- !u!1 &462747125
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,6 +3390,8 @@ Transform:
   m_LocalPosition: {x: 12.069878, y: -4.751324, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 661266192}
+  - {fileID: 373559649}
   - {fileID: 1571927278}
   - {fileID: 1915173767}
   - {fileID: 591882012}
@@ -3463,7 +3399,7 @@ Transform:
   - {fileID: 723374010}
   - {fileID: 1910856297}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &479242053
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,7 +3803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4261,8 +4197,8 @@ GameObject:
   - 114: {fileID: 525758203}
   - 114: {fileID: 525758202}
   - 61: {fileID: 525758201}
-  - 114: {fileID: 525758199}
   - 114: {fileID: 525758207}
+  - 114: {fileID: 525758199}
   m_Layer: 5
   m_Name: Medical_Shop_Row (+5)
   m_TagString: Untagged
@@ -4278,56 +4214,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 525758198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 09afb1e45064f4347ba01f5a720cd356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483774}
-          m_MethodName: playButtonHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 207483775}
-          m_MethodName: setCursorToPointer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483775}
-          m_MethodName: resetCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
+  ignoreClick: 1
 --- !u!61 &525758201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4464,8 +4354,8 @@ MonoBehaviour:
   type: 0
   cost: 800
   amount: 5
-  successSound: {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
-  failedSound: {fileID: 8300000, guid: 9022596bbdeb23946bba4f36464c7cf4, type: 3}
+  successSound: {fileID: 8300000, guid: 78b8ee10a11114b3698d88c888098912, type: 3}
+  failedSound: {fileID: 8300000, guid: 4cca8bc774e91435bbc42d1c20f48ed9, type: 3}
 --- !u!1 &526126089
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,7 +4743,7 @@ RectTransform:
   - {fileID: 1348577610}
   - {fileID: 1489213034}
   m_Father: {fileID: 462747126}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -16.386, y: 21.423}
@@ -5262,8 +5152,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1494487185}
   m_HandleRect: {fileID: 1494487184}
   m_Direction: 0
-  m_Value: 0.9999999
-  m_Size: 0.72584856
+  m_Value: 1
+  m_Size: 0.7258487
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5370,6 +5260,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 633459338}
+--- !u!4 &661266192 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+  m_PrefabInternal: {fileID: 2029993161}
 --- !u!1001 &670978584
 Prefab:
   m_ObjectHideFlags: 0
@@ -5377,6 +5271,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2079395292}
     m_Modifications:
+    - target: {fileID: 11417566, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22445286, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5492,13 +5390,80 @@ Prefab:
     - target: {fileID: 11448264, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
       propertyPath: failedSound
       value: 
-      objectReference: {fileID: 8300000, guid: 9022596bbdeb23946bba4f36464c7cf4, type: 3}
+      objectReference: {fileID: 8300000, guid: 4cca8bc774e91435bbc42d1c20f48ed9, type: 3}
     - target: {fileID: 11448264, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
       propertyPath: successSound
       value: 
-      objectReference: {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
-    m_RemovedComponents: []
+      objectReference: {fileID: 8300000, guid: 78b8ee10a11114b3698d88c888098912, type: 3}
+    - target: {fileID: 11499716, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445698, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427850, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413270, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417566, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &680403223
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 462747126}
+    m_Modifications:
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -33.732
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 17.331
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 187064, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_Name
+      value: Exit Door
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1155482b4c8444c93b111f917980948c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &684874494
 GameObject:
@@ -5664,7 +5629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5786,7 +5751,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462747126}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!114 &723374011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5810,9 +5775,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.30843508, y: -0.51294327}
+  m_Offset: {x: 0.15693438, y: -0.6244507}
   serializedVersion: 2
-  m_Size: {x: 0.38312835, y: 2.0258875}
+  m_Size: {x: 0.68612987, y: 2.3162808}
 --- !u!1 &738658665
 GameObject:
   m_ObjectHideFlags: 0
@@ -5929,7 +5894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6538,7 +6503,7 @@ GameObject:
   - 114: {fileID: 913234249}
   m_Layer: 5
   m_Name: Total
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6647,7 +6612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6710,7 +6675,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &938919751
 GameObject:
   m_ObjectHideFlags: 0
@@ -6991,7 +6956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7261,7 +7226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7404,7 +7369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8577,6 +8542,22 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11499716, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445698, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427850, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413270, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -8987,7 +8968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9057,7 +9038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9578,7 +9559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11130,7 +11111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462747126}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1 &1489213033
 GameObject:
   m_ObjectHideFlags: 0
@@ -11305,7 +11286,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1094456855}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.2741513, y: 0}
+  m_AnchorMin: {x: 0.27415133, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -11392,7 +11373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11420,7 +11401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11696,8 +11677,8 @@ GameObject:
   - 114: {fileID: 1520256875}
   - 114: {fileID: 1520256874}
   - 61: {fileID: 1520256873}
-  - 114: {fileID: 1520256871}
   - 114: {fileID: 1520256879}
+  - 114: {fileID: 1520256871}
   m_Layer: 5
   m_Name: Medical_Shop_Row (+3)
   m_TagString: Untagged
@@ -11713,56 +11694,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520256870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 09afb1e45064f4347ba01f5a720cd356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483774}
-          m_MethodName: playButtonHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 207483775}
-          m_MethodName: setCursorToPointer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483775}
-          m_MethodName: resetCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
+  ignoreClick: 1
 --- !u!61 &1520256873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11899,8 +11834,8 @@ MonoBehaviour:
   type: 0
   cost: 500
   amount: 3
-  successSound: {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
-  failedSound: {fileID: 8300000, guid: 9022596bbdeb23946bba4f36464c7cf4, type: 3}
+  successSound: {fileID: 8300000, guid: 78b8ee10a11114b3698d88c888098912, type: 3}
+  failedSound: {fileID: 8300000, guid: 4cca8bc774e91435bbc42d1c20f48ed9, type: 3}
 --- !u!1 &1520809694
 GameObject:
   m_ObjectHideFlags: 0
@@ -12537,7 +12472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12594,7 +12529,7 @@ Transform:
   - {fileID: 1108454810}
   - {fileID: 1319129963}
   m_Father: {fileID: 462747126}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!1 &1615449134
 GameObject:
   m_ObjectHideFlags: 0
@@ -12710,7 +12645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12780,7 +12715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12957,7 +12892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12985,7 +12920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13055,7 +12990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13289,7 +13224,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400786, guid: 70651957f4cf143d9bd71d487be2d771, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.215
+      value: -19.646
       objectReference: {fileID: 0}
     - target: {fileID: 400786, guid: 70651957f4cf143d9bd71d487be2d771, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13317,7 +13252,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400786, guid: 70651957f4cf143d9bd71d487be2d771, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70651957f4cf143d9bd71d487be2d771, type: 2}
@@ -13595,7 +13530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13764,8 +13699,8 @@ GameObject:
   - 114: {fileID: 1785051591}
   - 114: {fileID: 1785051590}
   - 61: {fileID: 1785051589}
-  - 114: {fileID: 1785051587}
   - 114: {fileID: 1785051595}
+  - 114: {fileID: 1785051587}
   m_Layer: 5
   m_Name: Medical_Shop_Row (+10)
   m_TagString: Untagged
@@ -13781,56 +13716,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785051586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 09afb1e45064f4347ba01f5a720cd356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483774}
-          m_MethodName: playButtonHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 207483775}
-          m_MethodName: setCursorToPointer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 207483775}
-          m_MethodName: resetCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
+  ignoreClick: 1
 --- !u!61 &1785051589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13967,8 +13856,8 @@ MonoBehaviour:
   type: 0
   cost: 1500
   amount: 10
-  successSound: {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
-  failedSound: {fileID: 8300000, guid: 9022596bbdeb23946bba4f36464c7cf4, type: 3}
+  successSound: {fileID: 8300000, guid: 78b8ee10a11114b3698d88c888098912, type: 3}
+  failedSound: {fileID: 8300000, guid: 4cca8bc774e91435bbc42d1c20f48ed9, type: 3}
 --- !u!1 &1787172960
 GameObject:
   m_ObjectHideFlags: 0
@@ -14359,6 +14248,22 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11499716, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427850, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445698, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413270, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -14425,7 +14330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14471,7 +14376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14660,7 +14565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14895,7 +14800,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462747126}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!114 &1910856298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14919,9 +14824,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.35612106, y: -0.51294327}
+  m_Offset: {x: -0.14969635, y: -0.62075233}
   serializedVersion: 2
-  m_Size: {x: 0.28774056, y: 2.0258875}
+  m_Size: {x: 0.70056814, y: 2.312907}
 --- !u!1 &1911539223
 GameObject:
   m_ObjectHideFlags: 0
@@ -15038,7 +14943,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462747126}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!1 &1930817680
 GameObject:
   m_ObjectHideFlags: 0
@@ -15494,7 +15399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15735,7 +15640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15919,6 +15824,22 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11499716, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445698, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427850, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413270, guid: 54806fd2d224e40fb980980c541a5223, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -15972,7 +15893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15993,6 +15914,52 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2016214911}
+--- !u!1001 &2029993161
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 462747126}
+    m_Modifications:
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.6359663
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 17.331324
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426860, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 187064, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+      propertyPath: m_Name
+      value: Hanger Door
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1155482b4c8444c93b111f917980948c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2033103485
 GameObject:
   m_ObjectHideFlags: 0
@@ -16218,7 +16185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16246,7 +16213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16315,7 +16282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16558,7 +16525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16627,7 +16594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16972,7 +16939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17041,7 +17008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

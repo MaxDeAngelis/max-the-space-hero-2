@@ -19,6 +19,9 @@ public class SpecialEffectsManager : MonoBehaviour {
 	public AudioClip buttonHoverSound;
 	public AudioClip buttonClickSound;
 	public AudioClip typingSound;
+	public AudioClip doorOpen;
+	public AudioClip doorClose;
+	public AudioClip levelComplete;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PRIVATE VARIABLES											     ///
@@ -91,7 +94,28 @@ public class SpecialEffectsManager : MonoBehaviour {
 	public void playTypingSound() {
 		playSound(typingSound);
 	}
+
+	/// <summary>
+	/// Plays the door open sound
+	/// </summary>
+	public void playDoorOpen() {
+		playSound(doorOpen);
+	}
+
+	/// <summary>
+	/// Plays the door close sound
+	/// </summary>
+	public void playDoorClose() {
+		playSound(doorClose);
+	}
 		
+	/// <summary>
+	/// Plays the level complete sound
+	/// </summary>
+	public void playLevelComplete() {
+		playSound(levelComplete);
+	}
+
 	/// <summary>
 	/// Function responsable for making the sound effect given
 	/// </summary>

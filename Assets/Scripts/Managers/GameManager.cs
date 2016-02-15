@@ -213,6 +213,9 @@ public class GameManager : MonoBehaviour {
 			levelAccuracy.text = Mathf.Round(accuracy).ToString() + "%";
 			levelTime.text = gameTime.text;
 
+			// Play the level complete sound
+			SpecialEffectsManager.Instance.playLevelComplete();
+
 			// Display the actual level complete menue
 			MenuManager.Instance.showMenu(MENU_TYPE.LevelComplete);
 

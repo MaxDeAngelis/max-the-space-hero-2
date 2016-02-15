@@ -208,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.72, y: 12.65, z: 0}
+  m_LocalPosition: {x: -15.5559845, y: 12.738475, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 462018}
@@ -462,7 +462,7 @@ MonoBehaviour:
   health: 100
   maximumHealth: 0
   damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 8300000, guid: 108399f70bf734495a41073106b8a6f4, type: 3}
   isPlayer: 0
   isAlienAbleToEject: 0
 --- !u!114 &11432604

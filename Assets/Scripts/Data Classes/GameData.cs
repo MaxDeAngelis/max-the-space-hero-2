@@ -18,7 +18,7 @@ public class GameData {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public GameData() {
 		_levels = new List<LevelData>();
-		_levels.Add(new LevelData("Level_1", "Space Station"));
+		_levels.Add(new LevelData("Level_1", "Moon Surface"));
 		_levels.Add(new LevelData("Level_2", "Space Base"));
 		_levels.Add(new LevelData("Level_3", "Surface"));
 		_levels.Add(new LevelData("Level_4", "Cargo Bay"));

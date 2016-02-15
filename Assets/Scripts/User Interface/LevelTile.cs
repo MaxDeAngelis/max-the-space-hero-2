@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class LevelTile : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,20 +33,5 @@ public class LevelTile : MonoBehaviour {
 		button.onClick.AddListener(delegate{
 			GameManager.Instance.loadLevel(level.getName());
 		});
-	}
-
-	/// <summary>
-	/// Handles when the mouse enters the level tile object
-	/// </summary>
-	public void handleMouseEnter() {
-		SpecialEffectsManager.Instance.playButtonHover();
-		CursorManager.Instance.setCursorToPointer();
-	}
-
-	/// <summary>
-	/// Handles when the mouse leaves the level tile
-	/// </summary>
-	public void handleMouseLeave() {
-		CursorManager.Instance.resetCursor();
 	}
 }

@@ -40,7 +40,7 @@ public class FadeAwayText : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x, newHorizontalPosition, transform.position.z);
 
 			// Calculate what the new alpha will be
-			_alpha -= Time.deltaTime / _duration; 
+			_alpha -= Time.unscaledDeltaTime / _duration; 
 
 			// Update the alpha of the color then set the text
 			_textColor.a = _alpha;

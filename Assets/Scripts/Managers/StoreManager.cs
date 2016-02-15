@@ -37,6 +37,9 @@ public class StoreManager : MonoBehaviour {
 			DataManager.Instance.updateScore(-cost);
 			DataManager.Instance.save();
 
+			// Display the health added on HUD
+			Utilities.Instance.showFadeAwayText(GameObject.FindGameObjectWithTag("Health").transform, "+" + amount, Color.red);
+
 			// Refresh hud to display new health and score
 			GameManager.Instance.refreshHUD();
 			return true;
