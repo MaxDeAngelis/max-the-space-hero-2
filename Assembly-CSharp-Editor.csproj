@@ -57,6 +57,7 @@
      <Compile Include="Assets\Editor\Weapons\IBomber.cs" />
      <Compile Include="Assets\Editor\Weapons\ILaser.cs" />
      <Compile Include="Assets\Editor\Weapons\IRocketLauncher.cs" />
+     <None Include="Assets\Textures\Font\SpaceHero.shader" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
      <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEditor.Advertisements">

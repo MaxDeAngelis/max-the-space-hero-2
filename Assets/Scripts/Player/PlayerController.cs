@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour {
 	void Update() {		
 		// Line cast to the ground check transform to see if it is over a ground layer
 		_checkIfGrounded();
+
+		if (Input.GetButtonDown("Jump")) {
+			//_rigidbody.AddForce(transform.up * 200f);
+		}
 	}
 
 	/// <summary>

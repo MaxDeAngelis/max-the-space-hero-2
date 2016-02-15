@@ -94,6 +94,7 @@
      <Compile Include="Assets\Scripts\Weapons\Bomber.cs" />
      <Compile Include="Assets\Scripts\Weapons\Laser.cs" />
      <Compile Include="Assets\Scripts\Weapons\RocketLauncher.cs" />
+     <None Include="Assets\Textures\Font\SpaceHero.shader" />
      <None Include="Assets\Textures\Shaders\Tri-Planar.shader" />
      <None Include="Assets\Textures\Shaders\MiniMap.shader" />
  <Reference Include="UnityEngine.UI">
