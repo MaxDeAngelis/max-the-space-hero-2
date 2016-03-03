@@ -1,15 +1,19 @@
 fileFormatVersion: 2
 guid: de97233c1f7454d7b81cb525cdcd2a83
-timeCreated: 1456891838
+timeCreated: 1456966411
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Ship_Doctor
     21300002: Ship_Medical_Table
     21300004: Ship_Doctor_Head
-    21300006: Ship_Heart
+    21300006: Ship_Tech_1
     21300008: Ship_Soldier
     21300010: Ship_Soldier_Head
+    21300012: Ship_Tech_2
+    21300014: Ship_Tech_Table
+    21300016: Ship_Tech_Head_1
+    21300018: Ship_Tech_Head_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -89,13 +93,13 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ship_Heart
+    - name: Ship_Tech_1
       rect:
         serializedVersion: 2
-        x: 273
-        y: 422
-        width: 11
-        height: 10
+        x: 156
+        y: 466
+        width: 28
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,6 +120,50 @@ TextureImporter:
         serializedVersion: 2
         x: 245
         y: 378
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Ship_Tech_2
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 466
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Ship_Tech_Table
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 334
+        width: 75
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Ship_Tech_Head_1
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 337
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Ship_Tech_Head_2
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 337
         width: 19
         height: 19
       alignment: 0

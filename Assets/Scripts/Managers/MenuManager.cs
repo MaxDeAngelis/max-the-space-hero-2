@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum MENU_TYPE {Pause, Controls, GameOver, LevelComplete, LevelSelect, MedicalShop, Armory};
+public enum MENU_TYPE {Pause, Controls, GameOver, LevelComplete, LevelSelect, MedicalShop, Armory, Tech_1, Tech_2};
 public class MenuManager : MonoBehaviour {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     		PUBLIC VARIABLES											     ///
@@ -13,6 +13,9 @@ public class MenuManager : MonoBehaviour {
 	public GameObject levelSelectMenu;
 	public GameObject medicalShopMenu;
 	public GameObject armoryShopMenu;
+	public GameObject techShopMenu1;
+	public GameObject techShopMenu2;
+
 
 	[Header("Sounds")]
 	public AudioClip showSound;
@@ -95,6 +98,12 @@ public class MenuManager : MonoBehaviour {
 			break;
 		case MENU_TYPE.Armory:
 			_activeMenu = armoryShopMenu;
+			break;
+		case MENU_TYPE.Tech_1:
+			_activeMenu = techShopMenu1;
+			break;
+		case MENU_TYPE.Tech_2:
+			_activeMenu = techShopMenu2;
 			break;
 		}
 
