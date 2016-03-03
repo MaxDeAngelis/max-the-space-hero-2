@@ -81,4 +81,8 @@ public class PlayerData {
 	public void addToHealth(int health) {
 		_health += health;
 	}
+
+	public void addToEnergy(int energy) {
+		_energy += energy;
+	}
 }

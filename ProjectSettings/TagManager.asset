@@ -15,6 +15,7 @@ TagManager:
   - Score
   - Health
   - Shield
+  - Energy
   layers:
   - Default
   - TransparentFX

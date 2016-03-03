@@ -147,4 +147,8 @@ public class DataManager : MonoBehaviour {
 	public void updateHealth(int health) {
 		_currentGameData.getPlayerData().addToHealth(health);
 	}
+
+	public void updateEnergy(int energy) {
+		_currentGameData.getPlayerData().addToEnergy(energy);
+	}
 }

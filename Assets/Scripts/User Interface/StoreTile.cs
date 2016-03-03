@@ -28,6 +28,9 @@ public class StoreTile : MonoBehaviour {
 			case TYPE.Health:
 				isAbleToBuy = StoreManager.Instance.buyHealth(amount, cost);
 				break;
+			case TYPE.Energy:
+				isAbleToBuy = StoreManager.Instance.buyEnergy(amount, cost);
+				break;
 		}
 
 		// If you were able to buy something something then play correct sound effect

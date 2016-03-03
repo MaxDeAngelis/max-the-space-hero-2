@@ -47,4 +47,23 @@ public class StoreManager : MonoBehaviour {
 			return false;
 		}
 	}
+
+	public bool buyEnergy(int amount, int cost) {
+		// If there is enough score then buy new health otherwise fail
+		if (DataManager.Instance.getCurrentPlayerData().getScore() >= cost) {
+			// Add to the health and remove from score then save
+			DataManager.Instance.updateEnergy(amount);
+			DataManager.Instance.updateScore(-cost);
+			DataManager.Instance.save();
+
+			// Display the health added on HUD
+			Utilities.Instance.showFadeAwayText(GameObject.FindGameObjectWithTag("Energy").transform, "+" + amount, Color.blue);
+
+			// Refresh hud to display new health and score
+			GameManager.Instance.refreshHUD();
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

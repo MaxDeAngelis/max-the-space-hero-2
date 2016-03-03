@@ -258,6 +258,8 @@ public class GameManager : MonoBehaviour {
 		_updateExperience(0);
 		_updateScore(0);
 
+
+		EnergyManager.Instance.reset();
 		PlayerManager.Instance.getHealthController().reset();
 	}
 }
