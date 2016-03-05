@@ -13,9 +13,10 @@ TagManager:
   - MiniMap
   - Radar
   - Score
-  - Health
-  - Shield
-  - Energy
+  - HealthTotal
+  - ShieldTotal
+  - EnergyTotal
+  - DamageTotal
   layers:
   - Default
   - TransparentFX

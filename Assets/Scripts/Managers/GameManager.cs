@@ -261,5 +261,6 @@ public class GameManager : MonoBehaviour {
 
 		EnergyManager.Instance.reset();
 		PlayerManager.Instance.getHealthController().reset();
+		PlayerManager.Instance.getShield().reset();
 	}
 }

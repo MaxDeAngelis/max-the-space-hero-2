@@ -66,7 +66,6 @@
      <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SpecialEffectsManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\StoreManager.cs" />
      <Compile Include="Assets\Scripts\Player\Jetpack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />

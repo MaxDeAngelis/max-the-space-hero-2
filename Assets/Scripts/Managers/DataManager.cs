@@ -144,11 +144,15 @@ public class DataManager : MonoBehaviour {
 	/// Called to update the player data with the new health
 	/// </summary>
 	/// <param name="score">The new score to add</param>
-	public void updateHealth(int health) {
-		_currentGameData.getPlayerData().addToHealth(health);
+	public void updateHealth(int amount) {
+		_currentGameData.getPlayerData().addToHealth(amount);
 	}
 
-	public void updateEnergy(int energy) {
-		_currentGameData.getPlayerData().addToEnergy(energy);
+	public void updateEnergy(int amount) {
+		_currentGameData.getPlayerData().addToEnergy(amount);
+	}
+
+	public void updateShield(int amount) {
+		_currentGameData.getPlayerData().addToShield(amount);
 	}
 }

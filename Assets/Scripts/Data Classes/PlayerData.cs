@@ -85,4 +85,8 @@ public class PlayerData {
 	public void addToEnergy(int energy) {
 		_energy += energy;
 	}
+
+	public void addToShield(int shield) {
+		_shield += shield;
+	}
 }

@@ -1501,6 +1501,38 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134801962}
+--- !u!1 &139337497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 139337498}
+  m_Layer: 5
+  m_Name: Damage
+  m_TagString: DamageTotal
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &139337498
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 139337497}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1979483467}
+  m_RootOrder: 6
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -148.7, y: -36.2}
+  m_SizeDelta: {x: 9.9, y: 27.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &151535397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,7 +2366,6 @@ GameObject:
   - 114: {fileID: 207483770}
   - 114: {fileID: 207483767}
   - 114: {fileID: 207483775}
-  - 114: {fileID: 207483771}
   m_Layer: 0
   m_Name: Game Managers
   m_TagString: Untagged
@@ -2417,17 +2448,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1845f88c03334411874aa49df306cab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &207483771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 207483765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf6dfc42ac6d4ca4bbdf077dbe07e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &207483772
@@ -6411,7 +6431,7 @@ GameObject:
   - 114: {fileID: 437663137}
   m_Layer: 5
   m_Name: Total
-  m_TagString: Untagged
+  m_TagString: ShieldTotal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13766,7 +13786,7 @@ GameObject:
   - 114: {fileID: 913234249}
   m_Layer: 5
   m_Name: Total
-  m_TagString: Health
+  m_TagString: HealthTotal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26434,7 +26454,7 @@ GameObject:
   - 114: {fileID: 1518251898}
   m_Layer: 5
   m_Name: Total
-  m_TagString: Energy
+  m_TagString: EnergyTotal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31909,6 +31929,7 @@ RectTransform:
   - {fileID: 1314825692}
   - {fileID: 832428966}
   - {fileID: 1695394240}
+  - {fileID: 139337498}
   m_Father: {fileID: 1171613289}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
