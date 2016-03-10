@@ -92,6 +92,7 @@ public class PlayerManager : MonoBehaviour {
 	/// Reset the player's components
 	/// </summary>
 	public void reset() {
+		getWeapon().reset();
 		getShield().reset();
 		getJetpack().reset();
 		getHealthController().reset();

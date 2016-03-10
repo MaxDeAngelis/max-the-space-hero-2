@@ -116,6 +116,8 @@ public class PlayerWeapon : Laser {
 	public override void Start() {
 		isPlayer = true;
 		base.Start();
+
+		reset();
 	}
 		
 	/// <summary>
@@ -148,5 +150,13 @@ public class PlayerWeapon : Laser {
 	/// <param name="state">If set to <c>true</c> _isEnabled will be set true and jetpack will work</param>
 	public void setState(bool state) {
 		_isEnabled = state;
+	}
+
+	/// <summary>
+	/// Called to reset the weapon and make sure it is set to defaults
+	/// </summary>
+	public void reset() {
+		damage = DataManager.Instance.getCurrentPlayerData().getDamage();
+		secondaryDamage = damage * 3;
 	}
 }

@@ -34,7 +34,7 @@ public class StoreTile : MonoBehaviour {
 	/// Called on click of a shop tile to buy what is for sale
 	/// </summary>
 	public void buy() {
-		//DataManager.Instance.updateScore(10000);
+		// DataManager.Instance.updateScore(10000);
 		// If there is enough score then buy new health otherwise fail
 		if (DataManager.Instance.getCurrentPlayerData().getScore() >= cost) {
 
@@ -53,7 +53,7 @@ public class StoreTile : MonoBehaviour {
 				_showIncreaseText("ShieldTotal", "+" + amount, Color.green);
 				break;
 			case TYPE.Damage:
-				//DataManager.Instance.updateShield(amount);
+				DataManager.Instance.updateDamage(amount);
 				_showIncreaseText("DamageTotal", "+" + amount, Color.yellow);
 				break;
 			}

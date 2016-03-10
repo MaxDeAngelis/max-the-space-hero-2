@@ -16,6 +16,7 @@ public class PlayerData {
 	private int _health;
 	private int _shield;
 	private int _score;
+	private int _damage;
 	private float _energy;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +30,7 @@ public class PlayerData {
 		_energy = 250f;
 		_shield = 10;
 		_score = 0;
+		_damage = 10;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +64,10 @@ public class PlayerData {
 		return _shield;
 	}
 
+	public int getDamage() {
+		return _damage;
+	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     				SETTERS												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,19 +80,23 @@ public class PlayerData {
 		}
 	}
 
-	public void addToScore(int score) {
-		_score += score;
+	public void addToScore(int amount) {
+		_score += amount;
 	}
 
-	public void addToHealth(int health) {
-		_health += health;
+	public void addToHealth(int amount) {
+		_health += amount;
 	}
 
-	public void addToEnergy(int energy) {
-		_energy += energy;
+	public void addToEnergy(int amount) {
+		_energy += amount;
 	}
 
-	public void addToShield(int shield) {
-		_shield += shield;
+	public void addToShield(int amount) {
+		_shield += amount;
+	}
+
+	public void addToDamage(int amount) {
+		_damage += amount;
 	}
 }

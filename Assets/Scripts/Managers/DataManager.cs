@@ -36,8 +36,6 @@ public class DataManager : MonoBehaviour {
 
 		GAME_DATA_LOCATION = Application.persistentDataPath + "/gameData.dat";
 
-		//_updateGameData(new GameData());
-
 		load();
 	}
 	 
@@ -91,6 +89,13 @@ public class DataManager : MonoBehaviour {
 			// Serialize and store then close the file
 			_formatter.Serialize(_file, _currentGameData);
 			_file.Close();
+		}
+
+		// Backwards compatability check
+		GameData newData = new GameData();
+		if (_currentGameData.version() != newData.version()) {
+			Debug.LogError("Game Data out of date! It has been automatically upgraded");
+			_updateGameData(new GameData());
 		}
 	}
 
@@ -148,11 +153,27 @@ public class DataManager : MonoBehaviour {
 		_currentGameData.getPlayerData().addToHealth(amount);
 	}
 
+	/// <summary>
+	/// Called to update the player data with additional energy
+	/// </summary>
+	/// <param name="amount">The amount to add to the existing energy</param>
 	public void updateEnergy(int amount) {
 		_currentGameData.getPlayerData().addToEnergy(amount);
 	}
 
+	/// <summary>
+	/// Called to update the player date with additional shield strength
+	/// </summary>
+	/// <param name="amount">The amount to add to the existing shield</param>
 	public void updateShield(int amount) {
 		_currentGameData.getPlayerData().addToShield(amount);
+	}
+
+	/// <summary>
+	/// Called to update the player data with additional damage for the players weapon
+	/// </summary>
+	/// <param name="amount">The amount to add to the weapon damage</param>
+	public void updateDamage(int amount) {
+		_currentGameData.getPlayerData().addToDamage(amount);
 	}
 }
