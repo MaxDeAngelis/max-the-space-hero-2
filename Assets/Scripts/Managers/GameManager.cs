@@ -142,16 +142,12 @@ public class GameManager : MonoBehaviour {
 	/// <param name="experienceToAdd">The experience to add to the xp bar</param>
 	private void _updateExperience(int experienceToAdd) {
 		if (experience) {
-			PlayerData _player = DataManager.Instance.getCurrentPlayerData();
+			DataManager.Instance.getCurrentPlayerData().addToExperiance(experienceToAdd);
 
-			int _experience = _player.getExperience();
-			int _newExperience = _experience += experienceToAdd;
-			_player.setExperience(_newExperience);
+			experience.value = DataManager.Instance.getCurrentPlayerData().getExperience();
+			experience.maxValue = DataManager.Instance.getCurrentPlayerData().getExperienceForNextLevel();
 
-			experience.maxValue = _player.getExperienceForNextLevel();
-			experience.value = _newExperience;
-
-			level.text = _player.getLevel().ToString();
+			level.text = DataManager.Instance.getCurrentPlayerData().getLevel().ToString();
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

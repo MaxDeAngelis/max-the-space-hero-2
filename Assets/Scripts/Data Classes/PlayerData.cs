@@ -71,12 +71,20 @@ public class PlayerData {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// 								     				SETTERS												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void setExperience(int experience) {
-		_experience = experience;
+	public void addToExperiance(int amount) {
+		_experience += amount;
 
 		if (_experience >= _experienceForNextLevel) {
-			_experience = 0;
+			// Add to the level and reset the current XP
 			_level++;
+			_experience = _experience - _experienceForNextLevel;
+
+			// Calculate what the next level will need take
+			// Less Steep: 20x * Log10(x2) + 100
+			// More Steep: Mathf.Pow((_level/0.1f), 2f);
+
+			float newExperianceNeeded =  Mathf.RoundToInt((20 * _level) * Mathf.Log10(Mathf.Pow(_level, 2)) + 100);
+			_experienceForNextLevel = Mathf.RoundToInt(newExperianceNeeded);
 		}
 	}
 
