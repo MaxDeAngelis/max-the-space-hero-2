@@ -94,7 +94,7 @@ public class DataManager : MonoBehaviour {
 		// Backwards compatability check
 		GameData newData = new GameData();
 		if (_currentGameData.version() != newData.version()) {
-			Debug.LogError("Game Data out of date! It has been automatically upgraded");
+			Debug.Log("Game Data out of date! It has been automatically upgraded");
 			_updateGameData(new GameData());
 		}
 	}

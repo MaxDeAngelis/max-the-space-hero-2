@@ -18,14 +18,12 @@ public class GameData {
 	/// 								     			CONSTRUCTOR												     ///
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public GameData() {
-		_version = 1; // Imcrementing this will force a rebuild in game and all game data will be lost
+		_version = 2; // Imcrementing this will force a rebuild in game and all game data will be lost
 
 		_levels = new List<LevelData>();
 		_levels.Add(new LevelData("Level_1", "Moon Surface"));
-		_levels.Add(new LevelData("Level_2", "Space Base"));
-		_levels.Add(new LevelData("Level_3", "Surface"));
-		_levels.Add(new LevelData("Level_4", "Cargo Bay"));
-		_levels.Add(new LevelData("Level_5", "Escape"));
+		_levels.Add(new LevelData("Level_2", "Moon Base"));
+		_levels.Add(new LevelData("Playground", "Playground"));
 
 		_player = new PlayerData();
 	}
